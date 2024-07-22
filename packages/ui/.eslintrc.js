@@ -1,10 +1,5 @@
-/** @type {import("eslint").Linter.Config} */
+/** @type {import('@types/eslint').Linter.BaseConfig} */
 module.exports = {
-  root: true,
-  extends: ["@repo/eslint-config/react-internal.js"],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    project: "./tsconfig.lint.json",
-    tsconfigRootDir: __dirname,
-  },
+	root: true,
+	extends: [require.resolve('@ibg/config/eslint/react-internal'), 'plugin:storybook/recommended']
 };

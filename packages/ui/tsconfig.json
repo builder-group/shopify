@@ -1,8 +1,16 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
-  "compilerOptions": {
-    "outDir": "dist"
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+	"extends": "@ibg/config/react-library.tsconfig.json",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"declarationDir": "./dist/types",
+		"baseUrl": ".",
+		"paths": {
+			"@/utils": ["./src/utils/index.ts"],
+			"@/hooks": ["./src/hooks/index.ts"],
+			"@/components/*": ["./src/components/*"],
+			"@/components": ["./src/components/index.ts"]
+		}
+	},
+	"include": ["src"]
 }

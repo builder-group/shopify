@@ -1,19 +1,40 @@
 {
-  "name": "monorepo",
-  "private": true,
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
-  "devDependencies": {
-    "prettier": "^3.2.5",
-    "turbo": "^2.0.9",
-    "typescript": "^5.4.5"
-  },
-  "packageManager": "pnpm@8.15.6",
-  "engines": {
-    "node": ">=18"
-  }
+	"name": "monorepo",
+	"description": "Monorepo for project-shopify",
+	"private": true,
+	"scripts": {
+		"build": "turbo build",
+		"start:dev": "turbo start:dev",
+		"clean": "turbo run clean && shx rm -rf node_modules",
+		"install:clean": "pnpm run clean && pnpm install",
+		"lint": "turbo lint",
+		"format": "prettier --write \"**/*.{ts,tsx,md,json,js,jsx}\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/builder-group/project-shopify.git"
+	},
+	"keywords": [],
+	"author": "@bennoinbeta",
+	"license": "AGPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/builder-group/project-shopify/issues"
+	},
+	"homepage": "",
+	"devDependencies": {
+		"@ianvs/prettier-plugin-sort-imports": "^4.3.1",
+		"@ibg/cli": "^0.0.14",
+		"@ibg/config": "^0.0.14",
+		"eslint": "^8.57.0",
+		"prettier": "^3.3.3",
+		"prettier-plugin-tailwindcss": "^0.6.5",
+		"shx": "^0.3.4",
+		"turbo": "^2.0.9",
+		"typescript": "^5.5.3",
+		"vitest": "^2.0.4"
+	},
+	"packageManager": "pnpm@9.2.0",
+	"engines": {
+		"node": ">=20"
+	}
 }

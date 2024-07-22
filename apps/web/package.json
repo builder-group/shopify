@@ -1,27 +1,43 @@
 {
-  "name": "web",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbo",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@repo/ui": "workspace:*",
-    "react": "19.0.0-rc-f994737d14-20240522",
-    "react-dom": "19.0.0-rc-f994737d14-20240522",
-    "next": "15.0.0-rc.0"
-  },
-  "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.0-rc.0"
-  }
+	"name": "@repo/web",
+	"version": "0.0.1",
+	"description": "",
+	"private": true,
+	"scripts": {
+		"build": "next build",
+		"start": "next start",
+		"start:dev": "next dev",
+		"lint": "eslint --ext .js,.ts src/",
+		"clean": "shx rm -rf dist && shx rm -rf node_modules && shx rm -rf .turbo && shx rm -rf .next",
+		"install:clean": "pnpm run clean && pnpm install",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/builder-group/project-shopify.git"
+	},
+	"keywords": [],
+	"author": "@bennoinbeta",
+	"license": "AGPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/builder-group/project-shopify/issues"
+	},
+	"homepage": "",
+	"dependencies": {
+		"@ibg/utils": "^0.0.13",
+		"@repo/ui": "workspace:*",
+		"feature-logger": "^0.0.17",
+		"next": "14.2.5",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
+	},
+	"devDependencies": {
+		"@ibg/config": "^0.0.14",
+		"@types/node": "^20",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"postcss": "^8.4.39",
+		"tailwindcss": "^3.4.4",
+		"typescript": "^5.5.3"
+	}
 }

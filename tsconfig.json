@@ -1,0 +1,3 @@
+{
+	"extends": "@ibg/config/base.tsconfig.json"
+}
