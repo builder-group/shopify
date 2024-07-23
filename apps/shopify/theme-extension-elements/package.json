@@ -1,0 +1,24 @@
+{
+	"name": "@repo/theme-extension-elements",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"solid-element": "^1.8.1",
+		"solid-js": "^1.8.18"
+	},
+	"devDependencies": {
+		"autoprefixer": "^10.4.19",
+		"postcss": "^8.4.39",
+		"tailwindcss": "^3.4.6",
+		"typescript": "^5.2.2",
+		"vite": "^5.3.4",
+		"vite-plugin-solid": "^2.10.2",
+		"vite-plugin-shopify": "^3.0.1"
+	}
+}
