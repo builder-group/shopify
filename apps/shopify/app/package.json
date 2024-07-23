@@ -13,7 +13,6 @@
 		"shopify:config:link": "shopify app config link",
 		"shopify:config:use": "shopify app config use",
 		"shopify:env": "shopify app env",
-		"docker:start": "npm run setup && npm run start",
 		"lint": "eslint --ext .js,.ts,.jsx,.tsx, src/",
 		"clean": "shx rm -rf dist && shx rm -rf node_modules && shx rm -rf .turbo",
 		"install:clean": "pnpm run clean && pnpm install",
@@ -60,6 +59,7 @@
 		"undici": "6.13.0"
 	},
 	"overrides": {
-		"undici": "6.13.0"
+		"undici": "6.13.0",
+		"@types/react": "17.0.30"
 	}
 }

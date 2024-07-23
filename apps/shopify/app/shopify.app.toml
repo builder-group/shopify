@@ -1,9 +1,10 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "4fda1d00bc349ec079eecc278cb31fbb"
+extension_directories = [ "../theme-extension" ]
 name = "monorepo-test"
 handle = "monorepo-test-1"
-application_url = "https://gods-issues-hurt-ver.trycloudflare.com"
+application_url = "https://those-stone-pleased-replication.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +18,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://gods-issues-hurt-ver.trycloudflare.com/auth/callback",
-  "https://gods-issues-hurt-ver.trycloudflare.com/auth/shopify/callback",
-  "https://gods-issues-hurt-ver.trycloudflare.com/api/auth/callback"
+  "https://those-stone-pleased-replication.trycloudflare.com/auth/callback",
+  "https://those-stone-pleased-replication.trycloudflare.com/auth/shopify/callback",
+  "https://those-stone-pleased-replication.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
