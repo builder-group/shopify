@@ -1,0 +1,65 @@
+{
+	"name": "@repo/shopify",
+	"version": "0.0.1",
+	"description": "",
+	"private": true,
+	"scripts": {
+		"build": "remix vite:build",
+		"start": "remix-serve ./build/server/index.js",
+		"start:dev": "shopify app dev",
+		"shopify": "shopify",
+		"shopify:generate": "shopify app generate",
+		"shopify:deploy": "shopify app deploy",
+		"shopify:config:link": "shopify app config link",
+		"shopify:config:use": "shopify app config use",
+		"shopify:env": "shopify app env",
+		"docker:start": "npm run setup && npm run start",
+		"lint": "eslint --ext .js,.ts,.jsx,.tsx, src/",
+		"clean": "shx rm -rf dist && shx rm -rf node_modules && shx rm -rf .turbo",
+		"install:clean": "pnpm run clean && pnpm install",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/builder-group/project-shopify.git"
+	},
+	"keywords": [],
+	"author": "@bennoinbeta",
+	"license": "AGPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/builder-group/project-shopify/issues"
+	},
+	"homepage": "",
+	"dependencies": {
+		"@remix-run/dev": "^2.7.1",
+		"@remix-run/node": "^2.7.1",
+		"@remix-run/react": "^2.7.1",
+		"@remix-run/serve": "^2.7.1",
+		"@repo/shopify-app-session-storage-local": "workspace:*",
+		"@shopify/app-bridge-react": "^4.1.2",
+		"@shopify/polaris": "^12.0.0",
+		"@shopify/shopify-api": "^11.1.0",
+		"@shopify/shopify-app-remix": "^3.0.2",
+		"@shopify/shopify-app-session-storage": "^3.0.2",
+		"isbot": "^5.1.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"vite-tsconfig-paths": "^4.3.1"
+	},
+	"devDependencies": {
+		"@shopify/api-codegen-preset": "^1.0.1",
+		"@types/node": "^20.6.3",
+		"@types/react": "^18.2.31",
+		"@types/react-dom": "^18.2.14"
+	},
+	"trustedDependencies": [
+		"@shopify/plugin-cloudflare"
+	],
+	"resolutions": {
+		"undici": "6.13.0"
+	},
+	"overrides": {
+		"undici": "6.13.0"
+	}
+}

@@ -6,19 +6,19 @@ import { appConfig } from '@/environment';
 
 import './globals.css';
 
-export const fontSans = Lato({
+const fontSans = Lato({
 	subsets: ['latin'],
 	variable: '--font-sans',
 	weight: '400'
 });
 
-export const fontBody = Lato({
+const fontBody = Lato({
 	subsets: ['latin'],
 	variable: '--font-body',
 	weight: '400'
 });
 
-export const fontDisplay = Alegreya_Sans({
+const fontDisplay = Alegreya_Sans({
 	subsets: ['latin'],
 	variable: '--font-display',
 	weight: '400'
