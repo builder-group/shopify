@@ -1,4 +1,4 @@
-# Shopify App setup 
+# Shopify App setup
 
 This Shopify App setup is based on the [`shopify-app-template-remix`](https://github.com/Shopify/shopify-app-template-remix), with a few key differences to accommodate our monorepo setup.
 
@@ -78,15 +78,18 @@ Instead of using the default [`PrismaSessionStorage`](https://www.npmjs.com/pack
 Due to the different extension setup, follow these steps to create a new extension:
 
 1. **Generate Extension**: Use the command in the Shopify App's `app/` directory:
-    ```bash
-    pnpm shopify:generate extension
-    ```
-    Select the type of extension you wish to create. The extension will be generated in the `extensions/` folder inside the Shopify App's `app/` directory.
+
+   ```bash
+   pnpm shopify:generate extension
+   ```
+
+   Select the type of extension you wish to create. The extension will be generated in the `extensions/` folder inside the Shopify App's `app/` directory.
 
 2. **Move Extension**: Move the newly created extension to the top level, alongside the `app/` directory.
-    ```bash
-    mv extensions/extension-1 ../
-    ```
+
+   ```bash
+   mv extensions/extension-1 ../
+   ```
 
 3. **Link Extension**: Update the `shopify.app.toml` file to include the new extension in the `extension_directories` array.
 

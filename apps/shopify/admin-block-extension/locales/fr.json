@@ -1,4 +1,4 @@
 {
-  "name": "admin-block",
-  "welcome": "Bienvenue dans l'extension {{TARGET}}!"
+	"name": "admin-block",
+	"welcome": "Bienvenue dans l'extension {{TARGET}}!"
 }

@@ -34,8 +34,8 @@ The structure of the `package.json` file in this project should adhere to a spec
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"update:latest": "pnpm update --latest"
 	},
-    // "type": "module",
-    // "source": "./src/index.ts",
+	// "type": "module",
+	// "source": "./src/index.ts",
 	// "main": "./dist/cjs/index.js",
 	// "module": "./dist/esm/index.js",
 	// "types": "./dist/types/index.d.ts",
@@ -59,14 +59,12 @@ The structure of the `package.json` file in this project should adhere to a spec
 	"devDependencies": {
 		// Project devDependencies here
 	},
-    "files": [
-        "dist",
-        "README.md"
-    ]
+	"files": ["dist", "README.md"]
 }
 ```
 
 For specific packages, additional fields should be included as shown below. Note that the fields `source`, `main`, `module`, `types`, and `files` are usually required in packages:
+
 ```json
 {
 	// ..

@@ -11,15 +11,17 @@ SolidJs also uses JSX syntax, similar to React, which makes it familiar and easy
 ### Comparison with Other Frameworks
 
 #### **JavaScript in HTML (AlpineJs / Stimulus)**
+
 - **AlpineJs**: Not as developer friendly and found to be slow according to [benchmark results](https://krausest.github.io/js-framework-benchmark/2023/table_chrome_115.0.5790.98.html).
 - **Stimulus**: Not as developer friendly ([example](https://gist.github.com/panoply/241c1fbabd210d110b5290f046ab5f49)).
 
 At some point, I might explore an embedded JavaScript framework that integrates more seamlessly with server-rendered HTML based on Liquid code. This could provide additional performance optimizations.
 
 #### **Pure JavaScript Frameworks (Svelte / Preact / React / Vue)**
+
 - **Svelte**: Although Svelte 3 and 4 are compact, Svelte 5 has a significantly larger bundle size compared to SolidJs. Opting for Svelte 3 or 4 could be an option, but using a legacy version is less desirable.
 - **Preact / React / Vue**: Larger and less performant than SolidJs.
-  
+
 ### Benefits of SolidJs
 
 - **Performance**: Second fastest after Vanilla JS according to [benchmark results](https://krausest.github.io/js-framework-benchmark/2023/table_chrome_115.0.5790.98.html).

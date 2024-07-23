@@ -10,5 +10,5 @@
 		},
 		"types": ["node"]
 	},
-	"include": ["env.d.ts", "**/*.ts", "**/*.tsx"],
+	"include": ["env.d.ts", "**/*.ts", "**/*.tsx"]
 }
