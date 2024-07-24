@@ -1,7 +1,7 @@
 import { type components, type paths } from '@repo/types/core';
 import { Session } from '@shopify/shopify-api';
 import { type SessionStorage } from '@shopify/shopify-app-session-storage';
-import { createOpenApiFetchClient, type TFetchClient } from 'feature-fetch';
+import { createOpenApiFetchClient, RequestError, type TFetchClient } from 'feature-fetch';
 
 export class ApiCoreSessionStorage implements SessionStorage {
 	private fetchClient: TFetchClient<['base', 'openapi'], paths>;
@@ -17,6 +17,14 @@ export class ApiCoreSessionStorage implements SessionStorage {
 			'/v1/shopify/session',
 			sessionToSessionDto(session)
 		);
+
+		if (response.isErr() && response.error instanceof RequestError) {
+			console.warn('Failed to store Session by exception.', {
+				errorData: response.error.data,
+				sessionDto: sessionToSessionDto(session),
+				e: response
+			});
+		}
 
 		return response.isOk();
 	}

@@ -54,7 +54,7 @@ openApiRouter.post('/v1/shopify/session', {
 		v.object({
 			id: v.pipe(v.string(), v.nonEmpty()),
 			shop: v.pipe(v.string(), v.nonEmpty()),
-			state: v.pipe(v.string(), v.nonEmpty()),
+			state: v.string(),
 			isOnline: v.boolean(),
 			scope: v.optional(v.string()),
 			expires: v.optional(v.number()),
