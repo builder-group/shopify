@@ -1,5 +1,3 @@
-import { join } from 'path';
-import { partytownVite } from '@builder.io/partytown/utils';
 import { defineConfig } from 'vite';
 import shopify from 'vite-plugin-shopify';
 import solid from 'vite-plugin-solid';
@@ -24,7 +22,6 @@ export default defineConfig({
 			sourceCodeDir: './src',
 			snippetFile: 'vite-tag.liquid'
 		}),
-		solid(),
-		partytownVite({ dest: join(__dirname, '../theme-extension/assets'), debug: false })
+		solid()
 	]
 });
