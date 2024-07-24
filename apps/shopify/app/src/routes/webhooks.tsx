@@ -1,6 +1,6 @@
 import type { ActionFunctionArgs } from '@remix-run/node';
 
-import { authenticate, localSessionStorage } from '../shopify.server';
+import { apiCoreSessionStorage, authenticate } from '../shopify.server';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
 	const { topic, shop, session, admin } = await authenticate.webhook(request);
@@ -15,8 +15,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 	switch (topic) {
 		case 'APP_UNINSTALLED':
 			if (session) {
-				const sessions = await localSessionStorage.findSessionsByShop(shop);
-				await localSessionStorage.deleteSessions(sessions.map((session) => session.id));
+				const sessions = await apiCoreSessionStorage.findSessionsByShop(shop);
+				await apiCoreSessionStorage.deleteSessions(sessions.map((session) => session.id));
 			}
 
 			break;

@@ -1,10 +1,10 @@
 import '@shopify/shopify-app-remix/adapters/node';
 
-import { LocalSessionStorage } from '@repo/shopify-app-session-storage-local';
+import { ApiCoreSessionStorage } from '@repo/shopify-app-session-storage-api-core';
 import { restResources } from '@shopify/shopify-api/rest/admin/2024-07';
 import { ApiVersion, AppDistribution, shopifyApp } from '@shopify/shopify-app-remix/server';
 
-export const localSessionStorage = new LocalSessionStorage();
+export const apiCoreSessionStorage = new ApiCoreSessionStorage('http://localhost:8787/');
 
 const shopify = shopifyApp({
 	apiKey: process.env.SHOPIFY_API_KEY,
@@ -13,7 +13,7 @@ const shopify = shopifyApp({
 	scopes: process.env.SCOPES?.split(','),
 	appUrl: process.env.SHOPIFY_APP_URL || '',
 	authPathPrefix: '/auth',
-	sessionStorage: localSessionStorage,
+	sessionStorage: apiCoreSessionStorage,
 	distribution: AppDistribution.AppStore,
 	restResources,
 	future: {
