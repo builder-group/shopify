@@ -32,6 +32,7 @@
 	"dependencies": {
 		"@ibg/openapi-router": "^0.0.10",
 		"@ibg/utils": "^0.0.13",
+		"@shopify/admin-api-client": "^1.0.0",
 		"drizzle-orm": "^0.32.1",
 		"feature-logger": "^0.0.17",
 		"hono": "^4.5.1",

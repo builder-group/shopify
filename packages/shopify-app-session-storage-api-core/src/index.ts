@@ -3,12 +3,20 @@ import { Session } from '@shopify/shopify-api';
 import { type SessionStorage } from '@shopify/shopify-app-session-storage';
 import { createOpenApiFetchClient, RequestError, type TFetchClient } from 'feature-fetch';
 
+// TODO: Create cache because Shopify seems to query the session quite often
 export class ApiCoreSessionStorage implements SessionStorage {
 	private fetchClient: TFetchClient<['base', 'openapi'], paths>;
 
-	constructor(basePath: string) {
+	constructor(basePath: string, shopifyToken: string) {
 		this.fetchClient = createOpenApiFetchClient<paths>({
-			prefixUrl: basePath
+			prefixUrl: basePath,
+			beforeRequestMiddlewares: [
+				async (data) => {
+					(data.requestInit.headers as Record<string, string>).Authorization =
+						`Bearer ${shopifyToken}`;
+					return data;
+				}
+			]
 		});
 	}
 

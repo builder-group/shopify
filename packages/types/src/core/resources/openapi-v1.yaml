@@ -51,12 +51,26 @@ paths:
             application/json:
               schema:
                 type: boolean
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppErrorDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppErrorDto'
         '500':
           description: Internal server error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AppErrorDto'
+      security:
+        - shopifyToken: []
   /v1/shopify/session/{id}:
     get:
       summary: Load a session by ID
@@ -64,11 +78,11 @@ paths:
         - shopify
       operationId: loadSession
       parameters:
-        - name: id
-          in: path
-          required: true
+        - in: path
+          name: id
           schema:
             type: string
+          required: true
       responses:
         '200':
           description: The session object
@@ -76,6 +90,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ShopifySessionDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppErrorDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppErrorDto'
         '404':
           description: Session not found
           content:
@@ -88,17 +114,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AppErrorDto'
+      security:
+        - shopifyToken: []
     delete:
       summary: Delete a session by ID
       tags:
         - shopify
       operationId: deleteSession
       parameters:
-        - name: id
-          in: path
-          required: true
+        - in: path
+          name: id
           schema:
             type: string
+          required: true
       responses:
         '200':
           description: Session deleted successfully
@@ -106,6 +134,18 @@ paths:
             application/json:
               schema:
                 type: boolean
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppErrorDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppErrorDto'
         '404':
           description: Session not found
           content:
@@ -118,6 +158,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AppErrorDto'
+      security:
+        - shopifyToken: []
   /v1/shopify/session/delete:
     post:
       summary: Delete multiple sessions
@@ -140,12 +182,26 @@ paths:
             application/json:
               schema:
                 type: boolean
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppErrorDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppErrorDto'
         '500':
           description: Internal server error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AppErrorDto'
+      security:
+        - shopifyToken: []
   /v1/shopify/session/shop/{shop}:
     get:
       summary: Find sessions by shop
@@ -153,11 +209,11 @@ paths:
         - shopify
       operationId: findSessionsByShop
       parameters:
-        - name: shop
-          in: path
-          required: true
+        - in: path
+          name: shop
           schema:
             type: string
+          required: true
       responses:
         '200':
           description: Array of sessions
@@ -167,13 +223,31 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ShopifySessionDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppErrorDto'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppErrorDto'
         '500':
           description: Internal server error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AppErrorDto'
+      security:
+        - shopifyToken: []
 components:
+  securitySchemes:
+    shopifyToken:
+      type: http
+      scheme: bearer
   schemas:
     AppErrorDto:
         type: object

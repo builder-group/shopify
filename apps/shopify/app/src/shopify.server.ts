@@ -4,7 +4,7 @@ import { ApiCoreSessionStorage } from '@repo/shopify-app-session-storage-api-cor
 import { restResources } from '@shopify/shopify-api/rest/admin/2024-07';
 import { ApiVersion, AppDistribution, shopifyApp } from '@shopify/shopify-app-remix/server';
 
-export const apiCoreSessionStorage = new ApiCoreSessionStorage('http://localhost:8787/');
+export const apiCoreSessionStorage = new ApiCoreSessionStorage('http://localhost:8787/', 'token');
 
 const shopify = shopifyApp({
 	apiKey: process.env.SHOPIFY_API_KEY,

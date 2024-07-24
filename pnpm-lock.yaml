@@ -226,6 +226,9 @@ importers:
       '@ibg/utils':
         specifier: ^0.0.13
         version: 0.0.13
+      '@shopify/admin-api-client':
+        specifier: ^1.0.0
+        version: 1.0.0
       drizzle-orm:
         specifier: ^0.32.1
         version: 0.32.1(@types/react@18.3.3)(postgres@3.4.4)(react@19.0.0-rc-f994737d14-20240522)
