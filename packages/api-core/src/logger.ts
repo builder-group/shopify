@@ -1,0 +1,10 @@
+import { createLogger, LOG_LEVEL, withPrefix } from 'feature-logger';
+
+export const logger = withPrefix(
+	createLogger({
+		level: LOG_LEVEL.INFO
+	}),
+	'[@repo/api-core]'
+);
+
+console.log({ logger });

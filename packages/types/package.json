@@ -1,0 +1,46 @@
+{
+	"name": "@repo/types",
+	"version": "0.0.1",
+	"description": "Shared Typescript types",
+	"private": true,
+	"scripts": {
+		"build": "shx rm -rf dist && pnpm run openapi:generate && chmod +x ../../scripts/cli.sh && ../../scripts/cli.sh bundle -b typesonly",
+		"openapi:generate": "pnpm run openapi:generate:core",
+		"openapi:generate:core": "npx openapi-typescript ./src/core/resources/openapi-v1.yaml -o ./src/core/.openapi/v1.ts",
+		"lint": "eslint --ext .js,.ts src/",
+		"clean": "shx rm -rf dist && shx rm -rf node_modules && shx rm -rf .turbo",
+		"install:clean": "pnpm run clean && pnpm install"
+	},
+	"exports": {
+		"./core": {
+			"source": "./src/core/index.ts",
+			"types": "./dist/core/index.d.ts"
+		}
+	},
+	"typesVersions": {
+		"*": {
+			"core": [
+				"./dist/core/index.d.ts"
+			]
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/builder-group/project-shopify.git"
+	},
+	"keywords": [],
+	"author": "@bennoinbeta",
+	"license": "AGPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/builder-group/project-shopify/issues"
+	},
+	"homepage": "",
+	"devDependencies": {
+		"@ibg/config": "^0.0.14",
+		"openapi-typescript": "^7.1.0"
+	},
+	"files": [
+		"dist",
+		"README.md"
+	]
+}
