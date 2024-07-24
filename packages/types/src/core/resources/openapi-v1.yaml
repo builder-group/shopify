@@ -225,6 +225,11 @@ components:
 
     ShopifySessionDto:
       type: object
+      required:
+        - id
+        - shop
+        - state
+        - isOnline
       properties:
         id:
           type: string
@@ -242,49 +247,11 @@ components:
           type: string
           description: The desired scopes for the access token.
         expires:
-          type: string
-          format: date-time
-          description: The date the access token expires.
+          type: number
+          description: The date time the access token expires.
         accessToken:
           type: string
           description: The access token for the session.
-        onlineAccessInfo:
-          $ref: '#/components/schemas/ShopifyOnlineAccessInfoDto'
-    ShopifyOnlineAccessInfoDto:
-      type: object
-      properties:
-        expires_in:
-          type: integer
-          description: How long the access token is valid for, in seconds.
-        associated_user_scope:
-          type: string
-          description: The effective set of scopes for the session.
-        associated_user:
-          $ref: '#/components/schemas/ShopifyOnlineAccessUserDto'
-    ShopifyOnlineAccessUserDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The user's ID.
-        first_name:
-          type: string
-          description: The user's first name.
-        last_name:
-          type: string
-          description: The user's last name.
-        email:
-          type: string
-          description: The user's email address.
-        email_verified:
-          type: boolean
-          description: Whether the user has verified their email address.
-        account_owner:
-          type: boolean
-          description: Whether the user is the account owner.
-        locale:
-          type: string
-          description: The user's locale.
-        collaborator:
-          type: boolean
-          description: Whether the user is a collaborator.
+        userId:
+          type: number
+          description: The user's ID

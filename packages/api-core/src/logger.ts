@@ -6,5 +6,3 @@ export const logger = withPrefix(
 	}),
 	'[@repo/api-core]'
 );
-
-console.log({ logger });

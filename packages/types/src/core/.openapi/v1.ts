@@ -123,48 +123,21 @@ export interface components {
         HealthStatus: "Up" | "Restricted" | "Down";
         ShopifySessionDto: {
             /** @description The unique identifier for the session. */
-            id?: string;
+            id: string;
             /** @description The Shopify shop domain. */
-            shop?: string;
+            shop: string;
             /** @description The state of the session. */
-            state?: string;
+            state: string;
             /** @description Whether the access token in the session is online or offline. */
-            isOnline?: boolean;
+            isOnline: boolean;
             /** @description The desired scopes for the access token. */
             scope?: string;
-            /**
-             * Format: date-time
-             * @description The date the access token expires.
-             */
-            expires?: string;
+            /** @description The date time the access token expires. */
+            expires?: number;
             /** @description The access token for the session. */
             accessToken?: string;
-            onlineAccessInfo?: components["schemas"]["ShopifyOnlineAccessInfoDto"];
-        };
-        ShopifyOnlineAccessInfoDto: {
-            /** @description How long the access token is valid for, in seconds. */
-            expires_in?: number;
-            /** @description The effective set of scopes for the session. */
-            associated_user_scope?: string;
-            associated_user?: components["schemas"]["ShopifyOnlineAccessUserDto"];
-        };
-        ShopifyOnlineAccessUserDto: {
-            /** @description The user's ID. */
-            id?: number;
-            /** @description The user's first name. */
-            first_name?: string;
-            /** @description The user's last name. */
-            last_name?: string;
-            /** @description The user's email address. */
-            email?: string;
-            /** @description Whether the user has verified their email address. */
-            email_verified?: boolean;
-            /** @description Whether the user is the account owner. */
-            account_owner?: boolean;
-            /** @description The user's locale. */
-            locale?: string;
-            /** @description Whether the user is a collaborator. */
-            collaborator?: boolean;
+            /** @description The user's ID */
+            userId?: number;
         };
     };
     responses: never;
