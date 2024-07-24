@@ -1,3 +1,35 @@
+{%
+	# https://cdn.shopify.com/extensions/03b259ba-6447-4248-a82e-7be394c9b5db/0.0.0/assets/partytown.js
+	# to
+	# /extensions/03b259ba-6447-4248-a82e-7be394c9b5db/0.0.0/assets/
+
+	# TODO: Won't work because Shopify CDN is not the same origin as the webpage
+	# "https://cdn.shopify.com/" instead of "https://bennos-dev-store.myshopify.com/"
+%}
+{% comment %}
+	{% assign full_url = 'partytown.js' | asset_url %}
+	{% assign url_parts = full_url | split: '/' %}
+	{% assign partytown_lib_path = '/'
+		| append: url_parts[3]
+		| append: '/'
+		| append: url_parts[4]
+		| append: '/'
+		| append: url_parts[5]
+		| append: '/'
+		| append: url_parts[6]
+		| append: '/'
+	%}
+	<script>
+		partytown = {
+			lib: '{{ partytown_lib_path }}'
+		};
+	</script>
+	<script
+		src='{{ 'partytown.js' | asset_url | split: '?' | first }}'
+		type='module'
+	></script>
+{% endcomment %}
+
 {% liquid
 	# Relative to entrypointsDir
 	render 'vite-tag' with '/src/elements/Counter.tsx'

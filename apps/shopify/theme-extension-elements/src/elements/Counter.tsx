@@ -6,7 +6,7 @@ import '../app.css';
 export const CounterExtension = customElement(
 	'solid-counter',
 	{ backgroundColor: 'white', color: 'black', rounded: 'false' },
-	(props, { element }) => {
+	(props) => {
 		noShadowDOM();
 
 		const { backgroundColor, color, rounded } = props;
