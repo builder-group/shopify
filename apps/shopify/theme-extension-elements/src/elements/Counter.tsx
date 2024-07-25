@@ -3,7 +3,7 @@ import { createSignal } from 'solid-js';
 
 import '../app.css';
 
-export const CounterExtension = customElement(
+export const CounterElement = customElement(
 	'solid-counter',
 	{ backgroundColor: 'white', color: 'black', rounded: 'false' },
 	(props) => {
@@ -22,7 +22,7 @@ export const CounterExtension = customElement(
 				class="p-4 shadow-md"
 				role="banner"
 			>
-				<h2 class="bg-blue-500">Shopify Theme App Extension with SolidJs</h2>
+				<h2 class="bg-red-500">Shopify Theme App Extension with SolidJs</h2>
 				<p>This is a simple counter component that is rendered as a custom element.</p>
 
 				<div class="h-10 w-32">

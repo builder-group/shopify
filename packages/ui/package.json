@@ -59,7 +59,6 @@
 		"autoprefixer": "^10.4.19",
 		"eslint-plugin-storybook": "^0.8.0",
 		"postcss": "^8.4.39",
-		"postcss-nested": "^6.2.0",
 		"react": "^18.3.1",
 		"rollup-plugin-preserve-directives": "^0.4.0",
 		"sass": "^1.77.8",
