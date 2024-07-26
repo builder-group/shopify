@@ -3,8 +3,12 @@
 	render 'vite-tag' with '/src/elements/StarRating.tsx'
 %}
 
+{% style %}
+	{{ block.settings.custom_css }}
+{% endstyle %}
+
 <star-rating-element
-	customCss='{{ block.settings.customCss }}'
+	default-rating='{{ block.settings.default_rating }}'
 ></star-rating-element>
 
 {% schema %}
@@ -14,9 +18,18 @@
 	"settings": [
 		{
 			"type": "text",
-			"id": "customCss",
+			"id": "custom_css",
 			"label": "Custom CSS",
 			"default": ".test2 { background-color: red }"
+		},
+		{
+			"type": "range",
+			"id": "default_rating",
+			"min": 1,
+			"max": 5,
+			"step": 1,
+			"label": "Default Rating",
+			"default": 3
 		}
 	]
 }

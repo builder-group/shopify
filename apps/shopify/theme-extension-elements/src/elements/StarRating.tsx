@@ -1,28 +1,20 @@
 import { customElement, noShadowDOM } from 'solid-element';
-import { createEffect, createSignal } from 'solid-js';
+import { createSignal } from 'solid-js';
 
 import '../app.css';
 
 export const StarRatingElement = customElement(
 	'star-rating-element',
-	{ customCss: '' },
+	{ 'default-rating': 3 },
 	(props) => {
 		noShadowDOM();
 
-		const [rating, setRating] = createSignal(2);
+		const [rating, setRating] = createSignal(props['default-rating']);
 
 		const handleChange = (value: number) => {
 			console.log('[star-rating-element] handleChange', { value });
 			setRating(value);
 		};
-
-		// TODO: Figure out how to add global style
-		createEffect(() => {
-			console.log('[star-rating-element] createEffect', { props });
-			const styleTag = document.createElement('style');
-			styleTag.textContent = `${props.customCss} this-is-test`;
-			document.head.appendChild(styleTag);
-		});
 
 		return (
 			<div class="star-rating-element_container rating gap-1">
