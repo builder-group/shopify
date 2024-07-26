@@ -1,0 +1,23 @@
+{% liquid
+	# Relative to entrypointsDir
+	render 'vite-tag' with '/src/elements/StarRating.tsx'
+%}
+
+<star-rating-element
+	customCss='{{ block.settings.customCss }}'
+></star-rating-element>
+
+{% schema %}
+{
+	"name": "Star Rating Extension",
+	"target": "section",
+	"settings": [
+		{
+			"type": "text",
+			"id": "customCss",
+			"label": "Custom CSS",
+			"default": ".test2 { background-color: red }"
+		}
+	]
+}
+{% endschema %}

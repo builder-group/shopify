@@ -4,7 +4,7 @@ client_id = "4fda1d00bc349ec079eecc278cb31fbb"
 extension_directories = [ "../theme-extension", "../admin-block-extension" ]
 name = "monorepo-test"
 handle = "monorepo-test-1"
-application_url = "https://tips-barcelona-gathering-produce.trycloudflare.com"
+application_url = "https://weather-nutrition-tn-matched.trycloudflare.com"
 embedded = true
 
 [build]
@@ -18,9 +18,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://tips-barcelona-gathering-produce.trycloudflare.com/auth/callback",
-  "https://tips-barcelona-gathering-produce.trycloudflare.com/auth/shopify/callback",
-  "https://tips-barcelona-gathering-produce.trycloudflare.com/api/auth/callback"
+  "https://weather-nutrition-tn-matched.trycloudflare.com/auth/callback",
+  "https://weather-nutrition-tn-matched.trycloudflare.com/auth/shopify/callback",
+  "https://weather-nutrition-tn-matched.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

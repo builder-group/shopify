@@ -18,7 +18,7 @@ export default defineConfig({
 		shopify({
 			themeRoot: '../theme-extension',
 			// entrypointsDir: "./src",
-			additionalEntrypoints: ['./src/elements/Counter.tsx'],
+			additionalEntrypoints: ['./src/elements/StarRating.tsx'],
 			sourceCodeDir: './src',
 			snippetFile: 'vite-tag.liquid'
 		}),
