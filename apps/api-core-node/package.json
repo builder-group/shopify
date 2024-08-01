@@ -1,5 +1,5 @@
 {
-	"name": "@repo/core-api-node",
+	"name": "@repo/apicore--node",
 	"version": "0.0.1",
 	"description": "Core API running on NodeJs",
 	"private": true,
