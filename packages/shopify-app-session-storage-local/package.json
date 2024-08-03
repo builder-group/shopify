@@ -32,8 +32,9 @@
 	},
 	"devDependencies": {
 		"@blgc/config": "^0.0.16",
-		"@shopify/shopify-api": "^11.0.0",
-		"@shopify/shopify-app-session-storage": "^3.0.0"
+		"@shopify/shopify-api": "^11.2.0",
+		"@shopify/shopify-app-session-storage": "^3.0.3",
+		"@types/node": "^22.1.0"
 	},
 	"files": [
 		"dist",

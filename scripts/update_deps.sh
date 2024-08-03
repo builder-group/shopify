@@ -5,6 +5,9 @@ dirs_to_check=("packages" "apps")
 
 # Array of dependencies to update
 dependencies=(
+    "@types/node"
+    "typescript"
+    # builder.group
     "@blgc/cli"
     "@blgc/config"
     "feature-fetch"
