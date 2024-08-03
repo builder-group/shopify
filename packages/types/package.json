@@ -36,7 +36,7 @@
 	},
 	"homepage": "",
 	"devDependencies": {
-		"@ibg/config": "^0.0.14",
+		"@blgc/config": "^0.0.16",
 		"openapi-typescript": "^7.1.0"
 	},
 	"files": [

@@ -24,15 +24,15 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"@ibg/utils": "^0.0.13",
+		"@blgc/utils": "^0.0.15",
 		"@repo/ui": "workspace:*",
-		"feature-logger": "^0.0.17",
+		"feature-logger": "^0.0.18",
 		"next": "14.2.5",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
-		"@ibg/config": "^0.0.14",
+		"@blgc/config": "^0.0.16",
 		"@types/node": "^20",
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",

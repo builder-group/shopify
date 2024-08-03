@@ -1,8 +1,8 @@
+import { AppError } from '@blgc/openapi-router';
 import { type components } from '@repo/types/core';
 import { HTTPException } from 'hono/http-exception';
 import type * as hono from 'hono/types';
 import { type StatusCode } from 'hono/utils/http-status';
-import { AppError } from '@ibg/openapi-router';
 import { logger } from '@/logger';
 
 type HeaderRecord = Record<string, string | string[]>;

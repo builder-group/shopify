@@ -30,7 +30,7 @@
 		"hono": "^4.5.1"
 	},
 	"devDependencies": {
-		"@ibg/config": "^0.0.14",
+		"@blgc/config": "^0.0.16",
 		"@types/node": "^20.14.12",
 		"dotenv": "^16.4.5",
 		"tsx": "^4.16.2"

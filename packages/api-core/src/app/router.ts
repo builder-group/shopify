@@ -1,7 +1,7 @@
+import { createHonoOpenApiRouter } from '@blgc/openapi-router';
 import { type paths } from '@repo/types/core';
 import { Hono } from 'hono';
 import { bearerAuth } from 'hono/bearer-auth';
-import { createHonoOpenApiRouter } from '@ibg/openapi-router';
 
 import { appConfig } from '../environment';
 

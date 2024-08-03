@@ -1,8 +1,8 @@
+import { AppError } from '@blgc/openapi-router';
 import { type components } from '@repo/types/core';
 import { desc, eq, inArray, type InferSelectModel } from 'drizzle-orm';
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
-import { AppError } from '@ibg/openapi-router';
 import { db, schema } from '@/db';
 
 import { openApiRouter } from '../router';

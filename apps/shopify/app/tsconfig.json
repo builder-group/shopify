@@ -1,5 +1,5 @@
 {
-	"extends": "@ibg/config/remix.tsconfig.json",
+	"extends": "@blgc/config/remix.tsconfig.json",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
 		"removeComments": false,

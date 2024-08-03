@@ -31,7 +31,7 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"@ibg/utils": "^0.0.13",
+		"@blgc/utils": "^0.0.14",
 		"@remix-run/dev": "^2.7.1",
 		"@remix-run/node": "^2.7.1",
 		"@remix-run/react": "^2.7.1",

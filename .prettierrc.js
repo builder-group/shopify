@@ -18,7 +18,7 @@ module.exports = {
 		// External packages
 		'<THIRD_PARTY_MODULES>',
 		// inbeta.group packages
-		'^@ibg/',
+		'^@blgc/',
 		// Internal packages
 		'^@/',
 		'',

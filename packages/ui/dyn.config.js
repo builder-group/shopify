@@ -1,7 +1,7 @@
 const preserveDirectives = require('rollup-plugin-preserve-directives').default;
 
 /**
- * @type {import('@ibg/cli').TDynConfig}
+ * @type {import('@blgc/cli').TDynConfig}
  */
 module.exports = {
 	library: {

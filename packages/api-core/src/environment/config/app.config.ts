@@ -1,4 +1,4 @@
-import { assertValue } from '@ibg/utils';
+import { assertValue } from '@blgc/utils';
 
 export const appConfig = {
 	environment: process.env.NODE_ENV ?? 'local',

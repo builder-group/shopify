@@ -30,19 +30,19 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"@ibg/openapi-router": "^0.0.10",
-		"@ibg/utils": "^0.0.13",
+		"@blgc/openapi-router": "^0.0.12",
+		"@blgc/utils": "^0.0.15",
 		"@shopify/admin-api-client": "^1.0.0",
 		"drizzle-orm": "^0.32.1",
-		"feature-logger": "^0.0.17",
+		"feature-logger": "^0.0.18",
 		"hono": "^4.5.1",
 		"postgres": "^3.4.4",
 		"valibot": "^0.36.0",
-		"validation-adapters": "^0.0.7"
+		"validation-adapters": "^0.0.8"
 	},
 	"devDependencies": {
+		"@blgc/config": "^0.0.16",
 		"@hono/node-server": "^1.12.0",
-		"@ibg/config": "^0.0.14",
 		"@repo/types": "workspace:*",
 		"@types/node": "^20.14.12",
 		"dotenv": "^16.4.5",

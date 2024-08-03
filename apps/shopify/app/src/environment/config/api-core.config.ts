@@ -1,4 +1,4 @@
-import { assertValue } from '@ibg/utils';
+import { assertValue } from '@blgc/utils';
 
 export const apiCoreConfig = {
 	baseUrl: assertValue(
