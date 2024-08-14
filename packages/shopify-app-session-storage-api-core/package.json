@@ -27,18 +27,18 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"feature-fetch": "^0.0.14"
+		"feature-fetch": "^0.0.15"
 	},
 	"peerDependencies": {
 		"@shopify/shopify-api": "^11.0.0",
 		"@shopify/shopify-app-session-storage": "^3.0.0"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.16",
+		"@blgc/config": "^0.0.17",
 		"@repo/types": "workspace:*",
 		"@shopify/shopify-api": "^11.2.0",
 		"@shopify/shopify-app-session-storage": "^3.0.3",
-		"@types/node": "^22.1.0"
+		"@types/node": "^22.2.0"
 	},
 	"files": [
 		"dist",

@@ -27,13 +27,13 @@
 	"dependencies": {
 		"@hono/node-server": "^1.12.0",
 		"@repo/api-core": "workspace:*",
-		"hono": "^4.5.1"
+		"hono": "^4.5.5"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.16",
-		"@types/node": "^22.1.0",
+		"@blgc/config": "^0.0.17",
+		"@types/node": "^22.2.0",
 		"dotenv": "^16.4.5",
-		"tsx": "^4.16.2"
+		"tsx": "^4.17.0"
 	},
 	"files": [
 		"dist",
