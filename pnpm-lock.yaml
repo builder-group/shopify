@@ -69,6 +69,9 @@ importers:
 
   apps/sfy-chrome-extension:
     dependencies:
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -85,9 +88,15 @@ importers:
       '@wxt-dev/module-react':
         specifier: ^1.1.0
         version: 1.1.1(vite@5.4.0(@types/node@22.2.0)(sass@1.77.8))(wxt@0.19.5(@types/node@22.2.0)(rollup@4.20.0)(sass@1.77.8))
-      typescript:
-        specifier: ^5.5.4
-        version: 5.5.4
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.20(postcss@8.4.41)
+      postcss:
+        specifier: ^8.4.41
+        version: 8.4.41
+      tailwindcss:
+        specifier: ^3.4.10
+        version: 3.4.10
       wxt:
         specifier: ^0.19.1
         version: 0.19.5(@types/node@22.2.0)(rollup@4.20.0)(sass@1.77.8)

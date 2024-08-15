@@ -5,16 +5,20 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"start:dev": "wxt -b brave",
+		"start:dev": "wxt",
 		"start:dev:firefox": "wxt -b firefox",
 		"build": "wxt build",
 		"build:firefox": "wxt build -b firefox",
 		"zip": "wxt zip",
 		"zip:firefox": "wxt zip -b firefox",
 		"compile": "tsc --noEmit",
-		"postinstall": "wxt prepare"
+		"postinstall": "wxt prepare",
+		"lint": "eslint --ext .js,.ts,.jsx,.tsx, src/",
+		"clean": "shx rm -rf node_modules && shx rm -rf .turbo && shx rm -rf .next",
+		"install:clean": "pnpm run clean && pnpm install"
 	},
 	"dependencies": {
+		"@repo/ui": "workspace:*",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1"
 	},
@@ -22,7 +26,9 @@
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
 		"@wxt-dev/module-react": "^1.1.0",
-		"typescript": "^5.5.4",
+		"autoprefixer": "^10.4.20",
+		"postcss": "^8.4.41",
+		"tailwindcss": "^3.4.10",
 		"wxt": "^0.19.1"
 	}
 }

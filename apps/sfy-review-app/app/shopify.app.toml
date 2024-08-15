@@ -4,7 +4,7 @@ client_id = "4fda1d00bc349ec079eecc278cb31fbb"
 extension_directories = [ "../theme-extension", "../admin-block-extension" ]
 name = "monorepo-test"
 handle = "monorepo-test-1"
-application_url = "https://orientation-wants-infectious-enters.trycloudflare.com"
+application_url = "https://fiscal-lenses-freedom-opposition.trycloudflare.com"
 embedded = true
 
 [build]
@@ -18,9 +18,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://orientation-wants-infectious-enters.trycloudflare.com/auth/callback",
-  "https://orientation-wants-infectious-enters.trycloudflare.com/auth/shopify/callback",
-  "https://orientation-wants-infectious-enters.trycloudflare.com/api/auth/callback"
+  "https://fiscal-lenses-freedom-opposition.trycloudflare.com/auth/callback",
+  "https://fiscal-lenses-freedom-opposition.trycloudflare.com/auth/shopify/callback",
+  "https://fiscal-lenses-freedom-opposition.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
