@@ -1,4 +1,16 @@
+import { BackgroundBridge } from '../lib';
+import { TBackgroundToContentMessage, TContentToBackgroundMessage } from '../types';
+
+const backgroundBridge = new BackgroundBridge<
+	TBackgroundToContentMessage,
+	TContentToBackgroundMessage
+>();
+
 export default defineBackground(() => {
+	backgroundBridge.listen('ping', (payload, sender, sendResponse) => {
+		sendResponse('pong');
+	});
+
 	browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 		console.log(message); // "ping"
 
@@ -24,6 +36,10 @@ export default defineBackground(() => {
 		} else {
 			browser.action.disable(tabId);
 		}
+	});
+
+	browser.runtime.onInstalled.addListener(() => {
+		browser.action.disable();
 	});
 
 	browser.action.onClicked.addListener((tab) => {

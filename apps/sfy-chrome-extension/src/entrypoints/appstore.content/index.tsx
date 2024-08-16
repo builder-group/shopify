@@ -1,10 +1,17 @@
 import ReactDOM from 'react-dom/client';
 
+import { ContentBridge } from '../../lib';
+import { TBackgroundToContentMessage, TContentToBackgroundMessage } from '../../types';
 import App from './App';
 
 import './style.css';
 
 export const SHADOW_ROOT_NAME = 'bg-appstore-chrome-extension';
+
+export const contentBridge = new ContentBridge<
+	TContentToBackgroundMessage,
+	TBackgroundToContentMessage
+>();
 
 export default defineContentScript({
 	matches: ['*://apps.shopify.com/*'],

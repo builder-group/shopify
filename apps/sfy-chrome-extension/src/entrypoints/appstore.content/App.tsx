@@ -9,12 +9,13 @@ import {
 import React from 'react';
 
 import { Launcher } from './components';
-import { SHADOW_ROOT_NAME } from './index';
+import { contentBridge, SHADOW_ROOT_NAME } from './index';
 
 export const App: React.FC = () => {
 	const [open, setOpen] = useState(false);
 
 	const onClick = React.useCallback(async () => {
+		const res1 = await contentBridge.sendMessage('ping', 'ping');
 		const res = await browser.runtime.sendMessage('ping');
 
 		console.log(res); // "pong"
@@ -43,6 +44,7 @@ export const App: React.FC = () => {
 
 	return (
 		<div className="z-[9999]">
+			<div className="h-10 w-10 bg-red-100">Hello anyone here</div>
 			<Dialog open={open} onOpenChange={setOpen}>
 				<Launcher />
 				<DialogContent
