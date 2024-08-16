@@ -7,7 +7,7 @@ import './style.css';
 export const SHADOW_ROOT_NAME = 'bg-appstore-chrome-extension';
 
 export default defineContentScript({
-	matches: ['*://apps.shopify.com/', '*://apps.shopify.com/search'],
+	matches: ['*://apps.shopify.com/*'],
 	cssInjectionMode: 'ui',
 
 	async main(ctx) {

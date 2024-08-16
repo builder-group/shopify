@@ -14,7 +14,7 @@
 		"compile": "tsc --noEmit",
 		"postinstall": "wxt prepare",
 		"lint": "eslint --ext .js,.ts,.jsx,.tsx, src/",
-		"clean": "shx rm -rf node_modules && shx rm -rf .turbo && shx rm -rf .next",
+		"clean": "shx rm -rf node_modules && shx rm -rf .turbo && shx rm -rf .wxt && shx rm -rf dist",
 		"install:clean": "pnpm run clean && pnpm install"
 	},
 	"dependencies": {

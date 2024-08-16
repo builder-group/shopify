@@ -16,4 +16,8 @@ export default defineBackground(() => {
 
 		return true;
 	});
+
+	// browser.browserAction.onClicked.addListener((tab) => {
+	// 	console.log('Clicked');
+	// });
 });
