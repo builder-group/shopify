@@ -12,6 +12,8 @@ import { Launcher } from './components';
 import { SHADOW_ROOT_NAME } from './index';
 
 export const App: React.FC = () => {
+	const [open, setOpen] = useState(false);
+
 	const onClick = React.useCallback(async () => {
 		const res = await browser.runtime.sendMessage('ping');
 
@@ -31,9 +33,17 @@ export const App: React.FC = () => {
 		// console.log('Hello background!', { id: browser.runtime.id, shopifyHtml });
 	}, []);
 
+	React.useEffect(() => {
+		browser.runtime.onMessage.addListener((message) => {
+			if (message.type === 'ACTION_CLICKED') {
+				setOpen(true);
+			}
+		});
+	});
+
 	return (
 		<div className="z-[9999]">
-			<Dialog>
+			<Dialog open={open} onOpenChange={setOpen}>
 				<Launcher />
 				<DialogContent
 					portalProps={{
