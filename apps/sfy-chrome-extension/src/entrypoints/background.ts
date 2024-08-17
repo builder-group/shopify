@@ -33,9 +33,13 @@ export default defineBackground(() => {
 
 		console.log({ shopifyHtml });
 
+		console.time('getNamesWithXmlTokenizer');
 		const appsWihtXmlTokenizer = getNamesWithXmlTokenizer(shopifyHtml);
+		console.timeEnd('getNamesWithXmlTokenizer');
 
+		console.time('getNamesWithOffscreenDom');
 		const appsWithOffscreenDom = await getNamesWithOffscreenDom(shopifyHtml);
+		console.timeEnd('getNamesWithOffscreenDom');
 
 		console.log({ appsWihtXmlTokenizer, appsWithOffscreenDom });
 
@@ -43,7 +47,7 @@ export default defineBackground(() => {
 	});
 
 	backgroundBridge.listen('log', async (payload) => {
-		console.log(payload);
+		console.log('[offscreen]', payload);
 	});
 
 	browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -68,9 +72,11 @@ export default defineBackground(() => {
 
 async function getNamesWithOffscreenDom(html: string): Promise<TShopifyApp[]> {
 	await createOffscreenDocument();
-	const result = await backgroundBridge.sendMessageToOffscreen('parse', { html });
+	const result = await backgroundBridge.sendMessageToOffscreen('parse_appstore-search-result', {
+		html
+	});
 	await closeOffscreenDocument();
-	return result.result;
+	return result.apps;
 }
 
 function getNamesWithXmlTokenizer(html: string): TShopifyApp[] {
@@ -109,7 +115,10 @@ function getNamesWithXmlTokenizer(html: string): TShopifyApp[] {
 		}
 	);
 
-	return results.map((result: any) => ({
-		name: result._div.attributes['data-app-card-handle-value']
-	}));
+	return results.map(
+		(result: any) =>
+			({
+				name: result._div.attributes['data-app-card-handle-value']
+			}) as any
+	);
 }
