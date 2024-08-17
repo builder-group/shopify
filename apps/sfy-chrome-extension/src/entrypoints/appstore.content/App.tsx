@@ -15,7 +15,7 @@ export const App: React.FC = () => {
 	const [open, setOpen] = useState(false);
 
 	const onClick = React.useCallback(async () => {
-		const res = await contentBridge.sendMessage('ping', { ping: 'Hello' });
+		const res = await contentBridge.sendMessage('scrap-apps', { keyword: 'review' });
 		console.log(res); // "pong"
 	}, []);
 
@@ -27,7 +27,7 @@ export const App: React.FC = () => {
 
 	return (
 		<div className="z-[9999]">
-			<div className="h-10 w-10 bg-red-100">Hello anyone here</div>
+			<div className="h-10 w-10 bg-green-100">Hello anyone here</div>
 			<Dialog open={open} onOpenChange={setOpen}>
 				<Launcher />
 				<DialogContent

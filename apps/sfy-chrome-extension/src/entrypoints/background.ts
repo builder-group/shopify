@@ -1,5 +1,12 @@
+import {
+	processTokenForSimplifiedObject,
+	select,
+	TSelectedXmlToken,
+	TXmlToken
+} from 'xml-tokenizer';
+
 import { BackgroundBridge } from '../lib';
-import { TBackgroundToContentMessage, TContentToBackgroundMessage } from '../types';
+import { TBackgroundToContentMessage, TContentToBackgroundMessage, TShopifyApp } from '../types';
 
 const backgroundBridge = new BackgroundBridge<
 	TBackgroundToContentMessage,
@@ -7,10 +14,10 @@ const backgroundBridge = new BackgroundBridge<
 >();
 
 export default defineBackground(() => {
-	backgroundBridge.listen('ping', async (payload) => {
-		console.log({ payload }); // "ping"
+	backgroundBridge.listen('scrap-apps', async (payload) => {
+		const { keyword } = payload;
 
-		const shopifyResult = await fetch('https://apps.shopify.com/search?page=1&q=review', {
+		const shopifyResult = await fetch(`https://apps.shopify.com/search?page=1&q=${keyword}`, {
 			headers: {
 				'Accept': 'text/html, application/xhtml+xml',
 				'Turbo-Frame': 'search_page'
@@ -18,9 +25,11 @@ export default defineBackground(() => {
 		});
 		const shopifyHtml = await shopifyResult.text();
 
-		console.log('Hello background!', { id: browser.runtime.id, shopifyHtml });
+		console.log({ shopifyHtml });
 
-		return { pong: 'Hii' };
+		const appsWihtXmlTokenizer = getNamesWithXmlTokenizer(shopifyHtml);
+
+		return { apps: appsWihtXmlTokenizer };
 	});
 
 	browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -42,3 +51,44 @@ export default defineBackground(() => {
 		}
 	});
 });
+
+function getNamesWithXmlTokenizer(html: string): TShopifyApp[] {
+	const results: any[] = [];
+	let stack: any[] = [];
+	let tokens: TSelectedXmlToken[] = [];
+	select(
+		html,
+		[
+			[
+				{
+					axis: 'self-or-descendant',
+					local: 'div',
+					attributes: [
+						{ local: 'data-controller', value: 'app-card' }
+						// { local: 'data-app-card-handle-value', value: 'loox' }
+					]
+				}
+			]
+		],
+		(token) => {
+			tokens.push(token);
+
+			if (token.type === 'SelectionStart') {
+				const result: any = {};
+				results.push(result);
+				stack = [result];
+				return;
+			}
+
+			if (token.type === 'SelectionEnd') {
+				return;
+			}
+
+			processTokenForSimplifiedObject(token as TXmlToken, stack);
+		}
+	);
+
+	return results.map((result: any) => ({
+		name: result._div.attributes['data-app-card-handle-value']
+	}));
+}
