@@ -7,12 +7,8 @@ const backgroundBridge = new BackgroundBridge<
 >();
 
 export default defineBackground(() => {
-	backgroundBridge.listen('ping', (payload, sender, sendResponse) => {
-		sendResponse('pong');
-	});
-
-	browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
-		console.log(message); // "ping"
+	backgroundBridge.listen('ping', async (payload) => {
+		console.log({ payload }); // "ping"
 
 		const shopifyResult = await fetch('https://apps.shopify.com/search?page=1&q=review', {
 			headers: {
@@ -24,9 +20,7 @@ export default defineBackground(() => {
 
 		console.log('Hello background!', { id: browser.runtime.id, shopifyHtml });
 
-		sendResponse(shopifyResult);
-
-		return true;
+		return { pong: 'Hii' };
 	});
 
 	browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -44,7 +38,7 @@ export default defineBackground(() => {
 
 	browser.action.onClicked.addListener((tab) => {
 		if (tab.id != null) {
-			browser.tabs.sendMessage(tab.id, { type: 'ACTION_CLICKED' });
+			backgroundBridge.sendMessage(tab.id, 'actionClicked', undefined);
 		}
 	});
 });
