@@ -5,12 +5,18 @@ import {
 	TXmlToken
 } from 'xml-tokenizer';
 
-import { BackgroundBridge } from '../lib';
-import { TBackgroundToContentMessage, TContentToBackgroundMessage, TShopifyApp } from '../types';
+import { BackgroundBridge, closeOffscreenDocument, createOffscreenDocument } from '../lib';
+import {
+	TBackgroundToContentMessage,
+	TBackgroundToOffscreenMessage,
+	TContentToBackgroundMessage,
+	TOffscreenToBackgroundMessage,
+	TShopifyApp
+} from '../types';
 
 const backgroundBridge = new BackgroundBridge<
-	TBackgroundToContentMessage,
-	TContentToBackgroundMessage
+	TBackgroundToContentMessage | TBackgroundToOffscreenMessage,
+	TContentToBackgroundMessage | TOffscreenToBackgroundMessage
 >();
 
 export default defineBackground(() => {
@@ -29,7 +35,15 @@ export default defineBackground(() => {
 
 		const appsWihtXmlTokenizer = getNamesWithXmlTokenizer(shopifyHtml);
 
+		const appsWithOffscreenDom = await getNamesWithOffscreenDom(shopifyHtml);
+
+		console.log({ appsWihtXmlTokenizer, appsWithOffscreenDom });
+
 		return { apps: appsWihtXmlTokenizer };
+	});
+
+	backgroundBridge.listen('log', async (payload) => {
+		console.log(payload);
 	});
 
 	browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -47,10 +61,17 @@ export default defineBackground(() => {
 
 	browser.action.onClicked.addListener((tab) => {
 		if (tab.id != null) {
-			backgroundBridge.sendMessage(tab.id, 'actionClicked', undefined);
+			backgroundBridge.sendMessageToContent(tab.id, 'actionClicked', undefined);
 		}
 	});
 });
+
+async function getNamesWithOffscreenDom(html: string): Promise<TShopifyApp[]> {
+	await createOffscreenDocument();
+	const result = await backgroundBridge.sendMessageToOffscreen('parse', { html });
+	await closeOffscreenDocument();
+	return result.result;
+}
 
 function getNamesWithXmlTokenizer(html: string): TShopifyApp[] {
 	const results: any[] = [];

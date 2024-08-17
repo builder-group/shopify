@@ -13,6 +13,7 @@ export default defineConfig({
 			default_title: 'Click to show an alert'
 		},
 		// https://www.youtube.com/watch?v=yC7RvrsgLCI
-		host_permissions: ['*://apps.shopify.com/*']
+		host_permissions: ['*://apps.shopify.com/*'],
+		permissions: ['offscreen']
 	}
 });
