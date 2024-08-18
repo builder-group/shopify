@@ -1,3 +1,4 @@
+import { Err, Ok, TResult } from 'feature-fetch';
 import {
 	processTokenForSimplifiedObject,
 	select,
@@ -5,84 +6,10 @@ import {
 	TSimplifiedXmlNode,
 	TXmlToken
 } from 'xml-tokenizer';
-import { Err, Ok, TResult } from '@blgc/utils';
 
-import { BackgroundBridge, closeOffscreenDocument, createOffscreenDocument } from '../lib';
-import {
-	TBackgroundToContentMessage,
-	TBackgroundToOffscreenMessage,
-	TContentToBackgroundMessage,
-	TOffscreenToBackgroundMessage,
-	TShopifyApp
-} from '../types';
+import { TShopifyApp } from '../../types';
 
-const backgroundBridge = new BackgroundBridge<
-	TBackgroundToContentMessage | TBackgroundToOffscreenMessage,
-	TContentToBackgroundMessage | TOffscreenToBackgroundMessage
->();
-
-export default defineBackground(() => {
-	backgroundBridge.listen('scrap-apps', async (payload) => {
-		const { keyword } = payload;
-
-		const shopifyResult = await fetch(`https://apps.shopify.com/search?page=1&q=${keyword}`, {
-			headers: {
-				'Accept': 'text/html, application/xhtml+xml',
-				'Turbo-Frame': 'search_page'
-			}
-		});
-		const shopifyHtml = await shopifyResult.text();
-
-		console.time('getNamesWithXmlTokenizer');
-		const appsWihtXmlTokenizer = getNamesWithXmlTokenizer(shopifyHtml);
-		console.timeEnd('getNamesWithXmlTokenizer');
-
-		console.time('getNamesWithOffscreenDom');
-		const appsWithOffscreenDom = await getNamesWithOffscreenDom(shopifyHtml);
-		console.timeEnd('getNamesWithOffscreenDom');
-
-		console.log({ appsWihtXmlTokenizer, appsWithOffscreenDom });
-
-		// TODO
-		return { apps: { appsWihtXmlTokenizer, appsWithOffscreenDom } as any };
-	});
-
-	backgroundBridge.listen('log', async (payload) => {
-		console.log('[offscreen]', payload);
-	});
-
-	browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-		// Allow action only on specific tab (with specific url)
-		if (tab.url != null && tab.url.includes('apps.shopify.com')) {
-			browser.action.enable(tabId);
-		} else {
-			browser.action.disable(tabId);
-		}
-	});
-
-	browser.runtime.onInstalled.addListener(() => {
-		browser.action.disable();
-	});
-
-	browser.action.onClicked.addListener((tab) => {
-		if (tab.id != null) {
-			backgroundBridge.sendMessageToContent(tab.id, 'actionClicked', undefined);
-		}
-	});
-});
-
-async function getNamesWithOffscreenDom(
-	html: string
-): Promise<{ apps: TShopifyApp[]; errors: string[] }> {
-	await createOffscreenDocument();
-	const result = await backgroundBridge.sendMessageToOffscreen('parse_appstore-search-result', {
-		html
-	});
-	await closeOffscreenDocument();
-	return result;
-}
-
-function getNamesWithXmlTokenizer(html: string): { apps: TShopifyApp[]; errors: string[] } {
+export function extractShopifyAppsWithXml(html: string): { apps: TShopifyApp[]; errors: string[] } {
 	const appCardElements: TSimplifiedXmlNode[] = [];
 	let stack: TSimplifiedXmlNode[] = [];
 	let tokens: TSelectedXmlToken[] = [];
@@ -122,7 +49,7 @@ function getNamesWithXmlTokenizer(html: string): { apps: TShopifyApp[]; errors: 
 	Array.from(appCardElements).forEach((cardElement) => {
 		const cardElementDiv = cardElement._div?.[0];
 		if (cardElementDiv != null) {
-			const result = extractAppData(cardElementDiv);
+			const result = extractDataFromAppCardElement(cardElementDiv);
 			if (result.isOk()) {
 				apps.push(result.value);
 			} else {
@@ -134,7 +61,9 @@ function getNamesWithXmlTokenizer(html: string): { apps: TShopifyApp[]; errors: 
 	return { apps, errors };
 }
 
-function extractAppData(cardElement: TSimplifiedXmlNode): TResult<TShopifyApp, string> {
+function extractDataFromAppCardElement(
+	cardElement: TSimplifiedXmlNode
+): TResult<TShopifyApp, string> {
 	const handle = cardElement?.attributes?.['data-app-card-handle-value'];
 	if (handle == null) {
 		return Err(`Failed to extract 'handle' value.`);
@@ -168,9 +97,11 @@ function extractAppData(cardElement: TSimplifiedXmlNode): TResult<TShopifyApp, s
 	const isAd =
 		cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[1]?._div?.[0]?._span?.[0]?.text === 'Ad';
 	const isInstalled = cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[3]?.text === 'Installed';
-	const builtForShopify =
-		cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[4]?._span?.[0]?._span?.[1]?.text ===
-		'Built for Shopify';
+
+	const builtForShopifyText =
+		cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[4]?._span?.[0]?._span?.[1]?.text ??
+		cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[3]?._span?.[0]?._span?.[1]?.text;
+	const builtForShopify = builtForShopifyText === 'Built for Shopify';
 
 	const description = cardElement?._div?.[0]?._div?.[0]?._div?.[0]?._div?.[2]?.text;
 	if (description == null) {
@@ -215,6 +146,6 @@ function extractAppData(cardElement: TSimplifiedXmlNode): TResult<TShopifyApp, s
 		totalReviews,
 		pricingInfo,
 		isAd
-		// cardElement // TODO: For debugging
-	} as any);
+		// cardElement // For debugging
+	});
 }

@@ -15,7 +15,9 @@ export const App: React.FC = () => {
 	const [open, setOpen] = useState(false);
 
 	const onClick = React.useCallback(async () => {
-		const res = await contentBridge.sendMessageToBackground('scrap-apps', { keyword: 'review' });
+		const res = await contentBridge.sendMessageToBackground('fetch-shopify-apps', {
+			keyword: 'review'
+		});
 		console.log(res); // "pong"
 	}, []);
 

@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 
-import { ContentBridge } from '../../lib';
+import { ContentBridge } from '../../lib/utils';
 import { TBackgroundToContentMessage, TContentToBackgroundMessage } from '../../types';
 import App from './App';
 

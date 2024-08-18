@@ -1,3 +1,2 @@
-export * from './bridge';
-export * from './offscreen';
-export * from './query-active-tab';
+export * from './extractors';
+export * from './utils';

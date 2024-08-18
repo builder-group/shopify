@@ -1,8 +1,8 @@
-import { TBridgeMessage } from './lib';
+import { TBridgeMessage } from './lib/utils';
 
 export type TBackgroundToOffscreenMessage = TBridgeMessage<
 	'offscreen',
-	'parse_appstore-search-result',
+	'extract-shopify-apps-from-html',
 	{ html: string },
 	{ apps: TShopifyApp[]; errors: string[] }
 >;
@@ -13,9 +13,9 @@ export type TBackgroundToContentMessage = TBridgeMessage<'content', 'actionClick
 
 export type TContentToBackgroundMessage = TBridgeMessage<
 	'background',
-	'scrap-apps',
+	'fetch-shopify-apps',
 	{ keyword: string },
-	{ apps: TShopifyApp[] }
+	{ apps: TShopifyApp[]; errors: string[] }
 >;
 
 export interface TShopifyApp {
