@@ -4,7 +4,7 @@ export type TBackgroundToOffscreenMessage = TBridgeMessage<
 	'offscreen',
 	'parse_appstore-search-result',
 	{ html: string },
-	{ apps: TShopifyApp[] }
+	{ apps: TShopifyApp[]; errors: string[] }
 >;
 
 export type TOffscreenToBackgroundMessage = TBridgeMessage<'background', 'log', any, void>;

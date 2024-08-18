@@ -18,9 +18,9 @@
 		"install:clean": "pnpm run clean && pnpm install"
 	},
 	"dependencies": {
-		"@blgc/utils": "^0.0.15",
+		"@blgc/utils": "^0.0.16",
 		"@repo/ui": "workspace:*",
-		"feature-fetch": "^0.0.15",
+		"feature-fetch": "^0.0.16",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"xml-tokenizer": "^0.0.10"
