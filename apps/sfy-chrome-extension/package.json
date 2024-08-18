@@ -23,7 +23,7 @@
 		"feature-fetch": "^0.0.16",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
-		"xml-tokenizer": "^0.0.10"
+		"xml-tokenizer": "^0.0.11"
 	},
 	"devDependencies": {
 		"@blgc/config": "^0.0.17",
