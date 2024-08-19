@@ -1,2 +1,1 @@
-export * from './query-shopify-apps-query-selector';
-export * from './query-shopify-apps-xml-tokenizer';
+export * from './query-shopify-apps';

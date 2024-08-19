@@ -7,7 +7,7 @@ import {
 	TXmlToken
 } from 'xml-tokenizer';
 
-import { TShopifyApp } from '../../types';
+import { TShopifyApp } from '../../sfy-chrome-extension/src/types';
 
 export function queryShopifyAppsWithXmlTokenizer(html: string): {
 	apps: TShopifyApp[];

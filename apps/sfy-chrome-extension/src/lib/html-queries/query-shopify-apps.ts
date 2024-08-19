@@ -2,7 +2,7 @@ import { Err, Ok, TResult } from '@blgc/utils';
 
 import { TShopifyApp } from '../../types';
 
-export function queryShopifyAppsWithQuerySelector(document: Document): {
+export function queryShopifyApps(document: Document): {
 	apps: TShopifyApp[];
 	errors: string[];
 } {
