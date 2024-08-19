@@ -1,13 +1,13 @@
 import { Err, Ok, TResult } from '@blgc/utils';
 
-import { TShopifyApp } from '../../types';
+import { TShopifyAppListingItem } from '../../types';
 
 export function queryShopifyApps(document: Document): {
-	apps: TShopifyApp[];
+	apps: TShopifyAppListingItem[];
 	errors: string[];
 } {
 	const appCardElements = document.querySelectorAll('div[data-controller="app-card"]');
-	const apps: TShopifyApp[] = [];
+	const apps: TShopifyAppListingItem[] = [];
 	const errors: string[] = [];
 
 	Array.from(appCardElements).forEach((cardElement) => {
@@ -23,7 +23,9 @@ export function queryShopifyApps(document: Document): {
 }
 
 // Query Selector's were determined in the 'html-query-playground' using '@medv/finder'
-function extractDataFromAppCardElement(cardElement: Element): TResult<TShopifyApp, string> {
+function extractDataFromAppCardElement(
+	cardElement: Element
+): TResult<TShopifyAppListingItem, string> {
 	const isAd = cardElement.querySelector('.tw-rounded-xl')?.textContent?.trim() === 'Ad';
 	const builtForShopify = !!cardElement.querySelector('.built-for-shopify-badge');
 	const isInstalled =
@@ -42,7 +44,7 @@ function extractDataFromAppCardElement(cardElement: Element): TResult<TShopifyAp
 	if (iconUrl == null) {
 		return Err(`Failed to extract 'iconUrl' value.`);
 	}
-	const appLink = cardElement.getAttribute('data-app-card-app-link-value');
+	const appLink = cardElement.getAttribute('data-app-card-app-link-value')?.split('?')?.[0];
 	if (appLink == null) {
 		return Err(`Failed to extract 'appLink' value.`);
 	}
@@ -64,12 +66,12 @@ function extractDataFromAppCardElement(cardElement: Element): TResult<TShopifyAp
 		.querySelector(isAd ? '.tw-relative > span:nth-child(2)' : '.tw-relative > span:nth-child(1)')
 		?.textContent?.trim()
 		.slice(0, 3);
-	if (ratingText == null) {
-		return Err(`Failed to extract 'rating' value.`);
-	}
-	const rating = parseFloat(ratingText);
-	if (isNaN(rating)) {
-		return Err(`Failed to parse 'rating' value.`);
+	let rating: undefined | number = undefined;
+	if (ratingText != null) {
+		const maybeRating = parseFloat(ratingText);
+		if (!isNaN(maybeRating)) {
+			rating = maybeRating;
+		}
 	}
 
 	const totalReviewsText = cardElement
@@ -77,12 +79,12 @@ function extractDataFromAppCardElement(cardElement: Element): TResult<TShopifyAp
 		?.textContent?.trim()
 		.slice(1, -1)
 		.replace(',', '');
-	if (totalReviewsText == null) {
-		return Err(`Failed to extract 'totalReviews' value.`);
-	}
-	const totalReviews = parseInt(totalReviewsText);
-	if (isNaN(totalReviews)) {
-		return Err(`Failed to parse 'totalReviews' value.`);
+	let totalReviews: undefined | number = undefined;
+	if (totalReviewsText != null) {
+		const maybeTotalReviews = parseInt(totalReviewsText);
+		if (!isNaN(maybeTotalReviews)) {
+			totalReviews = maybeTotalReviews;
+		}
 	}
 
 	const pricingInfo = cardElement

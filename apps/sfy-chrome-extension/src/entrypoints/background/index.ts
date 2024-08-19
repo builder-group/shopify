@@ -1,9 +1,12 @@
+import { createApiFetchClient } from 'feature-fetch';
+
 import { BackgroundBridge, closeOffscreenDocument, createOffscreenDocument } from '../../lib/utils';
 import {
 	TBackgroundToContentMessage,
 	TBackgroundToOffscreenMessage,
 	TContentToBackgroundMessage,
-	TOffscreenToBackgroundMessage
+	TOffscreenToBackgroundMessage,
+	TShopifyAppListingPage
 } from '../../types';
 
 const backgroundBridge = new BackgroundBridge<
@@ -11,31 +14,55 @@ const backgroundBridge = new BackgroundBridge<
 	TContentToBackgroundMessage | TOffscreenToBackgroundMessage
 >();
 
+const fetchClient = createApiFetchClient({ prefixUrl: 'https://apps.shopify.com' });
+
 export default defineBackground(() => {
 	backgroundBridge.listen('fetch-shopify-apps', async (payload) => {
 		const { keyword } = payload;
+		const startingPagination = 1;
+		const maxPagination = 40; // Rate limit is at 44 in 15s
 
-		const shopifyResult = await fetch(`https://apps.shopify.com/search?page=1&q=${keyword}`, {
-			headers: {
-				'Accept': 'text/html, application/xhtml+xml',
-				'Turbo-Frame': 'search_page'
-			}
-		});
-		const shopifyHtml = await shopifyResult.text();
+		const pages: TShopifyAppListingPage[] = [];
 
-		// Extract Shopify Apps with Offscreen DOM
+		const start = Date.now();
 		await createOffscreenDocument();
-		console.time('Extract Shopify Apps with Offscreen DOM');
-		const appsWithOffscreenDom = await backgroundBridge.sendMessageToOffscreen(
-			'extract-shopify-apps-from-html',
-			{
-				html: shopifyHtml
+		for (let i = startingPagination; i < maxPagination; i++) {
+			const result = await fetchClient.get('/search', {
+				queryParams: {
+					page: i,
+					q: keyword
+				},
+				headers: {
+					'Accept': 'text/html, application/xhtml+xml',
+					'Turbo-Frame': 'search_page'
+				},
+				parseAs: 'text'
+			});
+
+			if (result.isErr()) {
+				console.log('Error', { result });
+				break;
 			}
-		);
-		console.timeEnd('Extract Shopify Apps with Offscreen DOM');
+			const html = result.value.data;
+
+			// Extract apps from HTML
+			const extractionResult = await backgroundBridge.sendMessageToOffscreen(
+				'extract-shopify-apps-from-html',
+				{ html }
+			);
+
+			// If no apps
+			if (extractionResult.apps.length <= 0) {
+				break;
+			}
+
+			pages.push({ index: i, apps: extractionResult.apps, errors: extractionResult.errors });
+		}
 		await closeOffscreenDocument();
 
-		return appsWithOffscreenDom;
+		const end = Date.now();
+
+		return { pages, time: end - start };
 	});
 
 	backgroundBridge.listen('log', async (payload) => {

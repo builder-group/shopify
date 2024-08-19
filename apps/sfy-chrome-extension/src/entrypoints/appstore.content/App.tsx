@@ -16,7 +16,7 @@ export const App: React.FC = () => {
 
 	const onClick = React.useCallback(async () => {
 		const res = await contentBridge.sendMessageToBackground('fetch-shopify-apps', {
-			keyword: 'review'
+			keyword: 'bundle'
 		});
 		console.log(res); // "pong"
 	}, []);
