@@ -1,4 +1,4 @@
-import { extractShopifyAppsWithDom } from '../../lib';
+import { queryShopifyAppsWithQuerySelector } from '../../lib';
 import { OffscreenBridge } from '../../lib/utils';
 import { TBackgroundToOffscreenMessage, TOffscreenToBackgroundMessage } from '../../types';
 
@@ -12,5 +12,7 @@ offscreenBridge.listen('extract-shopify-apps-from-html', async (payload) => {
 	const parser = new DOMParser();
 	const document = parser.parseFromString(html, 'text/html');
 
-	return extractShopifyAppsWithDom(document);
+	// await offscreenBridge.sendMessageToBackground('log', document.body.innerHTML);
+
+	return queryShopifyAppsWithQuerySelector(document);
 });

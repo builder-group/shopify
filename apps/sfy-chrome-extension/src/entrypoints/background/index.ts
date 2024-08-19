@@ -1,4 +1,4 @@
-import { extractShopifyAppsWithXml } from '../../lib';
+import { queryShopifyAppsWithXmlTokenizer } from '../../lib';
 import { BackgroundBridge, closeOffscreenDocument, createOffscreenDocument } from '../../lib/utils';
 import {
 	TBackgroundToContentMessage,
@@ -26,20 +26,20 @@ export default defineBackground(() => {
 
 		// Extract Shopify Apps with Xml-Tokenizer
 		console.time('Extract Shopify Apps with Xml-Tokenizer');
-		const appsWihtXml = extractShopifyAppsWithXml(shopifyHtml);
+		const appsWihtXml = queryShopifyAppsWithXmlTokenizer(shopifyHtml);
 		console.timeEnd('Extract Shopify Apps with Xml-Tokenizer');
 
 		// Extract Shopify Apps with Offscreen DOM
-		console.time('Extract Shopify Apps with Offscreen DOM');
 		await createOffscreenDocument();
+		console.time('Extract Shopify Apps with Offscreen DOM');
 		const appsWithOffscreenDom = await backgroundBridge.sendMessageToOffscreen(
 			'extract-shopify-apps-from-html',
 			{
 				html: shopifyHtml
 			}
 		);
-		await closeOffscreenDocument();
 		console.timeEnd('Extract Shopify Apps with Offscreen DOM');
+		await closeOffscreenDocument();
 
 		console.log({ appsWihtXml, appsWithOffscreenDom });
 

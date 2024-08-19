@@ -9,7 +9,10 @@ import {
 
 import { TShopifyApp } from '../../types';
 
-export function extractShopifyAppsWithXml(html: string): { apps: TShopifyApp[]; errors: string[] } {
+export function queryShopifyAppsWithXmlTokenizer(html: string): {
+	apps: TShopifyApp[];
+	errors: string[];
+} {
 	const appCardElements: TSimplifiedXmlNode[] = [];
 	let stack: TSimplifiedXmlNode[] = [];
 	let tokens: TSelectedXmlToken[] = [];
@@ -64,6 +67,14 @@ export function extractShopifyAppsWithXml(html: string): { apps: TShopifyApp[]; 
 function extractDataFromAppCardElement(
 	cardElement: TSimplifiedXmlNode
 ): TResult<TShopifyApp, string> {
+	const isAd =
+		cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[1]?._div?.[0]?._span?.[0]?.text === 'Ad';
+	const isInstalled = cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[3]?.text === 'Installed';
+	const builtForShopify =
+		(cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[4]?._span?.[0]?._span?.[1]?.text ??
+			cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[3]?._span?.[0]?._span?.[1]?.text) ===
+		'Built for Shopify';
+
 	const handle = cardElement?.attributes?.['data-app-card-handle-value'];
 	if (handle == null) {
 		return Err(`Failed to extract 'handle' value.`);
@@ -94,20 +105,6 @@ function extractDataFromAppCardElement(
 		return Err(`Failed to parse 'intraPosition' value.`);
 	}
 
-	const isAd =
-		cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[1]?._div?.[0]?._span?.[0]?.text === 'Ad';
-	const isInstalled = cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[3]?.text === 'Installed';
-
-	const builtForShopifyText =
-		cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[4]?._span?.[0]?._span?.[1]?.text ??
-		cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[3]?._span?.[0]?._span?.[1]?.text;
-	const builtForShopify = builtForShopifyText === 'Built for Shopify';
-
-	const description = cardElement?._div?.[0]?._div?.[0]?._div?.[0]?._div?.[2]?.text;
-	if (description == null) {
-		return Err(`Failed to extract 'description' value.`);
-	}
-
 	const ratingText =
 		cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[1]?._span?.[0]?.content?.[0];
 	if (typeof ratingText !== 'string') {
@@ -130,6 +127,11 @@ function extractDataFromAppCardElement(
 	const pricingInfo = cardElement._div?.[0]?._div?.[0]?._div?.[0]?._div?.[1]?._span?.[5]?.text;
 	if (pricingInfo == null) {
 		return Err(`Failed to extract 'pricingInfo' value.`);
+	}
+
+	const description = cardElement?._div?.[0]?._div?.[0]?._div?.[0]?._div?.[2]?.text;
+	if (description == null) {
+		return Err(`Failed to extract 'description' value.`);
 	}
 
 	return Ok({

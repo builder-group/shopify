@@ -1,2 +1,2 @@
-export * from './extractors';
+export * from './html-queries';
 export * from './utils';
