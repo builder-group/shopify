@@ -62,7 +62,7 @@ export default defineBackground(() => {
 
 		const end = Date.now();
 
-		return { pages, time: end - start };
+		return { pages, timeMs: end - start };
 	});
 
 	backgroundBridge.listen('log', async (payload) => {

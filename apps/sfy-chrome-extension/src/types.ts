@@ -15,7 +15,7 @@ export type TContentToBackgroundMessage = TBridgeMessage<
 	'background',
 	'fetch-shopify-apps',
 	{ keyword: string },
-	{ pages: TShopifyAppListingPage[]; time: number }
+	{ pages: TShopifyAppListingPage[]; timeMs: number }
 >;
 
 export interface TShopifyAppListingPage {
