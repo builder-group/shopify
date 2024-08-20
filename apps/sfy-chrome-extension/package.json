@@ -1,5 +1,5 @@
 {
-	"name": "wxt-react-starter",
+	"name": "@repo/sfy-chrome-extension",
 	"description": "manifest.json description",
 	"private": true,
 	"version": "0.0.0",
@@ -14,15 +14,18 @@
 		"compile": "tsc --noEmit",
 		"postinstall": "wxt prepare",
 		"lint": "eslint --ext .js,.ts,.jsx,.tsx, src/",
-		"clean": "shx rm -rf node_modules && shx rm -rf .turbo && shx rm -rf .next",
+		"clean": "shx rm -rf node_modules && shx rm -rf .turbo && shx rm -rf .wxt && shx rm -rf dist",
 		"install:clean": "pnpm run clean && pnpm install"
 	},
 	"dependencies": {
+		"@blgc/utils": "^0.0.16",
 		"@repo/ui": "workspace:*",
+		"feature-fetch": "^0.0.16",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
+		"@blgc/config": "^0.0.17",
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
 		"@wxt-dev/module-react": "^1.1.0",
