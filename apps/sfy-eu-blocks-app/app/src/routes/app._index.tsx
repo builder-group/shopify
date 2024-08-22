@@ -1,4 +1,4 @@
-import { json, type ActionFunctionArgs, type LoaderFunctionArgs } from '@remix-run/node';
+import { json } from '@remix-run/node';
 import { useFetcher } from '@remix-run/react';
 import { TitleBar, useAppBridge } from '@shopify/app-bridge-react';
 import {
@@ -10,92 +10,66 @@ import {
 	Layout,
 	Link,
 	List,
-	Page,
+	Page as PolarisPage,
 	Text
 } from '@shopify/polaris';
 import { useEffect } from 'react';
 
 import { authenticate } from '../shopify.server';
+import { type TJsonActionFunction, type TLoaderFunction } from '../types';
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+const COLORS = ['Red', 'Orange', 'Yellow', 'Green'] as const;
+
+export const loader: TLoaderFunction = async ({ request }) => {
 	await authenticate.admin(request);
 
 	return null;
 };
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action: TJsonActionFunction<TActionResponse> = async ({ request }) => {
 	const { admin } = await authenticate.admin(request);
-	const color = ['Red', 'Orange', 'Yellow', 'Green'][Math.floor(Math.random() * 4)];
-	const response = await admin.graphql(
-		`#graphql
-      mutation populateProduct($input: ProductInput!) {
-        productCreate(input: $input) {
-          product {
-            id
-            title
-            handle
-            status
-            variants(first: 10) {
-              edges {
-                node {
-                  id
-                  price
-                  barcode
-                  createdAt
-                }
-              }
-            }
-          }
-        }
-      }`,
-		{
-			variables: {
-				input: {
-					title: `${color} Snowboard`
-				}
+	const color: TColor = COLORS[Math.floor(Math.random() * COLORS.length)] as unknown as TColor;
+
+	const createProductResponse = await admin.graphql(createProductMutation, {
+		variables: {
+			input: {
+				title: `${color} Snowboard`
 			}
 		}
-	);
-	const responseJson = await response.json();
-
-	const product = responseJson.data!.productCreate!.product!;
-	const variantId = product.variants.edges[0]!.node!.id!;
-
-	const variantResponse = await admin.graphql(
-		`#graphql
-    mutation shopifyRemixTemplateUpdateVariant($productId: ID!, $variants: [ProductVariantsBulkInput!]!) {
-      productVariantsBulkUpdate(productId: $productId, variants: $variants) {
-        productVariants {
-          id
-          price
-          barcode
-          createdAt
-        }
-      }
-    }`,
-		{
-			variables: {
-				productId: product.id,
-				variants: [{ id: variantId, price: '100.00' }]
-			}
-		}
-	);
-
-	const variantResponseJson = await variantResponse.json();
-
-	return json({
-		product: responseJson.data!.productCreate!.product,
-		variant: variantResponseJson.data!.productVariantsBulkUpdate!.productVariants
 	});
+
+	const { data: productData } = await createProductResponse.json();
+	const product = productData?.productCreate?.product as TProductResponse;
+
+	const variantId = product.variants.edges[0]?.node?.id;
+	if (variantId == null) {
+		throw new Error('Failed to create product or retrieve variant ID');
+	}
+
+	const updateVariantResponse = await admin.graphql(updateVariantMutation, {
+		variables: {
+			productId: product.id,
+			variants: [{ id: variantId, price: '100.00' }]
+		}
+	});
+
+	const { data: variantData } = await updateVariantResponse.json();
+	const variant = variantData?.productVariantsBulkUpdate?.productVariants;
+
+	if (variant == null) {
+		throw new Error('Failed to update variant');
+	}
+
+	return json({ product, variant });
 };
 
-export default function Index() {
+const Page: React.FC = () => {
 	const fetcher = useFetcher<typeof action>();
 
 	const shopify = useAppBridge();
 	const isLoading =
 		['loading', 'submitting'].includes(fetcher.state) && fetcher.formMethod === 'POST';
-	const productId = fetcher.data?.product?.id.replace('gid://shopify/Product/', '');
+	const productId = fetcher.data?.product.id.replace('gid://shopify/Product/', '');
 
 	useEffect(() => {
 		if (productId) {
@@ -107,11 +81,11 @@ export default function Index() {
 	};
 
 	return (
-		<Page>
+		<PolarisPage>
 			<TitleBar title="Remix app template">
-				<button variant="primary" onClick={generateProduct}>
+				<Button variant="primary" onClick={generateProduct}>
 					Generate a product
-				</button>
+				</Button>
 			</TitleBar>
 			<BlockStack gap="500">
 				<Layout>
@@ -167,7 +141,7 @@ export default function Index() {
 									<Button loading={isLoading} onClick={generateProduct}>
 										Generate a product
 									</Button>
-									{fetcher.data?.product ? (
+									{productId != null ? (
 										<Button
 											url={`shopify:admin/products/${productId}`}
 											target="_blank"
@@ -308,6 +282,73 @@ export default function Index() {
 					</Layout.Section>
 				</Layout>
 			</BlockStack>
-		</Page>
+		</PolarisPage>
 	);
+};
+
+export default Page;
+
+interface TProductResponse {
+	id: string;
+	title: string;
+	handle: string;
+	status: string;
+	variants: {
+		edges: {
+			node: {
+				id: string;
+				price: string;
+				barcode: string;
+				createdAt: string;
+			};
+		}[];
+	};
 }
+
+interface TActionResponse {
+	product: TProductResponse;
+	variant: {
+		id: string;
+		price: string;
+		barcode: string;
+		createdAt: string;
+	}[];
+}
+
+type TColor = (typeof COLORS)[number];
+
+const createProductMutation = `#graphql
+  mutation populateProduct($input: ProductInput!) {
+    productCreate(input: $input) {
+      product {
+        id
+        title
+        handle
+        status
+        variants(first: 10) {
+          edges {
+            node {
+              id
+              price
+              barcode
+              createdAt
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const updateVariantMutation = `#graphql
+  mutation shopifyRemixTemplateUpdateVariant($productId: ID!, $variants: [ProductVariantsBulkInput!]!) {
+    productVariantsBulkUpdate(productId: $productId, variants: $variants) {
+      productVariants {
+        id
+        price
+        barcode
+        createdAt
+      }
+    }
+  }
+`;

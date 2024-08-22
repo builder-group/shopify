@@ -1,9 +1,18 @@
 import { TitleBar } from '@shopify/app-bridge-react';
-import { BlockStack, Box, Card, Layout, Link, List, Page, Text } from '@shopify/polaris';
+import {
+	BlockStack,
+	Box,
+	Card,
+	Layout,
+	Link,
+	List,
+	Page as PolarisPage,
+	Text
+} from '@shopify/polaris';
 
-export default function AdditionalPage() {
+const Page: React.FC = () => {
 	return (
-		<Page>
+		<PolarisPage>
 			<TitleBar title="Additional page" />
 			<Layout>
 				<Layout.Section>
@@ -50,11 +59,15 @@ export default function AdditionalPage() {
 					</Card>
 				</Layout.Section>
 			</Layout>
-		</Page>
+		</PolarisPage>
 	);
-}
+};
 
-const Code = ({ children }: { children: React.ReactNode }) => {
+export default Page;
+
+const Code: React.FC<{ children: React.ReactNode }> = (props) => {
+	const { children } = props;
+
 	return (
 		<Box
 			as="span"

@@ -4,7 +4,7 @@ client_id = "a7314ae84139f89d0289de296fb9e19a"
 extension_directories = [ ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://favorite-study-florence-number.trycloudflare.com"
+application_url = "https://adjusted-suggesting-lcd-archive.trycloudflare.com"
 embedded = true
 
 [build]
@@ -18,9 +18,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://favorite-study-florence-number.trycloudflare.com/auth/callback",
-  "https://favorite-study-florence-number.trycloudflare.com/auth/shopify/callback",
-  "https://favorite-study-florence-number.trycloudflare.com/api/auth/callback"
+  "https://adjusted-suggesting-lcd-archive.trycloudflare.com/auth/callback",
+  "https://adjusted-suggesting-lcd-archive.trycloudflare.com/auth/shopify/callback",
+  "https://adjusted-suggesting-lcd-archive.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
