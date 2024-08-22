@@ -1,4 +1,4 @@
-# Shopify Playground App 
+# Shopify `Playground` App 
 
 This is a Shopify App serving as playground and partly as template. It setup is based on the [`shopify-app-template-remix`](https://github.com/Shopify/shopify-app-template-remix), with a few key differences to accommodate our monorepo setup.
 
