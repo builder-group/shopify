@@ -29,14 +29,14 @@
 		"url": "https://github.com/builder-group/shopify.git"
 	},
 	"keywords": [],
-	"author": "@bennoinbeta",
+	"author": "@bennobuilder",
 	"license": "AGPL-3.0-or-later",
 	"bugs": {
 		"url": "https://github.com/builder-group/shopify/issues"
 	},
 	"homepage": "",
 	"devDependencies": {
-		"@blgc/config": "^0.0.20",
+		"@blgc/config": "^0.0.21",
 		"openapi-typescript": "^7.1.0"
 	},
 	"files": [

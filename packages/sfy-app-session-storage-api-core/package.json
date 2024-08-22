@@ -20,7 +20,7 @@
 		"url": "https://github.com/builder-group/shopify.git"
 	},
 	"keywords": [],
-	"author": "@bennoinbeta",
+	"author": "@bennobuilder",
 	"license": "AGPL-3.0-or-later",
 	"bugs": {
 		"url": "https://github.com/builder-group/shopify/issues"
@@ -34,7 +34,7 @@
 		"@shopify/shopify-app-session-storage": "^3.0.0"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.20",
+		"@blgc/config": "^0.0.21",
 		"@repo/types": "workspace:*",
 		"@shopify/shopify-api": "^11.2.0",
 		"@shopify/shopify-app-session-storage": "^3.0.3",

@@ -44,7 +44,7 @@ The structure of the `package.json` file in this project should adhere to a spec
 		"url": "https://github.com/builder-group/shopify.git"
 	},
 	"keywords": [],
-	"author": "@bennoinbeta",
+	"author": "@bennobuilder",
 	"license": "AGPL-3.0-or-later",
 	"bugs": {
 		"url": "https://github.com/builder-group/shopify/issues"

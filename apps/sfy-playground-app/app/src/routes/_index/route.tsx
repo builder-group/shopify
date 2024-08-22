@@ -1,10 +1,11 @@
-import { json, redirect, type LoaderFunctionArgs } from '@remix-run/node';
+import { json, redirect } from '@remix-run/node';
 import { Form, useLoaderData } from '@remix-run/react';
 
 import { login } from '../../shopify.server';
+import { type TJsonLoaderFunction } from '../../types';
 import styles from './styles.module.css';
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader: TJsonLoaderFunction<{ showForm: boolean }> = async ({ request }) => {
 	const url = new URL(request.url);
 
 	if (url.searchParams.get('shop')) {
@@ -14,7 +15,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 	return json({ showForm: Boolean(login) });
 };
 
-export default function App() {
+const Page: React.FC = () => {
 	const { showForm } = useLoaderData<typeof loader>();
 
 	return (
@@ -24,7 +25,7 @@ export default function App() {
 				<p className={styles.text}>
 					A tagline about [your app] that describes your value proposition.
 				</p>
-				{showForm && (
+				{showForm ? (
 					<Form className={styles.form} method="post" action="/auth/login">
 						<label className={styles.label}>
 							<span>Shop domain</span>
@@ -35,7 +36,7 @@ export default function App() {
 							Log in
 						</button>
 					</Form>
-				)}
+				) : null}
 				<ul className={styles.list}>
 					<li>
 						<strong>Product feature</strong>. Some detail about your feature and its benefit to your
@@ -53,4 +54,6 @@ export default function App() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default Page;

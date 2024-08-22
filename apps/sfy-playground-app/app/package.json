@@ -25,7 +25,7 @@
 		"url": "https://github.com/builder-group/shopify.git"
 	},
 	"keywords": [],
-	"author": "@bennoinbeta",
+	"author": "@bennobuilder",
 	"license": "AGPL-3.0-or-later",
 	"bugs": {
 		"url": "https://github.com/builder-group/shopify/issues"
@@ -49,7 +49,7 @@
 		"vite-tsconfig-paths": "^5.0.1"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.20",
+		"@blgc/config": "^0.0.21",
 		"@shopify/api-codegen-preset": "^1.1.1",
 		"@types/node": "^22.5.0",
 		"@types/react": "^18.3.4",
@@ -58,11 +58,6 @@
 	"trustedDependencies": [
 		"@shopify/plugin-cloudflare"
 	],
-	"resolutions": {
-		"undici": "6.13.0"
-	},
-	"overrides": {
-		"undici": "6.13.0",
-		"@types/react": "17.0.30"
-	}
+	"resolutions": {},
+	"overrides": {}
 }

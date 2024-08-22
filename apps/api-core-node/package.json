@@ -18,7 +18,7 @@
 		"url": "https://github.com/builder-group/shopify.git"
 	},
 	"keywords": [],
-	"author": "@bennoinbeta",
+	"author": "@bennobuilder",
 	"license": "AGPL-3.0-or-later",
 	"bugs": {
 		"url": "https://github.com/builder-group/shopify/issues"
@@ -30,7 +30,7 @@
 		"hono": "^4.5.5"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.20",
+		"@blgc/config": "^0.0.21",
 		"@types/node": "^22.5.0",
 		"dotenv": "^16.4.5",
 		"tsx": "^4.17.0"

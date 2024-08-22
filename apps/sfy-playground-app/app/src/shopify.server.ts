@@ -1,10 +1,11 @@
-import '@shopify/shopify-app-remix/adapters/node';
-
 import { ApiCoreSessionStorage } from '@repo/sfy-app-session-storage-api-core';
 import { restResources } from '@shopify/shopify-api/rest/admin/2024-07';
+
+import '@shopify/shopify-app-remix/adapters/node';
+
 import { ApiVersion, AppDistribution, shopifyApp } from '@shopify/shopify-app-remix/server';
 
-import { apiCoreConfig, appConfig } from './environment';
+import { apiCoreConfig, appConfig, shopifyConfig } from './environment';
 
 export const apiCoreSessionStorage = new ApiCoreSessionStorage(
 	apiCoreConfig.baseUrl,
@@ -13,11 +14,11 @@ export const apiCoreSessionStorage = new ApiCoreSessionStorage(
 );
 
 const shopify = shopifyApp({
-	apiKey: process.env.SHOPIFY_API_KEY,
-	apiSecretKey: process.env.SHOPIFY_API_SECRET || '',
+	apiKey: shopifyConfig.apiKey,
+	apiSecretKey: shopifyConfig.apiSecret,
 	apiVersion: ApiVersion.July24,
-	scopes: process.env.SCOPES?.split(','),
-	appUrl: process.env.SHOPIFY_APP_URL || '',
+	scopes: shopifyConfig.scopes,
+	appUrl: shopifyConfig.appUrl,
 	authPathPrefix: '/auth',
 	sessionStorage: apiCoreSessionStorage,
 	distribution: AppDistribution.AppStore,
@@ -25,7 +26,9 @@ const shopify = shopifyApp({
 	future: {
 		unstable_newEmbeddedAuthStrategy: true
 	},
-	...(process.env.SHOP_CUSTOM_DOMAIN ? { customShopDomains: [process.env.SHOP_CUSTOM_DOMAIN] } : {})
+	...(shopifyConfig.shopCustomDomain != null
+		? { customShopDomains: [shopifyConfig.shopCustomDomain] }
+		: {})
 });
 
 export default shopify;

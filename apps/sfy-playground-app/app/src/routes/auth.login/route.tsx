@@ -1,11 +1,11 @@
-import { json, type ActionFunctionArgs, type LoaderFunctionArgs } from '@remix-run/node';
+import { json, type LinksFunction } from '@remix-run/node';
 import { Form, useActionData, useLoaderData } from '@remix-run/react';
 import {
 	Button,
 	Card,
 	FormLayout,
-	Page,
 	AppProvider as PolarisAppProvider,
+	Page as PolarisPage,
 	Text,
 	TextField
 } from '@shopify/polaris';
@@ -14,17 +14,21 @@ import polarisTranslations from '@shopify/polaris/locales/en.json';
 import { useState } from 'react';
 
 import { login } from '../../shopify.server';
-import { loginErrorMessage } from './error.server';
+import { type TJsonActionFunction, type TJsonLoaderFunction } from '../../types';
+import { loginErrorMessage, type TLoginErrorMessage } from './error.server';
 
-export const links = () => [{ rel: 'stylesheet', href: polarisStyles }];
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: polarisStyles }];
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader: TJsonLoaderFunction<{
+	errors: TLoginErrorMessage;
+	polarisTranslations: typeof polarisTranslations;
+}> = async ({ request }) => {
 	const errors = loginErrorMessage(await login(request));
 
 	return json({ errors, polarisTranslations });
 };
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action: TJsonActionFunction<{ errors: TLoginErrorMessage }> = async ({ request }) => {
 	const errors = loginErrorMessage(await login(request));
 
 	return json({
@@ -32,15 +36,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 	});
 };
 
-export default function Auth() {
+const Page: React.FC = () => {
 	const loaderData = useLoaderData<typeof loader>();
 	const actionData = useActionData<typeof action>();
 	const [shop, setShop] = useState('');
-	const { errors } = actionData || loaderData;
+	const { errors } = actionData ?? loaderData;
 
 	return (
 		<PolarisAppProvider i18n={loaderData.polarisTranslations}>
-			<Page>
+			<PolarisPage>
 				<Card>
 					<Form method="post">
 						<FormLayout>
@@ -61,7 +65,9 @@ export default function Auth() {
 						</FormLayout>
 					</Form>
 				</Card>
-			</Page>
+			</PolarisPage>
 		</PolarisAppProvider>
 	);
-}
+};
+
+export default Page;

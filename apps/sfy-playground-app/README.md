@@ -113,3 +113,6 @@ Due to the different extension setup, follow these steps to create a new extensi
 3. **Link Extension**: Update the `shopify.app.toml` file to include the new extension in the `extension_directories` array.
 
 4. **Verify Generation**: Ensure the extension was generated correctly by checking the [`extensions-templates`](https://github.com/Shopify/extensions-templates).
+
+## Offline Access Token
+- https://shopify.dev/docs/apps/build/authentication-authorization/access-tokens/offline-access-tokens
