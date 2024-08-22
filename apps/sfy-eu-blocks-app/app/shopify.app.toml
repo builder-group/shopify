@@ -1,10 +1,10 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "4fda1d00bc349ec079eecc278cb31fbb"
-extension_directories = [ "../theme-extension", "../admin-block-extension" ]
-name = "monorepo-test"
-handle = "monorepo-test-1"
-application_url = "https://winning-younger-destruction-looked.trycloudflare.com"
+client_id = "a7314ae84139f89d0289de296fb9e19a"
+extension_directories = [ ]
+name = "eu-blocks"
+handle = "eu-blocks"
+application_url = "https://favorite-study-florence-number.trycloudflare.com"
 embedded = true
 
 [build]
@@ -18,9 +18,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://winning-younger-destruction-looked.trycloudflare.com/auth/callback",
-  "https://winning-younger-destruction-looked.trycloudflare.com/auth/shopify/callback",
-  "https://winning-younger-destruction-looked.trycloudflare.com/api/auth/callback"
+  "https://favorite-study-florence-number.trycloudflare.com/auth/callback",
+  "https://favorite-study-florence-number.trycloudflare.com/auth/shopify/callback",
+  "https://favorite-study-florence-number.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

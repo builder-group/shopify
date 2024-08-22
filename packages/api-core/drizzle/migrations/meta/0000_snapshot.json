@@ -1,5 +1,5 @@
 {
-  "id": "fd7a3045-cafd-4fff-bc3a-2d71c9bba87d",
+  "id": "caed522f-e5c1-4db8-a0da-825e9de12038",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -12,6 +12,12 @@
           "name": "id",
           "type": "text",
           "primaryKey": true,
+          "notNull": true
+        },
+        "app": {
+          "name": "app",
+          "type": "text",
+          "primaryKey": false,
           "notNull": true
         },
         "shop": {

@@ -1,8 +1,8 @@
-import { AppError } from '@blgc/openapi-router';
 import { type components } from '@repo/types/core';
 import { desc, eq, inArray, type InferSelectModel } from 'drizzle-orm';
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
+import { AppError } from '@blgc/openapi-router';
 import { db, schema } from '@/db';
 
 import { openApiRouter } from '../router';
@@ -53,6 +53,7 @@ openApiRouter.post('/v1/shopify/session', {
 	bodyValidator: vValidator(
 		v.object({
 			id: v.pipe(v.string(), v.nonEmpty()),
+			app: v.pipe(v.string(), v.nonEmpty()),
 			shop: v.pipe(v.string(), v.nonEmpty()),
 			state: v.string(),
 			isOnline: v.boolean(),
@@ -106,6 +107,7 @@ function rowToSessionDto(
 ): components['schemas']['ShopifySessionDto'] {
 	return {
 		id: row.id,
+		app: row.app,
 		shop: row.shop,
 		state: row.state,
 		isOnline: row.isOnline,
@@ -121,6 +123,7 @@ function sessionDtoToRow(
 ): InferSelectModel<typeof schema.shopifySessionTable> {
 	return {
 		id: sessionDto.id,
+		app: sessionDto.app,
 		shop: sessionDto.shop,
 		state: sessionDto.state,
 		isOnline: sessionDto.isOnline,

@@ -124,6 +124,8 @@ export interface components {
         ShopifySessionDto: {
             /** @description The unique identifier for the session. */
             id: string;
+            /** @description The unique identifier for the app. */
+            app: string;
             /** @description The Shopify shop domain. */
             shop: string;
             /** @description The state of the session. */

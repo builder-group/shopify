@@ -1,0 +1,14 @@
+{
+	"extends": "@blgc/config/remix.tsconfig.json",
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"removeComments": false,
+		"forceConsistentCasingInFileNames": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		},
+		"types": ["node"]
+	},
+	"include": ["env.d.ts", "**/*.ts", "**/*.tsx"]
+}

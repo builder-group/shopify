@@ -2,6 +2,7 @@ import { bigint, boolean, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const shopifySessionTable = pgTable('shopify_session', {
 	id: text('id').primaryKey(),
+	app: text('app').notNull(),
 	shop: text('shop').notNull(),
 	state: text('state').notNull(),
 	isOnline: boolean('isOnline').default(false).notNull(),

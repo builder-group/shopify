@@ -15,13 +15,13 @@
 	"main": "./dist/index.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/builder-group/project-shopify.git"
+		"url": "https://github.com/builder-group/shopify.git"
 	},
 	"keywords": [],
 	"author": "@bennoinbeta",
 	"license": "AGPL-3.0-or-later",
 	"bugs": {
-		"url": "https://github.com/builder-group/project-shopify/issues"
+		"url": "https://github.com/builder-group/shopify/issues"
 	},
 	"homepage": "",
 	"dependencies": {
@@ -30,8 +30,8 @@
 		"hono": "^4.5.5"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.17",
-		"@types/node": "^22.2.0",
+		"@blgc/config": "^0.0.20",
+		"@types/node": "^22.5.0",
 		"dotenv": "^16.4.5",
 		"tsx": "^4.17.0"
 	},

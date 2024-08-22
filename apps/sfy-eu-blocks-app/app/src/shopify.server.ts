@@ -1,7 +1,8 @@
-import '@shopify/shopify-app-remix/adapters/node';
-
 import { ApiCoreSessionStorage } from '@repo/sfy-app-session-storage-api-core';
 import { restResources } from '@shopify/shopify-api/rest/admin/2024-07';
+
+import '@shopify/shopify-app-remix/adapters/node';
+
 import { ApiVersion, AppDistribution, shopifyApp } from '@shopify/shopify-app-remix/server';
 
 import { apiCoreConfig, appConfig } from './environment';

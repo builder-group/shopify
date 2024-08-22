@@ -1,12 +1,12 @@
 {
-	"name": "@repo/sfy-playground-app",
+	"name": "@repo/sfy-eu-blocks-app",
 	"version": "0.0.1",
 	"description": "",
 	"private": true,
 	"scripts": {
 		"build": "remix vite:build",
 		"start": "remix-serve ./build/server/index.js",
-		"start:dev": "shopify app dev --skip-dependencies-installation --theme-app-extension-port 9293",
+		"start:dev": "shopify app dev --skip-dependencies-installation",
 		"shopify": "shopify",
 		"shopify:generate": "shopify app generate",
 		"shopify:deploy": "shopify app deploy",
@@ -58,11 +58,6 @@
 	"trustedDependencies": [
 		"@shopify/plugin-cloudflare"
 	],
-	"resolutions": {
-		"undici": "6.13.0"
-	},
-	"overrides": {
-		"undici": "6.13.0",
-		"@types/react": "17.0.30"
-	}
+	"resolutions": {},
+	"overrides": {}
 }

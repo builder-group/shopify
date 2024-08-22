@@ -61,13 +61,32 @@ shopify/
 
 ### Configuration Adjustments
 
-- **ESLint**: Custom configuration tailored to our project needs.
-- **TypeScript Config**: Adjusted `tsconfig.json` to meet our project requirements.
-- **Package Management**: Modified `package.json` for specific dependencies and scripts.
+- **ESLint**: Custom configuration tailored to our project needs
+- **TypeScript Config**: Adjusted `tsconfig.json` to meet our project requirements
+- **Package Management**: Modified `package.json` for specific dependencies and scripts
 
 ### Different `appDirectory`
 
 Since the Shopify app folder is now called `app/`, we renamed the [`appDirectory`](https://remix.run/docs/en/main/file-conventions/remix-config#appdirectory) to `src/` where among others the Remix routes reside.
+
+```ts
+export default defineConfig({
+	server: {
+      // ..
+		fs: {
+			allow: ['src', 'node_modules']
+		}
+	},
+	plugins: [
+		remix({
+         // ..
+			appDirectory: 'src'
+		}),
+      // ..
+	],
+   // ..
+}) satisfies UserConfig;
+```
 
 ### Session Storage
 

@@ -301,6 +301,7 @@ components:
       type: object
       required:
         - id
+        - app
         - shop
         - state
         - isOnline
@@ -308,6 +309,9 @@ components:
         id:
           type: string
           description: The unique identifier for the session.
+        app:
+          type: string
+          description: The unique identifier for the app.
         shop:
           type: string
           description: The Shopify shop domain.
