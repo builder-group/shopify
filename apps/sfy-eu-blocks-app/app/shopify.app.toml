@@ -1,10 +1,10 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "a7314ae84139f89d0289de296fb9e19a"
-extension_directories = [ ]
+extension_directories = [ "../theme-extension" ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://adjusted-suggesting-lcd-archive.trycloudflare.com"
+application_url = "https://liberal-rate-used-dates.trycloudflare.com"
 embedded = true
 
 [build]
@@ -18,9 +18,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://adjusted-suggesting-lcd-archive.trycloudflare.com/auth/callback",
-  "https://adjusted-suggesting-lcd-archive.trycloudflare.com/auth/shopify/callback",
-  "https://adjusted-suggesting-lcd-archive.trycloudflare.com/api/auth/callback"
+  "https://liberal-rate-used-dates.trycloudflare.com/auth/callback",
+  "https://liberal-rate-used-dates.trycloudflare.com/auth/shopify/callback",
+  "https://liberal-rate-used-dates.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

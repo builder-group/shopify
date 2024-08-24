@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "remix vite:build",
 		"start": "remix-serve ./build/server/index.js",
-		"start:dev": "shopify app dev --skip-dependencies-installation",
+		"start:dev": "shopify app dev --skip-dependencies-installation --theme-app-extension-port 9294",
 		"shopify": "shopify",
 		"shopify:generate": "shopify app generate",
 		"shopify:deploy": "shopify app deploy",
