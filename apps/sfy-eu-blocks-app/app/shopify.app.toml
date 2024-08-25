@@ -1,10 +1,10 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "a7314ae84139f89d0289de296fb9e19a"
-extension_directories = [ "../theme-extension", "../checkout-ui" ]
+extension_directories = [ "../theme-extension", "../checkout-ui-extension" ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://analysis-narrow-taxation-caught.trycloudflare.com"
+application_url = "https://treasury-converted-system-tmp.trycloudflare.com"
 embedded = true
 
 [build]
@@ -18,9 +18,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://analysis-narrow-taxation-caught.trycloudflare.com/auth/callback",
-  "https://analysis-narrow-taxation-caught.trycloudflare.com/auth/shopify/callback",
-  "https://analysis-narrow-taxation-caught.trycloudflare.com/api/auth/callback"
+  "https://treasury-converted-system-tmp.trycloudflare.com/auth/callback",
+  "https://treasury-converted-system-tmp.trycloudflare.com/auth/shopify/callback",
+  "https://treasury-converted-system-tmp.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
