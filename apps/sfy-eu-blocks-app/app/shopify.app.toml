@@ -1,10 +1,14 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "a7314ae84139f89d0289de296fb9e19a"
-extension_directories = [ "../theme-extension", "../checkout-ui-extension" ]
+extension_directories = [
+  "../theme-extension",
+  "../checkout-ui-extension",
+  "../admin-block-extension"
+]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://treasury-converted-system-tmp.trycloudflare.com"
+application_url = "https://decided-openings-atmospheric-minnesota.trycloudflare.com"
 embedded = true
 
 [build]
@@ -18,9 +22,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://treasury-converted-system-tmp.trycloudflare.com/auth/callback",
-  "https://treasury-converted-system-tmp.trycloudflare.com/auth/shopify/callback",
-  "https://treasury-converted-system-tmp.trycloudflare.com/api/auth/callback"
+  "https://decided-openings-atmospheric-minnesota.trycloudflare.com/auth/callback",
+  "https://decided-openings-atmospheric-minnesota.trycloudflare.com/auth/shopify/callback",
+  "https://decided-openings-atmospheric-minnesota.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

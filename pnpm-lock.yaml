@@ -95,8 +95,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/ui
       feature-fetch:
-        specifier: ^0.0.16
-        version: 0.0.16
+        specifier: ^0.0.18
+        version: 0.0.18
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -128,6 +128,31 @@ importers:
       wxt:
         specifier: ^0.19.1
         version: 0.19.7(@types/node@22.5.0)(rollup@4.21.0)(sass@1.77.8)
+
+  apps/sfy-eu-blocks-app/admin-block-extension:
+    dependencies:
+      '@shopify/ui-extensions':
+        specifier: 2024.7.0
+        version: 2024.7.0
+      '@shopify/ui-extensions-react':
+        specifier: 2024.7.0
+        version: 2024.7.0(@shopify/ui-extensions@2024.7.0)(react-reconciler@0.29.2(react@18.3.1))(react@18.3.1)
+      feature-fetch:
+        specifier: ^0.0.18
+        version: 0.0.18
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+    devDependencies:
+      '@blgc/config':
+        specifier: ^0.0.21
+        version: 0.0.21(@next/eslint-plugin-next@14.2.6)(eslint@8.57.0)(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.0)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.0)(sass@1.77.8))
+      '@types/react':
+        specifier: ^18.3.4
+        version: 18.3.4
+      react-reconciler:
+        specifier: ^0.29.2
+        version: 0.29.2(react@18.3.1)
 
   apps/sfy-eu-blocks-app/app:
     dependencies:
@@ -193,25 +218,6 @@ importers:
         specifier: ^18.3.0
         version: 18.3.0
 
-  apps/sfy-eu-blocks-app/checkout-ui:
-    dependencies:
-      '@shopify/ui-extensions':
-        specifier: 2024.7.0
-        version: 2024.7.0
-      '@shopify/ui-extensions-react':
-        specifier: 2024.7.0
-        version: 2024.7.0(@shopify/ui-extensions@2024.7.0)(react-reconciler@0.29.2(react@18.3.1))(react@18.3.1)
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-    devDependencies:
-      '@types/react':
-        specifier: ^18.3.4
-        version: 18.3.4
-      react-reconciler:
-        specifier: ^0.29.2
-        version: 0.29.2(react@18.3.1)
-
   apps/sfy-eu-blocks-app/checkout-ui-extension:
     dependencies:
       '@shopify/ui-extensions':
@@ -224,6 +230,9 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
     devDependencies:
+      '@blgc/config':
+        specifier: ^0.0.21
+        version: 0.0.21(@next/eslint-plugin-next@14.2.6)(eslint@8.57.0)(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.0)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.0)(sass@1.77.8))
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -550,8 +559,8 @@ importers:
   packages/sfy-app-session-storage-api-core:
     dependencies:
       feature-fetch:
-        specifier: ^0.0.16
-        version: 0.0.16
+        specifier: ^0.0.18
+        version: 0.0.18
     devDependencies:
       '@blgc/config':
         specifier: ^0.0.21
@@ -5512,8 +5521,8 @@ packages:
       picomatch:
         optional: true
 
-  feature-fetch@0.0.16:
-    resolution: {integrity: sha512-d7g4ztFVpyDn47ZO8XkPnoqXZD/EGTbYSESBI76nxvLiSgbtNxfjv9OxaNXwCHIWc64IseSPYuMp+NvTntbyzA==}
+  feature-fetch@0.0.18:
+    resolution: {integrity: sha512-yNjAdz83TAlzPlRMS0l45KB5PVjagDJKCFlwEnBa0iHguTxj3FF9qZOAbwhuV0EMl69X7+1gA2ACJqEO9LxWbw==}
 
   feature-logger@0.0.20:
     resolution: {integrity: sha512-dhZdAE6adgAtF0iO5P+Ts0YllT1eklmGeSmtHswFCbwNg8PGzIgWhBOsCCXlp4Lsb8TY+alM2oKYCeLbH8vktw==}
@@ -9860,7 +9869,7 @@ snapshots:
       '@babel/traverse': 7.25.4
       '@babel/types': 7.25.4
       convert-source-map: 2.0.0
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -9926,7 +9935,7 @@ snapshots:
       '@babel/core': 7.25.2
       '@babel/helper-compilation-targets': 7.25.2
       '@babel/helper-plugin-utils': 7.24.8
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       lodash.debounce: 4.0.8
       resolve: 1.22.8
     transitivePeerDependencies:
@@ -10713,7 +10722,7 @@ snapshots:
       '@babel/parser': 7.25.4
       '@babel/template': 7.25.0
       '@babel/types': 7.25.4
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -10806,7 +10815,7 @@ snapshots:
       '@devicefarmer/adbkit-monkey': 1.2.1
       bluebird: 3.7.2
       commander: 9.5.0
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       node-forge: 1.3.1
       split: 1.0.1
     transitivePeerDependencies:
@@ -11178,7 +11187,7 @@ snapshots:
   '@eslint/eslintrc@2.1.4':
     dependencies:
       ajv: 6.12.6
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       espree: 9.6.1
       globals: 13.24.0
       ignore: 5.3.2
@@ -11550,12 +11559,12 @@ snapshots:
       '@types/js-yaml': 4.0.9
       '@whatwg-node/fetch': 0.9.21
       chalk: 4.1.2
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       dotenv: 16.4.5
       graphql: 16.9.0
       graphql-request: 6.1.0(graphql@16.9.0)
       http-proxy-agent: 7.0.2
-      https-proxy-agent: 7.0.5(supports-color@9.4.0)
+      https-proxy-agent: 7.0.5
       jose: 5.7.0
       js-yaml: 4.1.0
       lodash: 4.17.21
@@ -11635,7 +11644,7 @@ snapshots:
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -13139,7 +13148,7 @@ snapshots:
       '@typescript-eslint/types': 7.18.0
       '@typescript-eslint/typescript-estree': 7.18.0(typescript@5.5.4)
       '@typescript-eslint/visitor-keys': 7.18.0
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       eslint: 8.57.0
     optionalDependencies:
       typescript: 5.5.4
@@ -13160,7 +13169,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/typescript-estree': 7.18.0(typescript@5.5.4)
       '@typescript-eslint/utils': 7.18.0(eslint@8.57.0)(typescript@5.5.4)
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       eslint: 8.57.0
       ts-api-utils: 1.3.0(typescript@5.5.4)
     optionalDependencies:
@@ -13176,7 +13185,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/visitor-keys': 5.62.0
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
       semver: 7.6.3
@@ -13190,7 +13199,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 7.18.0
       '@typescript-eslint/visitor-keys': 7.18.0
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
@@ -13473,6 +13482,12 @@ snapshots:
   acorn@8.12.1: {}
 
   adm-zip@0.5.15: {}
+
+  agent-base@7.1.1:
+    dependencies:
+      debug: 4.3.6(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
 
   agent-base@7.1.1(supports-color@9.4.0):
     dependencies:
@@ -14877,14 +14892,14 @@ snapshots:
 
   esbuild-register@3.6.0(esbuild@0.19.12):
     dependencies:
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       esbuild: 0.19.12
     transitivePeerDependencies:
       - supports-color
 
   esbuild-register@3.6.0(esbuild@0.21.5):
     dependencies:
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       esbuild: 0.21.5
     transitivePeerDependencies:
       - supports-color
@@ -15061,7 +15076,7 @@ snapshots:
 
   eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-import@2.29.1)(eslint@8.57.0):
     dependencies:
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       enhanced-resolve: 5.17.1
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
@@ -15272,7 +15287,7 @@ snapshots:
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.3
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       doctrine: 3.0.0
       escape-string-regexp: 4.0.0
       eslint-scope: 7.2.2
@@ -15475,7 +15490,7 @@ snapshots:
 
   extract-zip@2.0.1:
     dependencies:
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -15545,7 +15560,7 @@ snapshots:
 
   fdir@6.1.1: {}
 
-  feature-fetch@0.0.16:
+  feature-fetch@0.0.18:
     dependencies:
       '@blgc/types': 0.0.6
       '@blgc/utils': 0.0.16
@@ -16073,8 +16088,8 @@ snapshots:
 
   http-proxy-agent@7.0.2:
     dependencies:
-      agent-base: 7.1.1(supports-color@9.4.0)
-      debug: 4.3.6(supports-color@9.4.0)
+      agent-base: 7.1.1
+      debug: 4.3.6(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -16082,6 +16097,13 @@ snapshots:
     dependencies:
       quick-lru: 5.1.1
       resolve-alpn: 1.2.1
+
+  https-proxy-agent@7.0.5:
+    dependencies:
+      agent-base: 7.1.1
+      debug: 4.3.6(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
 
   https-proxy-agent@7.0.5(supports-color@9.4.0):
     dependencies:
@@ -17186,7 +17208,7 @@ snapshots:
   micromark@3.2.0:
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       decode-named-character-reference: 1.0.2
       micromark-core-commonmark: 1.1.0
       micromark-factory-space: 1.1.0
@@ -18649,7 +18671,7 @@ snapshots:
   rollup-plugin-esbuild@6.1.1(esbuild@0.23.1)(rollup@4.21.0):
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.21.0)
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       es-module-lexer: 1.5.4
       esbuild: 0.23.1
       get-tsconfig: 4.7.6
@@ -19825,7 +19847,7 @@ snapshots:
   vite-node@1.6.0(@types/node@22.5.0)(sass@1.77.8):
     dependencies:
       cac: 6.7.14
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       pathe: 1.1.2
       picocolors: 1.0.1
       vite: 5.4.2(@types/node@22.5.0)(sass@1.77.8)
@@ -19843,7 +19865,7 @@ snapshots:
   vite-node@2.0.5(@types/node@22.5.0)(sass@1.77.8):
     dependencies:
       cac: 6.7.14
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       pathe: 1.1.2
       tinyrainbow: 1.2.0
       vite: 5.4.2(@types/node@22.5.0)(sass@1.77.8)
@@ -19860,7 +19882,7 @@ snapshots:
 
   vite-plugin-shopify@3.0.1(vite@5.4.2(@types/node@22.5.0)(sass@1.77.8)):
     dependencies:
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       fast-glob: 3.3.2
       vite: 5.4.2(@types/node@22.5.0)(sass@1.77.8)
     transitivePeerDependencies:
@@ -19883,7 +19905,7 @@ snapshots:
 
   vite-tsconfig-paths@5.0.1(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.0)(sass@1.77.8)):
     dependencies:
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       globrex: 0.1.2
       tsconfck: 3.1.1(typescript@5.5.4)
     optionalDependencies:
@@ -19916,7 +19938,7 @@ snapshots:
       '@vitest/spy': 2.0.5
       '@vitest/utils': 2.0.5
       chai: 5.1.1
-      debug: 4.3.6(supports-color@9.4.0)
+      debug: 4.3.6(supports-color@8.1.1)
       execa: 8.0.1
       magic-string: 0.30.11
       pathe: 1.1.2

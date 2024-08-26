@@ -1,0 +1,21 @@
+api_version = "2024-07"
+
+[[extensions]]
+name = "t:name"
+handle = "admin-block-extension"
+type = "ui_extension"
+
+
+# Only 1 target can be specified for each Admin block extension
+[[extensions.targeting]]
+module = "./src/BlockExtension.tsx"
+target = "admin.product-details.block.render"
+
+# Valid extension targets:
+# - admin.abandoned-checkout-details.block.render
+# - admin.collection-details.block.render
+# - admin.customer-details.block.render
+# - admin.draft-order-details.block.render
+# - admin.order-details.block.render
+# - admin.product-details.block.render
+# - admin.product-variant-details.block.render

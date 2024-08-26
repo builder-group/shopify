@@ -1,4 +1,4 @@
-# Checkout UI Extension
+# `@repo/sfy-playground-checkout-ui-extension`
 
 Checkout UI extensions let app developers build custom functionality that merchants can install at defined targets in the checkout flow. You can learn more about checkout UI extensions in Shopify’s [developer documentation](https://shopify.dev/api/checkout-extensions/checkout).
 
