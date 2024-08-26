@@ -8,7 +8,7 @@ extension_directories = [
 ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://decided-openings-atmospheric-minnesota.trycloudflare.com"
+application_url = "https://cutting-equality-staying-jersey.trycloudflare.com"
 embedded = true
 
 [build]
@@ -22,9 +22,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://decided-openings-atmospheric-minnesota.trycloudflare.com/auth/callback",
-  "https://decided-openings-atmospheric-minnesota.trycloudflare.com/auth/shopify/callback",
-  "https://decided-openings-atmospheric-minnesota.trycloudflare.com/api/auth/callback"
+  "https://cutting-equality-staying-jersey.trycloudflare.com/auth/callback",
+  "https://cutting-equality-staying-jersey.trycloudflare.com/auth/shopify/callback",
+  "https://cutting-equality-staying-jersey.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

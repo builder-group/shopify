@@ -3,31 +3,49 @@ import {
 	BlockStack,
 	Button,
 	reactExtension,
-	Text,
+	TextField,
 	useApi
 } from '@shopify/ui-extensions-react/admin';
 import React from 'react';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
 import { getMetafield, updateMetafield } from './graphql';
 
 const TARGET = 'admin.product-details.block.render';
 
-export default reactExtension(TARGET, () => <App />);
+const queryClient = new QueryClient();
+
+export default reactExtension(TARGET, () => (
+	<QueryClientProvider client={queryClient}>
+		<App />
+	</QueryClientProvider>
+));
 
 function App() {
 	const { i18n, data } = useApi(TARGET);
 	const productId = React.useMemo(() => data.selected?.[0]?.id, [data.selected[0]]);
-	console.log({ data, productId });
-
-	React.useEffect(() => {
-		(async () => {
+	const {
+		status,
+		data: loadedEnergyLabel,
+		isLoading,
+		error
+	} = useQuery({
+		queryKey: ['energy-label', productId],
+		queryFn: async () => {
 			if (productId != null) {
 				const result = await getEnergyLabel(productId);
-				const label = result.unwrap().data.data.product.metafield?.value;
-				console.log({ result, label });
+				return result.unwrap().data.data.product.metafield?.value;
 			}
-		})();
-	}, [productId]);
+			return undefined;
+		}
+	});
+	const [energyLabelInput, setEnergyLabelInput] = React.useState<string>('');
+
+	React.useEffect(() => {
+		if (status === 'success' && loadedEnergyLabel != null) {
+			setEnergyLabelInput(loadedEnergyLabel);
+		}
+	}, [loadedEnergyLabel, status]);
 
 	const onSubmit = React.useCallback(async () => {
 		if (productId != null) {
@@ -39,7 +57,14 @@ function App() {
 	return (
 		<AdminBlock title={i18n.translate('title')}>
 			<BlockStack>
-				<Text fontWeight="bold">Hello world</Text>
+				<TextField
+					label="EnergyLabel"
+					type="number"
+					value={energyLabelInput}
+					onChange={setEnergyLabelInput}
+					autoComplete="off"
+					loading={isLoading}
+				/>
 				<Button onClick={onSubmit}>Update Energy Label</Button>
 			</BlockStack>
 		</AdminBlock>
