@@ -14,8 +14,11 @@ import { Hono } from 'hono';
 	const app = new Hono();
 
 	// Append Shopify API router
-	const { createApp: createShopifyRoute } = await import('@repo/api-shopify');
+	const { createApp: createShopifyRoute, logger: shopifyLogger } = await import(
+		'@repo/api-shopify'
+	);
 	app.route('/v1/shopify', createShopifyRoute());
+	shopifyLogger.info(`Initialized Shopify API at '/v1/shopify'`);
 
 	// Append Energy Label API router
 	// TODO:

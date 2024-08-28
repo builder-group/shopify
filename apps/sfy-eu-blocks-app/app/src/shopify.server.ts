@@ -8,8 +8,8 @@ import { ApiVersion, AppDistribution, shopifyApp } from '@shopify/shopify-app-re
 import { apiCoreConfig, appConfig, shopifyConfig } from './environment';
 
 export const apiCoreSessionStorage = new ApiCoreSessionStorage(
-	apiCoreConfig.baseUrl,
-	apiCoreConfig.shopifyBearerToken,
+	apiCoreConfig.shopify.baseUrl,
+	apiCoreConfig.shopify.bearerToken,
 	appConfig.name
 );
 

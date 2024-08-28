@@ -10,8 +10,8 @@ export const router = new Hono();
 
 router.use(
 	'/session/*',
-	bearerAuth({ token: appConfig.shopifyBearerToken }),
-	cors({ origin: ['https://shopify.com/', 'https://admin.shopify.com/'] })
+	cors({ origin: ['https://shopify.com/', 'https://admin.shopify.com/'] }),
+	bearerAuth({ token: appConfig.shopifyBearerToken })
 );
 
 export const openApiRouter = createHonoOpenApiRouter<shopifyApiV1.paths>(router);

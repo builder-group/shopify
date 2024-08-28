@@ -1,4 +1,5 @@
 import { serve } from '@hono/node-server';
+import { Hono } from 'hono';
 
 (async () => {
 	// Only load .env in development and before loading the app
@@ -9,12 +10,15 @@ import { serve } from '@hono/node-server';
 		console.log(`Loaded dotenv from '.env.${nodeEnv}'.`);
 	}
 
-	const { createApp, logger } = await import('./src');
-
 	const port = 8787;
-	const app = createApp();
+	const app = new Hono();
 
-	logger.info(`Server is running at http://localhost:${port.toString()}`);
+	// Append Shopify API router
+	const { createApp: createShopifyRoute, logger: shopifyLogger } = await import('./src');
+	app.route('/v1/shopify/*', createShopifyRoute());
+	shopifyLogger.info(`Initialized Shopify API at http://localhost:${port.toString()}/v1/shopify`);
+
+	console.info(`Server is running at http://localhost:${port.toString()}`);
 
 	serve({
 		fetch: app.fetch,
