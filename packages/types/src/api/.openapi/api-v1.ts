@@ -189,12 +189,11 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ProductDetailsDto"];
+                        "application/json": components["schemas"]["ProductDetailsListDto"];
                     };
                 };
                 400: components["responses"]["BadRequest"];
                 401: components["responses"]["Unauthorized"];
-                404: components["responses"]["NotFound"];
                 500: components["responses"]["InternalServerError"];
             };
         };
@@ -424,6 +423,7 @@ export interface components {
              *     ] */
             urls?: string[];
         };
+        ProductDetailsListDto: components["schemas"]["ProductDetailsDto"][];
     };
     responses: {
         /** @description Bad request */

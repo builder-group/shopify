@@ -1,3 +1,4 @@
+import { type energyLabelApiV1 } from '@repo/types/api';
 import { RequestError } from 'eprel-client';
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
@@ -51,7 +52,7 @@ openApiRouter.get('/products/{registrationNumber}/labels', {
 			if (address == null) {
 				throw new AppError('#ERR_NOT_FOUND', 404);
 			}
-			return c.json([address]);
+			return c.json<energyLabelApiV1.components['schemas']['LabelUrlsDto']>({ urls: [address] });
 		} catch (e) {
 			if (e instanceof RequestError) {
 				throw new AppError('#ERR_EPREL_API', e.status, {
@@ -85,7 +86,7 @@ openApiRouter.get('/products/{registrationNumber}/sheets', {
 			if (address == null) {
 				throw new AppError('#ERR_NOT_FOUND', 404);
 			}
-			return c.json([address]);
+			return c.json<energyLabelApiV1.components['schemas']['SheetUrlsDto']>({ urls: [address] });
 		} catch (e) {
 			if (e instanceof RequestError) {
 				throw new AppError('#ERR_EPREL_API', e.status, {

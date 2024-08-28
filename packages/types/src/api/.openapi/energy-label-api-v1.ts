@@ -100,12 +100,11 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ProductDetailsDto"];
+                        "application/json": components["schemas"]["ProductDetailsListDto"];
                     };
                 };
                 400: components["responses"]["BadRequest"];
                 401: components["responses"]["Unauthorized"];
-                404: components["responses"]["NotFound"];
                 500: components["responses"]["InternalServerError"];
             };
         };
@@ -227,6 +226,7 @@ export interface components {
             /** @example Regulation (EU) 626/2011 */
             regulation?: string;
         };
+        ProductDetailsListDto: components["schemas"]["ProductDetailsDto"][];
         ProductDetailsDto: {
             /** @example P2422H */
             modelIdentifier?: string;

@@ -72,13 +72,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductDetailsDto'
+                $ref: '#/components/schemas/ProductDetailsListDto'
         '400':
           $ref: './common.yaml#/components/responses/BadRequest'
         '401':
           $ref: './common.yaml#/components/responses/Unauthorized'
-        '404':
-          $ref: './common.yaml#/components/responses/NotFound'
         '500':
           $ref: './common.yaml#/components/responses/InternalServerError'
 
@@ -177,6 +175,11 @@ components:
         regulation:
           type: string
           example: Regulation (EU) 626/2011
+
+    ProductDetailsListDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProductDetailsDto'
 
     ProductDetailsDto:
       type: object

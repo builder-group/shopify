@@ -1,3 +1,4 @@
+import { type energyLabelApiV1 } from '@repo/types/api';
 import { RequestError } from 'eprel-client';
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
@@ -11,7 +12,7 @@ openApiRouter.get('/product-groups', {
 	handler: async (c) => {
 		try {
 			const productGroups = await eprelClient.getProductGroups();
-			return c.json(productGroups);
+			return c.json<energyLabelApiV1.components['schemas']['ProductGroupListDto']>(productGroups);
 		} catch (e) {
 			if (e instanceof RequestError) {
 				throw new AppError('#ERR_EPREL_API', e.status, {
@@ -44,10 +45,18 @@ openApiRouter.get('/product-groups/{productGroup}/products', {
 					modelIdentifier: model
 				}
 			});
-			if (hits.length === 0) {
-				throw new AppError('#ERR_NOT_FOUND', 404);
-			}
-			return c.json(hits[0]);
+			return c.json<energyLabelApiV1.components['schemas']['ProductDetailsListDto']>(
+				hits.map((hit) => ({
+					energyClass: hit.energyClass,
+					eprelRegistrationNumber: hit.eprelRegistrationNumber,
+					implementingAct: hit.implementingAct,
+					modelIdentifier: hit.modelIdentifier,
+					onMarketEndDate: hit.onMarketEndDate,
+					onMarketStartDate: hit.onMarketStartDate,
+					productGroup: hit.productGroup,
+					status: hit.status
+				}))
+			);
 		} catch (e) {
 			if (e instanceof RequestError) {
 				throw new AppError('#ERR_EPREL_API', e.status, {
