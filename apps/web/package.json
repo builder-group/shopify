@@ -24,16 +24,16 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"@blgc/utils": "^0.0.16",
+		"@blgc/utils": "^0.0.17",
 		"@repo/ui": "workspace:*",
-		"feature-logger": "^0.0.20",
+		"feature-logger": "^0.0.21",
 		"next": "14.2.5",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.21",
-		"@types/node": "^22.5.0",
+		"@blgc/config": "^0.0.22",
+		"@types/node": "^22.5.1",
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
 		"postcss": "^8.4.41",

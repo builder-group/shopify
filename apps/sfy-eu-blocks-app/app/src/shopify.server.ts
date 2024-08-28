@@ -1,4 +1,4 @@
-import { ApiCoreSessionStorage } from '@repo/sfy-app-session-storage-api-core';
+import { ApiCoreSessionStorage } from '@repo/sfy-app-session-storage-api';
 import { restResources } from '@shopify/shopify-api/rest/admin/2024-07';
 
 import '@shopify/shopify-app-remix/adapters/node';
@@ -8,8 +8,8 @@ import { ApiVersion, AppDistribution, shopifyApp } from '@shopify/shopify-app-re
 import { apiCoreConfig, appConfig, shopifyConfig } from './environment';
 
 export const apiCoreSessionStorage = new ApiCoreSessionStorage(
-	apiCoreConfig.baseUrl,
-	apiCoreConfig.shopifyBearerToken,
+	apiCoreConfig.shopify.baseUrl,
+	apiCoreConfig.shopify.bearerToken,
 	appConfig.name
 );
 

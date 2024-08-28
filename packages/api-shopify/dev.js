@@ -8,31 +8,24 @@ import { Hono } from 'hono';
 	if (nodeEnv === 'local') {
 		const dotenv = await import('dotenv');
 		dotenv.config({ path: `.env.${nodeEnv}` });
-		console.info(`Loaded dotenv from '.env.${nodeEnv}'.`);
+		console.log(`Loaded dotenv from '.env.${nodeEnv}'.`);
 	}
 
 	const port = 8787;
 	const app = new Hono();
 
 	// Append Shopify API router
-	const { createApp: createShopifyRoute, logger: shopifyLogger } = await import(
-		'@repo/api-shopify'
-	);
+	const { createApp: createShopifyRoute, logger: shopifyLogger } = await import('./src');
 	app.route('/v1/shopify', createShopifyRoute());
-	shopifyLogger.info(`Initialized Shopify API at '/v1/shopify'`);
-
-	// Append Energy Label API router
-	// TODO:
+	shopifyLogger.info(`Initialized Shopify API at http://localhost:${port.toString()}/v1/shopify`);
 
 	app.onError(errorHandler);
 	app.notFound(invalidPathHandler);
 
-	console.info(`Server is running on port ${port.toString()}`);
+	console.info(`Server is running at http://localhost:${port.toString()}`);
 
 	serve({
 		fetch: app.fetch,
 		port
 	});
-})().catch((e: unknown) => {
-	console.error('Failed to start server by exception: ', e);
-});
+})();

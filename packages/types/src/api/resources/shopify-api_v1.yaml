@@ -1,0 +1,264 @@
+openapi: 3.0.3
+info:
+  title: Shopify API
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@builder.group
+servers:
+  - url: https://api.builder.group/v1/shopify
+    description: Production server
+tags:
+  - name: health
+    description: Operations related to the API's health
+  - name: session
+    description: Operations related to Shopify session management
+paths:
+  /health:
+    get:
+      tags:
+        - health
+      summary: Check API health
+      description: Returns the current health status of the API
+      operationId: checkShopifyHealth
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: './common.yaml#/components/schemas/HealthDto'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  /session:
+    post:
+      summary: Create a new Shopify session
+      tags:
+        - session
+      operationId: createSession
+      requestBody:
+        description: Shopify session details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShopifySessionDto'
+      responses:
+        '201':
+          description: Session created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Session created successfully"
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+      security:
+        - shopifyToken: []
+
+  /session/{id}:
+    get:
+      summary: Retrieve a Shopify session by ID
+      tags:
+        - session
+      operationId: getSession
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShopifySessionDto'
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '404':
+          $ref: './common.yaml#/components/responses/NotFound'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+      security:
+        - shopifyToken: []
+
+    delete:
+      summary: Delete a Shopify session by ID
+      tags:
+        - session
+      operationId: deleteSession
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Session deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Session deleted successfully"
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '404':
+          $ref: './common.yaml#/components/responses/NotFound'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+      security:
+        - shopifyToken: []
+
+  /session/delete:
+    post:
+      summary: Delete multiple Shopify sessions
+      tags:
+        - session
+      operationId: deleteSessions
+      requestBody:
+        description: Array of session IDs to delete
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+              example: ["session1", "session2", "session3"]
+      responses:
+        '200':
+          description: Sessions deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Sessions deleted successfully"
+                  deletedCount:
+                    type: integer
+                    example: 3
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+      security:
+        - shopifyToken: []
+
+  /session/shop/{shop}:
+    get:
+      summary: Find Shopify sessions by shop
+      tags:
+        - session
+      operationId: findSessionsByShop
+      parameters:
+        - in: path
+          name: shop
+          schema:
+            type: string
+          required: true
+          description: Shopify shop domain
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShopifySessionDto'
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+      security:
+        - shopifyToken: []
+
+components:
+  parameters:
+    SessionId:
+      in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: Unique identifier of the Shopify session
+
+  securitySchemes:
+    shopifyToken:
+      type: http
+      scheme: bearer
+      description: Token for authentication with Shopify API
+
+  schemas:
+    ShopifySessionDto:
+      type: object
+      required:
+        - id
+        - app
+        - shop
+        - state
+        - isOnline
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the session
+        app:
+          type: string
+          description: Unique identifier for the app
+        shop:
+          type: string
+          description: Shopify shop domain
+        state:
+          type: string
+          description: Current state of the session
+        isOnline:
+          type: boolean
+          description: Indicates if the access token is online or offline
+        scope:
+          type: string
+          description: Desired scopes for the access token
+        expires:
+          type: number
+          format: date-time
+          description: Expiration date and time of the access token
+        accessToken:
+          type: string
+          description: Access token for the session
+        userId:
+          type: integer
+          description: Shopify user ID associated with the session
+      example:
+        id: "session123"
+        app: "myShopifyApp"
+        shop: "mystore.myshopify.com"
+        state: "active"
+        isOnline: true
+        scope: "read_products,write_orders"
+        expires: "2023-12-31T23:59:59Z"
+        accessToken: "shpat_1234567890abcdef"
+        userId: 12345678
