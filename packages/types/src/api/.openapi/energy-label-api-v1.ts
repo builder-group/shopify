@@ -216,40 +216,6 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        /** @example {
-         *       "error_code": "#ERR_INVALID_INPUT",
-         *       "error_description": "Invalid input",
-         *       "error_uri": "https://api.builder.group/docs/errors#ERR_INVALID_INPUT",
-         *       "additional_errors": []
-         *     } */
-        AppErrorDto: {
-            /** @description Error code */
-            error_code: string;
-            /** @description Error description */
-            error_description?: string;
-            /** @description Error URI for more information */
-            error_uri?: string | null;
-            /** @description Additional error details */
-            additional_errors?: Record<string, never>[];
-        };
-        /** @example {
-         *       "status": "Up",
-         *       "message": "API is functioning normally"
-         *     } */
-        HealthDto: {
-            status: components["schemas"]["HealthStatus"];
-            /** @description Additional health check information */
-            message: string;
-        };
-        /**
-         * @description The current health status of the API:
-         *     * `Up` - Fully operational
-         *     * `Restricted` - Partially operational
-         *     * `Down` - Not operational
-         *
-         * @enum {string}
-         */
-        HealthStatus: "Up" | "Restricted" | "Down";
         ProductGroupListDto: components["schemas"]["ProductGroupDto"][];
         ProductGroupDto: {
             /** @example AIR_CONDITIONER */
@@ -301,10 +267,44 @@ export interface components {
              *     ] */
             urls?: string[];
         };
+        /**
+         * @description The current health status of the API:
+         *     * `Up` - Fully operational
+         *     * `Restricted` - Partially operational
+         *     * `Down` - Not operational
+         *
+         * @enum {string}
+         */
+        HealthStatus: "Up" | "Restricted" | "Down";
+        /** @example {
+         *       "status": "Up",
+         *       "message": "API is functioning normally"
+         *     } */
+        HealthDto: {
+            status: components["schemas"]["HealthStatus"];
+            /** @description Additional health check information */
+            message: string;
+        };
+        /** @example {
+         *       "error_code": "#ERR_INVALID_INPUT",
+         *       "error_description": "Invalid input",
+         *       "error_uri": "https://api.builder.group/docs/errors#ERR_INVALID_INPUT",
+         *       "additional_errors": []
+         *     } */
+        AppErrorDto: {
+            /** @description Error code */
+            error_code: string;
+            /** @description Error description */
+            error_description?: string;
+            /** @description Error URI for more information */
+            error_uri?: string | null;
+            /** @description Additional error details */
+            additional_errors?: Record<string, never>[];
+        };
     };
     responses: {
-        /** @description Bad request */
-        BadRequest: {
+        /** @description Internal server error */
+        InternalServerError: {
             headers: {
                 [name: string]: unknown;
             };
@@ -321,8 +321,8 @@ export interface components {
                 "application/json": components["schemas"]["AppErrorDto"];
             };
         };
-        /** @description Resource not found */
-        NotFound: {
+        /** @description Bad request */
+        BadRequest: {
             headers: {
                 [name: string]: unknown;
             };
@@ -330,8 +330,8 @@ export interface components {
                 "application/json": components["schemas"]["AppErrorDto"];
             };
         };
-        /** @description Internal server error */
-        InternalServerError: {
+        /** @description Resource not found */
+        NotFound: {
             headers: {
                 [name: string]: unknown;
             };

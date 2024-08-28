@@ -98,40 +98,6 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         /** @example {
-         *       "error_code": "#ERR_INVALID_INPUT",
-         *       "error_description": "Invalid input",
-         *       "error_uri": "https://api.builder.group/docs/errors#ERR_INVALID_INPUT",
-         *       "additional_errors": []
-         *     } */
-        AppErrorDto: {
-            /** @description Error code */
-            error_code: string;
-            /** @description Error description */
-            error_description?: string;
-            /** @description Error URI for more information */
-            error_uri?: string | null;
-            /** @description Additional error details */
-            additional_errors?: Record<string, never>[];
-        };
-        /** @example {
-         *       "status": "Up",
-         *       "message": "API is functioning normally"
-         *     } */
-        HealthDto: {
-            status: components["schemas"]["HealthStatus"];
-            /** @description Additional health check information */
-            message: string;
-        };
-        /**
-         * @description The current health status of the API:
-         *     * `Up` - Fully operational
-         *     * `Restricted` - Partially operational
-         *     * `Down` - Not operational
-         *
-         * @enum {string}
-         */
-        HealthStatus: "Up" | "Restricted" | "Down";
-        /** @example {
          *       "id": "session123",
          *       "app": "myShopifyApp",
          *       "shop": "mystore.myshopify.com",
@@ -165,8 +131,51 @@ export interface components {
             /** @description Shopify user ID associated with the session */
             userId?: number;
         };
+        /**
+         * @description The current health status of the API:
+         *     * `Up` - Fully operational
+         *     * `Restricted` - Partially operational
+         *     * `Down` - Not operational
+         *
+         * @enum {string}
+         */
+        HealthStatus: "Up" | "Restricted" | "Down";
+        /** @example {
+         *       "status": "Up",
+         *       "message": "API is functioning normally"
+         *     } */
+        HealthDto: {
+            status: components["schemas"]["HealthStatus"];
+            /** @description Additional health check information */
+            message: string;
+        };
+        /** @example {
+         *       "error_code": "#ERR_INVALID_INPUT",
+         *       "error_description": "Invalid input",
+         *       "error_uri": "https://api.builder.group/docs/errors#ERR_INVALID_INPUT",
+         *       "additional_errors": []
+         *     } */
+        AppErrorDto: {
+            /** @description Error code */
+            error_code: string;
+            /** @description Error description */
+            error_description?: string;
+            /** @description Error URI for more information */
+            error_uri?: string | null;
+            /** @description Additional error details */
+            additional_errors?: Record<string, never>[];
+        };
     };
     responses: {
+        /** @description Internal server error */
+        InternalServerError: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["AppErrorDto"];
+            };
+        };
         /** @description Bad request */
         BadRequest: {
             headers: {
@@ -187,15 +196,6 @@ export interface components {
         };
         /** @description Resource not found */
         NotFound: {
-            headers: {
-                [name: string]: unknown;
-            };
-            content: {
-                "application/json": components["schemas"]["AppErrorDto"];
-            };
-        };
-        /** @description Internal server error */
-        InternalServerError: {
             headers: {
                 [name: string]: unknown;
             };

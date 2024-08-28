@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: Builder.Group Combined API
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@builder.group
+servers:
+  - url: https://api.builder.group
+    description: Production server
+paths:
+  /v1/shopify:
+    $ref: './shopify-api_v1.yaml#/paths'
+  /v1/energy-label:
+    $ref: './energy-label-api_v1.yaml#/paths'
+components:
+  schemas:
+    $ref: './common.yaml#/components/schemas'
+  responses:
+    $ref: './common.yaml#/components/responses'
