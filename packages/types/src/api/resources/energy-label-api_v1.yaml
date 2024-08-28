@@ -1,0 +1,316 @@
+openapi: 3.0.3
+info:
+  title: Energy Label API
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@builder.group
+servers:
+  - url: https://api.builder.group/v1/energy-label
+    description: Production server
+tags:
+  - name: health
+    description: Operations related to the API's health
+  - name: product-groups
+    description: Operations related to product groups
+  - name: products
+    description: Operations related to specific products
+paths:
+  /health:
+    get:
+      tags:
+        - health
+      summary: Check API health
+      description: Returns the current health status of the API
+      operationId: checkHealth
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthDto'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /product-groups:
+    get:
+      summary: Get list of product groups
+      description: Returns a list of product groups with their associated details.
+      tags:
+        - product-groups
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGroupListDto'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /product-groups/{productGroup}/products:
+    get:
+      summary: Get product details by model
+      description: Retrieves specific details for a product model within a product group.
+      tags:
+        - product-groups
+      parameters:
+        - $ref: '#/components/parameters/ProductGroup'
+        - name: model
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The model identifier of the product
+          example: P2422H
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetailsDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /products/{registrationNumber}/sheets:
+    get:
+      summary: Get product sheet URLs
+      description: Retrieves URLs for product information sheets (fiches) for a specific product.
+      tags:
+        - products
+      parameters:
+        - $ref: '#/components/parameters/RegistrationNumber'
+        - $ref: '#/components/parameters/Language'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SheetUrlsDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /products/{registrationNumber}/labels:
+    get:
+      summary: Get product label URLs
+      description: Retrieves URLs for product labels for a specific product.
+      tags:
+        - products
+      parameters:
+        - $ref: '#/components/parameters/RegistrationNumber'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabelUrlsDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  parameters:
+    ProductGroup:
+      name: productGroup
+      in: path
+      required: true
+      description: The product group identifier (e.g., airconditioners, electronicdisplays)
+      schema:
+        type: string
+    RegistrationNumber:
+      name: registrationNumber
+      in: path
+      required: true
+      description: Unique identifier of the product in the database
+      schema:
+        type: string
+    Language:
+      name: language
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [BG, CS, DA, DE, ET, EL, EN, ES, FR, GA, HR, IT, LV, LT, HU, MT, NL, PL, PT, RO, SK, SL, FI, SV]
+      description: The language in which the product sheet should be returned. If not specified, all available languages will be returned.
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppErrorDto'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppErrorDto'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppErrorDto'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppErrorDto'
+
+  schemas:
+    AppErrorDto:
+      type: object
+      required:
+        - error_code
+        - error_description
+      properties:
+        error_code:
+          type: string
+          description: Error code
+        error_description:
+          type: string
+          description: Error description
+        error_uri:
+          type: string
+          description: Error URI for more information
+          nullable: true
+        additional_errors:
+          type: array
+          items:
+            type: object
+          description: Additional error details
+      example:
+        error_code: "#ERR_INVALID_INPUT"
+        error_description: "Invalid input"
+        error_uri: "https://api.builder.group/docs/errors#ERR_INVALID_INPUT"
+        additional_errors: []
+
+    HealthDto:
+      type: object
+      required:
+        - status
+        - message
+      properties:
+        status:
+          $ref: '#/components/schemas/HealthStatus'
+        message:
+          type: string
+          description: Additional health check information
+      example:
+        status: Up
+        message: "API is functioning normally"
+
+    HealthStatus:
+      type: string
+      enum:
+        - Up
+        - Restricted
+        - Down
+      description: |
+        The current health status of the API:
+        * `Up` - Fully operational
+        * `Restricted` - Partially operational
+        * `Down` - Not operational
+
+    ProductGroupListDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProductGroupDto'
+
+    ProductGroupDto:
+      type: object
+      properties:
+        code:
+          type: string
+          example: AIR_CONDITIONER
+        urlCode:
+          type: string
+          example: airconditioners
+        name:
+          type: string
+          example: Air conditioners
+        regulation:
+          type: string
+          example: Regulation (EU) 626/2011
+
+    ProductDetailsDto:
+      type: object
+      properties:
+        modelIdentifier:
+          type: string
+          example: "P2422H"
+        onMarketStartDate:
+          type: array
+          items:
+            type: integer
+          example: [2022, 5, 1]
+        onMarketEndDate:
+          type: array
+          items:
+            type: integer
+          nullable: true
+          example: null
+        status:
+          type: string
+          enum: [PUBLISHED, DRAFT, ARCHIVED]
+          example: PUBLISHED
+        eprelRegistrationNumber:
+          type: string
+          example: "123456"
+        energyClass:
+          type: string
+          example: "A"
+        productGroup:
+          type: string
+          example: "electronicdisplays"
+        implementingAct:
+          type: string
+          example: "EU_2019_2013"
+
+    SheetUrlsDto:
+      type: object
+      properties:
+        urls:
+          type: array
+          items:
+            type: string
+          example: 
+            - "https://api.example.com/fiche/Fiche_123456_EN.pdf"
+            - "https://api.example.com/fiche/Fiche_123456_FR.pdf"
+
+    LabelUrlsDto:
+      type: object
+      properties:
+        urls:
+          type: array
+          items:
+            type: string
+          example:
+            - "https://api.example.com/label/Label_123456.png"
+            - "https://api.example.com/label/Label_123456.svg"
+            - "https://api.example.com/label/Label_123456.pdf"
