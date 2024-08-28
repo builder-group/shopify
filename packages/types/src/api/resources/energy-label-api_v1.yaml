@@ -22,7 +22,7 @@ paths:
         - health
       summary: Check API health
       description: Returns the current health status of the API
-      operationId: checkHealth
+      operationId: checkEnergyLabelHealth
       responses:
         '200':
           description: Successful response

@@ -7,6 +7,7 @@
 		"build": "shx rm -rf dist && pnpm run openapi:generate && chmod +x ../../scripts/cli.sh && ../../scripts/cli.sh bundle -b typesonly",
 		"openapi:generate": "pnpm run openapi:generate:api",
 		"openapi:generate:api": "npx openapi-typescript --redocly ./src/api/resources/redocly.yaml",
+		"redocly": "npx @redocly/cli",
 		"lint": "eslint --ext .js,.ts src/",
 		"clean": "shx rm -rf dist && shx rm -rf node_modules && shx rm -rf .turbo",
 		"install:clean": "pnpm run clean && pnpm install"
@@ -37,6 +38,7 @@
 	"homepage": "",
 	"devDependencies": {
 		"@blgc/config": "^0.0.21",
+		"@redocly/cli": "^1.21.1",
 		"openapi-typescript": "^7.1.0"
 	},
 	"files": [

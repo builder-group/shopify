@@ -15,7 +15,7 @@ export interface paths {
          * Check API health
          * @description Returns the current health status of the API
          */
-        get: operations["checkHealth"];
+        get: operations["checkEnergyLabelHealth"];
         put?: never;
         post?: never;
         delete?: never;
@@ -354,7 +354,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    checkHealth: {
+    checkEnergyLabelHealth: {
         parameters: {
             query?: never;
             header?: never;
