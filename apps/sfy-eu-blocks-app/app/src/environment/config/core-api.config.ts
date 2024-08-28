@@ -5,7 +5,7 @@ const baseUrl = assertValue(
 	'Environment variable "API_CORE_BASE_URL" not set!'
 ).replace(/\/$/, '');
 
-export const apiCoreConfig = {
+export const coreApiConfig = {
 	baseUrl,
 	shopify: {
 		baseUrl: `${baseUrl}/v1/shopify`,

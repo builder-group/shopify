@@ -5,11 +5,11 @@ import '@shopify/shopify-app-remix/adapters/node';
 
 import { ApiVersion, AppDistribution, shopifyApp } from '@shopify/shopify-app-remix/server';
 
-import { apiCoreConfig, appConfig, shopifyConfig } from './environment';
+import { appConfig, coreApiConfig, shopifyConfig } from './environment';
 
 export const apiCoreSessionStorage = new ApiCoreSessionStorage(
-	apiCoreConfig.shopify.baseUrl,
-	apiCoreConfig.shopify.bearerToken,
+	coreApiConfig.shopify.baseUrl,
+	coreApiConfig.shopify.bearerToken,
 	appConfig.name
 );
 
