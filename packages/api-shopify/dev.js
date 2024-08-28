@@ -1,4 +1,5 @@
 import { serve } from '@hono/node-server';
+import { errorHandler, invalidPathHandler } from '@repo/api-utils';
 import { Hono } from 'hono';
 
 (async () => {
@@ -15,8 +16,11 @@ import { Hono } from 'hono';
 
 	// Append Shopify API router
 	const { createApp: createShopifyRoute, logger: shopifyLogger } = await import('./src');
-	app.route('/v1/shopify/*', createShopifyRoute());
+	app.route('/v1/shopify', createShopifyRoute());
 	shopifyLogger.info(`Initialized Shopify API at http://localhost:${port.toString()}/v1/shopify`);
+
+	app.onError(errorHandler);
+	app.notFound(invalidPathHandler);
 
 	console.info(`Server is running at http://localhost:${port.toString()}`);
 

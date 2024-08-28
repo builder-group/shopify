@@ -1,16 +1,15 @@
-import { type shopifyApiV1 } from '@repo/types/api';
+import { type TAppErrorDto } from '@repo/types/api';
 import { HTTPException } from 'hono/http-exception';
 import type * as hono from 'hono/types';
 import { type StatusCode } from 'hono/utils/http-status';
 import { AppError } from '@blgc/openapi-router';
-import { logger } from '@/logger';
 
 type HeaderRecord = Record<string, string | string[]>;
 
 export const errorHandler: hono.ErrorHandler = async (err, c) => {
 	let statusCode = 500;
 	let headers: HeaderRecord = {};
-	const jsonResponse: shopifyApiV1.components['schemas']['AppErrorDto'] = {
+	const jsonResponse: TAppErrorDto = {
 		error_code: '#ERR_UNKNOWN',
 		error_description: undefined,
 		error_uri: null,
@@ -63,8 +62,6 @@ export const errorHandler: hono.ErrorHandler = async (err, c) => {
 	} else {
 		jsonResponse.error_description = 'An unknown error occurred!';
 	}
-
-	logger.error(`Error Response: ${statusCode.toString()}`, { jsonResponse, headers });
 
 	return c.json(jsonResponse, statusCode as StatusCode, headers);
 };

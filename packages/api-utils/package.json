@@ -1,18 +1,20 @@
 {
-	"name": "@repo/apicore--node",
+	"name": "@repo/api-utils",
 	"version": "0.0.1",
-	"description": "Core API running on NodeJs",
+	"description": "API Utils",
 	"private": true,
 	"scripts": {
 		"build": "shx rm -rf dist && chmod +x ../../scripts/cli.sh && ../../scripts/cli.sh bundle",
-		"start:dev": "tsx watch ./src/index.ts",
+		"start:dev": "tsc -w",
 		"lint": "eslint --ext .js,.ts src/",
 		"clean": "shx rm -rf dist && shx rm -rf node_modules && shx rm -rf .turbo",
 		"install:clean": "pnpm run clean && pnpm install",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"source": "./src/index.ts",
-	"main": "./dist/index.js",
+	"main": "./dist/cjs/index.js",
+	"module": "./dist/esm/index.js",
+	"types": "./dist/types/index.d.ts",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/builder-group/shopify.git"
@@ -24,17 +26,17 @@
 		"url": "https://github.com/builder-group/shopify/issues"
 	},
 	"homepage": "",
-	"dependencies": {
-		"@hono/node-server": "^1.12.0",
-		"@repo/api-shopify": "workspace:*",
-		"@repo/api-utils": "workspace:*",
-		"hono": "^4.5.5"
+	"peerDependencies": {
+		"@blgc/openapi-router": "^0.0.15",
+		"hono": "^4.5.9"
 	},
 	"devDependencies": {
 		"@blgc/config": "^0.0.21",
-		"@types/node": "^22.5.0",
-		"dotenv": "^16.4.5",
-		"tsx": "^4.17.0"
+		"@blgc/openapi-router": "^0.0.15",
+		"@hono/node-server": "^1.12.2",
+		"@repo/types": "workspace:*",
+		"@types/node": "^22.5.1",
+		"hono": "^4.5.9"
 	},
 	"files": [
 		"dist",

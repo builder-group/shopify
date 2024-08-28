@@ -30,24 +30,25 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"@blgc/openapi-router": "^0.0.14",
-		"@blgc/utils": "^0.0.16",
+		"@blgc/openapi-router": "^0.0.15",
+		"@blgc/utils": "^0.0.17",
 		"@shopify/admin-api-client": "^1.0.1",
 		"drizzle-orm": "^0.33.0",
-		"feature-logger": "^0.0.20",
-		"hono": "^4.5.5",
+		"feature-logger": "^0.0.21",
+		"hono": "^4.5.9",
 		"postgres": "^3.4.4",
-		"valibot": "^0.37.0",
-		"validation-adapters": "^0.0.8"
+		"valibot": "^0.39.0",
+		"validation-adapters": "^0.0.9"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.21",
-		"@hono/node-server": "^1.12.0",
+		"@blgc/config": "^0.0.22",
+		"@hono/node-server": "^1.12.2",
+		"@repo/api-utils": "workspace:*",
 		"@repo/types": "workspace:*",
-		"@types/node": "^22.5.0",
+		"@types/node": "^22.5.1",
 		"dotenv": "^16.4.5",
-		"drizzle-kit": "^0.24.0",
-		"tsx": "^4.17.0"
+		"drizzle-kit": "^0.24.2",
+		"tsx": "^4.19.0"
 	},
 	"files": [
 		"dist",
