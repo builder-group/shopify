@@ -24,9 +24,7 @@ import { Hono } from 'hono';
 	// Append Energy Label API router
 	// TODO:
 
-	// @ts-expect-error -- Type should be correct?
 	app.onError(errorHandler);
-	// @ts-expect-error -- Type should be correct?
 	app.notFound(invalidPathHandler);
 
 	console.info(`Server is running on port ${port.toString()}`);

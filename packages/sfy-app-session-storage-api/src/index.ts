@@ -17,8 +17,7 @@ export class ApiCoreSessionStorage implements SessionStorage {
 			prefixUrl: basePath,
 			beforeRequestMiddlewares: [
 				async (data) => {
-					(data.requestInit.headers as Record<string, string>).Authorization =
-						`Bearer ${shopifyToken}`;
+					data.requestInit.headers.Authorization = [`Bearer ${shopifyToken}`];
 					return data;
 				}
 			]

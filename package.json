@@ -5,7 +5,7 @@
 	"scripts": {
 		"build": "turbo build",
 		"start:dev": "turbo start:dev",
-		"clean": "turbo run clean && shx rm -rf node_modules && shx rm -rf .turbo",
+		"clean": "turbo run clean && shx rm -rf node_modules",
 		"install:clean": "pnpm run clean && pnpm install",
 		"lint": "turbo lint",
 		"format": "prettier --write \"**/*.{ts,tsx,md,json,js,jsx}\"",
@@ -24,13 +24,13 @@
 	"homepage": "",
 	"devDependencies": {
 		"@blgc/cli": "^0.0.16",
-		"@blgc/config": "^0.0.20",
+		"@blgc/config": "^0.0.22",
 		"@ianvs/prettier-plugin-sort-imports": "^4.3.1",
 		"eslint": "^8.57.0",
 		"prettier": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.6",
 		"shx": "^0.3.4",
-		"turbo": "^2.0.14",
+		"turbo": "^2.1.0",
 		"typescript": "^5.5.4",
 		"vite": "^5.4.2",
 		"vitest": "^2.0.5"

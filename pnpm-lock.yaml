@@ -12,8 +12,8 @@ importers:
         specifier: ^0.0.16
         version: 0.0.16(esbuild@0.23.1)(postcss@8.4.41)
       '@blgc/config':
-        specifier: ^0.0.20
-        version: 0.0.20(@next/eslint-plugin-next@14.2.7)(eslint@8.57.0)(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.22
+        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@8.57.0)(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.3.1
         version: 4.3.1(prettier@3.3.3)
@@ -30,8 +30,8 @@ importers:
         specifier: ^0.3.4
         version: 0.3.4
       turbo:
-        specifier: ^2.0.14
-        version: 2.0.14
+        specifier: ^2.1.0
+        version: 2.1.0
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -45,8 +45,8 @@ importers:
   apps/api-core-node:
     dependencies:
       '@hono/node-server':
-        specifier: ^1.12.0
-        version: 1.12.1
+        specifier: ^1.12.2
+        version: 1.12.2(hono@4.5.9)
       '@repo/api-shopify':
         specifier: workspace:*
         version: link:../../packages/api-shopify
@@ -54,8 +54,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/api-utils
       hono:
-        specifier: ^4.5.5
-        version: 4.5.8
+        specifier: ^4.5.9
+        version: 4.5.9
     devDependencies:
       '@blgc/config':
         specifier: ^0.0.22
@@ -67,8 +67,8 @@ importers:
         specifier: ^16.4.5
         version: 16.4.5
       tsx:
-        specifier: ^4.17.0
-        version: 4.17.0
+        specifier: ^4.19.0
+        version: 4.19.0
 
   apps/html-query-playground:
     dependencies:
@@ -1448,12 +1448,6 @@ packages:
     resolution: {integrity: sha512-X44+UiHzDHsxv6iYBCzuzFD8ZxE628bcIQRtuhkZq0ralsBdgcaRW8c5d1XyoVQ+sa0X1fP2N4hmDWZPjekhtg==}
     hasBin: true
 
-  '@blgc/config@0.0.20':
-    resolution: {integrity: sha512-jjWadCQ3ZMMA73QxK0ODCsHbz1f+PX3tYimygq8wSoFMV3OQfQ6WleF2cl/PkDH+l/YnIK3wT73+fYJT6qoWLg==}
-    peerDependencies:
-      '@next/eslint-plugin-next': ^14.2.5
-      eslint: ^8.57.0
-
   '@blgc/config@0.0.22':
     resolution: {integrity: sha512-yExATNbEtDitLgrnem6WH+CXlRvAv+IBD/MdXNd3+o+KOZKCnXip5NK/rR5lIxVyR9JX5BrQV/6lvKrtCcfnhw==}
     peerDependencies:
@@ -2444,10 +2438,6 @@ packages:
     resolution: {integrity: sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-
-  '@hono/node-server@1.12.1':
-    resolution: {integrity: sha512-C9l+08O8xtXB7Ppmy8DjBFH1hYji7JKzsU32Yt1poIIbdPp6S7aOI8IldDHD9YFJ55lv2c21ovNrmxatlHfhAg==}
-    engines: {node: '>=18.14.1'}
 
   '@hono/node-server@1.12.2':
     resolution: {integrity: sha512-xjzhqhSWUE/OhN0g3KCNVzNsQMlFUAL+/8GgPUr3TKcU7cvgZVBGswFofJ8WwGEHTqobzze1lDpGJl9ZNckDhA==}
@@ -4445,6 +4435,9 @@ packages:
   caniuse-lite@1.0.30001651:
     resolution: {integrity: sha512-9Cf+Xv1jJNe1xPZLGuUXLNkE1BoDkqRqYyFJ9TDYSqhduqA4hu4oR9HluGoWYQC/aj8WHjsGVV+bwkh0+tegRg==}
 
+  caniuse-lite@1.0.30001653:
+    resolution: {integrity: sha512-XGWQVB8wFQ2+9NZwZ10GxTYC5hk0Fa+q8cSkr0tgvMhYhMHP/QC+WTgrePMDBWiWc/pV+1ik82Al20XOK25Gcw==}
+
   capital-case@1.0.4:
     resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
 
@@ -5441,11 +5434,6 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-config-turbo@2.0.14:
-    resolution: {integrity: sha512-VkzAH/AR1/fjMsqzuurfWkEgyGVTTzfZQB1umDB8dMWzFhqo8p/2KEWbvRQLEvSFxjVfeJl5ErQAJ7h7DYglxg==}
-    peerDependencies:
-      eslint: '>6.6.0'
-
   eslint-config-turbo@2.1.0:
     resolution: {integrity: sha512-3SeE2OCWnkA/84adGJXABm++966LNGxRdXtXKBcplJdIe4PmERkov1z6Kzp2PrPKT13wGu/bwoLV5h1rm7v9ug==}
     peerDependencies:
@@ -5559,11 +5547,6 @@ packages:
 
   eslint-plugin-tsdoc@0.2.17:
     resolution: {integrity: sha512-xRmVi7Zx44lOBuYqG8vzTXuL6IdGOeF9nHX17bjJ8+VE6fsxpdGem0/SBTmAwgYMKYB1WBkqRJVQ+n8GK041pA==}
-
-  eslint-plugin-turbo@2.0.14:
-    resolution: {integrity: sha512-E++MSAEeWZTU0FYARrfakMPq+7XeltqeY4JBDQTzbGEWG3kgYJPeYBMWsypcvBujVihQLlMu0S6ImnfV692mHg==}
-    peerDependencies:
-      eslint: '>6.6.0'
 
   eslint-plugin-turbo@2.1.0:
     resolution: {integrity: sha512-+CWVY29y7Qa+gvrKSzP+TOYrHAlNLCh/97K5VtDdnpH54h/JFmnd3U0aSG6WANe0HgAK8NHQfeWFDdRzfDqbKA==}
@@ -6258,10 +6241,6 @@ packages:
 
   highlight.js@10.7.3:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
-
-  hono@4.5.8:
-    resolution: {integrity: sha512-pqpSlcdqGkpTTRpLYU1PnCz52gVr0zVR9H5GzMyJWuKQLLEBQxh96q45QizJ2PPX8NATtz2mu31/PKW/Jt+90Q==}
-    engines: {node: '>=16.0.0'}
 
   hono@4.5.9:
     resolution: {integrity: sha512-zz8ktqMDRrZETjxBrv8C5PQRFbrTRCLNVAjD1SNQyOzv4VjmX68Uxw83xQ6oxdAB60HiWnGEatiKA8V3SZLDkQ==}
@@ -9682,51 +9661,46 @@ packages:
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
 
-  tsx@4.17.0:
-    resolution: {integrity: sha512-eN4mnDA5UMKDt4YZixo9tBioibaMBpoxBkD+rIPAjVmYERSG0/dWEY1CEFuV89CgASlKL499q8AhmkMnnjtOJg==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
-
   tsx@4.19.0:
     resolution: {integrity: sha512-bV30kM7bsLZKZIOCHeMNVMJ32/LuJzLVajkQI/qf92J2Qr08ueLQvW00PUZGiuLPP760UINwupgUj8qrSCPUKg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  turbo-darwin-64@2.0.14:
-    resolution: {integrity: sha512-kwfDmjNwlNfvtrvT29+ZBg5n1Wvxl891bFHchMJyzMoR0HOE9N1NSNdSZb9wG3e7sYNIu4uDkNk+VBEqJW0HzQ==}
+  turbo-darwin-64@2.1.0:
+    resolution: {integrity: sha512-gHwpDk2gyB7qZ57gUUwDIS/IkglqEjjVtPZCTxmCRg28Tiwjui0azsLVKrnHP9UZHllozwbi28x8HXLXLEFF1w==}
     cpu: [x64]
     os: [darwin]
 
-  turbo-darwin-arm64@2.0.14:
-    resolution: {integrity: sha512-m3LXYEshCx3wc4ZClM6gb01KYpFmtjQ9IBF3A7ofjb6ahux3xlYZJZ3uFCLAGHuvGLuJ3htfiPbwlDPTdknqqw==}
+  turbo-darwin-arm64@2.1.0:
+    resolution: {integrity: sha512-GLaqGetNC6eS4eqXgsheLOHic/OcnGCGDi5boVf+TFZTXYH6YE15L4ugZha4xHXCr1KouCLILHh+f8EHEmWylg==}
     cpu: [arm64]
     os: [darwin]
 
-  turbo-linux-64@2.0.14:
-    resolution: {integrity: sha512-7vBzCPdoTtR92SNn2JMgj1FlMmyonGmpMaQdgAB1OVYtuQ6NVGoh7/lODfaILqXjpvmFSVbpBIDrKOT6EvcprQ==}
+  turbo-linux-64@2.1.0:
+    resolution: {integrity: sha512-VzBOsj7JyGoZtiNZZ6brjnY7UehRnClluw7pwznuLPzClkqOOPMd2jOcgkWxnP/xW4NBmOoFANXXrtvKBD4f2w==}
     cpu: [x64]
     os: [linux]
 
-  turbo-linux-arm64@2.0.14:
-    resolution: {integrity: sha512-jwH+c0bfjpBf26K/tdEFatmnYyXwGROjbr6bZmNcL8R+IkGAc/cglL+OToqJnQZTgZvH7uDGbeSyUo7IsHyjuA==}
+  turbo-linux-arm64@2.1.0:
+    resolution: {integrity: sha512-St7svJnOO5g4F6R7Z32e10I/0M3e6qpNjEYybXwPNul9NSfnUXeky4WoKaALwqNhyJ7nYemoFpZ1d+i8hFQTHg==}
     cpu: [arm64]
     os: [linux]
 
   turbo-stream@2.3.0:
     resolution: {integrity: sha512-PhEr9mdexoVv+rJkQ3c8TjrN3DUghX37GNJkSMksoPR4KrXIPnM2MnqRt07sViIqX9IdlhrgtTSyjoVOASq6cg==}
 
-  turbo-windows-64@2.0.14:
-    resolution: {integrity: sha512-w9/XwkHSzvLjmioo6cl3S1yRfI6swxsV1j1eJwtl66JM4/pn0H2rBa855R0n7hZnmI6H5ywLt/nLt6Ae8RTDmw==}
+  turbo-windows-64@2.1.0:
+    resolution: {integrity: sha512-iSobNud2MrJ1SZ1upVPlErT8xexsr0MQtKapdfq6z0M0rBnrDGEq5bUCSScWyGu+O4+glB4br9xkTAkGFqaxqQ==}
     cpu: [x64]
     os: [win32]
 
-  turbo-windows-arm64@2.0.14:
-    resolution: {integrity: sha512-XaQlyYk+Rf4xS5XWCo8XCMIpssgGGy8blzLfolN6YBp4baElIWMlkLZHDbGyiFmCbNf9I9gJI64XGRG+LVyyjA==}
+  turbo-windows-arm64@2.1.0:
+    resolution: {integrity: sha512-d61jN4rjE5PnUfF66GKrKoj8S8Ql4FGXzFFzZz4kjsHpZZzCTtqlzPZBmd1byzGYhDPTorTqG3G1USohbdyohA==}
     cpu: [arm64]
     os: [win32]
 
-  turbo@2.0.14:
-    resolution: {integrity: sha512-00JjdCMD/cpsjP0Izkjcm8Oaor5yUCfDwODtaLb+WyblyadkaDEisGhy3Dbd5az9n+5iLSPiUgf+WjPbns6MRg==}
+  turbo@2.1.0:
+    resolution: {integrity: sha512-A969/LO/sPHKlapIarY2VVzqQ5JnnW2/1kksZlnMEpsRD6gwOELvVL+ozfMiO7av9RILt3UeN02L17efr6HUCA==}
     hasBin: true
 
   type-check@0.4.0:
@@ -11347,22 +11321,22 @@ snapshots:
   '@blgc/cli@0.0.16(esbuild@0.23.1)(postcss@8.4.41)':
     dependencies:
       '@oclif/core': 3.27.0
-      '@rollup/plugin-commonjs': 25.0.8(rollup@4.21.0)
-      '@rollup/plugin-html': 1.0.3(rollup@4.21.0)
-      '@rollup/plugin-json': 6.1.0(rollup@4.21.0)
-      '@rollup/plugin-node-resolve': 15.2.3(rollup@4.21.0)
-      '@rollup/plugin-replace': 5.0.7(rollup@4.21.0)
+      '@rollup/plugin-commonjs': 25.0.8(rollup@4.21.1)
+      '@rollup/plugin-html': 1.0.3(rollup@4.21.1)
+      '@rollup/plugin-json': 6.1.0(rollup@4.21.1)
+      '@rollup/plugin-node-resolve': 15.2.3(rollup@4.21.1)
+      '@rollup/plugin-replace': 5.0.7(rollup@4.21.1)
       chalk: 4.1.2
       dotenv: 16.4.5
       execa: 8.0.1
       figlet: 1.7.0
       lodash: 4.17.21
       maxmin: 4.1.0
-      rollup: 4.21.0
+      rollup: 4.21.1
       rollup-plugin-bundle-size: 1.0.3
-      rollup-plugin-esbuild: 6.1.1(esbuild@0.23.1)(rollup@4.21.0)
-      rollup-plugin-license: 3.5.2(rollup@4.21.0)
-      rollup-plugin-node-externals: 5.1.3(rollup@4.21.0)
+      rollup-plugin-esbuild: 6.1.1(esbuild@0.23.1)(rollup@4.21.1)
+      rollup-plugin-license: 3.5.2(rollup@4.21.1)
+      rollup-plugin-node-externals: 5.1.3(rollup@4.21.1)
       rollup-plugin-postcss: 4.0.2(postcss@8.4.41)
     transitivePeerDependencies:
       - esbuild
@@ -11371,12 +11345,12 @@ snapshots:
       - supports-color
       - ts-node
 
-  '@blgc/config@0.0.20(@next/eslint-plugin-next@14.2.7)(eslint@8.57.0)(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))':
+  '@blgc/config@0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@8.57.0)(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))':
     dependencies:
       '@next/eslint-plugin-next': 14.2.7
       '@vercel/style-guide': 6.0.0(@next/eslint-plugin-next@14.2.7)(eslint@8.57.0)(prettier@3.3.3)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       eslint: 8.57.0
-      eslint-config-turbo: 2.0.14(eslint@8.57.0)
+      eslint-config-turbo: 2.1.0(eslint@8.57.0)
       vite-tsconfig-paths: 5.0.1(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))
     transitivePeerDependencies:
       - eslint-import-resolver-node
@@ -12300,8 +12274,6 @@ snapshots:
     dependencies:
       graphql: 16.9.0
 
-  '@hono/node-server@1.12.1': {}
-
   '@hono/node-server@1.12.2(hono@4.5.9)':
     dependencies:
       hono: 4.5.9
@@ -13052,52 +13024,44 @@ snapshots:
 
   '@repeaterjs/repeater@3.0.6': {}
 
-  '@rollup/plugin-commonjs@25.0.8(rollup@4.21.0)':
+  '@rollup/plugin-commonjs@25.0.8(rollup@4.21.1)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.21.0)
+      '@rollup/pluginutils': 5.1.0(rollup@4.21.1)
       commondir: 1.0.1
       estree-walker: 2.0.2
       glob: 8.1.0
       is-reference: 1.2.1
       magic-string: 0.30.11
     optionalDependencies:
-      rollup: 4.21.0
+      rollup: 4.21.1
 
-  '@rollup/plugin-html@1.0.3(rollup@4.21.0)':
+  '@rollup/plugin-html@1.0.3(rollup@4.21.1)':
     optionalDependencies:
-      rollup: 4.21.0
+      rollup: 4.21.1
 
-  '@rollup/plugin-json@6.1.0(rollup@4.21.0)':
+  '@rollup/plugin-json@6.1.0(rollup@4.21.1)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.21.0)
+      '@rollup/pluginutils': 5.1.0(rollup@4.21.1)
     optionalDependencies:
-      rollup: 4.21.0
+      rollup: 4.21.1
 
-  '@rollup/plugin-node-resolve@15.2.3(rollup@4.21.0)':
+  '@rollup/plugin-node-resolve@15.2.3(rollup@4.21.1)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.21.0)
+      '@rollup/pluginutils': 5.1.0(rollup@4.21.1)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-builtin-module: 3.2.1
       is-module: 1.0.0
       resolve: 1.22.8
     optionalDependencies:
-      rollup: 4.21.0
+      rollup: 4.21.1
 
-  '@rollup/plugin-replace@5.0.7(rollup@4.21.0)':
+  '@rollup/plugin-replace@5.0.7(rollup@4.21.1)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.21.0)
+      '@rollup/pluginutils': 5.1.0(rollup@4.21.1)
       magic-string: 0.30.11
     optionalDependencies:
-      rollup: 4.21.0
-
-  '@rollup/pluginutils@5.1.0(rollup@4.21.0)':
-    dependencies:
-      '@types/estree': 1.0.5
-      estree-walker: 2.0.2
-      picomatch: 2.3.1
-    optionalDependencies:
-      rollup: 4.21.0
+      rollup: 4.21.1
 
   '@rollup/pluginutils@5.1.0(rollup@4.21.1)':
     dependencies:
@@ -14884,11 +14848,13 @@ snapshots:
   caniuse-api@3.0.0:
     dependencies:
       browserslist: 4.23.3
-      caniuse-lite: 1.0.30001651
+      caniuse-lite: 1.0.30001653
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
 
   caniuse-lite@1.0.30001651: {}
+
+  caniuse-lite@1.0.30001653: {}
 
   capital-case@1.0.4:
     dependencies:
@@ -16058,10 +16024,10 @@ snapshots:
     dependencies:
       eslint: 9.9.1(jiti@1.21.6)
 
-  eslint-config-turbo@2.0.14(eslint@8.57.0):
+  eslint-config-turbo@2.1.0(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
-      eslint-plugin-turbo: 2.0.14(eslint@8.57.0)
+      eslint-plugin-turbo: 2.1.0(eslint@8.57.0)
 
   eslint-config-turbo@2.1.0(eslint@9.9.1(jiti@1.21.6)):
     dependencies:
@@ -16364,7 +16330,7 @@ snapshots:
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
 
-  eslint-plugin-turbo@2.0.14(eslint@8.57.0):
+  eslint-plugin-turbo@2.1.0(eslint@8.57.0):
     dependencies:
       dotenv: 16.0.3
       eslint: 8.57.0
@@ -17320,8 +17286,6 @@ snapshots:
       tslib: 2.6.3
 
   highlight.js@10.7.3: {}
-
-  hono@4.5.8: {}
 
   hono@4.5.9: {}
 
@@ -20146,18 +20110,18 @@ snapshots:
       chalk: 1.1.3
       maxmin: 2.1.0
 
-  rollup-plugin-esbuild@6.1.1(esbuild@0.23.1)(rollup@4.21.0):
+  rollup-plugin-esbuild@6.1.1(esbuild@0.23.1)(rollup@4.21.1):
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.21.0)
+      '@rollup/pluginutils': 5.1.0(rollup@4.21.1)
       debug: 4.3.6(supports-color@9.4.0)
       es-module-lexer: 1.5.4
       esbuild: 0.23.1
       get-tsconfig: 4.7.6
-      rollup: 4.21.0
+      rollup: 4.21.1
     transitivePeerDependencies:
       - supports-color
 
-  rollup-plugin-license@3.5.2(rollup@4.21.0):
+  rollup-plugin-license@3.5.2(rollup@4.21.1):
     dependencies:
       commenting: 1.1.0
       fdir: 6.1.1
@@ -20165,15 +20129,15 @@ snapshots:
       magic-string: 0.30.11
       moment: 2.30.1
       package-name-regex: 2.0.6
-      rollup: 4.21.0
+      rollup: 4.21.1
       spdx-expression-validate: 2.0.0
       spdx-satisfies: 5.0.1
     transitivePeerDependencies:
       - picomatch
 
-  rollup-plugin-node-externals@5.1.3(rollup@4.21.0):
+  rollup-plugin-node-externals@5.1.3(rollup@4.21.1):
     dependencies:
-      rollup: 4.21.0
+      rollup: 4.21.1
 
   rollup-plugin-postcss@4.0.2(postcss@8.4.41):
     dependencies:
@@ -21068,13 +21032,6 @@ snapshots:
       tslib: 1.14.1
       typescript: 5.5.4
 
-  tsx@4.17.0:
-    dependencies:
-      esbuild: 0.23.1
-      get-tsconfig: 4.7.6
-    optionalDependencies:
-      fsevents: 2.3.3
-
   tsx@4.19.0:
     dependencies:
       esbuild: 0.23.1
@@ -21082,34 +21039,34 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  turbo-darwin-64@2.0.14:
+  turbo-darwin-64@2.1.0:
     optional: true
 
-  turbo-darwin-arm64@2.0.14:
+  turbo-darwin-arm64@2.1.0:
     optional: true
 
-  turbo-linux-64@2.0.14:
+  turbo-linux-64@2.1.0:
     optional: true
 
-  turbo-linux-arm64@2.0.14:
+  turbo-linux-arm64@2.1.0:
     optional: true
 
   turbo-stream@2.3.0: {}
 
-  turbo-windows-64@2.0.14:
+  turbo-windows-64@2.1.0:
     optional: true
 
-  turbo-windows-arm64@2.0.14:
+  turbo-windows-arm64@2.1.0:
     optional: true
 
-  turbo@2.0.14:
+  turbo@2.1.0:
     optionalDependencies:
-      turbo-darwin-64: 2.0.14
-      turbo-darwin-arm64: 2.0.14
-      turbo-linux-64: 2.0.14
-      turbo-linux-arm64: 2.0.14
-      turbo-windows-64: 2.0.14
-      turbo-windows-arm64: 2.0.14
+      turbo-darwin-64: 2.1.0
+      turbo-darwin-arm64: 2.1.0
+      turbo-linux-64: 2.1.0
+      turbo-linux-arm64: 2.1.0
+      turbo-windows-64: 2.1.0
+      turbo-windows-arm64: 2.1.0
 
   type-check@0.4.0:
     dependencies:

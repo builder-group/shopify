@@ -1,5 +1,5 @@
 {
-	"name": "@repo/apicore--node",
+	"name": "@repo/api-core-node",
 	"version": "0.0.1",
 	"description": "Core API running on NodeJs",
 	"private": true,
@@ -25,16 +25,16 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"@hono/node-server": "^1.12.0",
+		"@hono/node-server": "^1.12.2",
 		"@repo/api-shopify": "workspace:*",
 		"@repo/api-utils": "workspace:*",
-		"hono": "^4.5.5"
+		"hono": "^4.5.9"
 	},
 	"devDependencies": {
 		"@blgc/config": "^0.0.22",
 		"@types/node": "^22.5.1",
 		"dotenv": "^16.4.5",
-		"tsx": "^4.17.0"
+		"tsx": "^4.19.0"
 	},
 	"files": [
 		"dist",
