@@ -31,8 +31,8 @@
 		"hono": "^4.5.5"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.21",
-		"@types/node": "^22.5.0",
+		"@blgc/config": "^0.0.22",
+		"@types/node": "^22.5.1",
 		"dotenv": "^16.4.5",
 		"tsx": "^4.17.0"
 	},

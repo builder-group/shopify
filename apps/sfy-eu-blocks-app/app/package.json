@@ -32,7 +32,7 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"@blgc/utils": "^0.0.16",
+		"@blgc/utils": "^0.0.17",
 		"@remix-run/dev": "^2.11.2",
 		"@remix-run/node": "^2.11.2",
 		"@remix-run/react": "^2.11.2",
@@ -49,9 +49,9 @@
 		"vite-tsconfig-paths": "^5.0.1"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.21",
+		"@blgc/config": "^0.0.22",
 		"@shopify/api-codegen-preset": "^1.1.1",
-		"@types/node": "^22.5.0",
+		"@types/node": "^22.5.1",
 		"@types/react": "^18.3.4",
 		"@types/react-dom": "^18.3.0"
 	},

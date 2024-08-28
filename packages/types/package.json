@@ -37,7 +37,7 @@
 	},
 	"homepage": "",
 	"devDependencies": {
-		"@blgc/config": "^0.0.21",
+		"@blgc/config": "^0.0.22",
 		"@redocly/cli": "^1.21.1",
 		"openapi-typescript": "^7.1.0"
 	},

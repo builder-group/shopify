@@ -31,7 +31,7 @@
 		"hono": "^4.5.9"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.21",
+		"@blgc/config": "^0.0.22",
 		"@blgc/openapi-router": "^0.0.15",
 		"@hono/node-server": "^1.12.2",
 		"@repo/types": "workspace:*",

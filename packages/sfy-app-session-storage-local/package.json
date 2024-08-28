@@ -31,10 +31,10 @@
 		"@shopify/shopify-app-session-storage": "^3.0.0"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.21",
+		"@blgc/config": "^0.0.22",
 		"@shopify/shopify-api": "^11.2.0",
 		"@shopify/shopify-app-session-storage": "^3.0.3",
-		"@types/node": "^22.5.0"
+		"@types/node": "^22.5.1"
 	},
 	"files": [
 		"dist",
