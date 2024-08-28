@@ -1,4 +1,4 @@
-import { ApiCoreSessionStorage } from '@repo/sfy-app-session-storage-api-core';
+import { ApiCoreSessionStorage } from '@repo/sfy-app-session-storage-api';
 import { restResources } from '@shopify/shopify-api/rest/admin/2024-07';
 
 import '@shopify/shopify-app-remix/adapters/node';

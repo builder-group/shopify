@@ -1,5 +1,5 @@
 {
-	"name": "@repo/sfy-app-session-storage-api-core",
+	"name": "@repo/sfy-app-session-storage-api",
 	"version": "0.0.1",
 	"description": "API Shopify App session storage",
 	"private": true,

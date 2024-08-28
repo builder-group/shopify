@@ -1,4 +1,4 @@
-import { type components, type paths } from '@repo/types/core';
+import { type shopifyApiV1 } from '@repo/types/api';
 import { Session } from '@shopify/shopify-api';
 import { type SessionStorage } from '@shopify/shopify-app-session-storage';
 import { createOpenApiFetchClient, RequestError, type TFetchClient } from 'feature-fetch';
@@ -6,14 +6,14 @@ import { createOpenApiFetchClient, RequestError, type TFetchClient } from 'featu
 // TODO: Create cache because Shopify seems to query the session quite often
 // TODO: Improve id handling. Creating a joined primary key with id and app might be better than modifying the id.
 export class ApiCoreSessionStorage implements SessionStorage {
-	private readonly fetchClient: TFetchClient<['base', 'openapi'], paths>;
+	private readonly fetchClient: TFetchClient<['base', 'openapi'], shopifyApiV1.paths>;
 	private readonly app: string;
 	private readonly sessionIdAppPrefix: string;
 
 	constructor(basePath: string, shopifyToken: string, app: string) {
 		this.app = app;
 		this.sessionIdAppPrefix = `${this.app}_`;
-		this.fetchClient = createOpenApiFetchClient<paths>({
+		this.fetchClient = createOpenApiFetchClient<shopifyApiV1.paths>({
 			prefixUrl: basePath,
 			beforeRequestMiddlewares: [
 				async (data) => {
@@ -26,10 +26,7 @@ export class ApiCoreSessionStorage implements SessionStorage {
 	}
 
 	public async storeSession(session: Session): Promise<boolean> {
-		const response = await this.fetchClient.post(
-			'/v1/shopify/session',
-			this.sessionToSessionDto(session)
-		);
+		const response = await this.fetchClient.post('/session', this.sessionToSessionDto(session));
 
 		if (response.isErr() && response.error instanceof RequestError) {
 			console.warn('Failed to store Session by exception.', {
@@ -43,7 +40,7 @@ export class ApiCoreSessionStorage implements SessionStorage {
 	}
 
 	public async loadSession(id: string): Promise<Session | undefined> {
-		const response = await this.fetchClient.get('/v1/shopify/session/{id}', {
+		const response = await this.fetchClient.get('/session/{id}', {
 			pathParams: {
 				id: this.createSessionIdWithAppPrefix(id)
 			}
@@ -57,7 +54,7 @@ export class ApiCoreSessionStorage implements SessionStorage {
 	}
 
 	public async deleteSession(id: string): Promise<boolean> {
-		const response = await this.fetchClient.del('/v1/shopify/session/{id}', {
+		const response = await this.fetchClient.del('/session/{id}', {
 			pathParams: {
 				id: this.createSessionIdWithAppPrefix(id)
 			}
@@ -68,7 +65,7 @@ export class ApiCoreSessionStorage implements SessionStorage {
 
 	public async deleteSessions(ids: string[]): Promise<boolean> {
 		const response = await this.fetchClient.post(
-			'/v1/shopify/session/delete',
+			'/session/delete',
 			ids.map((id) => this.createSessionIdWithAppPrefix(id))
 		);
 
@@ -76,7 +73,7 @@ export class ApiCoreSessionStorage implements SessionStorage {
 	}
 
 	public async findSessionsByShop(shop: string): Promise<Session[]> {
-		const response = await this.fetchClient.get('/v1/shopify/session/shop/{shop}', {
+		const response = await this.fetchClient.get('/session/shop/{shop}', {
 			pathParams: {
 				shop
 			}
@@ -97,7 +94,9 @@ export class ApiCoreSessionStorage implements SessionStorage {
 		return `${this.sessionIdAppPrefix}${sessionIdWithoutAppPrefix}`;
 	}
 
-	private sessionToSessionDto(session: Session): components['schemas']['ShopifySessionDto'] {
+	private sessionToSessionDto(
+		session: Session
+	): shopifyApiV1.components['schemas']['ShopifySessionDto'] {
 		return {
 			id: this.createSessionIdWithAppPrefix(session.id),
 			app: this.app,
@@ -111,7 +110,9 @@ export class ApiCoreSessionStorage implements SessionStorage {
 		};
 	}
 
-	private sessionDtoToSession(sessionDto: components['schemas']['ShopifySessionDto']): Session {
+	private sessionDtoToSession(
+		sessionDto: shopifyApiV1.components['schemas']['ShopifySessionDto']
+	): Session {
 		const sessionParams: Record<string, boolean | string | number> = {
 			id: sessionDto.id.replace(this.sessionIdAppPrefix, ''),
 			shop: sessionDto.shop,

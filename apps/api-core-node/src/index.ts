@@ -1,4 +1,5 @@
 import { serve } from '@hono/node-server';
+import { Hono } from 'hono';
 
 (async () => {
 	// Only load .env in development and before loading the app
@@ -6,15 +7,20 @@ import { serve } from '@hono/node-server';
 	if (nodeEnv === 'local') {
 		const dotenv = await import('dotenv');
 		dotenv.config({ path: `.env.${nodeEnv}` });
-		console.log(`Loaded dotenv from '.env.${nodeEnv}'.`);
+		console.info(`Loaded dotenv from '.env.${nodeEnv}'.`);
 	}
 
-	const { createApp, logger } = await import('@repo/api-core');
-
 	const port = 8787;
-	const app = createApp();
+	const app = new Hono();
 
-	logger.info(`Server is running on port ${port.toString()}`);
+	// Append Shopify API router
+	const { createApp: createShopifyRoute } = await import('@repo/api-shopify');
+	app.route('/v1/shopify', createShopifyRoute());
+
+	// Append Energy Label API router
+	// TODO:
+
+	console.info(`Server is running on port ${port.toString()}`);
 
 	serve({
 		fetch: app.fetch,
