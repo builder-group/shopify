@@ -226,7 +226,7 @@ export interface components {
             /** @description Error code */
             error_code: string;
             /** @description Error description */
-            error_description: string;
+            error_description?: string;
             /** @description Error URI for more information */
             error_uri?: string | null;
             /** @description Additional error details */

@@ -1,4 +1,4 @@
-import { type components } from '@repo/types/core';
+import { type shopifyApiV1 } from '@repo/types/api';
 import { desc, eq, inArray, type InferSelectModel } from 'drizzle-orm';
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
@@ -7,49 +7,7 @@ import { db, schema } from '@/db';
 
 import { openApiRouter } from '../router';
 
-openApiRouter.get('/v1/shopify/session/{id}', {
-	pathValidator: vValidator(
-		v.object({
-			id: v.pipe(v.string(), v.nonEmpty())
-		})
-	),
-	handler: async (c) => {
-		const { id } = c.req.valid('param');
-
-		const rows = await db
-			.select()
-			.from(schema.shopifySessionTable)
-			.where(eq(schema.shopifySessionTable.id, id))
-			.limit(1);
-
-		if (rows.length <= 0) {
-			throw new AppError('#ERR_NOT_FOUND', 404);
-		}
-
-		return c.json(rowToSessionDto(rows[0] as InferSelectModel<typeof schema.shopifySessionTable>));
-	}
-});
-
-openApiRouter.get('/v1/shopify/session/shop/{shop}', {
-	pathValidator: vValidator(
-		v.object({
-			shop: v.pipe(v.string(), v.nonEmpty())
-		})
-	),
-	handler: async (c) => {
-		const { shop } = c.req.valid('param');
-
-		const rows = await db
-			.select()
-			.from(schema.shopifySessionTable)
-			.where(eq(schema.shopifySessionTable.shop, shop))
-			.orderBy(desc(schema.shopifySessionTable.expires));
-
-		return c.json(rows.map((row) => rowToSessionDto(row)));
-	}
-});
-
-openApiRouter.post('/v1/shopify/session', {
+openApiRouter.post('/session', {
 	bodyValidator: vValidator(
 		v.object({
 			id: v.pipe(v.string(), v.nonEmpty()),
@@ -76,18 +34,30 @@ openApiRouter.post('/v1/shopify/session', {
 	}
 });
 
-openApiRouter.post('/v1/shopify/session/delete', {
-	bodyValidator: vValidator(v.array(v.string())),
+openApiRouter.get('/session/{id}', {
+	pathValidator: vValidator(
+		v.object({
+			id: v.pipe(v.string(), v.nonEmpty())
+		})
+	),
 	handler: async (c) => {
-		const ids = c.req.valid('json');
+		const { id } = c.req.valid('param');
 
-		await db.delete(schema.shopifySessionTable).where(inArray(schema.shopifySessionTable.id, ids));
+		const rows = await db
+			.select()
+			.from(schema.shopifySessionTable)
+			.where(eq(schema.shopifySessionTable.id, id))
+			.limit(1);
 
-		return c.json(true);
+		if (rows.length <= 0) {
+			throw new AppError('#ERR_NOT_FOUND', 404);
+		}
+
+		return c.json(rowToSessionDto(rows[0] as InferSelectModel<typeof schema.shopifySessionTable>));
 	}
 });
 
-openApiRouter.del('/v1/shopify/session/{id}', {
+openApiRouter.del('/session/{id}', {
 	pathValidator: vValidator(
 		v.object({
 			id: v.pipe(v.string(), v.nonEmpty())
@@ -102,9 +72,39 @@ openApiRouter.del('/v1/shopify/session/{id}', {
 	}
 });
 
+openApiRouter.post('/session/delete', {
+	bodyValidator: vValidator(v.array(v.string())),
+	handler: async (c) => {
+		const ids = c.req.valid('json');
+
+		await db.delete(schema.shopifySessionTable).where(inArray(schema.shopifySessionTable.id, ids));
+
+		return c.json(true);
+	}
+});
+
+openApiRouter.get('/session/shop/{shop}', {
+	pathValidator: vValidator(
+		v.object({
+			shop: v.pipe(v.string(), v.nonEmpty())
+		})
+	),
+	handler: async (c) => {
+		const { shop } = c.req.valid('param');
+
+		const rows = await db
+			.select()
+			.from(schema.shopifySessionTable)
+			.where(eq(schema.shopifySessionTable.shop, shop))
+			.orderBy(desc(schema.shopifySessionTable.expires));
+
+		return c.json(rows.map((row) => rowToSessionDto(row)));
+	}
+});
+
 function rowToSessionDto(
 	row: InferSelectModel<typeof schema.shopifySessionTable>
-): components['schemas']['ShopifySessionDto'] {
+): shopifyApiV1.components['schemas']['ShopifySessionDto'] {
 	return {
 		id: row.id,
 		app: row.app,
@@ -119,7 +119,7 @@ function rowToSessionDto(
 }
 
 function sessionDtoToRow(
-	sessionDto: components['schemas']['ShopifySessionDto']
+	sessionDto: shopifyApiV1.components['schemas']['ShopifySessionDto']
 ): InferSelectModel<typeof schema.shopifySessionTable> {
 	return {
 		id: sessionDto.id,

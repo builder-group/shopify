@@ -125,7 +125,7 @@ paths:
       security:
         - shopifyToken: []
 
-  /sessions/delete:
+  /session/delete:
     post:
       summary: Delete multiple Shopify sessions
       tags:
@@ -167,7 +167,7 @@ paths:
       security:
         - shopifyToken: []
 
-  /sessions/shop/{shop}:
+  /session/shop/{shop}:
     get:
       summary: Find Shopify sessions by shop
       tags:
@@ -212,8 +212,7 @@ components:
     shopifyToken:
       type: http
       scheme: bearer
-      bearerFormat: JWT
-      description: JWT token for authentication with Shopify
+      description: Token for authentication with Shopify API
 
   responses:
     BadRequest:
@@ -246,7 +245,6 @@ components:
       type: object
       required:
         - error_code
-        - error_description
       properties:
         error_code:
           type: string
@@ -324,7 +322,7 @@ components:
           type: string
           description: Desired scopes for the access token
         expires:
-          type: string
+          type: number
           format: date-time
           description: Expiration date and time of the access token
         accessToken:

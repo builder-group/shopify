@@ -1,8 +1,8 @@
-import { AppError } from '@blgc/openapi-router';
-import { type components } from '@repo/types/core';
+import { type shopifyApiV1 } from '@repo/types/api';
 import { HTTPException } from 'hono/http-exception';
 import type * as hono from 'hono/types';
 import { type StatusCode } from 'hono/utils/http-status';
+import { AppError } from '@blgc/openapi-router';
 import { logger } from '@/logger';
 
 type HeaderRecord = Record<string, string | string[]>;
@@ -10,9 +10,9 @@ type HeaderRecord = Record<string, string | string[]>;
 export const errorHandler: hono.ErrorHandler = async (err, c) => {
 	let statusCode = 500;
 	let headers: HeaderRecord = {};
-	const jsonResponse: components['schemas']['AppErrorDto'] = {
+	const jsonResponse: shopifyApiV1.components['schemas']['AppErrorDto'] = {
 		error_code: '#ERR_UNKNOWN',
-		error_description: null,
+		error_description: undefined,
 		error_uri: null,
 		additional_errors: []
 	};
@@ -21,7 +21,7 @@ export const errorHandler: hono.ErrorHandler = async (err, c) => {
 	if (err instanceof AppError) {
 		statusCode = err.status;
 		jsonResponse.error_code = err.code;
-		jsonResponse.error_description = err.description ?? null;
+		jsonResponse.error_description = err.description;
 		jsonResponse.error_uri = err.uri ?? null;
 		jsonResponse.additional_errors = err.additionalErrors as any;
 	}

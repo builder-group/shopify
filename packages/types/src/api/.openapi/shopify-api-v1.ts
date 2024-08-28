@@ -59,7 +59,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/sessions/delete": {
+    "/session/delete": {
         parameters: {
             query?: never;
             header?: never;
@@ -76,7 +76,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/sessions/shop/{shop}": {
+    "/session/shop/{shop}": {
         parameters: {
             query?: never;
             header?: never;
@@ -107,7 +107,7 @@ export interface components {
             /** @description Error code */
             error_code: string;
             /** @description Error description */
-            error_description: string;
+            error_description?: string;
             /** @description Error URI for more information */
             error_uri?: string | null;
             /** @description Additional error details */
@@ -159,7 +159,7 @@ export interface components {
              * Format: date-time
              * @description Expiration date and time of the access token
              */
-            expires?: string;
+            expires?: number;
             /** @description Access token for the session */
             accessToken?: string;
             /** @description Shopify user ID associated with the session */

@@ -1,6 +1,6 @@
 import { openApiRouter } from '../router';
 
-openApiRouter.get('/v1/health', {
+openApiRouter.get('/health', {
 	handler: (c) => {
 		return c.json({
 			message: 'App is up and running',

@@ -187,7 +187,6 @@ components:
       type: object
       required:
         - error_code
-        - error_description
       properties:
         error_code:
           type: string
