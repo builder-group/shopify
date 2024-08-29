@@ -1,4 +1,3 @@
-import { type energyLabelApiV1 } from '@repo/types/api';
 import { RequestError } from 'eprel-client';
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
@@ -10,17 +9,17 @@ import { openApiRouter } from '../router';
 
 openApiRouter.get('/product-groups', {
 	handler: async (c) => {
-		try {
-			const productGroups = await eprelClient.getProductGroups();
-			return c.json<energyLabelApiV1.components['schemas']['ProductGroupListDto']>(productGroups);
-		} catch (e) {
-			if (e instanceof RequestError) {
-				throw new AppError('#ERR_EPREL_API', e.status, {
-					description: e.message
+		const result = await eprelClient.getProductGroups();
+		if (result.isErr()) {
+			const { error } = result;
+			if (error instanceof RequestError) {
+				throw new AppError('#ERR_EPREL_API', error.status, {
+					description: error.message
 				});
 			}
-			throw new AppError('#ERR_INTERNAL', 500, { description: extractErrorData(e).message });
+			throw new AppError('#ERR_INTERNAL', 500, { description: extractErrorData(error).message });
 		}
+		return c.json(result.value);
 	}
 });
 
@@ -39,31 +38,33 @@ openApiRouter.get('/product-groups/{productGroup}/products', {
 		const { productGroup } = c.req.valid('param');
 		const { model } = c.req.valid('query');
 
-		try {
-			const { hits = [] } = await eprelClient.getModelsInProductGroup(productGroup, {
-				filter: {
-					modelIdentifier: model
-				}
-			});
-			return c.json<energyLabelApiV1.components['schemas']['ProductDetailsListDto']>(
-				hits.map((hit) => ({
-					energyClass: hit.energyClass,
-					eprelRegistrationNumber: hit.eprelRegistrationNumber,
-					implementingAct: hit.implementingAct,
-					modelIdentifier: hit.modelIdentifier,
-					onMarketEndDate: hit.onMarketEndDate,
-					onMarketStartDate: hit.onMarketStartDate,
-					productGroup: hit.productGroup,
-					status: hit.status
-				}))
-			);
-		} catch (e) {
-			if (e instanceof RequestError) {
-				throw new AppError('#ERR_EPREL_API', e.status, {
-					description: e.message
+		const result = await eprelClient.getModelsInProductGroup(productGroup, {
+			filter: {
+				modelIdentifier: model
+			}
+		});
+		if (result.isErr()) {
+			const { error } = result;
+			if (error instanceof RequestError) {
+				throw new AppError('#ERR_EPREL_API', error.status, {
+					description: error.message
 				});
 			}
-			throw new AppError('#ERR_INTERNAL', 500, { description: extractErrorData(e).message });
+			throw new AppError('#ERR_INTERNAL', 500, { description: extractErrorData(error).message });
 		}
+		const { hits = [] } = result.value;
+
+		return c.json(
+			hits.map((hit) => ({
+				energyClass: hit.energyClass,
+				eprelRegistrationNumber: hit.eprelRegistrationNumber,
+				implementingAct: hit.implementingAct,
+				modelIdentifier: hit.modelIdentifier,
+				onMarketEndDate: hit.onMarketEndDate,
+				onMarketStartDate: hit.onMarketStartDate,
+				productGroup: hit.productGroup,
+				status: hit.status
+			}))
+		);
 	}
 });

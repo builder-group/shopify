@@ -18,14 +18,14 @@
 		"install:clean": "pnpm run clean && pnpm install"
 	},
 	"dependencies": {
-		"@blgc/utils": "^0.0.17",
+		"@blgc/utils": "^0.0.18",
 		"@repo/ui": "workspace:*",
-		"feature-fetch": "^0.0.19",
+		"feature-fetch": "^0.0.20",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.22",
+		"@blgc/config": "^0.0.23",
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
 		"@wxt-dev/module-react": "^1.1.0",

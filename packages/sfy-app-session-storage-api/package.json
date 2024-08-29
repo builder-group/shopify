@@ -27,14 +27,14 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"feature-fetch": "^0.0.19"
+		"feature-fetch": "^0.0.20"
 	},
 	"peerDependencies": {
 		"@shopify/shopify-api": "^11.0.0",
 		"@shopify/shopify-app-session-storage": "^3.0.0"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.22",
+		"@blgc/config": "^0.0.23",
 		"@repo/types": "workspace:*",
 		"@shopify/shopify-api": "^11.2.0",
 		"@shopify/shopify-app-session-storage": "^3.0.3",

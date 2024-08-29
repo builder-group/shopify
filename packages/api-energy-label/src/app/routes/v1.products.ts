@@ -1,4 +1,3 @@
-import { type energyLabelApiV1 } from '@repo/types/api';
 import { RequestError } from 'eprel-client';
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
@@ -44,23 +43,26 @@ openApiRouter.get('/products/{registrationNumber}/labels', {
 	handler: async (c) => {
 		const { registrationNumber } = c.req.valid('param');
 
-		try {
-			// TODO: Construct addresses manually.. the URL pattern should be always the same
-			const { address } = await eprelClient.getProductLabels(registrationNumber, {
-				noRedirect: true
-			});
-			if (address == null) {
-				throw new AppError('#ERR_NOT_FOUND', 404);
-			}
-			return c.json<energyLabelApiV1.components['schemas']['LabelUrlsDto']>({ urls: [address] });
-		} catch (e) {
-			if (e instanceof RequestError) {
-				throw new AppError('#ERR_EPREL_API', e.status, {
-					description: e.message
+		// TODO: Construct addresses manually.. the URL pattern should be always the same
+		const result = await eprelClient.getProductLabels(registrationNumber, {
+			noRedirect: true
+		});
+		if (result.isErr()) {
+			const { error } = result;
+			if (error instanceof RequestError) {
+				throw new AppError('#ERR_EPREL_API', error.status, {
+					description: error.message
 				});
 			}
-			throw new AppError('#ERR_INTERNAL', 500, { description: extractErrorData(e).message });
+			throw new AppError('#ERR_INTERNAL', 500, { description: extractErrorData(error).message });
 		}
+
+		const { address } = result.value;
+		if (address == null) {
+			throw new AppError('#ERR_NOT_FOUND', 404);
+		}
+
+		return c.json({ urls: [address] });
 	}
 });
 
@@ -78,22 +80,25 @@ openApiRouter.get('/products/{registrationNumber}/sheets', {
 	handler: async (c) => {
 		const { registrationNumber } = c.req.valid('param');
 
-		try {
-			// TODO: Construct addresses manually.. the URL pattern should be always the same
-			const { address } = await eprelClient.getProductFiches(registrationNumber, {
-				noRedirect: true
-			});
-			if (address == null) {
-				throw new AppError('#ERR_NOT_FOUND', 404);
-			}
-			return c.json<energyLabelApiV1.components['schemas']['SheetUrlsDto']>({ urls: [address] });
-		} catch (e) {
-			if (e instanceof RequestError) {
-				throw new AppError('#ERR_EPREL_API', e.status, {
-					description: e.message
+		// TODO: Construct addresses manually.. the URL pattern should be always the same
+		const result = await eprelClient.getProductFiches(registrationNumber, {
+			noRedirect: true
+		});
+		if (result.isErr()) {
+			const { error } = result;
+			if (error instanceof RequestError) {
+				throw new AppError('#ERR_EPREL_API', error.status, {
+					description: error.message
 				});
 			}
-			throw new AppError('#ERR_INTERNAL', 500, { description: extractErrorData(e).message });
+			throw new AppError('#ERR_INTERNAL', 500, { description: extractErrorData(error).message });
 		}
+
+		const { address } = result.value;
+		if (address == null) {
+			throw new AppError('#ERR_NOT_FOUND', 404);
+		}
+
+		return c.json({ urls: [address] });
 	}
 });

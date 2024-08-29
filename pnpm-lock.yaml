@@ -58,8 +58,8 @@ importers:
         version: 4.5.9
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@types/node':
         specifier: ^22.5.1
         version: 22.5.1
@@ -92,14 +92,14 @@ importers:
   apps/sfy-chrome-extension:
     dependencies:
       '@blgc/utils':
-        specifier: ^0.0.17
-        version: 0.0.17
+        specifier: ^0.0.18
+        version: 0.0.18
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       feature-fetch:
-        specifier: ^0.0.19
-        version: 0.0.19
+        specifier: ^0.0.20
+        version: 0.0.20
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -108,8 +108,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@types/react':
         specifier: ^18.3.3
         version: 18.3.4
@@ -141,8 +141,8 @@ importers:
         specifier: 2024.7.0
         version: 2024.7.0(@shopify/ui-extensions@2024.7.0)(react-reconciler@0.29.2(react@18.3.1))(react@18.3.1)
       feature-fetch:
-        specifier: ^0.0.19
-        version: 0.0.19
+        specifier: ^0.0.20
+        version: 0.0.20
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -151,8 +151,8 @@ importers:
         version: 3.39.3(react@18.3.1)
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -163,8 +163,8 @@ importers:
   apps/sfy-eu-blocks-app/app:
     dependencies:
       '@blgc/utils':
-        specifier: ^0.0.17
-        version: 0.0.17
+        specifier: ^0.0.18
+        version: 0.0.18
       '@remix-run/dev':
         specifier: ^2.11.2
         version: 2.11.2(@remix-run/react@2.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.5.4))(@remix-run/serve@2.11.2(typescript@5.5.4))(@types/node@22.5.1)(sass@1.77.8)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))
@@ -209,8 +209,8 @@ importers:
         version: 5.0.1(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@shopify/api-codegen-preset':
         specifier: ^1.1.1
         version: 1.1.1(@types/node@22.5.1)(typescript@5.5.4)
@@ -237,8 +237,8 @@ importers:
         version: 18.3.1
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@types/react':
         specifier: ^18.3.4
         version: 18.3.4
@@ -329,8 +329,8 @@ importers:
   apps/sfy-playground-app/app:
     dependencies:
       '@blgc/utils':
-        specifier: ^0.0.17
-        version: 0.0.17
+        specifier: ^0.0.18
+        version: 0.0.18
       '@remix-run/dev':
         specifier: ^2.11.2
         version: 2.11.2(@remix-run/react@2.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.5.4))(@remix-run/serve@2.11.2(typescript@5.5.4))(@types/node@22.5.1)(sass@1.77.8)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))
@@ -375,8 +375,8 @@ importers:
         version: 5.0.1(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@shopify/api-codegen-preset':
         specifier: ^1.1.1
         version: 1.1.1(@types/node@22.5.1)(typescript@5.5.4)
@@ -470,14 +470,14 @@ importers:
   apps/web:
     dependencies:
       '@blgc/utils':
-        specifier: ^0.0.17
-        version: 0.0.17
+        specifier: ^0.0.18
+        version: 0.0.18
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       feature-logger:
-        specifier: ^0.0.21
-        version: 0.0.21
+        specifier: ^0.0.22
+        version: 0.0.22
       next:
         specifier: 14.2.5
         version: 14.2.5(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
@@ -489,8 +489,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@types/node':
         specifier: ^22.5.1
         version: 22.5.1
@@ -513,17 +513,17 @@ importers:
   packages/api-energy-label:
     dependencies:
       '@blgc/openapi-router':
-        specifier: ^0.0.15
-        version: 0.0.15
-      '@blgc/utils':
         specifier: ^0.0.17
         version: 0.0.17
+      '@blgc/utils':
+        specifier: ^0.0.18
+        version: 0.0.18
       eprel-client:
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.0.7
+        version: 0.0.7
       feature-logger:
-        specifier: ^0.0.21
-        version: 0.0.21
+        specifier: ^0.0.22
+        version: 0.0.22
       hono:
         specifier: ^4.5.9
         version: 4.5.9
@@ -531,12 +531,12 @@ importers:
         specifier: ^0.39.0
         version: 0.39.0(typescript@5.5.4)
       validation-adapters:
-        specifier: ^0.0.9
-        version: 0.0.9
+        specifier: ^0.0.10
+        version: 0.0.10
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@hono/node-server':
         specifier: ^1.12.2
         version: 1.12.2(hono@4.5.9)
@@ -559,11 +559,11 @@ importers:
   packages/api-shopify:
     dependencies:
       '@blgc/openapi-router':
-        specifier: ^0.0.15
-        version: 0.0.15
-      '@blgc/utils':
         specifier: ^0.0.17
         version: 0.0.17
+      '@blgc/utils':
+        specifier: ^0.0.18
+        version: 0.0.18
       '@shopify/admin-api-client':
         specifier: ^1.0.1
         version: 1.0.1
@@ -571,8 +571,8 @@ importers:
         specifier: ^0.33.0
         version: 0.33.0(@types/react@18.3.4)(postgres@3.4.4)(react@18.3.1)
       feature-logger:
-        specifier: ^0.0.21
-        version: 0.0.21
+        specifier: ^0.0.22
+        version: 0.0.22
       hono:
         specifier: ^4.5.9
         version: 4.5.9
@@ -583,12 +583,12 @@ importers:
         specifier: ^0.39.0
         version: 0.39.0(typescript@5.5.4)
       validation-adapters:
-        specifier: ^0.0.9
-        version: 0.0.9
+        specifier: ^0.0.10
+        version: 0.0.10
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@hono/node-server':
         specifier: ^1.12.2
         version: 1.12.2(hono@4.5.9)
@@ -614,11 +614,11 @@ importers:
   packages/api-utils:
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@blgc/openapi-router':
-        specifier: ^0.0.15
-        version: 0.0.15
+        specifier: ^0.0.17
+        version: 0.0.17
       '@hono/node-server':
         specifier: ^1.12.2
         version: 1.12.2(hono@4.5.9)
@@ -635,12 +635,12 @@ importers:
   packages/sfy-app-session-storage-api:
     dependencies:
       feature-fetch:
-        specifier: ^0.0.19
-        version: 0.0.19
+        specifier: ^0.0.20
+        version: 0.0.20
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@repo/types':
         specifier: workspace:*
         version: link:../types
@@ -657,8 +657,8 @@ importers:
   packages/sfy-app-session-storage-local:
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@shopify/shopify-api':
         specifier: ^11.2.0
         version: 11.3.0
@@ -672,8 +672,8 @@ importers:
   packages/types:
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@redocly/cli':
         specifier: ^1.21.1
         version: 1.21.1(enzyme@3.11.0)
@@ -684,8 +684,8 @@ importers:
   packages/ui:
     dependencies:
       '@blgc/utils':
-        specifier: ^0.0.17
-        version: 0.0.17
+        specifier: ^0.0.18
+        version: 0.0.18
       '@radix-ui/react-dialog':
         specifier: ^1.1.1
         version: 1.1.1(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -715,8 +715,8 @@ importers:
         version: 1.0.7(tailwindcss@3.4.10)
     devDependencies:
       '@blgc/config':
-        specifier: ^0.0.22
-        version: 0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
       '@storybook/addon-essentials':
         specifier: ^8.2.9
         version: 8.2.9(storybook@8.2.9(@babel/preset-env@7.25.4(@babel/core@7.25.2)))
@@ -1500,14 +1500,20 @@ packages:
       '@next/eslint-plugin-next': ^14.2.5
       eslint: ^8.57.0
 
-  '@blgc/openapi-router@0.0.15':
-    resolution: {integrity: sha512-hQs5WgMRFqyflORW+NgwMObkgc+agN3AM3O7kOg7emjwc7nz5rg83rqKNIDCeYi3gs3X7U/6Og0r+jLiodhHyQ==}
+  '@blgc/config@0.0.23':
+    resolution: {integrity: sha512-3R8RK3L3aEqwAFmIioTqMijKdoCJd25n+JgpD/npC/DLn+EV4lHYYXlb0UHR8+0g8/zWIwCRfPAQ/4SP9ovpBw==}
+    peerDependencies:
+      '@next/eslint-plugin-next': ^14.2.5
+      eslint: ^8.57.0
 
-  '@blgc/types@0.0.6':
-    resolution: {integrity: sha512-RyHXG7rLGNZCVyq9B9/WCd0MBTuXlUttE1qUukvvbTUZMa7NXjzoAFDarGf3RSraf5c9/kQgo3nPYIXqTiCbjw==}
+  '@blgc/openapi-router@0.0.17':
+    resolution: {integrity: sha512-fyjX0Ip3mqwhFFEmplmhup8a3ef8Ml2UUDhS4gpn6AFdnUTdZLdc+hxe3MUGyduowLJGVzYGhHIwzon//NIl3A==}
 
-  '@blgc/utils@0.0.17':
-    resolution: {integrity: sha512-2k+oL/txrtjwEuURDr3VboOtTYXuy1WSZzDE7MZrNpAI/2GxZKqN+KnsC+7fLkdYdcM9qB/rWCKM88v8OeMnIQ==}
+  '@blgc/types@0.0.7':
+    resolution: {integrity: sha512-lMngF7NR+q6eDUHIwZnkZL+2/o7iq7nTHiB4qqLkRaFO16TmOIQAB+9fCpQKNhzk92QOkXaCkfVVBUT/KMEPlQ==}
+
+  '@blgc/utils@0.0.18':
+    resolution: {integrity: sha512-N5w21zEd1B5MGR6pH6fRxzJG15uayRm8ZnhIvKiw3NBLW9feQfwA4SZ3cqXRFj/f3kgmAsWTKiBEv/5vVVa/Pw==}
 
   '@cfaester/enzyme-adapter-react-18@0.8.0':
     resolution: {integrity: sha512-3Z3ThTUouHwz8oIyhTYQljEMNRFtlVyc3VOOHCbxs47U6cnXs8K9ygi/c1tv49s7MBlTXeIcuN+Ttd9aPtILFQ==}
@@ -5362,8 +5368,8 @@ packages:
   enzyme@3.11.0:
     resolution: {integrity: sha512-Dw8/Gs4vRjxY6/6i9wU0V+utmQO9kvh9XLnz3LIudviOnVYDEe2ec+0k+NQoMamn1VrjKgCUOWj5jG/5M5M0Qw==}
 
-  eprel-client@0.0.6:
-    resolution: {integrity: sha512-05WWaW6Hyh4fNRUioXe3CS3ljSujgHNbktVJBfy1A9vSGEqu9q7UuvksWy3/s7aQCcntWc2gV5QLg4HalDy7lw==}
+  eprel-client@0.0.7:
+    resolution: {integrity: sha512-sJIjF2tm1zcR0AF5Sp+UCuVZI2qdxoNS9qzLm0fPLGBpVVV2mVMewuimJzmNjtmnIsHm98pPsCXZbCpoHGNjtg==}
 
   err-code@2.0.3:
     resolution: {integrity: sha512-2bmlRpNKBxT/CRmPOlyISQpNj+qSeYvcym/uT0Jx2bMOlKLtSy1ZmLuVxSEKKyor/N5yhvp/ZiG1oE3DEYMSFA==}
@@ -5849,11 +5855,11 @@ packages:
       picomatch:
         optional: true
 
-  feature-fetch@0.0.19:
-    resolution: {integrity: sha512-5RBZuGy5auBn+yapQcTorMyYtwaGwlHjs7KE/i//WXbu5RVPACC0igbdHsQje5etjRZ3IiIYtjVeY0kDkhPEng==}
+  feature-fetch@0.0.20:
+    resolution: {integrity: sha512-T0SrOq/HAi6VPIzAxHEffPDtASoD0WCaSBo86VrfOiS5jaW84BrzCqkUjYT+nVwun0cGWsSvI+MEx9OlvRFfjg==}
 
-  feature-logger@0.0.21:
-    resolution: {integrity: sha512-Ljt5Ylbh2OejCYj5Q6XXAAKK9pzWovKlcUXgQaN4HY2mqGS3lRFgKFO981Aco+yr3JFMKQsmMTS2ZCesLQVwvA==}
+  feature-logger@0.0.22:
+    resolution: {integrity: sha512-czjBzpUBqv3NdQy8r87hvetgC5ZM4kqkCyUcJgVClM3gUGdth9jtbJ+1hYObrErJofiizWvbLYW260/vdRH0tQ==}
 
   figlet@1.7.0:
     resolution: {integrity: sha512-gO8l3wvqo0V7wEFLXPbkX83b7MVjRrk1oRLfYlZXol8nEpb/ON9pcKLI4qpBv5YtOTfrINtqb7b40iYY2FTWFg==}
@@ -10063,11 +10069,11 @@ packages:
     resolution: {integrity: sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  validation-adapter@0.0.10:
-    resolution: {integrity: sha512-eUMxeF0mCxOnkKALwCk9mPrk3oVhbzi37bA8AcTRZK/8fb7LpFYbgZdITeAp91H5w5IkLJ5MGvogmPGtfpQwpw==}
+  validation-adapter@0.0.11:
+    resolution: {integrity: sha512-xaqcIpAMY/nQc19x6sI82eSOozRyJvLchujuw1hfnUt+SYOuhhX7srPe1Ywi07tsn7cSyCSgx9gfj+f3khnX/A==}
 
-  validation-adapters@0.0.9:
-    resolution: {integrity: sha512-87tJGowo2sDjYjX/lbNad2xa4AolzE+Yq+uWCY2P5hcQK1B+Mkurz/cvZ5SZYy9PUnT1BZIWGuXp7atQZoKOew==}
+  validation-adapters@0.0.10:
+    resolution: {integrity: sha512-+VzLLJvBPdDb9AJ2JaaXwuktuPGV8zJFCxvk0OtvFflBjIBQlP7t40H8hm7kXVbAAvkBvULVxaf5XG8KE808OA==}
 
   value-or-promise@1.0.12:
     resolution: {integrity: sha512-Z6Uz+TYwEqE7ZN50gwn+1LCVo9ZVrpxRPOhOLnncYkY1ZzOYtrX8Fwf/rFktZ8R5mJms6EZf5TqNOMeZmnPq9Q==}
@@ -11425,7 +11431,7 @@ snapshots:
       - vite
       - vitest
 
-  '@blgc/config@0.0.22(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))':
+  '@blgc/config@0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))':
     dependencies:
       '@next/eslint-plugin-next': 14.2.7
       '@vercel/style-guide': 6.0.0(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
@@ -11443,14 +11449,14 @@ snapshots:
       - vite
       - vitest
 
-  '@blgc/openapi-router@0.0.15':
+  '@blgc/openapi-router@0.0.17':
     dependencies:
-      '@blgc/types': 0.0.6
-      validation-adapter: 0.0.10
+      '@blgc/types': 0.0.7
+      validation-adapter: 0.0.11
 
-  '@blgc/types@0.0.6': {}
+  '@blgc/types@0.0.7': {}
 
-  '@blgc/utils@0.0.17': {}
+  '@blgc/utils@0.0.18': {}
 
   '@cfaester/enzyme-adapter-react-18@0.8.0(enzyme@3.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -15796,9 +15802,9 @@ snapshots:
       rst-selector-parser: 2.2.3
       string.prototype.trim: 1.2.9
 
-  eprel-client@0.0.6:
+  eprel-client@0.0.7:
     dependencies:
-      feature-fetch: 0.0.19
+      feature-fetch: 0.0.20
 
   err-code@2.0.3: {}
 
@@ -16838,15 +16844,15 @@ snapshots:
 
   fdir@6.1.1: {}
 
-  feature-fetch@0.0.19:
+  feature-fetch@0.0.20:
     dependencies:
-      '@blgc/types': 0.0.6
-      '@blgc/utils': 0.0.17
+      '@blgc/types': 0.0.7
+      '@blgc/utils': 0.0.18
 
-  feature-logger@0.0.21:
+  feature-logger@0.0.22:
     dependencies:
-      '@blgc/types': 0.0.6
-      '@blgc/utils': 0.0.17
+      '@blgc/types': 0.0.7
+      '@blgc/utils': 0.0.18
 
   figlet@1.7.0: {}
 
@@ -21463,11 +21469,11 @@ snapshots:
 
   validate-npm-package-name@5.0.1: {}
 
-  validation-adapter@0.0.10:
+  validation-adapter@0.0.11:
     dependencies:
-      '@blgc/utils': 0.0.17
+      '@blgc/utils': 0.0.18
 
-  validation-adapters@0.0.9: {}
+  validation-adapters@0.0.10: {}
 
   value-or-promise@1.0.12: {}
 
