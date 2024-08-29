@@ -519,8 +519,8 @@ importers:
         specifier: ^0.0.18
         version: 0.0.18
       eprel-client:
-        specifier: ^0.0.9
-        version: 0.0.9
+        specifier: ^0.0.12
+        version: 0.0.12
       feature-logger:
         specifier: ^0.0.22
         version: 0.0.22
@@ -528,8 +528,8 @@ importers:
         specifier: ^4.5.9
         version: 4.5.9
       valibot:
-        specifier: ^0.39.0
-        version: 0.39.0(typescript@5.5.4)
+        specifier: ^0.40.0
+        version: 0.40.0(typescript@5.5.4)
       validation-adapters:
         specifier: ^0.0.10
         version: 0.0.10
@@ -5361,8 +5361,8 @@ packages:
   enzyme@3.11.0:
     resolution: {integrity: sha512-Dw8/Gs4vRjxY6/6i9wU0V+utmQO9kvh9XLnz3LIudviOnVYDEe2ec+0k+NQoMamn1VrjKgCUOWj5jG/5M5M0Qw==}
 
-  eprel-client@0.0.9:
-    resolution: {integrity: sha512-0pHkeWKuuFcpPeVLYOUgoHU1JvYDcbh4Ah1i30ajGNcwSrmAZMw363AHmdHvT+JjlWXYGHZWJd/DP3uK5HMIOQ==}
+  eprel-client@0.0.12:
+    resolution: {integrity: sha512-zc/4KrmGodiYJ+8c79MxLbaUFpvhBidlGHrw143Jt3JgoZZFHa2C3BGcp4BzEbJMM8beu79H7slXB4xKTF5oQw==}
 
   err-code@2.0.3:
     resolution: {integrity: sha512-2bmlRpNKBxT/CRmPOlyISQpNj+qSeYvcym/uT0Jx2bMOlKLtSy1ZmLuVxSEKKyor/N5yhvp/ZiG1oE3DEYMSFA==}
@@ -6082,6 +6082,9 @@ packages:
 
   get-tsconfig@4.7.6:
     resolution: {integrity: sha512-ZAqrLlu18NbDdRaHq+AKXzAmqIUPswPWKUchfytdAjiRFnCe5ojG2bstg6mRiZabkKfCoL/e98pbBELIV/YCeA==}
+
+  get-tsconfig@4.8.0:
+    resolution: {integrity: sha512-Pgba6TExTZ0FJAn1qkJAjIeKoDJ3CsI2ChuLohJnZl/tTU8MVrq3b+2t5UOPfRa4RMsorClBjJALkJUMjG1PAw==}
 
   giget@1.2.3:
     resolution: {integrity: sha512-8EHPljDvs7qKykr6uw8b+lqLiUc/vUg+KVTI0uND4s63TdsZM2Xus3mflvF0DDG9SiM4RlCkFGL+7aAjRmV7KA==}
@@ -10050,6 +10053,14 @@ packages:
 
   valibot@0.39.0:
     resolution: {integrity: sha512-d+vE8SDRNy9zKg6No5MHz2tdz8H6CW8X3OdqYdmlhnoqQmEoM6Hu0hJUrZv3tPSVrzZkIIMCtdCQtMzcM6NCWw==}
+    peerDependencies:
+      typescript: '>=5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+  valibot@0.40.0:
+    resolution: {integrity: sha512-XHKnaVtwHqxPwnGOsLrwka9CEaL7yNeLNp707OKv/bmT29GnPVdl6PxBOZ6BW7hF66/6QT6iVbOlnW7qVPmoKw==}
     peerDependencies:
       typescript: '>=5'
     peerDependenciesMeta:
@@ -15780,7 +15791,7 @@ snapshots:
       rst-selector-parser: 2.2.3
       string.prototype.trim: 1.2.9
 
-  eprel-client@0.0.9:
+  eprel-client@0.0.12:
     dependencies:
       feature-fetch: 0.0.20
 
@@ -17061,6 +17072,10 @@ snapshots:
       get-intrinsic: 1.2.4
 
   get-tsconfig@4.7.6:
+    dependencies:
+      resolve-pkg-maps: 1.0.0
+
+  get-tsconfig@4.8.0:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
@@ -21099,7 +21114,7 @@ snapshots:
   tsx@4.19.0:
     dependencies:
       esbuild: 0.23.1
-      get-tsconfig: 4.7.6
+      get-tsconfig: 4.8.0
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -21437,6 +21452,10 @@ snapshots:
       sade: 1.8.1
 
   valibot@0.39.0(typescript@5.5.4):
+    optionalDependencies:
+      typescript: 5.5.4
+
+  valibot@0.40.0(typescript@5.5.4):
     optionalDependencies:
       typescript: 5.5.4
 

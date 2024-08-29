@@ -129,10 +129,7 @@ export interface paths {
          */
         get: {
             parameters: {
-                query?: {
-                    /** @description The language in which the product sheet should be returned. If not specified, all available languages will be returned. */
-                    language?: components["parameters"]["Language"];
-                };
+                query?: never;
                 header?: never;
                 path: {
                     /** @description Unique identifier of the product in the database */
@@ -153,7 +150,6 @@ export interface paths {
                 };
                 400: components["responses"]["BadRequest"];
                 401: components["responses"]["Unauthorized"];
-                404: components["responses"]["NotFound"];
                 500: components["responses"]["InternalServerError"];
             };
         };
@@ -165,7 +161,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/products/{registrationNumber}/labels": {
+    "/products/{registrationNumber}/sheet": {
         parameters: {
             query?: never;
             header?: never;
@@ -173,12 +169,14 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Get product label URLs
-         * @description Retrieves URLs for product labels for a specific product.
+         * Get product sheet URL
+         * @description Retrieves URL for product information sheets (fiches) for a specific product.
          */
         get: {
             parameters: {
-                query?: never;
+                query: {
+                    language: components["parameters"]["SheetLanguage"];
+                };
                 header?: never;
                 path: {
                     /** @description Unique identifier of the product in the database */
@@ -194,7 +192,55 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["LabelUrlsDto"];
+                        "application/json": string;
+                    };
+                };
+                400: components["responses"]["BadRequest"];
+                401: components["responses"]["Unauthorized"];
+                404: components["responses"]["NotFound"];
+                500: components["responses"]["InternalServerError"];
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/products/{registrationNumber}/label": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get product label URL
+         * @description Retrieves URL for product labels for a specific product.
+         */
+        get: {
+            parameters: {
+                query: {
+                    format: components["parameters"]["LabelFormat"];
+                };
+                header?: never;
+                path: {
+                    /** @description Unique identifier of the product in the database */
+                    registrationNumber: components["parameters"]["RegistrationNumber"];
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Successful response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": string;
                     };
                 };
                 400: components["responses"]["BadRequest"];
@@ -264,14 +310,6 @@ export interface components {
             /** @example https://eprel.ec.europa.eu/api/products/electronicdisplays/550826/fiches?language=DE */
             url?: string;
         }[];
-        LabelUrlsDto: {
-            /** @example [
-             *       "https://api.example.com/label/Label_123456.png",
-             *       "https://api.example.com/label/Label_123456.svg",
-             *       "https://api.example.com/label/Label_123456.pdf"
-             *     ] */
-            urls?: string[];
-        };
         /**
          * @description The current health status of the API:
          *     * `Up` - Fully operational
@@ -350,8 +388,8 @@ export interface components {
         ProductGroup: string;
         /** @description Unique identifier of the product in the database */
         RegistrationNumber: string;
-        /** @description The language in which the product sheet should be returned. If not specified, all available languages will be returned. */
-        Language: "BG" | "CS" | "DA" | "DE" | "ET" | "EL" | "EN" | "ES" | "FR" | "GA" | "HR" | "IT" | "LV" | "LT" | "HU" | "MT" | "NL" | "PL" | "PT" | "RO" | "SK" | "SL" | "FI" | "SV";
+        SheetLanguage: "BG" | "CS" | "DA" | "DE" | "ET" | "EL" | "EN" | "ES" | "FR" | "GA" | "HR" | "IT" | "LV" | "LT" | "HU" | "MT" | "NL" | "PL" | "PT" | "RO" | "SK" | "SL" | "FI" | "SV";
+        LabelFormat: "PNG" | "PDF" | "SVG";
     };
     requestBodies: never;
     headers: never;

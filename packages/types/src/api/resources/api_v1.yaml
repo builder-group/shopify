@@ -27,8 +27,10 @@ paths:
     $ref: './energy-label-api_v1.yaml#/paths/~1product-groups~1{productGroup}~1products'
   /v1/energy-label/products/{registrationNumber}/sheets:
     $ref: './energy-label-api_v1.yaml#/paths/~1products~1{registrationNumber}~1sheets'
-  /v1/energy-label/products/{registrationNumber}/labels:
-    $ref: './energy-label-api_v1.yaml#/paths/~1products~1{registrationNumber}~1labels'
+  /v1/energy-label/products/{registrationNumber}/sheet:
+    $ref: './energy-label-api_v1.yaml#/paths/~1products~1{registrationNumber}~1sheet'
+  /v1/energy-label/products/{registrationNumber}/label:
+    $ref: './energy-label-api_v1.yaml#/paths/~1products~1{registrationNumber}~1label'
 
 components:
   schemas:
@@ -53,8 +55,6 @@ components:
       $ref: './energy-label-api_v1.yaml#/components/schemas/ProductDetailsDto'
     SheetUrlsDto:
       $ref: './energy-label-api_v1.yaml#/components/schemas/SheetUrlsDto'
-    LabelUrlsDto:
-      $ref: './energy-label-api_v1.yaml#/components/schemas/LabelUrlsDto'
   
   parameters:
     # Shopify parameters
@@ -66,8 +66,10 @@ components:
       $ref: './energy-label-api_v1.yaml#/components/parameters/ProductGroup'
     RegistrationNumber:
       $ref: './energy-label-api_v1.yaml#/components/parameters/RegistrationNumber'
-    Language:
-      $ref: './energy-label-api_v1.yaml#/components/parameters/Language'
+    SheetLanguage:
+      $ref: './energy-label-api_v1.yaml#/components/parameters/SheetLanguage'
+    LabelFormat:
+      $ref: './energy-label-api_v1.yaml#/components/parameters/LabelFormat'
   
   responses:
     # Common responses

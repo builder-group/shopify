@@ -88,7 +88,6 @@ paths:
         - products
       parameters:
         - $ref: '#/components/parameters/RegistrationNumber'
-        - $ref: '#/components/parameters/Language'
       responses:
         '200':
           description: Successful response
@@ -100,26 +99,54 @@ paths:
           $ref: './common.yaml#/components/responses/BadRequest'
         '401':
           $ref: './common.yaml#/components/responses/Unauthorized'
-        '404':
-          $ref: './common.yaml#/components/responses/NotFound'
         '500':
           $ref: './common.yaml#/components/responses/InternalServerError'
 
-  /products/{registrationNumber}/labels:
+  /products/{registrationNumber}/sheet:
     get:
-      summary: Get product label URLs
-      description: Retrieves URLs for product labels for a specific product.
+      summary: Get product sheet URL
+      description: Retrieves URL for product information sheets (fiches) for a specific product.
       tags:
         - products
       parameters:
         - $ref: '#/components/parameters/RegistrationNumber'
+        - $ref: '#/components/parameters/SheetLanguage'
       responses:
         '200':
           description: Successful response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LabelUrlsDto'
+                type: string 
+                format: uri
+              example: "https://eprel.ec.europa.eu/api/products/electronicdisplays/550826/fiches?language=DE"
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '404':
+          $ref: './common.yaml#/components/responses/NotFound'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  /products/{registrationNumber}/label:
+    get:
+      summary: Get product label URL
+      description: Retrieves URL for product labels for a specific product.
+      tags:
+        - products
+      parameters:
+        - $ref: '#/components/parameters/RegistrationNumber'
+        - $ref: '#/components/parameters/LabelFormat'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uri
+              example: "https://eprel.ec.europa.eu/labels/electronicdisplays/Label_550826.svg"
         '400':
           $ref: './common.yaml#/components/responses/BadRequest'
         '401':
@@ -145,14 +172,20 @@ components:
       description: Unique identifier of the product in the database
       schema:
         type: string
-    Language:
+    SheetLanguage:
       name: language
       in: query
-      required: false
+      required: true
       schema:
         type: string
         enum: [BG, CS, DA, DE, ET, EL, EN, ES, FR, GA, HR, IT, LV, LT, HU, MT, NL, PL, PT, RO, SK, SL, FI, SV]
-      description: The language in which the product sheet should be returned. If not specified, all available languages will be returned.
+    LabelFormat:
+      name: format
+      in: query
+      required: true
+      schema:
+        type: string
+        enum: [PNG, PDF, SVG]
 
   schemas:
     ProductGroupListDto:
@@ -237,15 +270,3 @@ components:
           url:
             type: string
             example: "https://eprel.ec.europa.eu/api/products/electronicdisplays/550826/fiches?language=DE"
-
-    LabelUrlsDto:
-      type: object
-      properties:
-        urls:
-          type: array
-          items:
-            type: string
-          example:
-            - "https://api.example.com/label/Label_123456.png"
-            - "https://api.example.com/label/Label_123456.svg"
-            - "https://api.example.com/label/Label_123456.pdf"
