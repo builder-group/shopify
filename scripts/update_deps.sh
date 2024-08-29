@@ -13,6 +13,7 @@ dependencies=(
     # builder.group
     "@blgc/cli"
     "@blgc/config"
+    "eprel-client"
     "feature-fetch"
     "feature-form"
     "feature-logger"

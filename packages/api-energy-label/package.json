@@ -29,7 +29,7 @@
 	"dependencies": {
 		"@blgc/openapi-router": "^0.0.15",
 		"@blgc/utils": "^0.0.17",
-		"eprel-client": "^0.0.5",
+		"eprel-client": "^0.0.6",
 		"feature-logger": "^0.0.21",
 		"hono": "^4.5.9",
 		"valibot": "^0.39.0",
