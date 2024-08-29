@@ -30,7 +30,7 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"@blgc/openapi-router": "^0.0.17",
+		"@blgc/openapi-router": "^0.0.19",
 		"@blgc/utils": "^0.0.18",
 		"@shopify/admin-api-client": "^1.0.1",
 		"drizzle-orm": "^0.33.0",

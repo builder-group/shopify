@@ -27,9 +27,9 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"@blgc/openapi-router": "^0.0.17",
+		"@blgc/openapi-router": "^0.0.19",
 		"@blgc/utils": "^0.0.18",
-		"eprel-client": "^0.0.7",
+		"eprel-client": "^0.0.9",
 		"feature-logger": "^0.0.22",
 		"hono": "^4.5.9",
 		"valibot": "^0.39.0",

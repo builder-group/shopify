@@ -214,17 +214,29 @@ components:
         implementingAct:
           type: string
           example: "EU_2019_2013"
-
-    SheetUrlsDto:
-      type: object
-      properties:
-        urls:
+        placementCountries:
           type: array
           items:
+            type: object
+            properties:
+              country:
+                type: string
+                example: "DE"
+              orderNumber:
+                type: integer
+                example: 1
+
+    SheetUrlsDto:
+      type: array
+      items:
+        type: object
+        properties:
+          language:
             type: string
-          example: 
-            - "https://api.example.com/fiche/Fiche_123456_EN.pdf"
-            - "https://api.example.com/fiche/Fiche_123456_FR.pdf"
+            example: "DE"
+          url:
+            type: string
+            example: "https://eprel.ec.europa.eu/api/products/electronicdisplays/550826/fiches?language=DE"
 
     LabelUrlsDto:
       type: object

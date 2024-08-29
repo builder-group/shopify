@@ -407,14 +407,19 @@ export interface components {
             productGroup?: string;
             /** @example EU_2019_2013 */
             implementingAct?: string;
+            placementCountries?: {
+                /** @example DE */
+                country?: string;
+                /** @example 1 */
+                orderNumber?: number;
+            }[];
         };
         SheetUrlsDto: {
-            /** @example [
-             *       "https://api.example.com/fiche/Fiche_123456_EN.pdf",
-             *       "https://api.example.com/fiche/Fiche_123456_FR.pdf"
-             *     ] */
-            urls?: string[];
-        };
+            /** @example DE */
+            language?: string;
+            /** @example https://eprel.ec.europa.eu/api/products/electronicdisplays/550826/fiches?language=DE */
+            url?: string;
+        }[];
         LabelUrlsDto: {
             /** @example [
              *       "https://api.example.com/label/Label_123456.png",

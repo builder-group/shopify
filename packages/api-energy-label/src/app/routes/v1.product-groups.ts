@@ -63,7 +63,9 @@ openApiRouter.get('/product-groups/{productGroup}/products', {
 				onMarketEndDate: hit.onMarketEndDate,
 				onMarketStartDate: hit.onMarketStartDate,
 				productGroup: hit.productGroup,
-				status: hit.status
+				status: hit.status,
+				placementCountries: hit.placementCountries,
+				complete: hit
 			}))
 		);
 	}

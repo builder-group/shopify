@@ -39,7 +39,7 @@
 	"devDependencies": {
 		"@blgc/config": "^0.0.23",
 		"@redocly/cli": "^1.21.1",
-		"openapi-typescript": "^7.1.0"
+		"openapi-typescript": "^7.3.0"
 	},
 	"files": [
 		"dist",
