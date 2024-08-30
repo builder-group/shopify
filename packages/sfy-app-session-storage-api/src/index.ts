@@ -16,9 +16,8 @@ export class ApiCoreSessionStorage implements SessionStorage {
 		this.fetchClient = createOpenApiFetchClient<shopifyApiV1.paths>({
 			prefixUrl: basePath,
 			beforeRequestMiddlewares: [
-				async (data) => {
+				(data) => {
 					data.requestInit.headers.Authorization = [`Bearer ${shopifyToken}`];
-					return data;
 				}
 			]
 		});

@@ -98,8 +98,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/ui
       feature-fetch:
-        specifier: ^0.0.20
-        version: 0.0.20
+        specifier: ^0.0.21
+        version: 0.0.21
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -141,8 +141,8 @@ importers:
         specifier: 2024.7.0
         version: 2024.7.0(@shopify/ui-extensions@2024.7.0)(react-reconciler@0.29.2(react@18.3.1))(react@18.3.1)
       feature-fetch:
-        specifier: ^0.0.20
-        version: 0.0.20
+        specifier: ^0.0.21
+        version: 0.0.21
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -553,6 +553,22 @@ importers:
         specifier: ^4.19.0
         version: 4.19.0
 
+  packages/api-core-client:
+    dependencies:
+      feature-fetch:
+        specifier: ^0.0.21
+        version: 0.0.21
+    devDependencies:
+      '@blgc/config':
+        specifier: ^0.0.23
+        version: 0.0.23(@next/eslint-plugin-next@14.2.7)(eslint@9.9.1(jiti@1.21.6))(prettier@3.3.3)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(sass@1.77.8))(vitest@2.0.5(@types/node@22.5.1)(sass@1.77.8))
+      '@repo/types':
+        specifier: workspace:*
+        version: link:../types
+      '@types/node':
+        specifier: ^22.5.1
+        version: 22.5.1
+
   packages/api-energy-label:
     dependencies:
       '@blgc/openapi-router':
@@ -565,8 +581,8 @@ importers:
         specifier: workspace:*
         version: link:../api-utils
       eprel-client:
-        specifier: ^0.0.12
-        version: 0.0.12
+        specifier: ^0.0.13
+        version: 0.0.13
       feature-logger:
         specifier: ^0.0.22
         version: 0.0.22
@@ -678,8 +694,8 @@ importers:
   packages/sfy-app-session-storage-api:
     dependencies:
       feature-fetch:
-        specifier: ^0.0.20
-        version: 0.0.20
+        specifier: ^0.0.21
+        version: 0.0.21
     devDependencies:
       '@blgc/config':
         specifier: ^0.0.23
@@ -5404,8 +5420,8 @@ packages:
   enzyme@3.11.0:
     resolution: {integrity: sha512-Dw8/Gs4vRjxY6/6i9wU0V+utmQO9kvh9XLnz3LIudviOnVYDEe2ec+0k+NQoMamn1VrjKgCUOWj5jG/5M5M0Qw==}
 
-  eprel-client@0.0.12:
-    resolution: {integrity: sha512-zc/4KrmGodiYJ+8c79MxLbaUFpvhBidlGHrw143Jt3JgoZZFHa2C3BGcp4BzEbJMM8beu79H7slXB4xKTF5oQw==}
+  eprel-client@0.0.13:
+    resolution: {integrity: sha512-3v6Dh6rSznSIUXe+6ZM1Hek0gGdVnEiKUumjqOhRnAUfSuTCWuSSVDmMYFlG9al8HVhT5Q1YTK9Y1oNhaxX0xw==}
 
   err-code@2.0.3:
     resolution: {integrity: sha512-2bmlRpNKBxT/CRmPOlyISQpNj+qSeYvcym/uT0Jx2bMOlKLtSy1ZmLuVxSEKKyor/N5yhvp/ZiG1oE3DEYMSFA==}
@@ -5891,8 +5907,8 @@ packages:
       picomatch:
         optional: true
 
-  feature-fetch@0.0.20:
-    resolution: {integrity: sha512-T0SrOq/HAi6VPIzAxHEffPDtASoD0WCaSBo86VrfOiS5jaW84BrzCqkUjYT+nVwun0cGWsSvI+MEx9OlvRFfjg==}
+  feature-fetch@0.0.21:
+    resolution: {integrity: sha512-okHNrplaXBjBkxffJpvw+lR8+ijiZAj03tdbWE8lkH7zJCNR5gAjsp+qwgFBwmeW5ZBi4GAvlus/gubsJQhkPg==}
 
   feature-logger@0.0.22:
     resolution: {integrity: sha512-czjBzpUBqv3NdQy8r87hvetgC5ZM4kqkCyUcJgVClM3gUGdth9jtbJ+1hYObrErJofiizWvbLYW260/vdRH0tQ==}
@@ -15834,9 +15850,9 @@ snapshots:
       rst-selector-parser: 2.2.3
       string.prototype.trim: 1.2.9
 
-  eprel-client@0.0.12:
+  eprel-client@0.0.13:
     dependencies:
-      feature-fetch: 0.0.20
+      feature-fetch: 0.0.21
 
   err-code@2.0.3: {}
 
@@ -16876,7 +16892,7 @@ snapshots:
 
   fdir@6.1.1: {}
 
-  feature-fetch@0.0.20:
+  feature-fetch@0.0.21:
     dependencies:
       '@blgc/types': 0.0.7
       '@blgc/utils': 0.0.18

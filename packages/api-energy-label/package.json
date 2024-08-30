@@ -30,7 +30,7 @@
 		"@blgc/openapi-router": "^0.0.19",
 		"@blgc/utils": "^0.0.18",
 		"@repo/api-utils": "workspace:*",
-		"eprel-client": "^0.0.12",
+		"eprel-client": "^0.0.13",
 		"feature-logger": "^0.0.22",
 		"hono": "^4.5.9",
 		"valibot": "^0.40.0",
