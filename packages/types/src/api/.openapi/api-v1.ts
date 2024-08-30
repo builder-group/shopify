@@ -263,8 +263,8 @@ export interface paths {
          */
         get: {
             parameters: {
-                query: {
-                    language: components["parameters"]["SheetLanguage"];
+                query?: {
+                    language?: components["parameters"]["SheetLanguage"];
                 };
                 header?: never;
                 path: {
@@ -311,8 +311,8 @@ export interface paths {
          */
         get: {
             parameters: {
-                query: {
-                    format: components["parameters"]["LabelFormat"];
+                query?: {
+                    format?: components["parameters"]["LabelFormat"];
                 };
                 header?: never;
                 path: {

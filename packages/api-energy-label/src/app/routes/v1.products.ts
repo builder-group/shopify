@@ -41,12 +41,12 @@ openApiRouter.get('/products/{registrationNumber}/sheet', {
 	parsePathParamsBlacklist: ['registrationNumber'],
 	queryValidator: vValidator(
 		v.object({
-			language: v.pipe(v.enum(ESheetLanguage), v.nonEmpty())
+			language: v.optional(v.enum(ESheetLanguage))
 		})
 	),
 	handler: async (c) => {
 		const { registrationNumber } = c.req.valid('param');
-		const { language } = c.req.valid('query');
+		const { language = 'EN' } = c.req.valid('query');
 
 		const result = await eprelClient.getProductSheetUrl(registrationNumber, language);
 		if (result.isErr()) {
@@ -77,12 +77,12 @@ openApiRouter.get('/products/{registrationNumber}/label', {
 	parsePathParamsBlacklist: ['registrationNumber'],
 	queryValidator: vValidator(
 		v.object({
-			format: v.pipe(v.enum(ELabelFormat), v.nonEmpty())
+			format: v.optional(v.enum(ELabelFormat))
 		})
 	),
 	handler: async (c) => {
 		const { registrationNumber } = c.req.valid('param');
-		const { format } = c.req.valid('query');
+		const { format = 'PDF' } = c.req.valid('query');
 
 		const result = await eprelClient.getProductLabelUrl(registrationNumber, format);
 		if (result.isErr()) {

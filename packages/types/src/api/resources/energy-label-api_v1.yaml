@@ -175,14 +175,14 @@ components:
     SheetLanguage:
       name: language
       in: query
-      required: true
+      required: false
       schema:
         type: string
         enum: [BG, CS, DA, DE, ET, EL, EN, ES, FR, GA, HR, IT, LV, LT, HU, MT, NL, PL, PT, RO, SK, SL, FI, SV]
     LabelFormat:
       name: format
       in: query
-      required: true
+      required: false
       schema:
         type: string
         enum: [PNG, PDF, SVG]
