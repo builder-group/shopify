@@ -4,6 +4,26 @@
  */
 
 export interface paths {
+    "/v1/health": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Check API health
+         * @description Returns the current health status of the API
+         */
+        get: operations["checkCoreHealth"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/shopify/health": {
         parameters: {
             query?: never;
@@ -522,6 +542,27 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    checkCoreHealth: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HealthDto"];
+                };
+            };
+            500: components["responses"]["InternalServerError"];
+        };
+    };
     checkShopifyHealth: {
         parameters: {
             query?: never;

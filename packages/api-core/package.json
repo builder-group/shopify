@@ -27,6 +27,7 @@
 	},
 	"homepage": "",
 	"dependencies": {
+		"@blgc/openapi-router": "^0.0.19",
 		"@blgc/utils": "^0.0.18",
 		"@repo/api-energy-label": "workspace:*",
 		"@repo/api-shopify": "workspace:*",

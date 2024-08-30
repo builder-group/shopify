@@ -9,6 +9,24 @@ servers:
   - url: https://api.builder.group
     description: Production server
 paths:
+  /v1/health:
+    get:
+      tags:
+        - health
+      summary: Check API health
+      description: Returns the current health status of the API
+      operationId: checkCoreHealth
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: './common.yaml#/components/schemas/HealthDto'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  # Shopify paths 
   /v1/shopify/health:
     $ref: './shopify-api_v1.yaml#/paths/~1health'
   /v1/shopify/session:
@@ -19,6 +37,8 @@ paths:
     $ref: './shopify-api_v1.yaml#/paths/~1session~1delete'
   /v1/shopify/session/shop/{shop}:
     $ref: './shopify-api_v1.yaml#/paths/~1session~1shop~1{shop}'
+
+  # Energy Label paths 
   /v1/energy-label/health:
     $ref: './energy-label-api_v1.yaml#/paths/~1health'
   /v1/energy-label/product-groups:

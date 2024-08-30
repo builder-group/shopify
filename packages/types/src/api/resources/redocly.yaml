@@ -8,6 +8,6 @@ apis:
     x-openapi-ts:
       output: ../.openapi/shopify-api-v1.ts
   combined@v1:
-    root: ./api_v1.yaml
+    root: ./core-api_v1.yaml
     x-openapi-ts:
-      output: ../.openapi/api-v1.ts
+      output: ../.openapi/core-api-v1.ts

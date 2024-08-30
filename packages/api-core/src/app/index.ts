@@ -9,6 +9,9 @@ import { logger as loggerMiddleware } from 'hono/logger';
 
 import { appConfig } from '../environment';
 import { logger } from '../logger';
+import { router } from './router';
+
+import './routes';
 
 export function createApp(app: Hono = new Hono()): Hono {
 	app.onError(errorHandler);
@@ -18,6 +21,8 @@ export function createApp(app: Hono = new Hono()): Hono {
 			logger.info(str, rest);
 		})
 	);
+
+	app.route('/', router);
 
 	// Append Energy Label API router
 	app.route('/v1/energy-label', createEnergyLabelRoute());
