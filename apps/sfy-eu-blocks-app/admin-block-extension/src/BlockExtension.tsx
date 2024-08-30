@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
+import { coreClient } from './core-client';
 import { getMetafield, updateMetafield } from './shopify-graphql-client';
 
 const TARGET = 'admin.product-details.block.render';
@@ -40,6 +41,15 @@ function App() {
 		}
 	});
 	const [energyLabelInput, setEnergyLabelInput] = React.useState<string>('');
+
+	const { data: productGroups, isLoading: isLoadingProductGroups } = useQuery({
+		queryKey: ['energy-label', 'product-groups'],
+		queryFn: async () => {
+			const result = await coreClient.get('/v1/energy-label/product-groups');
+			console.log({ result });
+			return result.unwrap();
+		}
+	});
 
 	React.useEffect(() => {
 		if (status === 'success' && loadedEnergyLabel != null) {
