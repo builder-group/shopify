@@ -1,7 +1,7 @@
 {
 	"name": "@repo/api-energy-label",
 	"version": "0.0.1",
-	"description": "Shopify API",
+	"description": "Energy Label API",
 	"private": true,
 	"scripts": {
 		"build": "shx rm -rf dist && chmod +x ../../scripts/cli.sh && ../../scripts/cli.sh bundle",
@@ -29,6 +29,7 @@
 	"dependencies": {
 		"@blgc/openapi-router": "^0.0.19",
 		"@blgc/utils": "^0.0.18",
+		"@repo/api-utils": "workspace:*",
 		"eprel-client": "^0.0.12",
 		"feature-logger": "^0.0.22",
 		"hono": "^4.5.9",
@@ -38,7 +39,6 @@
 	"devDependencies": {
 		"@blgc/config": "^0.0.23",
 		"@hono/node-server": "^1.12.2",
-		"@repo/api-utils": "workspace:*",
 		"@repo/types": "workspace:*",
 		"@types/node": "^22.5.1",
 		"dotenv": "^16.4.5",

@@ -1,9 +1,11 @@
 import { createGraphQLFetchClient, gql } from 'feature-fetch';
 
-const graphQLClient = createGraphQLFetchClient({ prefixUrl: 'shopify:admin/api/graphql.json' });
+export const shopifyGraphQLClient = createGraphQLFetchClient({
+	prefixUrl: 'shopify:admin/api/graphql.json'
+});
 
 export async function updateMetafield(variables: TUpdateMetaFieldVariables) {
-	return await graphQLClient.query<
+	return await shopifyGraphQLClient.query<
 		TUpdateMetaFieldVariables,
 		{
 			metafieldDefinitionCreate: {
@@ -74,7 +76,7 @@ interface TUpdateMetaFieldVariables {
 }
 
 export async function getMetafield(variables: TGetMetafieldVariables) {
-	return await graphQLClient.query<
+	return await shopifyGraphQLClient.query<
 		TGetMetafieldVariables,
 		{
 			data: {

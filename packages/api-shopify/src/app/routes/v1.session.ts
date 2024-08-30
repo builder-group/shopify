@@ -30,7 +30,10 @@ openApiRouter.post('/session', {
 			set: row
 		});
 
-		return c.json(true);
+		return c.json({
+			success: true,
+			message: ''
+		});
 	}
 });
 
@@ -68,7 +71,10 @@ openApiRouter.del('/session/{id}', {
 
 		await db.delete(schema.shopifySessionTable).where(eq(schema.shopifySessionTable.id, id));
 
-		return c.json(true);
+		return c.json({
+			success: true,
+			message: ''
+		});
 	}
 });
 
@@ -79,7 +85,10 @@ openApiRouter.post('/session/delete', {
 
 		await db.delete(schema.shopifySessionTable).where(inArray(schema.shopifySessionTable.id, ids));
 
-		return c.json(true);
+		return c.json({
+			success: true,
+			message: ''
+		});
 	}
 });
 

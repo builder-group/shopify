@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
-import { getMetafield, updateMetafield } from './graphql';
+import { getMetafield, updateMetafield } from './shopify-graphql-client';
 
 const TARGET = 'admin.product-details.block.render';
 

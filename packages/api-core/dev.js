@@ -6,20 +6,18 @@ import { serve } from '@hono/node-server';
 	if (nodeEnv === 'local') {
 		const dotenv = await import('dotenv');
 		dotenv.config({ path: `.env.${nodeEnv}` });
-		console.info(`Loaded dotenv from '.env.${nodeEnv}'.`);
+		console.log(`Loaded dotenv from '.env.${nodeEnv}'.`);
 	}
 
-	const { createApp, logger } = await import('@repo/api-core');
+	const { createApp, logger } = await import('./src');
 
 	const port = 8787;
 	const app = createApp();
 
-	logger.info(`Server is running on port ${port.toString()}`);
+	logger.info(`Server is running at http://localhost:${port.toString()}`);
 
 	serve({
 		fetch: app.fetch,
 		port
 	});
-})().catch((e: unknown) => {
-	console.error('Failed to start server by exception: ', e);
-});
+})();

@@ -26,7 +26,7 @@
 	"homepage": "",
 	"dependencies": {
 		"@hono/node-server": "^1.12.2",
-		"@repo/api-shopify": "workspace:*",
+		"@repo/api-core": "workspace:*",
 		"@repo/api-utils": "workspace:*",
 		"hono": "^4.5.9"
 	},
