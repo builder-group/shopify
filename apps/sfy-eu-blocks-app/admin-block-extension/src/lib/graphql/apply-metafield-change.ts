@@ -1,11 +1,9 @@
-import { createGraphQLFetchClient, gql } from 'feature-fetch';
+import { gql } from 'feature-fetch';
 
-export const shopifyGraphQLClient = createGraphQLFetchClient({
-	prefixUrl: 'shopify:admin/api/graphql.json'
-});
+import { shopifyAdminClient } from '../clients';
 
-export async function updateMetafield(variables: TUpdateMetaFieldVariables) {
-	return await shopifyGraphQLClient.query<
+export async function applyMetafieldChange(variables: TUpdateMetaFieldVariables) {
+	return await shopifyAdminClient.query<
 		TUpdateMetaFieldVariables,
 		{
 			metafieldDefinitionCreate: {
@@ -65,7 +63,7 @@ export async function updateMetafield(variables: TUpdateMetaFieldVariables) {
 	);
 }
 
-interface TUpdateMetaFieldVariables {
+export interface TUpdateMetaFieldVariables {
 	ownerId: string;
 	namespace: string;
 	key: string;
@@ -73,36 +71,4 @@ interface TUpdateMetaFieldVariables {
 	value: string;
 	name: string;
 	ownerType: string;
-}
-
-export async function getMetafield(variables: TGetMetafieldVariables) {
-	return await shopifyGraphQLClient.query<
-		TGetMetafieldVariables,
-		{
-			data: {
-				product: {
-					metafield: {
-						value: string;
-					} | null;
-				};
-			};
-		}
-	>(
-		gql`
-			query GetMetafield($id: ID!, $namespace: String!, $key: String!) {
-				product(id: $id) {
-					metafield(namespace: $namespace, key: $key) {
-						value
-					}
-				}
-			}
-		`,
-		{ variables }
-	);
-}
-
-interface TGetMetafieldVariables {
-	id: string;
-	namespace: string;
-	key: string;
 }

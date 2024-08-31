@@ -7,12 +7,7 @@ export const router = new Hono();
 
 router.use(
 	cors({
-		origin: [
-			'https://shopify.com/',
-			'https://shopifycdn.com/',
-			'https://admin.shopify.com/',
-			'https://extensions.shopifycdn.com'
-		]
+		origin: ['https://extensions.shopifycdn.com']
 	})
 );
 

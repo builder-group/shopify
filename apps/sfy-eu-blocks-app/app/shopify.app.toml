@@ -8,7 +8,7 @@ extension_directories = [
 ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://suspected-sheer-variation-rand.trycloudflare.com"
+application_url = "https://parent-xi-subscriptions-isbn.trycloudflare.com"
 embedded = true
 
 [build]
@@ -22,9 +22,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://suspected-sheer-variation-rand.trycloudflare.com/auth/callback",
-  "https://suspected-sheer-variation-rand.trycloudflare.com/auth/shopify/callback",
-  "https://suspected-sheer-variation-rand.trycloudflare.com/api/auth/callback"
+  "https://parent-xi-subscriptions-isbn.trycloudflare.com/auth/callback",
+  "https://parent-xi-subscriptions-isbn.trycloudflare.com/auth/shopify/callback",
+  "https://parent-xi-subscriptions-isbn.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
