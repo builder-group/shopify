@@ -30,12 +30,14 @@ export const CreateEnergyLabelBlock: React.FC<TProps> = (props) => {
 	const [isSubmitting, setIsSubmitting] = React.useState(false);
 	const [submitError, setSubmitError] = React.useState<string | null>(null);
 
+	// Reset form submit status to not overwhelm user with errors
 	React.useEffect(() => {
-		// Reset form submit status to not overload user with errors
-		if (submitError != null) {
-			$form.isSubmitted = false;
-		}
-	}, [submitError]);
+		$form.isSubmitted = false;
+		$form.isSubmitting = false;
+		$form.fields.registrationNumber.isSubmitted = false;
+		$form.fields.registrationNumber.isSubmitting = false;
+		console.log({ form: $form });
+	}, [isSubmitting]);
 
 	const handleValidSubmit: TValidSubmitCallback<{
 		registrationNumber: string;
@@ -66,7 +68,7 @@ export const CreateEnergyLabelBlock: React.FC<TProps> = (props) => {
 	return (
 		<AdminBlock title={i18n.translate('title')}>
 			{submitError != null && (
-				<Banner tone="critical">
+				<Banner tone="critical" dismissible>
 					<Paragraph>{submitError}</Paragraph>
 				</Banner>
 			)}
