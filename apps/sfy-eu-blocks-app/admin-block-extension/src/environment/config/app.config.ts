@@ -1,3 +1,3 @@
 export const appConfig = {
-	// TODO
+	target: 'admin.product-details.block.render' as const
 };

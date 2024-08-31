@@ -80,7 +80,31 @@ paths:
         '500':
           $ref: './common.yaml#/components/responses/InternalServerError'
 
-  /products/{registrationNumber}/sheets:
+  /product/{registrationNumber}:
+    get:
+      summary: Get a product by registration number
+      description: Retrieves detailed information about a product using its registration number.
+      tags:
+        - Products
+      parameters:
+        - $ref: '#/components/parameters/RegistrationNumber'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetailsDto'
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '404':
+          $ref: './common.yaml#/components/responses/NotFound'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  /product/{registrationNumber}/sheets:
     get:
       summary: Get product sheet URLs
       description: Retrieves URLs for product information sheets (fiches) for a specific product.
@@ -102,7 +126,7 @@ paths:
         '500':
           $ref: './common.yaml#/components/responses/InternalServerError'
 
-  /products/{registrationNumber}/sheet:
+  /product/{registrationNumber}/sheet:
     get:
       summary: Get product sheet URL
       description: Retrieves URL for product information sheets (fiches) for a specific product.
@@ -129,7 +153,7 @@ paths:
         '500':
           $ref: './common.yaml#/components/responses/InternalServerError'
 
-  /products/{registrationNumber}/label:
+  /product/{registrationNumber}/label:
     get:
       summary: Get product label URL
       description: Retrieves URL for product labels for a specific product.
@@ -266,6 +290,7 @@ components:
         properties:
           language:
             type: string
+            enum: [BG, CS, DA, DE, ET, EL, EN, ES, FR, GA, HR, IT, LV, LT, HU, MT, NL, PL, PT, RO, SK, SL, FI, SV]
             example: "DE"
           url:
             type: string

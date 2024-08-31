@@ -7,7 +7,37 @@ import { extractErrorData } from '@blgc/utils';
 import { eprelClient } from '../../eprel-client';
 import { openApiRouter } from '../router';
 
-openApiRouter.get('/products/{registrationNumber}/sheets', {
+openApiRouter.get('/product/{registrationNumber}', {
+	pathValidator: vValidator(
+		v.object({
+			registrationNumber: v.pipe(v.string(), v.nonEmpty())
+		})
+	),
+	parsePathParamsBlacklist: ['registrationNumber'],
+	handler: async (c) => {
+		const { registrationNumber } = c.req.valid('param');
+
+		const result = await eprelClient.getProductByRegistrationNumber(registrationNumber);
+		if (result.isErr()) {
+			const { error } = result;
+			if (error instanceof RequestError) {
+				throw new AppError('#ERR_EPREL_API', error.status, {
+					description: error.message
+				});
+			}
+			throw new AppError('#ERR_INTERNAL', 500, { description: extractErrorData(error).message });
+		}
+
+		const data = result.value;
+		if (data == null) {
+			throw new AppError('#ERR_NOT_FOUND', 404);
+		}
+
+		return c.json(data);
+	}
+});
+
+openApiRouter.get('/product/{registrationNumber}/sheets', {
 	pathValidator: vValidator(
 		v.object({
 			registrationNumber: v.pipe(v.string(), v.nonEmpty())
@@ -32,7 +62,7 @@ openApiRouter.get('/products/{registrationNumber}/sheets', {
 	}
 });
 
-openApiRouter.get('/products/{registrationNumber}/sheet', {
+openApiRouter.get('/product/{registrationNumber}/sheet', {
 	pathValidator: vValidator(
 		v.object({
 			registrationNumber: v.pipe(v.string(), v.nonEmpty())
@@ -68,7 +98,7 @@ openApiRouter.get('/products/{registrationNumber}/sheet', {
 	}
 });
 
-openApiRouter.get('/products/{registrationNumber}/label', {
+openApiRouter.get('/product/{registrationNumber}/label', {
 	pathValidator: vValidator(
 		v.object({
 			registrationNumber: v.pipe(v.string(), v.nonEmpty())

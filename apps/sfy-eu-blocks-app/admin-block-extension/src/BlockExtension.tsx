@@ -1,40 +1,117 @@
-import { reactExtension } from '@shopify/ui-extensions-react/admin';
-import { mapOk } from 'feature-fetch';
+import {
+	AdminBlock,
+	Form,
+	reactExtension,
+	Section,
+	Text,
+	TextField,
+	URLField,
+	useApi
+} from '@shopify/ui-extensions-react/admin';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import { applyMetafieldChange, getMetafield } from './lib';
-
-const TARGET = 'admin.product-details.block.render';
+import { BannerBlock, CreateEnergyLabelBlock } from './components';
+import { appConfig } from './environment';
+import { loadEnergyLabelFormMetadata, TEnergyLabel } from './lib';
 
 const queryClient = new QueryClient();
 
-export default reactExtension(TARGET, async (api) => {
+export default reactExtension(appConfig.target, async (api) => {
 	const productId = api.data.selected[0]?.id;
 	if (productId == null) {
-		return null as any; // TODO: General error
+		return <BannerBlock content={'Failed to identify product'} tone="critical" />;
 	}
 
-	const energyLabel = await getEnergyLabel(productId);
-	if (energyLabel.isErr()) {
-		return null as any; // TODO: Shopify Metafield error
+	const energyLabelResult = await loadEnergyLabelFormMetadata(productId);
+	if (energyLabelResult.isErr()) {
+		return (
+			<BannerBlock content={'Failed to read or parse Energy Label metadata'} tone="critical" />
+		);
 	}
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Block />
+			<Block energyLabel={energyLabelResult.value} />
 		</QueryClientProvider>
 	);
 });
 
-const Block: React.FC = () => {
-	return <p>TODO</p>;
+const Block: React.FC<TProps> = (props) => {
+	const { energyLabel } = props;
+	const { i18n } = useApi(appConfig.target);
+
+	if (energyLabel == null) {
+		return (
+			<CreateEnergyLabelBlock
+				onEnergyLabelSubmit={(energyLabel) => {
+					console.log({ energyLabel });
+					//TODO
+				}}
+			/>
+		);
+	}
+
+	return (
+		<AdminBlock title={i18n.translate('title')}>
+			<Text>{energyLabel != null ? energyLabel.modelIdentifier : 'None'}</Text>
+
+			<Form
+				onReset={() => {
+					// TODO
+				}}
+				onSubmit={() => {
+					// TODO
+				}}
+			>
+				<Section heading="Metafields">
+					<TextField
+						label="Registration Number"
+						name="registrationNumber"
+						// value={value}
+						// error={error}
+						onChange={(value) => {
+							// TODO
+						}}
+					/>
+					<TextField
+						label="Model Identifier"
+						name="modelIdentifier"
+						// value={value}
+						// error={error}
+						onChange={(value) => {
+							// TODO
+						}}
+					/>
+					<TextField
+						label="Energy Class"
+						name="energyClass"
+						// value={value}
+						// error={error}
+						onChange={(value) => {
+							// TODO
+						}}
+					/>
+				</Section>
+
+				<Section heading="Sheets">
+					<URLField
+						label="DE"
+						name="de"
+						// value={value}
+						// error={error}
+						onChange={(value) => {
+							// TODO
+						}}
+					/>
+				</Section>
+			</Form>
+		</AdminBlock>
+	);
 };
 
 interface TProps {
-	energyLabel: {
-		number: number;
-	};
+	energyLabel: TEnergyLabel | null;
 }
 
 // function App() {
@@ -155,31 +232,3 @@ interface TProps {
 // 		</FunctionSettings>
 // 	);
 // }
-
-async function updateEnergyLabel(id: string, energyLabel: number) {
-	// applyMetafieldsChange({
-	// 	type: 'updateMetafield',
-	// 	namespace: '$app:my_namespace',
-	// 	key: 'name',
-	// 	value,
-	// 	valueType: 'single_line_text_field'
-	// });
-	return await applyMetafieldChange({
-		ownerId: id,
-		namespace: '$app:energy_label',
-		key: 'energy_label',
-		type: 'number_integer',
-		value: energyLabel.toString(),
-		name: 'Energy Label',
-		ownerType: 'PRODUCT'
-	});
-}
-
-async function getEnergyLabel(id: string) {
-	const result = await getMetafield({
-		id,
-		namespace: '$app:energy_label',
-		key: 'energy_label'
-	});
-	return mapOk(result, (r) => r.data.data.product.metafield?.value);
-}

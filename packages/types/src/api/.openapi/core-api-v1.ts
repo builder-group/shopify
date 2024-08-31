@@ -225,7 +225,53 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/energy-label/products/{registrationNumber}/sheets": {
+    "/v1/energy-label/product/{registrationNumber}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get a product by registration number
+         * @description Retrieves detailed information about a product using its registration number.
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description Unique identifier of the product in the database */
+                    registrationNumber: components["parameters"]["RegistrationNumber"];
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Successful response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ProductDetailsDto"];
+                    };
+                };
+                400: components["responses"]["BadRequest"];
+                401: components["responses"]["Unauthorized"];
+                404: components["responses"]["NotFound"];
+                500: components["responses"]["InternalServerError"];
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/energy-label/product/{registrationNumber}/sheets": {
         parameters: {
             query?: never;
             header?: never;
@@ -270,7 +316,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/energy-label/products/{registrationNumber}/sheet": {
+    "/v1/energy-label/product/{registrationNumber}/sheet": {
         parameters: {
             query?: never;
             header?: never;
@@ -318,7 +364,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/energy-label/products/{registrationNumber}/label": {
+    "/v1/energy-label/product/{registrationNumber}/label": {
         parameters: {
             query?: never;
             header?: never;
@@ -481,8 +527,11 @@ export interface components {
             }[];
         };
         SheetUrlsDto: {
-            /** @example DE */
-            language?: string;
+            /**
+             * @example DE
+             * @enum {string}
+             */
+            language?: "BG" | "CS" | "DA" | "DE" | "ET" | "EL" | "EN" | "ES" | "FR" | "GA" | "HR" | "IT" | "LV" | "LT" | "HU" | "MT" | "NL" | "PL" | "PT" | "RO" | "SK" | "SL" | "FI" | "SV";
             /** @example https://eprel.ec.europa.eu/api/products/electronicdisplays/550826/fiches?language=DE */
             url?: string;
         }[];

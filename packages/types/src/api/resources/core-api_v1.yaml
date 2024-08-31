@@ -45,12 +45,14 @@ paths:
     $ref: './energy-label-api_v1.yaml#/paths/~1product-groups'
   /v1/energy-label/product-groups/{productGroup}/products:
     $ref: './energy-label-api_v1.yaml#/paths/~1product-groups~1{productGroup}~1products'
-  /v1/energy-label/products/{registrationNumber}/sheets:
-    $ref: './energy-label-api_v1.yaml#/paths/~1products~1{registrationNumber}~1sheets'
-  /v1/energy-label/products/{registrationNumber}/sheet:
-    $ref: './energy-label-api_v1.yaml#/paths/~1products~1{registrationNumber}~1sheet'
-  /v1/energy-label/products/{registrationNumber}/label:
-    $ref: './energy-label-api_v1.yaml#/paths/~1products~1{registrationNumber}~1label'
+  /v1/energy-label/product/{registrationNumber}:
+    $ref: './energy-label-api_v1.yaml#/paths/~1product~1{registrationNumber}'
+  /v1/energy-label/product/{registrationNumber}/sheets:
+    $ref: './energy-label-api_v1.yaml#/paths/~1product~1{registrationNumber}~1sheets'
+  /v1/energy-label/product/{registrationNumber}/sheet:
+    $ref: './energy-label-api_v1.yaml#/paths/~1product~1{registrationNumber}~1sheet'
+  /v1/energy-label/product/{registrationNumber}/label:
+    $ref: './energy-label-api_v1.yaml#/paths/~1product~1{registrationNumber}~1label'
 
 components:
   schemas:
