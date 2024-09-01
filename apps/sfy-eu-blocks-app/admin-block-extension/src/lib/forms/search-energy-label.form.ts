@@ -7,18 +7,16 @@ import {
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
 
-import { getExtensionContext } from '../extension-context';
+import { t } from '../i18n';
 import { fetchEnergyLabel, TEnergyLabel } from '../services/energy-label';
 
-export const $searchEnergyLabelForm = createForm<{ registrationNumber: string }>({
+export const $searchEnergyLabelForm = createForm<TFormFields>({
 	fields: {
 		registrationNumber: {
 			validator: vValidator(
 				v.pipe(
 					v.string(),
-					v.regex(/^\d{6}$/, () =>
-						getExtensionContext().i18n.translate('eprelRegistrationNumberValidationRegex')
-					)
+					v.regex(/^\d{6}$/, () => t('validation.registrationNumber.format'))
 				)
 			),
 			defaultValue: ''
@@ -35,7 +33,7 @@ export const $searchEnergyLabelForm = createForm<{ registrationNumber: string }>
 		const energyLabelResult = await fetchEnergyLabel(formData.registrationNumber);
 		if (energyLabelResult.isErr()) {
 			setSubmitError(
-				`Failed to retrieve Energy Label by exception: ${energyLabelResult.error.message}`
+				t('banner.error.retrievalFailed', { errorMessage: energyLabelResult.error.message })
 			);
 			return;
 		}
@@ -43,19 +41,18 @@ export const $searchEnergyLabelForm = createForm<{ registrationNumber: string }>
 		const energyLabel = energyLabelResult.value;
 		if (energyLabel == null) {
 			setSubmitError(
-				`No Energy Label with the registration number ${formData.registrationNumber} found.`
+				t('banner.error.notFound', { registrationNumber: formData.registrationNumber })
 			);
 			return;
 		}
 
-		// const result = await updateEnergyLabelInMetadata(productId, energyLabel);
-		// if(result.isErr()){
-
-		// }
-
 		onEnergyLabelSubmit(energyLabel);
 	}
 });
+
+interface TFormFields {
+	registrationNumber: string;
+}
 
 export interface TValidSubmitAdditionalData {
 	productId: string;

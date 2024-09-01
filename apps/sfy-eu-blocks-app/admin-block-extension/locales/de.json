@@ -1,0 +1,33 @@
+{
+	"name": "energy-label-admin-block",
+	"title": "Energielabel",
+	"validation": {
+		"registrationNumber": {
+			"format": "Die EPREL-Registrierungsnummer muss genau 6 Ziffern (0-9) enthalten."
+		},
+		"modelIdentifier": {
+			"required": "Modellbezeichnung ist erforderlich."
+		},
+		"energyClass": {
+			"invalid": "Ungültige Energieklasse. Bitte wählen Sie einen Wert von A bis F."
+		},
+		"labelUrl": {
+			"invalidFormat": "Bitte geben Sie eine gültige URL für das Etikett ein."
+		}
+	},
+	"banner": {
+		"eprelHelp": {
+			"title": "Können Sie die EPREL-Registrierungsnummer nicht finden?",
+			"content": "Scannen Sie den QR-Code auf dem Energielabel des Produkts (gedruckt oder digital). Sie werden auf eine Webseite weitergeleitet, auf der die EPREL-Registrierungsnummer in grau in der Breadcrumb-Navigation oben angezeigt wird, unter Start > Produktkategorie > XXXXXX."
+		},
+		"error": {
+			"retrievalFailed": "Fehler beim Abrufen des Energielabels: {{errorMessage}}",
+			"notFound": "Kein Energielabel mit der Registrierungsnummer {{registrationNumber}} gefunden.",
+			"productIdMissing": "Produkt konnte nicht identifiziert werden",
+			"metadataParseError": "Fehler beim Lesen oder Analysieren der Energielabel-Metadaten"
+		},
+		"success": {
+			"energyLabelFound": "Energielabel für '{{productName}}' erfolgreich gefunden und geladen"
+		}
+	}
+}

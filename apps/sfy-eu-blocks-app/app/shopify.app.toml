@@ -8,7 +8,7 @@ extension_directories = [
 ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://telephony-flower-hunting-admin.trycloudflare.com"
+application_url = "https://tests-florists-cutting-acceptable.trycloudflare.com"
 embedded = true
 
 [build]
@@ -22,9 +22,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://telephony-flower-hunting-admin.trycloudflare.com/auth/callback",
-  "https://telephony-flower-hunting-admin.trycloudflare.com/auth/shopify/callback",
-  "https://telephony-flower-hunting-admin.trycloudflare.com/api/auth/callback"
+  "https://tests-florists-cutting-acceptable.trycloudflare.com/auth/callback",
+  "https://tests-florists-cutting-acceptable.trycloudflare.com/auth/shopify/callback",
+  "https://tests-florists-cutting-acceptable.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

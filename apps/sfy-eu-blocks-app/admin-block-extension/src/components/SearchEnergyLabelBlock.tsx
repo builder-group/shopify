@@ -10,12 +10,11 @@ import { useForm } from 'feature-react/form';
 import { useGlobalState } from 'feature-react/state';
 import React from 'react';
 
-import { $i18n, $searchEnergyLabelForm, TEnergyLabel } from '../lib';
+import { $searchEnergyLabelForm, t, TEnergyLabel } from '../lib';
 import { FormTextField } from './FormTextField';
 
 export const SearchEnergyLabelBlock: React.FC<TProps> = (props) => {
 	const { onEnergyLabelSubmit, productId } = props;
-	const i18n = useGlobalState($i18n);
 	const { handleSubmit, field } = useForm($searchEnergyLabelForm);
 	const isSubmitting = useGlobalState($searchEnergyLabelForm.isSubmitting);
 	const [submitError, setSubmitError] = React.useState<string | null>(null);
@@ -31,7 +30,7 @@ export const SearchEnergyLabelBlock: React.FC<TProps> = (props) => {
 	}, [isSubmitting, submitError]);
 
 	return (
-		<AdminBlock title={i18n.translate('title')}>
+		<AdminBlock title={t('title')}>
 			{submitError != null && (
 				<Banner tone="critical" dismissible>
 					<Paragraph>{submitError}</Paragraph>
@@ -54,6 +53,9 @@ export const SearchEnergyLabelBlock: React.FC<TProps> = (props) => {
 				>
 					{isSubmitting ? <ProgressIndicator size="small-200" /> : 'Search Energy Label'}
 				</Button>
+				<Banner tone="info" title={t('banner.eprelHelp.title')}>
+					<Paragraph>{t('banner.eprelHelp.content')}</Paragraph>
+				</Banner>
 			</BlockStack>
 		</AdminBlock>
 	);

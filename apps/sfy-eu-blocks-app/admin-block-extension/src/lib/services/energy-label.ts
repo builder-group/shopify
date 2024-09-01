@@ -1,4 +1,4 @@
-import { TSheetLanguage } from 'eprel-client';
+import { getLabelUrl, getLanguageSet, getSheetUrl, TSheetLanguage } from 'eprel-client';
 import { Err, FetchError, isStatusCode, Ok, TResult } from 'feature-fetch';
 
 import { coreClient } from '../clients';
@@ -43,6 +43,7 @@ export async function loadEnergyLabelFormMetadata(
 export async function fetchEnergyLabel(
 	registrationNumber: string
 ): Promise<TResult<TEnergyLabel | null, FetchError>> {
+	// Fetch product details
 	const productDetailsResult = await coreClient.get(
 		'/v1/energy-label/product/{registrationNumber}',
 		{
@@ -62,38 +63,34 @@ export async function fetchEnergyLabel(
 		return Err(productDetailsResult.error);
 	}
 
-	const { energyClass, modelIdentifier } = productDetailsResult.value.data ?? {};
-	if (energyClass == null || modelIdentifier == null) {
+	const { energyClass, modelIdentifier, productGroup, placementCountries } =
+		productDetailsResult.value.data ?? {};
+	if (
+		energyClass == null ||
+		modelIdentifier == null ||
+		productGroup == null ||
+		placementCountries == null
+	) {
 		return Ok(null);
 	}
 
-	const sheetUrlsResult = await coreClient.get(
-		'/v1/energy-label/product/{registrationNumber}/sheets',
-		{
-			pathParams: {
-				registrationNumber
-			}
+	// Construct sheet url map
+	const languageSet = getLanguageSet(placementCountries);
+	// @ts-expect-error -- Filled below
+	const sheetUrlMap: Record<TSheetLanguage, string> = {};
+	for (const language of languageSet) {
+		const url = getSheetUrl(productGroup, registrationNumber, language);
+		if (language != null && url != null) {
+			sheetUrlMap[language as TSheetLanguage] = url;
 		}
-	);
-	if (sheetUrlsResult.isErr()) {
-		return Err(sheetUrlsResult.error);
 	}
-
-	const sheetUrls = sheetUrlsResult.value.data;
 
 	return Ok({
 		registrationNumber,
 		energyClass,
 		modelIdentifier,
-		sheetUrlMap: sheetUrls.reduce(
-			(obj, { language, url }) => {
-				if (language != null && url != null) {
-					obj[language as TSheetLanguage] = url;
-				}
-				return obj;
-			},
-			{} as Record<TSheetLanguage, string>
-		)
+		pdfLabelUrl: getLabelUrl(productGroup, registrationNumber, 'PDF'),
+		sheetUrlMap
 	});
 }
 
@@ -101,5 +98,6 @@ export interface TEnergyLabel {
 	registrationNumber: string;
 	modelIdentifier: string;
 	energyClass: string; // 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
+	pdfLabelUrl: string;
 	sheetUrlMap: Record<TSheetLanguage, string>; // LanguageCode -> URL
 }
