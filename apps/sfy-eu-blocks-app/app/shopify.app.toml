@@ -8,7 +8,7 @@ extension_directories = [
 ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://diagnostic-absolutely-searches-sir.trycloudflare.com"
+application_url = "https://acoustic-parish-reveals-debate.trycloudflare.com"
 embedded = true
 
 [build]
@@ -22,9 +22,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://diagnostic-absolutely-searches-sir.trycloudflare.com/auth/callback",
-  "https://diagnostic-absolutely-searches-sir.trycloudflare.com/auth/shopify/callback",
-  "https://diagnostic-absolutely-searches-sir.trycloudflare.com/api/auth/callback"
+  "https://acoustic-parish-reveals-debate.trycloudflare.com/auth/callback",
+  "https://acoustic-parish-reveals-debate.trycloudflare.com/auth/shopify/callback",
+  "https://acoustic-parish-reveals-debate.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

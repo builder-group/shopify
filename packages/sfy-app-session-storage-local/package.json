@@ -34,7 +34,7 @@
 		"@blgc/config": "^0.0.23",
 		"@shopify/shopify-api": "^11.2.0",
 		"@shopify/shopify-app-session-storage": "^3.0.3",
-		"@types/node": "^22.5.1"
+		"@types/node": "^22.5.2"
 	},
 	"files": [
 		"dist",

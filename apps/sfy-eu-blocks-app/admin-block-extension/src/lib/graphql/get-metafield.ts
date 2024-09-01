@@ -16,8 +16,8 @@ export async function getMetafield(variables: TGetMetafieldVariables) {
 		}
 	>(
 		gql`
-			query GetMetafield($id: ID!, $namespace: String!, $key: String!) {
-				product(id: $id) {
+			query GetMetafield($ownerId: ID!, $namespace: String!, $key: String!) {
+				product(id: $ownerId) {
 					metafield(namespace: $namespace, key: $key) {
 						value
 					}
@@ -29,7 +29,7 @@ export async function getMetafield(variables: TGetMetafieldVariables) {
 }
 
 export interface TGetMetafieldVariables {
-	id: string; // ownerId
+	ownerId: string;
 	namespace: string;
 	key: string;
 }

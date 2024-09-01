@@ -4,12 +4,7 @@ import { Err, FetchError, isStatusCode, Ok, TResult } from 'feature-fetch';
 import { coreClient } from '../clients';
 import { applyMetafieldChange, getMetafield } from '../graphql';
 
-export async function updateEnergyLabelInMetadata(productId: string, energyLabel: TEnergyLabel) {
-	// await deleteMetafield({
-	// 	id: productId,
-	// 	namespace: '$app:energy_label',
-	// 	key: 'energy_label'
-	// });
+export async function updateEnergyLabelInMetaFields(productId: string, energyLabel: TEnergyLabel) {
 	return await applyMetafieldChange({
 		ownerId: productId,
 		ownerType: 'PRODUCT',
@@ -25,7 +20,7 @@ export async function loadEnergyLabelFormMetadata(
 	productId: string
 ): Promise<TResult<TEnergyLabel | null, FetchError>> {
 	const result = await getMetafield({
-		id: productId,
+		ownerId: productId,
 		namespace: '$app:energy_label',
 		key: 'energy_label'
 	});

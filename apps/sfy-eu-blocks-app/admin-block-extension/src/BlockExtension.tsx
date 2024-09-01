@@ -22,6 +22,12 @@ export default reactExtension(appConfig.target, async (api) => {
 		return <BannerBlock content={t('banner.error.productIdMissing')} tone="critical" />;
 	}
 
+	// const result = await deleteMetafieldDefinition({
+	// 	id: 'gid://shopify/MetafieldDefinition/98728804616',
+	// 	deleteAllAssociatedMetafields: true
+	// });
+	// console.log('deleteMetafieldDefinition', { result });
+
 	const energyLabelResult = await loadEnergyLabelFormMetadata(productId);
 	if (energyLabelResult.isErr()) {
 		return <BannerBlock content={t('banner.error.metadataReadError')} tone="critical" />;

@@ -3,11 +3,12 @@ import {
 	Banner,
 	BlockStack,
 	Button,
+	InlineStack,
 	Paragraph,
 	ProgressIndicator,
 	Section
 } from '@shopify/ui-extensions-react/admin';
-import { TFormField } from 'feature-form';
+import { hasFormChanged, TFormField } from 'feature-form';
 import { useForm } from 'feature-react/form';
 import { useGlobalState } from 'feature-react/state';
 import React from 'react';
@@ -41,21 +42,24 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 								// TODO
 							}}
 						> */}
-						<FormTextField
-							label="Registration Number"
-							field={field('registrationNumber')}
-							disabled={isSubmitting}
-						/>
-						<FormTextField
-							label="Model Identifier"
-							field={field('modelIdentifier')}
-							disabled={isSubmitting}
-						/>
-						<FormTextField
-							label="Energy Class"
-							field={field('energyClass') as TFormField<string>}
-							disabled={isSubmitting}
-						/>
+						<InlineStack gap>
+							<FormTextField
+								label="Registration Number"
+								field={field('registrationNumber')}
+								disabled={isSubmitting}
+							/>
+							<FormTextField
+								label="Model Identifier"
+								field={field('modelIdentifier')}
+								disabled={isSubmitting}
+							/>
+
+							<FormTextField
+								label="Energy Class"
+								field={field('energyClass') as TFormField<string>}
+								disabled={isSubmitting}
+							/>
+						</InlineStack>
 						<FormTextField
 							label="PDF Label URL"
 							field={field('pdfLabelUrl')}
@@ -65,15 +69,19 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 					</BlockStack>
 				</Section>
 
-				<Button
-					onClick={handleSubmit({
-						additionalData: {
-							setSubmitError
-						}
-					})}
-				>
-					{isSubmitting ? <ProgressIndicator size="small-200" /> : 'Save'}
-				</Button>
+				<InlineStack gap>
+					<Button
+						onClick={handleSubmit({
+							additionalData: {
+								setSubmitError
+							}
+						})}
+						disabled={isSubmitting || !hasFormChanged($energyLabelMetaFieldsForm)}
+					>
+						{isSubmitting ? <ProgressIndicator size="small-200" /> : 'Save'}
+					</Button>
+					<Button>Reset</Button>
+				</InlineStack>
 			</BlockStack>
 		</AdminBlock>
 	);
