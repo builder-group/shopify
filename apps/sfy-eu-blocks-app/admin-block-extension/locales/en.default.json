@@ -24,7 +24,8 @@
 			"retrievalFailed": "Failed to retrieve Energy Label by exception: {{errorMessage}}",
 			"notFound": "No Energy Label with the registration number {{registrationNumber}} found.",
 			"productIdMissing": "Failed to identify product",
-			"metadataParseError": "Failed to read or parse Energy Label metadata"
+			"metadataReadError": "Failed to read Energy Label metadata",
+			"metadataWriteError": "Failed to write Energy Label metadata"
 		},
 		"success": {
 			"energyLabelFound": "Energy Label for '{{productName}}' successfully loaded"

@@ -5,6 +5,11 @@ import { coreClient } from '../clients';
 import { applyMetafieldChange, getMetafield } from '../graphql';
 
 export async function updateEnergyLabelInMetadata(productId: string, energyLabel: TEnergyLabel) {
+	// await deleteMetafield({
+	// 	id: productId,
+	// 	namespace: '$app:energy_label',
+	// 	key: 'energy_label'
+	// });
 	return await applyMetafieldChange({
 		ownerId: productId,
 		ownerType: 'PRODUCT',

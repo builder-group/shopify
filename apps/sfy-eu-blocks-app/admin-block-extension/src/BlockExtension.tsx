@@ -2,11 +2,7 @@ import { reactExtension } from '@shopify/ui-extensions-react/admin';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import {
-	BannerBlock,
-	SearchEnergyLabelBlock,
-	UpdateEnergyLabelMetaFieldsBlock
-} from './components';
+import { BannerBlock, LoadEnergyLabelBlock, UpdateEnergyLabelMetaFieldsBlock } from './components';
 import { appConfig } from './environment';
 import {
 	$extensionContext,
@@ -28,7 +24,7 @@ export default reactExtension(appConfig.target, async (api) => {
 
 	const energyLabelResult = await loadEnergyLabelFormMetadata(productId);
 	if (energyLabelResult.isErr()) {
-		return <BannerBlock content={t('banner.error.metadataParseError')} tone="critical" />;
+		return <BannerBlock content={t('banner.error.metadataReadError')} tone="critical" />;
 	}
 
 	const energyLabel = energyLabelResult.value;
@@ -50,7 +46,7 @@ const Block: React.FC<TProps> = (props) => {
 
 	if (energyLabel == null) {
 		return (
-			<SearchEnergyLabelBlock
+			<LoadEnergyLabelBlock
 				onEnergyLabelSubmit={(energyLabel) => {
 					applyEnergyLabelToMetaFieldsForm(energyLabel);
 					setEnergyLabel(energyLabel);

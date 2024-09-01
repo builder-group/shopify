@@ -29,7 +29,7 @@ export async function getMetafield(variables: TGetMetafieldVariables) {
 }
 
 export interface TGetMetafieldVariables {
-	id: string;
+	id: string; // ownerId
 	namespace: string;
 	key: string;
 }

@@ -1,4 +1,4 @@
 export * from './BannerBlock';
 export * from './FormTextField';
-export * from './SearchEnergyLabelBlock';
+export * from './LoadEnergyLabelBlock';
 export * from './UpdateEnergyLabelMetaFieldsBlock';

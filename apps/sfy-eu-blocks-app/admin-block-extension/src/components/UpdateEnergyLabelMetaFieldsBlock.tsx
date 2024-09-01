@@ -3,7 +3,6 @@ import {
 	Banner,
 	BlockStack,
 	Button,
-	Form,
 	Paragraph,
 	ProgressIndicator,
 	Section
@@ -31,39 +30,41 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 					</Banner>
 				)}
 
-				<Form
-					onReset={() => {
-						// TODO
-					}}
-					onSubmit={() => {
-						// TODO
-					}}
-				>
-					<Section heading="Metafields">
-						<BlockStack gap={true}>
-							<FormTextField
-								label="Registration Number"
-								field={field('registrationNumber')}
-								disabled={isSubmitting}
-							/>
-							<FormTextField
-								label="Model Identifier"
-								field={field('modelIdentifier')}
-								disabled={isSubmitting}
-							/>
-							<FormTextField
-								label="Energy Class"
-								field={field('energyClass') as TFormField<string>}
-								disabled={isSubmitting}
-							/>
-							<FormTextField
-								label="PDF Label URL"
-								field={field('pdfLabelUrl')}
-								disabled={isSubmitting}
-							/>
-						</BlockStack>
-					</Section>
-				</Form>
+				<Section heading="Metafields">
+					<BlockStack gap={true}>
+						{/* <Form
+							id="form"
+							onReset={() => {
+								// TODO
+							}}
+							onSubmit={() => {
+								// TODO
+							}}
+						> */}
+						<FormTextField
+							label="Registration Number"
+							field={field('registrationNumber')}
+							disabled={isSubmitting}
+						/>
+						<FormTextField
+							label="Model Identifier"
+							field={field('modelIdentifier')}
+							disabled={isSubmitting}
+						/>
+						<FormTextField
+							label="Energy Class"
+							field={field('energyClass') as TFormField<string>}
+							disabled={isSubmitting}
+						/>
+						<FormTextField
+							label="PDF Label URL"
+							field={field('pdfLabelUrl')}
+							disabled={isSubmitting}
+						/>
+						{/* </Form> */}
+					</BlockStack>
+				</Section>
+
 				<Button
 					onClick={handleSubmit({
 						additionalData: {

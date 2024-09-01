@@ -13,7 +13,7 @@ import React from 'react';
 import { $searchEnergyLabelForm, t, TEnergyLabel } from '../lib';
 import { FormTextField } from './FormTextField';
 
-export const SearchEnergyLabelBlock: React.FC<TProps> = (props) => {
+export const LoadEnergyLabelBlock: React.FC<TProps> = (props) => {
 	const { onEnergyLabelSubmit, productId } = props;
 	const { handleSubmit, field } = useForm($searchEnergyLabelForm);
 	const isSubmitting = useGlobalState($searchEnergyLabelForm.isSubmitting);
@@ -51,7 +51,7 @@ export const SearchEnergyLabelBlock: React.FC<TProps> = (props) => {
 						}
 					})}
 				>
-					{isSubmitting ? <ProgressIndicator size="small-200" /> : 'Search Energy Label'}
+					{isSubmitting ? <ProgressIndicator size="small-200" /> : 'Load Energy Label'}
 				</Button>
 				<Banner tone="info" title={t('banner.eprelHelp.title')}>
 					<Paragraph>{t('banner.eprelHelp.content')}</Paragraph>

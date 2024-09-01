@@ -8,7 +8,11 @@ import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
 
 import { t } from '../i18n';
-import { fetchEnergyLabel, TEnergyLabel } from '../services/energy-label';
+import {
+	fetchEnergyLabel,
+	TEnergyLabel,
+	updateEnergyLabelInMetadata as updateEnergyLabelInMetaFields
+} from '../services';
 
 export const $searchEnergyLabelForm = createForm<TFormFields>({
 	fields: {
@@ -43,6 +47,16 @@ export const $searchEnergyLabelForm = createForm<TFormFields>({
 			setSubmitError(
 				t('banner.error.notFound', { registrationNumber: formData.registrationNumber })
 			);
+			return;
+		}
+
+		const updateEnergyLabelResult = await updateEnergyLabelInMetaFields(productId, energyLabel);
+		console.log({ updateEnergyLabelResult, productId, energyLabel });
+		if (
+			updateEnergyLabelResult.isErr() ||
+			updateEnergyLabelResult.value.data.metafieldsSet.userErrors.length > 0
+		) {
+			setSubmitError(t('banner.error.metadataWriteError'));
 			return;
 		}
 
