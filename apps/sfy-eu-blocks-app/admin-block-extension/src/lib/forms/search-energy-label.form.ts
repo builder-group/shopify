@@ -7,7 +7,8 @@ import {
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
 
-import { fetchEnergyLabel, TEnergyLabel } from '../energy-label';
+import { getExtensionContext } from '../extension-context';
+import { fetchEnergyLabel, TEnergyLabel } from '../services/energy-label';
 
 export const $searchEnergyLabelForm = createForm<{ registrationNumber: string }>({
 	fields: {
@@ -15,9 +16,9 @@ export const $searchEnergyLabelForm = createForm<{ registrationNumber: string }>
 			validator: vValidator(
 				v.pipe(
 					v.string(),
-					v.regex(/^\d{6}$/, 'The EPREL registration number must contain exactly 6 digits (0-9).'),
-					v.minLength(6, 'The EPREL registration number must be exactly 6 characters long.'),
-					v.maxLength(6, 'The EPREL registration number must be exactly 6 characters long.')
+					v.regex(/^\d{6}$/, () =>
+						getExtensionContext().i18n.translate('eprelRegistrationNumberValidationRegex')
+					)
 				)
 			),
 			defaultValue: ''

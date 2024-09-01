@@ -1,8 +1,8 @@
 import { TSheetLanguage } from 'eprel-client';
 import { Err, FetchError, isStatusCode, Ok, TResult } from 'feature-fetch';
 
-import { coreClient } from './clients';
-import { applyMetafieldChange, getMetafield } from './graphql';
+import { coreClient } from '../clients';
+import { applyMetafieldChange, getMetafield } from '../graphql';
 
 export async function updateEnergyLabelInMetadata(productId: string, energyLabel: TEnergyLabel) {
 	return await applyMetafieldChange({

@@ -1,4 +1,5 @@
 {
 	"name": "energy-label-admin-block",
-	"title": "Energy Label"
+	"title": "Energy Label",
+	"eprelRegistrationNumberValidationRegex": "The EPREL registration number must contain exactly 6 digits (0-9)."
 }

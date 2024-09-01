@@ -5,20 +5,21 @@ import {
 	Section,
 	Text,
 	TextField,
-	URLField,
-	useApi
+	URLField
 } from '@shopify/ui-extensions-react/admin';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { BannerBlock, SearchEnergyLabelBlock } from './components';
 import { appConfig } from './environment';
-import { loadEnergyLabelFormMetadata, TEnergyLabel } from './lib';
+import { useExtensionContext } from './hooks';
+import { $extensionContext, loadEnergyLabelFormMetadata, TEnergyLabel } from './lib';
 
 const queryClient = new QueryClient();
 
 export default reactExtension(appConfig.target, async (api) => {
 	const productId = api.data.selected[0]?.id;
+	$extensionContext.set(api);
 	if (productId == null) {
 		return <BannerBlock content={'Failed to identify product'} tone="critical" />;
 	}
@@ -40,7 +41,7 @@ export default reactExtension(appConfig.target, async (api) => {
 const Block: React.FC<TProps> = (props) => {
 	const { productId } = props;
 	const [energyLabel, setEnergyLabel] = React.useState(props.energyLabel);
-	const { i18n } = useApi(appConfig.target);
+	const { i18n } = useExtensionContext();
 
 	if (energyLabel == null) {
 		return (

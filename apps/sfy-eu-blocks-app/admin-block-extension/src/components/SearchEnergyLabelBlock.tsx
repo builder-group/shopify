@@ -4,20 +4,18 @@ import {
 	BlockStack,
 	Button,
 	Paragraph,
-	ProgressIndicator,
-	useApi
+	ProgressIndicator
 } from '@shopify/ui-extensions-react/admin';
 import { useForm } from 'feature-react/form';
 import { useGlobalState } from 'feature-react/state';
 import React from 'react';
 
-import { appConfig } from '../environment';
-import { $searchEnergyLabelForm, TEnergyLabel } from '../lib';
+import { $i18n, $searchEnergyLabelForm, TEnergyLabel } from '../lib';
 import { FormTextField } from './FormTextField';
 
 export const SearchEnergyLabelBlock: React.FC<TProps> = (props) => {
 	const { onEnergyLabelSubmit, productId } = props;
-	const { i18n, data } = useApi(appConfig.target);
+	const i18n = useGlobalState($i18n);
 	const { handleSubmit, field } = useForm($searchEnergyLabelForm);
 	const isSubmitting = useGlobalState($searchEnergyLabelForm.isSubmitting);
 	const [submitError, setSubmitError] = React.useState<string | null>(null);
@@ -54,7 +52,7 @@ export const SearchEnergyLabelBlock: React.FC<TProps> = (props) => {
 						}
 					})}
 				>
-					{isSubmitting ? <ProgressIndicator size="small-200" /> : 'Search'}
+					{isSubmitting ? <ProgressIndicator size="small-200" /> : 'Search Energy Label'}
 				</Button>
 			</BlockStack>
 		</AdminBlock>
