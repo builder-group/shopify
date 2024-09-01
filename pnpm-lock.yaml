@@ -153,8 +153,8 @@ importers:
         specifier: ^0.0.21
         version: 0.0.21
       feature-form:
-        specifier: ^0.0.19
-        version: 0.0.19
+        specifier: ^0.0.22
+        version: 0.0.22
       feature-react:
         specifier: ^0.0.21
         version: 0.0.21(react@18.3.1)
@@ -5948,8 +5948,8 @@ packages:
   feature-fetch@0.0.21:
     resolution: {integrity: sha512-okHNrplaXBjBkxffJpvw+lR8+ijiZAj03tdbWE8lkH7zJCNR5gAjsp+qwgFBwmeW5ZBi4GAvlus/gubsJQhkPg==}
 
-  feature-form@0.0.19:
-    resolution: {integrity: sha512-ra8lyQoNFe/CZQnqE5Wh1DCO36rE2Y8i8Dh8uZpBxVvL5Y7UIu2MEJ+nwQOeeHpHuYm5REoYjeCY/0GUeavn8g==}
+  feature-form@0.0.22:
+    resolution: {integrity: sha512-AeA+nLixPbgSrmTHZZKxV0Y4zhklP2l/Swib2Q9PGVC2upl67tpPHavD1iITqVtzByVSWhqU7MysVTfp9RAOOQ==}
 
   feature-logger@0.0.22:
     resolution: {integrity: sha512-czjBzpUBqv3NdQy8r87hvetgC5ZM4kqkCyUcJgVClM3gUGdth9jtbJ+1hYObrErJofiizWvbLYW260/vdRH0tQ==}
@@ -16948,7 +16948,7 @@ snapshots:
       '@blgc/types': 0.0.7
       '@blgc/utils': 0.0.18
 
-  feature-form@0.0.19:
+  feature-form@0.0.22:
     dependencies:
       '@blgc/types': 0.0.7
       '@blgc/utils': 0.0.18

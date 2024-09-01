@@ -11,7 +11,7 @@ import {
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import { BannerBlock, CreateEnergyLabelBlock } from './components';
+import { BannerBlock, SearchEnergyLabelBlock } from './components';
 import { appConfig } from './environment';
 import { loadEnergyLabelFormMetadata, TEnergyLabel } from './lib';
 
@@ -32,22 +32,23 @@ export default reactExtension(appConfig.target, async (api) => {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Block energyLabel={energyLabelResult.value} />
+			<Block energyLabel={energyLabelResult.value} productId={productId} />
 		</QueryClientProvider>
 	);
 });
 
 const Block: React.FC<TProps> = (props) => {
-	const { energyLabel } = props;
+	const { productId } = props;
+	const [energyLabel, setEnergyLabel] = React.useState(props.energyLabel);
 	const { i18n } = useApi(appConfig.target);
 
 	if (energyLabel == null) {
 		return (
-			<CreateEnergyLabelBlock
+			<SearchEnergyLabelBlock
 				onEnergyLabelSubmit={(energyLabel) => {
-					console.log({ energyLabel });
-					//TODO
+					setEnergyLabel(energyLabel);
 				}}
+				productId={productId}
 			/>
 		);
 	}
@@ -112,123 +113,5 @@ const Block: React.FC<TProps> = (props) => {
 
 interface TProps {
 	energyLabel: TEnergyLabel | null;
+	productId: string;
 }
-
-// function App() {
-// 	// const { i18n, data } = useApi(TARGET);
-// 	// const productId = React.useMemo(() => data.selected?.[0]?.id, [data.selected[0]]);
-// 	// const {
-// 	// 	status,
-// 	// 	data: selectedEnergyLabel,
-// 	// 	isLoading: isLoadingSelectedEnergyLabel,
-// 	// 	error
-// 	// } = useQuery({
-// 	// 	queryKey: ['energy-label', productId],
-// 	// 	queryFn: async () => {
-// 	// 		if (productId != null) {
-// 	// 			const result = await getEnergyLabel(productId);
-// 	// 			return result.unwrap();
-// 	// 		}
-// 	// 		return undefined;
-// 	// 	}
-// 	// });
-// 	// const [energyLabelInput, setEnergyLabelInput] = React.useState<string>('');
-
-// 	// const { data: productGroups, isLoading: isLoadingProductGroups } = useQuery({
-// 	// 	queryKey: ['energy-label', 'product-groups'],
-// 	// 	queryFn: async () => {
-// 	// 		const result = await coreClient.get('/v1/energy-label/product-groups');
-// 	// 		return result.unwrap().data;
-// 	// 	}
-// 	// });
-
-// 	// React.useEffect(() => {
-// 	// 	if (status === 'success' && selectedEnergyLabel != null) {
-// 	// 		setEnergyLabelInput(selectedEnergyLabel);
-// 	// 	}
-// 	// }, [selectedEnergyLabel, status]);
-
-// 	// const onSubmit = React.useCallback(async () => {
-// 	// 	if (productId != null) {
-// 	// 		const result = await updateEnergyLabel(productId, 123);
-// 	// 		console.log({ result });
-// 	// 	}
-// 	// }, [productId]);
-
-// 	// return (
-// 	// 	<AdminBlock title={i18n.translate('title')}>
-// 	// 		<BlockStack>
-// 	// 			<Select
-// 	// 				label="Date range"
-// 	// 				options={
-// 	// 					productGroups?.map((productGroup) => ({
-// 	// 						label: productGroup.name as string,
-// 	// 						value: productGroup.code
-// 	// 					})) ?? []
-// 	// 				}
-// 	// 				value={isLoadingProductGroups ? 'Loading..' : undefined}
-// 	// 				disabled={isLoadingProductGroups}
-// 	// 			/>
-// 	// 			<TextField
-// 	// 				label="EnergyLabel"
-// 	// 				type="number"
-// 	// 				value={energyLabelInput}
-// 	// 				onChange={setEnergyLabelInput}
-// 	// 				autoComplete="off"
-// 	// 				loading={isLoadingSelectedEnergyLabel}
-// 	// 			/>
-// 	// 			<Button onClick={onSubmit}>Update Energy Label</Button>
-// 	// 		</BlockStack>
-// 	// 	</AdminBlock>
-// 	// );
-
-// 	// const { i18n, data } = useApi(TARGET);
-// 	// const productId = React.useMemo(() => data.selected?.[0]?.id, [data.selected[0]]);
-
-// 	// return (
-// 	// 	<AdminBlock title={i18n.translate('title')}>
-// 	// 		<BlockStack>
-// 	// 			<Select label="Category" options={[]} />
-// 	// 			<TextField label="Energy Label Number" />
-// 	// 			<Button
-// 	// 				onPress={() => {
-// 	// 					console.log('onPress event');
-// 	// 				}}
-// 	// 			>
-// 	// 				Save
-// 	// 			</Button>
-// 	// 		</BlockStack>
-// 	// 	</AdminBlock>
-// 	// );
-
-// 	const [value, setValue] = React.useState(settings);
-// 	const [error, setError] = React.useState();
-
-// 	return (
-// 		<FunctionSettings
-// 			onError={(errors) => {
-// 				setError(errors[0]?.message);
-// 			}}
-// 		>
-// 			<Section heading="Settings">
-// 				<TextField
-// 					label="Name"
-// 					name="name"
-// 					value={value}
-// 					error={error}
-// 					onChange={(value) => {
-// 						setValue(value);
-// 						setError(undefined);
-// 						applyMetafieldsChange({
-// 							type: 'updateMetafield',
-// 							namespace: '$app:my_namespace',
-// 							key: 'name',
-// 							value,
-// 							valueType: 'single_line_text_field'
-// 						});
-// 					}}
-// 				/>
-// 			</Section>
-// 		</FunctionSettings>
-// 	);
-// }
