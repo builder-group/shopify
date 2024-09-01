@@ -2,8 +2,10 @@ import {
 	AdminBlock,
 	Banner,
 	BlockStack,
+	Button,
 	Form,
 	Paragraph,
+	ProgressIndicator,
 	Section
 } from '@shopify/ui-extensions-react/admin';
 import { TFormField } from 'feature-form';
@@ -19,14 +21,6 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 	const { handleSubmit, field } = useForm($energyLabelMetaFieldsForm);
 	const isSubmitting = useGlobalState($energyLabelMetaFieldsForm.isSubmitting);
 	const [submitError, setSubmitError] = React.useState<string | null>(null);
-
-	// Load energy label into meta fields form
-	React.useEffect(() => {
-		$energyLabelMetaFieldsForm.fields.registrationNumber.set(energyLabel.registrationNumber);
-		$energyLabelMetaFieldsForm.fields.modelIdentifier.set(energyLabel.modelIdentifier);
-		$energyLabelMetaFieldsForm.fields.energyClass.set(energyLabel.energyClass as any);
-		$energyLabelMetaFieldsForm.fields.pdfLabelUrl.set(energyLabel.pdfLabelUrl);
-	}, [energyLabel]);
 
 	return (
 		<AdminBlock title={t('title')}>
@@ -46,28 +40,39 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 					}}
 				>
 					<Section heading="Metafields">
-						<FormTextField
-							label="Registration Number"
-							field={field('registrationNumber')}
-							disabled={isSubmitting}
-						/>
-						<FormTextField
-							label="Model Identifier"
-							field={field('modelIdentifier')}
-							disabled={isSubmitting}
-						/>
-						<FormTextField
-							label="Energy Class"
-							field={field('energyClass') as TFormField<string>}
-							disabled={isSubmitting}
-						/>
-						<FormTextField
-							label="PDF Label URL"
-							field={field('pdfLabelUrl')}
-							disabled={isSubmitting}
-						/>
+						<BlockStack gap={true}>
+							<FormTextField
+								label="Registration Number"
+								field={field('registrationNumber')}
+								disabled={isSubmitting}
+							/>
+							<FormTextField
+								label="Model Identifier"
+								field={field('modelIdentifier')}
+								disabled={isSubmitting}
+							/>
+							<FormTextField
+								label="Energy Class"
+								field={field('energyClass') as TFormField<string>}
+								disabled={isSubmitting}
+							/>
+							<FormTextField
+								label="PDF Label URL"
+								field={field('pdfLabelUrl')}
+								disabled={isSubmitting}
+							/>
+						</BlockStack>
 					</Section>
 				</Form>
+				<Button
+					onClick={handleSubmit({
+						additionalData: {
+							setSubmitError
+						}
+					})}
+				>
+					{isSubmitting ? <ProgressIndicator size="small-200" /> : 'Save'}
+				</Button>
 			</BlockStack>
 		</AdminBlock>
 	);

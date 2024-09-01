@@ -8,6 +8,7 @@ import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
 
 import { t } from '../i18n';
+import { TEnergyLabel } from '../services';
 
 export const $energyLabelMetaFieldsForm = createForm<TFormFields>({
 	fields: {
@@ -55,4 +56,16 @@ interface TFormFields {
 	modelIdentifier: string;
 	energyClass: 'A' | 'B' | 'C' | 'D' | 'E' | 'F';
 	pdfLabelUrl: string;
+}
+
+export function applyEnergyLabelToMetaFieldsForm(energyLabel: TEnergyLabel) {
+	$energyLabelMetaFieldsForm.fields.registrationNumber.set(energyLabel.registrationNumber);
+	$energyLabelMetaFieldsForm.fields.registrationNumber._intialValue =
+		energyLabel.registrationNumber;
+	$energyLabelMetaFieldsForm.fields.modelIdentifier.set(energyLabel.modelIdentifier);
+	$energyLabelMetaFieldsForm.fields.modelIdentifier._intialValue = energyLabel.modelIdentifier;
+	$energyLabelMetaFieldsForm.fields.energyClass.set(energyLabel.energyClass as any);
+	$energyLabelMetaFieldsForm.fields.energyClass._intialValue = energyLabel.energyClass as any;
+	$energyLabelMetaFieldsForm.fields.pdfLabelUrl.set(energyLabel.pdfLabelUrl);
+	$energyLabelMetaFieldsForm.fields.pdfLabelUrl._intialValue = energyLabel.pdfLabelUrl;
 }

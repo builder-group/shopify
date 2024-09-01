@@ -27,7 +27,7 @@
 			"metadataParseError": "Fehler beim Lesen oder Analysieren der Energielabel-Metadaten"
 		},
 		"success": {
-			"energyLabelFound": "Energielabel für '{{productName}}' erfolgreich gefunden und geladen"
+			"energyLabelFound": "Energielabel für '{{productName}}' erfolgreich geladen"
 		}
 	}
 }

@@ -27,7 +27,7 @@
 			"metadataParseError": "Failed to read or parse Energy Label metadata"
 		},
 		"success": {
-			"energyLabelFound": "Energy Label for '{{productName}}' successfully found and loaded"
+			"energyLabelFound": "Energy Label for '{{productName}}' successfully loaded"
 		}
 	}
 }

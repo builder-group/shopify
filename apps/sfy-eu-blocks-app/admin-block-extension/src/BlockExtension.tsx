@@ -8,7 +8,13 @@ import {
 	UpdateEnergyLabelMetaFieldsBlock
 } from './components';
 import { appConfig } from './environment';
-import { $extensionContext, loadEnergyLabelFormMetadata, t, TEnergyLabel } from './lib';
+import {
+	$extensionContext,
+	applyEnergyLabelToMetaFieldsForm,
+	loadEnergyLabelFormMetadata,
+	t,
+	TEnergyLabel
+} from './lib';
 
 const queryClient = new QueryClient();
 
@@ -25,9 +31,14 @@ export default reactExtension(appConfig.target, async (api) => {
 		return <BannerBlock content={t('banner.error.metadataParseError')} tone="critical" />;
 	}
 
+	const energyLabel = energyLabelResult.value;
+	if (energyLabel != null) {
+		applyEnergyLabelToMetaFieldsForm(energyLabel);
+	}
+
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Block energyLabel={energyLabelResult.value} productId={productId} />
+			<Block energyLabel={energyLabel} productId={productId} />
 		</QueryClientProvider>
 	);
 });
@@ -41,6 +52,7 @@ const Block: React.FC<TProps> = (props) => {
 		return (
 			<SearchEnergyLabelBlock
 				onEnergyLabelSubmit={(energyLabel) => {
+					applyEnergyLabelToMetaFieldsForm(energyLabel);
 					setEnergyLabel(energyLabel);
 					setSuccessMessage(
 						t('banner.success.energyLabelFound', {
