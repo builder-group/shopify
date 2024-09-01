@@ -1,4 +1,10 @@
-import { getLabelUrl, getLanguageSet, getSheetUrl, TSheetLanguage } from 'eprel-client';
+import {
+	getLabelUrl,
+	getLanguageSet,
+	getSheetUrl,
+	TLabelFormat,
+	TSheetLanguage
+} from 'eprel-client';
 import { Err, FetchError, isStatusCode, Ok, TResult } from 'feature-fetch';
 
 import { coreClient } from '../clients';
@@ -89,7 +95,11 @@ export async function fetchEnergyLabel(
 		registrationNumber,
 		energyClass,
 		modelIdentifier,
-		pdfLabelUrl: getLabelUrl(productGroup, registrationNumber, 'PDF'),
+		labelUrlMap: {
+			PDF: getLabelUrl(productGroup, registrationNumber, 'PDF'),
+			PNG: getLabelUrl(productGroup, registrationNumber, 'PNG'),
+			SVG: getLabelUrl(productGroup, registrationNumber, 'SVG')
+		},
 		sheetUrlMap
 	});
 }
@@ -98,6 +108,6 @@ export interface TEnergyLabel {
 	registrationNumber: string;
 	modelIdentifier: string;
 	energyClass: string; // 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
-	pdfLabelUrl: string;
-	sheetUrlMap: Record<TSheetLanguage, string>; // LanguageCode -> URL
+	labelUrlMap: Record<TLabelFormat, string>;
+	sheetUrlMap: Record<TSheetLanguage, string>;
 }
