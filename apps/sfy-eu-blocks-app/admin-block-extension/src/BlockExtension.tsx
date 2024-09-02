@@ -70,6 +70,7 @@ const Block: React.FC<TProps> = (props) => {
 
 	return (
 		<UpdateEnergyLabelMetaFieldsBlock
+			productId={productId}
 			energyLabel={energyLabel}
 			successMessage={successMessage ?? undefined}
 		/>

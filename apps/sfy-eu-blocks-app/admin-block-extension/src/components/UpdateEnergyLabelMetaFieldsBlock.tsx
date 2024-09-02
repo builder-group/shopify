@@ -12,15 +12,27 @@ import { hasFormChanged, TFormField } from 'feature-form';
 import { useForm } from 'feature-react/form';
 import { useGlobalState } from 'feature-react/state';
 import React from 'react';
+import { useMutation } from 'react-query';
 
-import { $energyLabelMetaFieldsForm, t, TEnergyLabel } from '../lib';
+import {
+	$energyLabelMetaFieldsForm,
+	deleteEnergyLabelFromMetafields,
+	t,
+	TEnergyLabel
+} from '../lib';
 import { FormTextField } from './FormTextField';
 
 export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
-	const { energyLabel, successMessage } = props;
+	const { energyLabel, successMessage, productId } = props;
 	const { handleSubmit, field } = useForm($energyLabelMetaFieldsForm);
 	const isSubmitting = useGlobalState($energyLabelMetaFieldsForm.isSubmitting);
 	const [submitError, setSubmitError] = React.useState<string | null>(null);
+
+	const resetMutation = useMutation<any, any, { productId: string }>({
+		mutationFn: async (data) => {
+			(await deleteEnergyLabelFromMetafields(data.productId)).unwrap();
+		}
+	});
 
 	return (
 		<AdminBlock title={t('title')}>
@@ -80,7 +92,13 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 					>
 						{isSubmitting ? <ProgressIndicator size="small-200" /> : 'Save'}
 					</Button>
-					<Button>Reset</Button>
+					<Button
+						onClick={() => {
+							resetMutation.mutate({ productId });
+						}}
+					>
+						{resetMutation.isLoading ? <ProgressIndicator size="small-200" /> : 'Reset'}
+					</Button>
 				</InlineStack>
 			</BlockStack>
 		</AdminBlock>
@@ -88,6 +106,7 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 };
 
 interface TProps {
+	productId: string;
 	energyLabel: TEnergyLabel;
 	successMessage?: string;
 }
