@@ -10,7 +10,7 @@ import { vValidator } from 'validation-adapters/valibot';
 import { t } from '../i18n';
 import { TEnergyLabel } from '../services';
 
-export const $energyLabelMetaFieldsForm = createForm<TFormFields>({
+export const $updateEnergyLabelMetafieldForm = createForm<TFormFields>({
 	fields: {
 		registrationNumber: {
 			validator: vValidator(
@@ -58,14 +58,14 @@ interface TFormFields {
 	pdfLabelUrl: string;
 }
 
-export function applyEnergyLabelToMetaFieldsForm(energyLabel: TEnergyLabel) {
-	$energyLabelMetaFieldsForm.fields.registrationNumber.set(energyLabel.registrationNumber);
-	$energyLabelMetaFieldsForm.fields.registrationNumber._intialValue =
+export function applyEnergyLabelToUpdateMetafieldForm(energyLabel: TEnergyLabel) {
+	$updateEnergyLabelMetafieldForm.fields.registrationNumber.set(energyLabel.registrationNumber);
+	$updateEnergyLabelMetafieldForm.fields.registrationNumber._intialValue =
 		energyLabel.registrationNumber;
-	$energyLabelMetaFieldsForm.fields.modelIdentifier.set(energyLabel.modelIdentifier);
-	$energyLabelMetaFieldsForm.fields.modelIdentifier._intialValue = energyLabel.modelIdentifier;
-	$energyLabelMetaFieldsForm.fields.energyClass.set(energyLabel.energyClass as any);
-	$energyLabelMetaFieldsForm.fields.energyClass._intialValue = energyLabel.energyClass as any;
-	$energyLabelMetaFieldsForm.fields.pdfLabelUrl.set(energyLabel.labelUrlMap.PDF);
-	$energyLabelMetaFieldsForm.fields.pdfLabelUrl._intialValue = energyLabel.labelUrlMap.PDF;
+	$updateEnergyLabelMetafieldForm.fields.modelIdentifier.set(energyLabel.modelIdentifier);
+	$updateEnergyLabelMetafieldForm.fields.modelIdentifier._intialValue = energyLabel.modelIdentifier;
+	$updateEnergyLabelMetafieldForm.fields.energyClass.set(energyLabel.energyClass as any);
+	$updateEnergyLabelMetafieldForm.fields.energyClass._intialValue = energyLabel.energyClass as any;
+	$updateEnergyLabelMetafieldForm.fields.pdfLabelUrl.set(energyLabel.labelUrlMap.PDF);
+	$updateEnergyLabelMetafieldForm.fields.pdfLabelUrl._intialValue = energyLabel.labelUrlMap.PDF;
 }
