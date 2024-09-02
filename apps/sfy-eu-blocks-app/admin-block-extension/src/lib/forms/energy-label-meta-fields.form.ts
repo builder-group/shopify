@@ -66,6 +66,6 @@ export function applyEnergyLabelToMetaFieldsForm(energyLabel: TEnergyLabel) {
 	$energyLabelMetaFieldsForm.fields.modelIdentifier._intialValue = energyLabel.modelIdentifier;
 	$energyLabelMetaFieldsForm.fields.energyClass.set(energyLabel.energyClass as any);
 	$energyLabelMetaFieldsForm.fields.energyClass._intialValue = energyLabel.energyClass as any;
-	$energyLabelMetaFieldsForm.fields.pdfLabelUrl.set(energyLabel.labelUrlMap);
-	$energyLabelMetaFieldsForm.fields.pdfLabelUrl._intialValue = energyLabel.labelUrlMap;
+	$energyLabelMetaFieldsForm.fields.pdfLabelUrl.set(energyLabel.labelUrlMap.PDF);
+	$energyLabelMetaFieldsForm.fields.pdfLabelUrl._intialValue = energyLabel.labelUrlMap.PDF;
 }

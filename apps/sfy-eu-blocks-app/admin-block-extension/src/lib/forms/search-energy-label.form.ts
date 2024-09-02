@@ -8,7 +8,7 @@ import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
 
 import { t } from '../i18n';
-import { fetchEnergyLabel, TEnergyLabel, updateEnergyLabelInMetaFields } from '../services';
+import { fetchEnergyLabel, TEnergyLabel, updateEnergyLabelInMetafields } from '../services';
 
 export const $searchEnergyLabelForm = createForm<TFormFields>({
 	fields: {
@@ -46,12 +46,22 @@ export const $searchEnergyLabelForm = createForm<TFormFields>({
 			return;
 		}
 
-		const updateEnergyLabelResult = await updateEnergyLabelInMetaFields(productId, energyLabel);
-		if (
-			updateEnergyLabelResult.isErr() ||
-			updateEnergyLabelResult.value.data.data.metafieldsSet.userErrors.length > 0
-		) {
-			setSubmitError(t('banner.error.metadataWriteError'));
+		const updateEnergyLabelResult = await updateEnergyLabelInMetafields(productId, energyLabel);
+		if (updateEnergyLabelResult.isErr()) {
+			setSubmitError(
+				t('banner.error.metadataWriteError', {
+					errorMessage: updateEnergyLabelResult.error.message
+				})
+			);
+			return;
+		}
+		if (updateEnergyLabelResult.value.metafieldsSet.userErrors.length > 0) {
+			setSubmitError(
+				t('banner.error.metadataWriteError', {
+					errorMessage:
+						updateEnergyLabelResult.value.metafieldsSet.userErrors[0]?.message ?? 'Unknown'
+				})
+			);
 			return;
 		}
 

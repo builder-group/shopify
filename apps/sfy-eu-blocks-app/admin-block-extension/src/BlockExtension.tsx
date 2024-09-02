@@ -7,7 +7,7 @@ import { appConfig } from './environment';
 import {
 	$extensionContext,
 	applyEnergyLabelToMetaFieldsForm,
-	loadEnergyLabelFormMetadata,
+	getEnergyLabelFormMetafields,
 	t,
 	TEnergyLabel
 } from './lib';
@@ -22,15 +22,16 @@ export default reactExtension(appConfig.target, async (api) => {
 		return <BannerBlock content={t('banner.error.productIdMissing')} tone="critical" />;
 	}
 
-	// const result = await deleteMetafieldDefinition({
-	// 	id: 'gid://shopify/MetafieldDefinition/98728804616',
-	// 	deleteAllAssociatedMetafields: true
-	// });
-	// console.log('deleteMetafieldDefinition', { result });
-
-	const energyLabelResult = await loadEnergyLabelFormMetadata(productId);
+	const energyLabelResult = await getEnergyLabelFormMetafields(productId);
 	if (energyLabelResult.isErr()) {
-		return <BannerBlock content={t('banner.error.metadataReadError')} tone="critical" />;
+		return (
+			<BannerBlock
+				content={t('banner.error.metadataReadError', {
+					errorMessage: energyLabelResult.error.message
+				})}
+				tone="critical"
+			/>
+		);
 	}
 
 	const energyLabel = energyLabelResult.value;

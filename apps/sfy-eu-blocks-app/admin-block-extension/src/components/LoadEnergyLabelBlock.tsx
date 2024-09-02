@@ -41,6 +41,7 @@ export const LoadEnergyLabelBlock: React.FC<TProps> = (props) => {
 					label="Registration Number"
 					field={field('registrationNumber')}
 					disabled={isSubmitting}
+					placeholder={'550826'}
 				/>
 				<Button
 					onClick={handleSubmit({

@@ -24,8 +24,8 @@
 			"retrievalFailed": "Fehler beim Abrufen des Energielabels: {{errorMessage}}",
 			"notFound": "Kein Energielabel mit der Registrierungsnummer {{registrationNumber}} gefunden.",
 			"productIdMissing": "Produkt konnte nicht identifiziert werden",
-			"metadataReadError": "Fehler beim Lesen der Energielabel-Metadaten",
-			"metadataWriteError": "Fehler beim Schreiben der Energielabel-Metadaten"
+			"metadataReadError": "Fehler beim Lesen der Energielabel-Metadaten: {{errorMessage}}",
+			"metadataWriteError": "Fehler beim Schreiben der Energielabel-Metadaten: {{errorMessage}}"
 		},
 		"success": {
 			"energyLabelFound": "Energielabel für '{{productName}}' erfolgreich geladen"

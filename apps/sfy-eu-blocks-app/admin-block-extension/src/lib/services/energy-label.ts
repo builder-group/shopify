@@ -8,25 +8,24 @@ import {
 import { Err, FetchError, isStatusCode, Ok, TResult } from 'feature-fetch';
 
 import { coreClient } from '../clients';
-import { applyMetafieldChange, getMetafield } from '../graphql';
+import { deleteMetafieldMutation, getMetafieldQuery, updateMetafieldMutation } from '../graphql';
 
-export async function updateEnergyLabelInMetaFields(productId: string, energyLabel: TEnergyLabel) {
-	return await applyMetafieldChange({
-		ownerId: productId,
-		ownerType: 'PRODUCT',
-		type: 'json',
+export async function updateEnergyLabelInMetafields(productId: string, energyLabel: TEnergyLabel) {
+	return await updateMetafieldMutation({
+		productId,
 		namespace: '$app:energy_label',
+		namespaceName: 'Energy Label',
 		key: 'energy_label',
-		value: JSON.stringify(energyLabel),
-		name: 'Energy Label'
+		type: 'json',
+		value: JSON.stringify(energyLabel)
 	});
 }
 
-export async function loadEnergyLabelFormMetadata(
+export async function getEnergyLabelFormMetafields(
 	productId: string
 ): Promise<TResult<TEnergyLabel | null, FetchError>> {
-	const result = await getMetafield({
-		ownerId: productId,
+	const result = await getMetafieldQuery({
+		productId: productId,
 		namespace: '$app:energy_label',
 		key: 'energy_label'
 	});
@@ -34,7 +33,7 @@ export async function loadEnergyLabelFormMetadata(
 		return Err(result.error);
 	}
 
-	const productLabelString = result.value.data.data.product.metafield?.value;
+	const productLabelString = result.value.product.metafield?.value;
 	if (productLabelString == null) {
 		return Ok(null);
 	}
@@ -44,6 +43,14 @@ export async function loadEnergyLabelFormMetadata(
 	} catch (e) {}
 
 	return Ok(null);
+}
+
+export async function deleteEnergyLabelFromMetafields(productId: string) {
+	return await deleteMetafieldMutation({
+		productId,
+		namespace: '$app:energy_label',
+		key: 'energy_label'
+	});
 }
 
 export async function fetchEnergyLabel(

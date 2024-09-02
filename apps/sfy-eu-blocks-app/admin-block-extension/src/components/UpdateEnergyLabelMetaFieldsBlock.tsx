@@ -46,12 +46,12 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 							<FormTextField
 								label="Registration Number"
 								field={field('registrationNumber')}
-								disabled={isSubmitting}
+								disabled={true}
 							/>
 							<FormTextField
 								label="Model Identifier"
 								field={field('modelIdentifier')}
-								disabled={isSubmitting}
+								disabled={true}
 							/>
 
 							<FormTextField

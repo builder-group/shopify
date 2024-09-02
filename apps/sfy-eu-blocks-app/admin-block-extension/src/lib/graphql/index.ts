@@ -1,4 +1,3 @@
-export * from './apply-metafield-change';
-export * from './delete-metafield';
-export * from './delete-metafield-definition';
-export * from './get-metafield';
+export * from './delete-metafield.mutation';
+export * from './get-metafield.query';
+export * from './update-metafield.mutation';
