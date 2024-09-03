@@ -16,9 +16,18 @@
 		}
 	},
 	"banner": {
-		"eprelHelp": {
-			"title": "Können Sie die EPREL-Registrierungsnummer nicht finden?",
-			"content": "Scannen Sie den QR-Code auf dem Energielabel des Produkts (gedruckt oder digital). Sie werden auf eine Webseite weitergeleitet, auf der die EPREL-Registrierungsnummer in grau in der Breadcrumb-Navigation oben angezeigt wird, unter Start > Produktkategorie > XXXXXX."
+		"info": {
+			"eprelHelp": {
+				"title": "Können Sie die EPREL-Registrierungsnummer nicht finden?",
+				"content": "Scannen Sie den QR-Code auf dem Energielabel des Produkts (gedruckt oder digital). Sie werden auf eine Webseite weitergeleitet, auf der die EPREL-Registrierungsnummer in grau in der Breadcrumb-Navigation oben angezeigt wird, unter Start > Produktkategorie > XXXXXX."
+			},
+			"eprelNotice": {
+				"content1": "Die Energieetiketten, Energieklassen-Badges, Produktinformationsblätter und zugehörigen Daten befinden sich auf ",
+				"link1Text": "ec.europa.eu",
+				"content2": ", sind Eigentum der Europäischen Union, lizenziert unter der ",
+				"link2Text": "Creative Commons Namensnennung 4.0 International (CC BY 4.0) Lizenz",
+				"content3": ", und werden wie besehen bereitgestellt."
+			}
 		},
 		"error": {
 			"retrievalFailed": "Fehler beim Abrufen des Energielabels: {{errorMessage}}",
@@ -28,7 +37,14 @@
 			"metadataWriteError": "Fehler beim Schreiben der Energielabel-Metadaten: {{errorMessage}}"
 		},
 		"success": {
-			"energyLabelFound": "Energielabel für '{{productName}}' erfolgreich geladen"
+			"energyLabelFound": "Energielabel für '{{productName}}' erfolgreich geladen",
+			"energyLabelUpdated": "Energielabel für '{{productName}}' erfolgreich aktualisiert"
 		}
+	},
+	"button": {
+		"loadEnergyLabel": "Energieetikett laden",
+		"editAdditionalMetafields": "Zusätzliche Metafelder bearbeiten",
+		"save": "Speichern",
+		"reset": "Zurücksetzen"
 	}
 }

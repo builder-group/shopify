@@ -29,7 +29,7 @@ export const $loadEnergyLabelForm = createForm<TFormFields>({
 	validateMode: bitwiseFlag(FormFieldValidateMode.OnSubmit),
 	reValidateMode: bitwiseFlag(FormFieldReValidateMode.OnBlur, FormFieldReValidateMode.OnChange),
 	onValidSubmit: async (formData, additionalData = {}) => {
-		const { productId } = additionalData as unknown as TValidSubmitAdditionalData; // TODO: Make more typesafe
+		const { productId } = additionalData as unknown as TValidLoadEnergyLabelSubmitAdditionalData; // TODO: Make more typesafe
 
 		const energyLabelResult = await fetchEnergyLabel(formData.registrationNumber);
 		if (energyLabelResult.isErr()) {
@@ -95,6 +95,6 @@ interface TFormFields {
 	registrationNumber: string;
 }
 
-export interface TValidSubmitAdditionalData {
+export interface TValidLoadEnergyLabelSubmitAdditionalData {
 	productId: string;
 }

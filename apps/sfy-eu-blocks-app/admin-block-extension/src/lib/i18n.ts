@@ -27,4 +27,5 @@ type TTranslationOptions = {
 	'banner.error.metadataWriteError': { errorMessage: string };
 	'banner.error.notFound': { registrationNumber: string };
 	'banner.success.energyLabelFound': { productName: string };
+	'banner.success.energyLabelUpdated': { productName: string };
 };

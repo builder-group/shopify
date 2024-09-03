@@ -27,6 +27,7 @@ export const LoadEnergyLabelBlock: React.FC<TProps> = (props) => {
 				placeholder={'550826'}
 			/>
 			<Button
+				variant="primary"
 				onClick={handleSubmit({
 					additionalData: {
 						productId
@@ -42,10 +43,10 @@ export const LoadEnergyLabelBlock: React.FC<TProps> = (props) => {
 					}
 				})}
 			>
-				{isSubmitting ? <ProgressIndicator size="small-200" /> : 'Load Energy Label'}
+				{isSubmitting ? <ProgressIndicator size="small-200" /> : t('button.loadEnergyLabel')}
 			</Button>
-			<Banner tone="info" title={t('banner.eprelHelp.title')}>
-				<Paragraph>{t('banner.eprelHelp.content')}</Paragraph>
+			<Banner tone="info" title={t('banner.info.eprelHelp.title')}>
+				<Paragraph>{t('banner.info.eprelHelp.content')}</Paragraph>
 			</Banner>
 		</BlockStack>
 	);
