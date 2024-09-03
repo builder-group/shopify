@@ -29,6 +29,13 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 	const isSubmitting = useGlobalState($updateEnergyLabelMetafieldForm.isSubmitting);
 	const [formChanged, setFormChanged] = React.useState(false);
 
+	// gid:/shopify/Product/9436272754952 -> 9436272754952
+	const productIdNumber = React.useMemo(() => productId.replace(/^(.*[\\\/])/, ''), [productId]);
+
+	// To disable save button
+	useGlobalState($updateEnergyLabelMetafieldForm.fields.energyClass);
+	useGlobalState($updateEnergyLabelMetafieldForm.fields.pdfLabelUrl);
+
 	React.useEffect(() => {
 		$updateEnergyLabelMetafieldForm.fields.energyClass.listen(() => {
 			setFormChanged(hasFormChanged($updateEnergyLabelMetafieldForm));
@@ -37,10 +44,6 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 			setFormChanged(hasFormChanged($updateEnergyLabelMetafieldForm));
 		});
 	}, [$updateEnergyLabelMetafieldForm]);
-
-	// To disable save button
-	useGlobalState($updateEnergyLabelMetafieldForm.fields.energyClass);
-	useGlobalState($updateEnergyLabelMetafieldForm.fields.pdfLabelUrl);
 
 	const resetMutation = useMutation<any, any, { productId: string }>({
 		mutationFn: async (data) => {
@@ -123,7 +126,11 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 				>
 					{resetMutation.isLoading ? <ProgressIndicator size="small-200" /> : t('button.reset')}
 				</Button>
-				<Button variant="tertiary" target="_blank" to="todo">
+				<Button
+					variant="tertiary"
+					target="_blank"
+					href={`app://eu-blocks/energy-label/${productIdNumber}`}
+				>
 					{t('button.editAdditionalMetafields')}
 				</Button>
 			</InlineStack>

@@ -44,10 +44,11 @@ export const LoadEnergyLabelBlock: React.FC<TProps> = (props) => {
 							}
 						}
 					})}
+					disabled={isSubmitting}
 				>
 					{isSubmitting ? <ProgressIndicator size="small-200" /> : t('button.loadEnergyLabel')}
 				</Button>
-				<Button variant="tertiary" target="_blank" to="todo">
+				<Button variant="tertiary" target="_blank" href={`app://energy-label/finder`}>
 					{t('button.findEnergyLabel')}
 				</Button>
 			</InlineStack>

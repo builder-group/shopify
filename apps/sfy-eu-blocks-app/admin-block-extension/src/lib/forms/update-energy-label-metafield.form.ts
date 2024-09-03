@@ -43,6 +43,7 @@ export const $updateEnergyLabelMetafieldForm = createForm<TFormFields>({
 				v.pipe(
 					v.string(),
 					v.url(() => t('validation.labelUrl.invalidFormat'))
+					// TODO: needs to end with .pdf
 				)
 			)
 		}
