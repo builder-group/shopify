@@ -2,6 +2,7 @@ import {
 	Banner,
 	BlockStack,
 	Button,
+	InlineStack,
 	Paragraph,
 	ProgressIndicator
 } from '@shopify/ui-extensions-react/admin';
@@ -21,30 +22,35 @@ export const LoadEnergyLabelBlock: React.FC<TProps> = (props) => {
 	return (
 		<BlockStack gap={true}>
 			<FormTextField
-				label="Registration Number"
+				label={t('label.registrationNumber')}
 				field={field('registrationNumber')}
 				disabled={isSubmitting}
 				placeholder={'550826'}
 			/>
-			<Button
-				variant="primary"
-				onClick={handleSubmit({
-					additionalData: {
-						productId
-					},
-					postSubmitCallback: (form, submitData) => {
-						if ('success' in submitData) {
-							if (submitData.success === true) {
-								form.reset();
-							} else {
-								resetSubmitted(form);
+			<InlineStack gap>
+				<Button
+					variant="primary"
+					onClick={handleSubmit({
+						additionalData: {
+							productId
+						},
+						postSubmitCallback: (form, submitData) => {
+							if ('success' in submitData) {
+								if (submitData.success === true) {
+									form.reset();
+								} else {
+									resetSubmitted(form);
+								}
 							}
 						}
-					}
-				})}
-			>
-				{isSubmitting ? <ProgressIndicator size="small-200" /> : t('button.loadEnergyLabel')}
-			</Button>
+					})}
+				>
+					{isSubmitting ? <ProgressIndicator size="small-200" /> : t('button.loadEnergyLabel')}
+				</Button>
+				<Button variant="tertiary" target="_blank" to="todo">
+					{t('button.findEnergyLabel')}
+				</Button>
+			</InlineStack>
 			<Banner tone="info" title={t('banner.info.eprelHelp.title')}>
 				<Paragraph>{t('banner.info.eprelHelp.content')}</Paragraph>
 			</Banner>

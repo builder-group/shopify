@@ -1,6 +1,6 @@
 {
 	"name": "energy-label-admin-block",
-	"title": "Energielabel",
+	"title": "Energielabel (EU-Blocks)",
 	"validation": {
 		"registrationNumber": {
 			"format": "Die EPREL-Registrierungsnummer muss genau 6 Ziffern (0-9) enthalten."
@@ -43,8 +43,15 @@
 	},
 	"button": {
 		"loadEnergyLabel": "Energieetikett laden",
+		"findEnergyLabel": "EPREL-Registrierungsnummer finden",
 		"editAdditionalMetafields": "Zusätzliche Metafelder bearbeiten",
 		"save": "Speichern",
-		"reset": "Zurücksetzen"
+		"reset": "Zurücksetzen",
+	},
+	"label": {
+		"registrationNumber": "Registrierungsnummer",
+		"modelIdentifier": "Modellkennung",
+		"energyClass": "Energieklasse",
+		"pdfLabelUrl": "PDF-Etikett-URL"
 	}
 }

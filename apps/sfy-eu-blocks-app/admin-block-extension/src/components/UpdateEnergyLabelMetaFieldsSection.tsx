@@ -72,24 +72,24 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 						> */}
 					<InlineStack gap>
 						<FormTextField
-							label="Registration Number"
+							label={t('label.registrationNumber')}
 							field={field('registrationNumber')}
 							disabled={true}
 						/>
 						<FormTextField
-							label="Model Identifier"
+							label={t('label.modelIdentifier')}
 							field={field('modelIdentifier')}
 							disabled={true}
 						/>
 
 						<FormTextField
-							label="Energy Class"
+							label={t('label.energyClass')}
 							field={field('energyClass') as TFormField<string>}
 							disabled={isSubmitting}
 						/>
 					</InlineStack>
 					<FormTextField
-						label="PDF Label URL"
+						label={t('label.pdfLabelUrl')}
 						field={field('pdfLabelUrl')}
 						disabled={isSubmitting}
 					/>
@@ -123,7 +123,9 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 				>
 					{resetMutation.isLoading ? <ProgressIndicator size="small-200" /> : t('button.reset')}
 				</Button>
-				<Button variant="tertiary">{t('button.editAdditionalMetafields')}</Button>
+				<Button variant="tertiary" target="_blank" to="todo">
+					{t('button.editAdditionalMetafields')}
+				</Button>
 			</InlineStack>
 
 			<Banner tone="info">

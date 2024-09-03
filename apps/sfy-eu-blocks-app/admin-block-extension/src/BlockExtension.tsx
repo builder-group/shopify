@@ -84,31 +84,6 @@ const Block: React.FC<TProps> = (props) => {
 			</BlockStack>
 		</AdminBlock>
 	);
-
-	// if (energyLabel == null) {
-	// 	return (
-	// 		<LoadEnergyLabelBlock
-	// 			onEnergyLabelSubmit={(energyLabel) => {
-	// 				applyEnergyLabelToMetaFieldsForm(energyLabel);
-	// 				setEnergyLabel(energyLabel);
-	// 				setSuccessMessage(
-	// 					t('banner.success.energyLabelFound', {
-	// 						productName: energyLabel.modelIdentifier
-	// 					})
-	// 				);
-	// 			}}
-	// 			productId={productId}
-	// 		/>
-	// 	);
-	// }
-
-	// return (
-	// 	<UpdateEnergyLabelMetaFieldsBlock
-	// 		productId={productId}
-	// 		energyLabel={energyLabel}
-	// 		successMessage={successMessage ?? undefined}
-	// 	/>
-	// );
 };
 
 interface TProps {
