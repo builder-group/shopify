@@ -5,8 +5,6 @@ import { useGlobalState } from 'feature-react/state';
 export const FormTextField: React.FC<TProps> = (props) => {
 	const { field, label, disabled, placeholder } = props;
 	const fieldStatus = useGlobalState(field.status);
-	const fieldErrorMessage =
-		fieldStatus.type === 'INVALID' ? fieldStatus.errors[0]?.message : undefined;
 
 	return (
 		<TextField
@@ -17,9 +15,13 @@ export const FormTextField: React.FC<TProps> = (props) => {
 				field.blur();
 			}}
 			onInput={(value) => {
-				field.set(value);
+				field.set(value, {
+					additionalData: {
+						background: true
+					}
+				});
 			}}
-			error={fieldErrorMessage}
+			error={fieldStatus.type === 'INVALID' ? fieldStatus.errors[0]?.message : undefined}
 			disabled={disabled}
 			placeholder={placeholder}
 		/>

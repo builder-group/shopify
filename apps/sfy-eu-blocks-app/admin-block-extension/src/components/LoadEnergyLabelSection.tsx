@@ -5,34 +5,18 @@ import {
 	Paragraph,
 	ProgressIndicator
 } from '@shopify/ui-extensions-react/admin';
+import { resetSubmitted } from 'feature-form';
 import { useForm } from 'feature-react/form';
 import { useGlobalState } from 'feature-react/state';
 import React from 'react';
 
-import { $loadEnergyLabelForm, SEARCH_ENERGY_LABEL_FORM_SOURCE_KEY, t } from '../lib';
-import { $banner } from '../lib/store';
+import { $loadEnergyLabelForm, t } from '../lib';
 import { FormTextField } from './FormTextField';
 
 export const LoadEnergyLabelBlock: React.FC<TProps> = (props) => {
 	const { productId } = props;
 	const { handleSubmit, field } = useForm($loadEnergyLabelForm);
 	const isSubmitting = useGlobalState($loadEnergyLabelForm.isSubmitting);
-
-	// If form submit emits error and thus error banner is shown,
-	// reset form errors to not overwhelm user with errors
-	React.useEffect(() => {
-		const banner = $banner.get();
-		if (
-			!isSubmitting &&
-			banner?.source === SEARCH_ENERGY_LABEL_FORM_SOURCE_KEY &&
-			banner.tone === 'critical'
-		) {
-			$loadEnergyLabelForm.isSubmitted.set(false);
-			$loadEnergyLabelForm.isSubmitting.set(false);
-			$loadEnergyLabelForm.fields.registrationNumber.isSubmitted = false;
-			$loadEnergyLabelForm.fields.registrationNumber.isSubmitting = false;
-		}
-	}, [isSubmitting, $banner]);
 
 	return (
 		<BlockStack gap={true}>
@@ -46,6 +30,15 @@ export const LoadEnergyLabelBlock: React.FC<TProps> = (props) => {
 				onClick={handleSubmit({
 					additionalData: {
 						productId
+					},
+					postSubmitCallback: (form, submitData) => {
+						if ('success' in submitData) {
+							if (submitData.success === true) {
+								form.reset();
+							} else {
+								resetSubmitted(form);
+							}
+						}
 					}
 				})}
 			>

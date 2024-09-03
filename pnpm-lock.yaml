@@ -153,11 +153,11 @@ importers:
         specifier: ^0.0.21
         version: 0.0.21
       feature-form:
-        specifier: ^0.0.23
-        version: 0.0.23
+        specifier: ^0.0.27
+        version: 0.0.27
       feature-react:
-        specifier: ^0.0.21
-        version: 0.0.21(react@18.3.1)
+        specifier: ^0.0.23
+        version: 0.0.23(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -5948,14 +5948,14 @@ packages:
   feature-fetch@0.0.21:
     resolution: {integrity: sha512-okHNrplaXBjBkxffJpvw+lR8+ijiZAj03tdbWE8lkH7zJCNR5gAjsp+qwgFBwmeW5ZBi4GAvlus/gubsJQhkPg==}
 
-  feature-form@0.0.23:
-    resolution: {integrity: sha512-2DcqbzVRIkw9CwujmjgW0v8L1ol8/qzngpUgKgdpl8TbMo6osjLw6PpBF2i3jR2l3PeSu1vt4TDyNUEmh2KO1w==}
+  feature-form@0.0.27:
+    resolution: {integrity: sha512-CzU3e5jFNnaDx0jYZM2D6WiQ4QLoXdh2trwRlWwcFign9NTUFUxKy1QHnG0faPnolvVbhS2GUt0ovZVrDb9xww==}
 
   feature-logger@0.0.22:
     resolution: {integrity: sha512-czjBzpUBqv3NdQy8r87hvetgC5ZM4kqkCyUcJgVClM3gUGdth9jtbJ+1hYObrErJofiizWvbLYW260/vdRH0tQ==}
 
-  feature-react@0.0.21:
-    resolution: {integrity: sha512-khUHViOf4QFPMuOaMm1QHE5INL5rw4JptMm4NM/aOGV26CvcycRVg+UbVJfTBuYmkQtXYNH5ug6Y9Ij/LL25Hw==}
+  feature-react@0.0.23:
+    resolution: {integrity: sha512-Jct/370nSNF5qIySvP2OYGZO7z8akzcgMV/ET2fntZm8KEVx82m4xpJS6JfFQ2tafVL5eMz9G6evEGqkIC2G/g==}
     peerDependencies:
       react: ^18.3.1
 
@@ -16948,7 +16948,7 @@ snapshots:
       '@blgc/types': 0.0.7
       '@blgc/utils': 0.0.18
 
-  feature-form@0.0.23:
+  feature-form@0.0.27:
     dependencies:
       '@blgc/types': 0.0.7
       '@blgc/utils': 0.0.18
@@ -16960,7 +16960,7 @@ snapshots:
       '@blgc/types': 0.0.7
       '@blgc/utils': 0.0.18
 
-  feature-react@0.0.21(react@18.3.1):
+  feature-react@0.0.23(react@18.3.1):
     dependencies:
       react: 18.3.1
 

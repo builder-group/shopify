@@ -40,7 +40,7 @@ export const $loadEnergyLabelForm = createForm<TFormFields>({
 				}),
 				source: SEARCH_ENERGY_LABEL_FORM_SOURCE_KEY
 			});
-			return;
+			return { success: false };
 		}
 
 		const energyLabel = energyLabelResult.value;
@@ -50,7 +50,7 @@ export const $loadEnergyLabelForm = createForm<TFormFields>({
 				content: t('banner.error.notFound', { registrationNumber: formData.registrationNumber }),
 				source: SEARCH_ENERGY_LABEL_FORM_SOURCE_KEY
 			});
-			return;
+			return { success: false };
 		}
 
 		const updateEnergyLabelResult = await updateEnergyLabelInMetafields(productId, energyLabel);
@@ -62,7 +62,7 @@ export const $loadEnergyLabelForm = createForm<TFormFields>({
 				}),
 				source: SEARCH_ENERGY_LABEL_FORM_SOURCE_KEY
 			});
-			return;
+			return { success: false };
 		}
 		if (updateEnergyLabelResult.value.metafieldsSet.userErrors.length > 0) {
 			$banner.set({
@@ -73,7 +73,7 @@ export const $loadEnergyLabelForm = createForm<TFormFields>({
 				}),
 				source: SEARCH_ENERGY_LABEL_FORM_SOURCE_KEY
 			});
-			return;
+			return { success: false };
 		}
 
 		applyEnergyLabelToUpdateMetafieldForm(energyLabel);
@@ -86,6 +86,8 @@ export const $loadEnergyLabelForm = createForm<TFormFields>({
 			source: SEARCH_ENERGY_LABEL_FORM_SOURCE_KEY
 		});
 		$energyLabel.set(energyLabel);
+
+		return { success: true };
 	}
 });
 
