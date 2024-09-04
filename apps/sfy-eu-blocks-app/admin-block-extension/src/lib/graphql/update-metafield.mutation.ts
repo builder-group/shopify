@@ -61,7 +61,7 @@ export interface TUpdateMetafieldResponseData {
 	};
 	metafieldsSet: {
 		userErrors: {
-			field: string;
+			field: string[];
 			message: string;
 			code: string;
 		}[];

@@ -8,7 +8,7 @@ extension_directories = [
 ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://liquid-bookstore-cosmetic-text.trycloudflare.com"
+application_url = "https://jpg-conjunction-prefers-chip.trycloudflare.com"
 embedded = true
 
 [build]
@@ -22,9 +22,9 @@ scopes = "read_files,read_products,write_files,write_products"
 
 [auth]
 redirect_urls = [
-  "https://liquid-bookstore-cosmetic-text.trycloudflare.com/auth/callback",
-  "https://liquid-bookstore-cosmetic-text.trycloudflare.com/auth/shopify/callback",
-  "https://liquid-bookstore-cosmetic-text.trycloudflare.com/api/auth/callback"
+  "https://jpg-conjunction-prefers-chip.trycloudflare.com/auth/callback",
+  "https://jpg-conjunction-prefers-chip.trycloudflare.com/auth/shopify/callback",
+  "https://jpg-conjunction-prefers-chip.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

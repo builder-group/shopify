@@ -28,6 +28,8 @@ const queryClient = new QueryClient();
 //
 // Example Label:
 // https://cdn.shopify.com/s/files/1/0878/3269/0952/files/Label_550826.pdf
+//
+// Add better Error Message if EU-Servers are down (not our fault lol)
 
 export default reactExtension(appConfig.target, async (api) => {
 	$extensionContext.set(api);
