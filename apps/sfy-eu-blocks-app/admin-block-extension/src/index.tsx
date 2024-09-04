@@ -20,6 +20,15 @@ import {
 
 const queryClient = new QueryClient();
 
+// TODO:
+// - Upload Label PDF (Optional, served from EU CDN by default)
+// - Upload Sheets PDF (Optional, served from EU CDN by default)
+// - Upload Label SVG (A - G) since we can't add custom components e.g. to checkout
+//   and why serve it on our CDN if we can serve it via Shopify CDN
+//
+// Example Label:
+// https://cdn.shopify.com/s/files/1/0878/3269/0952/files/Label_550826.pdf
+
 export default reactExtension(appConfig.target, async (api) => {
 	$extensionContext.set(api);
 
