@@ -1,4 +1,10 @@
-import { reactExtension, Text, useCartLineTarget } from '@shopify/ui-extensions-react/checkout';
+import {
+	BlockStack,
+	Image,
+	reactExtension,
+	Text,
+	useCartLineTarget
+} from '@shopify/ui-extensions-react/checkout';
 
 import { $extensionContext, appConfig } from './environment';
 import { getEnergyLabelFormMetafields, TEnergyLabel } from './lib';
@@ -33,9 +39,12 @@ const Extension: React.FC<TProps> = (props) => {
 	} = useCartLineTarget();
 
 	return (
-		<Text>
-			Checkout - Line item title: {title} - {energyLabel.energyClass}
-		</Text>
+		<BlockStack>
+			<Text>
+				Checkout - Line item title: {title} ({energyLabel.energyClass})
+			</Text>
+			<Image source={'https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg'} />
+		</BlockStack>
 	);
 };
 

@@ -303,6 +303,53 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/efficiency-class/arrow": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get energy efficiency class arrow as SVG
+         * @description Retrieves an SVG of the energy efficiency class arrow for a given energy class.
+         */
+        get: {
+            parameters: {
+                query: {
+                    /** @description The energy efficiency class to highlight on the scale */
+                    efficiencyClass: "A" | "B" | "C" | "D" | "E" | "F" | "G";
+                    /** @description The desired height of the SVG in pixels */
+                    size?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Successful response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "image/svg+xml": string;
+                    };
+                };
+                400: components["responses"]["BadRequest"];
+                401: components["responses"]["Unauthorized"];
+                500: components["responses"]["InternalServerError"];
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {

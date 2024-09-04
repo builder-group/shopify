@@ -4,7 +4,7 @@ import { vValidator } from 'validation-adapters/valibot';
 import { AppError } from '@blgc/openapi-router';
 import { extractErrorData } from '@blgc/utils';
 
-import { eprelClient } from '../../eprel-client';
+import { eprelClient } from '../../environment';
 import { openApiRouter } from '../router';
 
 openApiRouter.get('/product-groups', {

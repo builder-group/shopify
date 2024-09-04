@@ -15,6 +15,8 @@ tags:
     description: Operations related to product groups
   - name: products
     description: Operations related to specific products
+  - name: efficiency-class
+    description: Operations related to efficiency classes
 paths:
   /health:
     get:
@@ -177,6 +179,44 @@ paths:
           $ref: './common.yaml#/components/responses/Unauthorized'
         '404':
           $ref: './common.yaml#/components/responses/NotFound'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  /efficiency-class/arrow:
+    get:
+      summary: Get energy efficiency class arrow as SVG
+      description: Retrieves an SVG of the energy efficiency class arrow for a given energy class.
+      tags:
+        - efficiency-class
+      parameters:
+        - name: efficiencyClass
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [A, B, C, D, E, F, G]
+          description: The energy efficiency class to highlight on the scale
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 28
+            maximum: 56
+            default: 56
+          description: The desired height of the SVG in pixels
+      responses:
+        '200':
+          description: Successful response
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
         '500':
           $ref: './common.yaml#/components/responses/InternalServerError'
 
