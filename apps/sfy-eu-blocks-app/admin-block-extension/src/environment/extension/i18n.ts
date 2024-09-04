@@ -1,4 +1,4 @@
-import { $extensionContext } from './extension-context';
+import { $extensionContext } from './context';
 
 export function t<GTranslationKey extends TTranslationKeys>(
 	key: GTranslationKey,
@@ -19,7 +19,7 @@ type TNestedKeyOf<GJson> = GJson extends object
 		}[keyof GJson]
 	: never;
 
-type TTranslationKeys = TNestedKeyOf<typeof import('../../locales/en.default.json')>;
+type TTranslationKeys = TNestedKeyOf<typeof import('../../../locales/en.default.json')>;
 
 type TTranslationOptions = {
 	'banner.error.retrievalFailed': { errorMessage: string };

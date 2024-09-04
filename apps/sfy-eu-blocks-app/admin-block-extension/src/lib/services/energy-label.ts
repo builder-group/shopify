@@ -7,16 +7,16 @@ import {
 } from 'eprel-client';
 import { Err, FetchError, isStatusCode, Ok, TResult } from 'feature-fetch';
 
-import { coreClient } from '../clients';
+import { appConfig, coreClient } from '../../environment';
 import { deleteMetafieldMutation, getMetafieldQuery, updateMetafieldMutation } from '../graphql';
 
 export async function updateEnergyLabelInMetafields(productId: string, energyLabel: TEnergyLabel) {
 	return await updateMetafieldMutation({
 		productId,
-		namespace: '$app:energy_label',
+		namespace: appConfig.metafields.energyLabel.namespace,
 		namespaceName: 'Energy Label',
-		key: 'energy_label',
-		type: 'json',
+		key: appConfig.metafields.energyLabel.key,
+		type: appConfig.metafields.energyLabel.contentType,
 		value: JSON.stringify(energyLabel)
 	});
 }
@@ -26,8 +26,8 @@ export async function getEnergyLabelFormMetafields(
 ): Promise<TResult<TEnergyLabel | null, FetchError>> {
 	const result = await getMetafieldQuery({
 		productId: productId,
-		namespace: '$app:energy_label',
-		key: 'energy_label'
+		namespace: appConfig.metafields.energyLabel.namespace,
+		key: appConfig.metafields.energyLabel.key
 	});
 	if (result.isErr()) {
 		return Err(result.error);
@@ -48,8 +48,8 @@ export async function getEnergyLabelFormMetafields(
 export async function deleteEnergyLabelFromMetafields(productId: string) {
 	return await deleteMetafieldMutation({
 		productId,
-		namespace: '$app:energy_label',
-		key: 'energy_label'
+		namespace: appConfig.metafields.energyLabel.namespace,
+		key: appConfig.metafields.energyLabel.key
 	});
 }
 

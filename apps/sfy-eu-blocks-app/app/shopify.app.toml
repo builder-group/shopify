@@ -8,7 +8,7 @@ extension_directories = [
 ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://hiring-starting-software-updated.trycloudflare.com"
+application_url = "https://derek-herbs-suited-is.trycloudflare.com"
 embedded = true
 
 [build]
@@ -22,9 +22,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://hiring-starting-software-updated.trycloudflare.com/auth/callback",
-  "https://hiring-starting-software-updated.trycloudflare.com/auth/shopify/callback",
-  "https://hiring-starting-software-updated.trycloudflare.com/api/auth/callback"
+  "https://derek-herbs-suited-is.trycloudflare.com/auth/callback",
+  "https://derek-herbs-suited-is.trycloudflare.com/auth/shopify/callback",
+  "https://derek-herbs-suited-is.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

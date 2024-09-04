@@ -1,7 +1,7 @@
 import { AdminBlock, Banner, Paragraph } from '@shopify/ui-extensions-react/admin';
 import React from 'react';
 
-import { t } from '../lib';
+import { t } from '../environment';
 
 export const BannerBlock: React.FC<TProps> = (props) => {
 	const { title, tone = 'default', content } = props;

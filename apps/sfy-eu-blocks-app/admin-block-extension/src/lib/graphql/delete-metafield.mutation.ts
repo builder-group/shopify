@@ -1,12 +1,9 @@
 import { gql } from 'feature-fetch';
 
-import { shopifyQuery } from '../clients';
+import { q } from '../../environment';
 
 export async function deleteMetafieldMutation(variables: TDeleteMetafieldMutationVariables) {
-	return await shopifyQuery<
-		TDeleteMetafieldMutationVariables,
-		TDeleteMetafieldMutationResponseData
-	>(
+	return await q<TDeleteMetafieldMutationVariables, TDeleteMetafieldMutationResponseData>(
 		gql`
 			mutation DeleteMetafield($productId: ID!, $namespace: String!, $key: String!) {
 				metafieldsDelete(metafields: [{ ownerId: $productId, namespace: $namespace, key: $key }]) {

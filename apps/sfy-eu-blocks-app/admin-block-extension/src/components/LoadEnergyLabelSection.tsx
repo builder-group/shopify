@@ -11,7 +11,8 @@ import { useForm } from 'feature-react/form';
 import { useGlobalState } from 'feature-react/state';
 import React from 'react';
 
-import { $loadEnergyLabelForm, t } from '../lib';
+import { t } from '../environment';
+import { $loadEnergyLabelForm } from '../lib';
 import { FormTextField } from './FormTextField';
 
 export const LoadEnergyLabelBlock: React.FC<TProps> = (props) => {

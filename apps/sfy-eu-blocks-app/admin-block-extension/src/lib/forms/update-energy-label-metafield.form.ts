@@ -7,7 +7,7 @@ import {
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
 
-import { t } from '../i18n';
+import { t } from '../../environment';
 import { TEnergyLabel, updateEnergyLabelInMetafields } from '../services';
 import { $banner, $energyLabel } from '../store';
 

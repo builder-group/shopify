@@ -14,12 +14,12 @@ import { useGlobalState } from 'feature-react/state';
 import React from 'react';
 import { useMutation } from 'react-query';
 
+import { t } from '../environment';
 import {
 	$banner,
 	$energyLabel,
 	$updateEnergyLabelMetafieldForm,
-	deleteEnergyLabelFromMetafields,
-	t
+	deleteEnergyLabelFromMetafields
 } from '../lib';
 import { FormTextField } from './FormTextField';
 

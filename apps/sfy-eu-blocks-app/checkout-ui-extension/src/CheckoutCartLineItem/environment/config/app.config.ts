@@ -1,5 +1,5 @@
 export const appConfig = {
-	target: 'admin.product-details.block.render' as const,
+	target: 'purchase.checkout.cart-line-item.render-after' as const,
 	metafields: {
 		energyLabel: {
 			namespace: '$app:energy_label',

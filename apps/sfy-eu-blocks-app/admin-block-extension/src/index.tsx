@@ -10,15 +10,12 @@ import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { BannerBlock, LoadEnergyLabelBlock, UpdateEnergyLabelMetaFieldsBlock } from './components';
-import { appConfig } from './environment';
+import { $extensionContext, appConfig, t } from './environment';
 import {
 	$banner,
 	$energyLabel,
-	$extensionContext,
 	applyEnergyLabelToUpdateMetafieldForm,
-	getEnergyLabelFormMetafields,
-	t,
-	TEnergyLabel
+	getEnergyLabelFormMetafields
 } from './lib';
 
 const queryClient = new QueryClient();
@@ -51,12 +48,12 @@ export default reactExtension(appConfig.target, async (api) => {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Block energyLabel={energyLabel} productId={productId} />
+			<Extension productId={productId} />
 		</QueryClientProvider>
 	);
 });
 
-const Block: React.FC<TProps> = (props) => {
+const Extension: React.FC<TProps> = (props) => {
 	const { productId } = props;
 	const banner = useGlobalState($banner);
 	const energyLabel = useGlobalState($energyLabel);
@@ -87,6 +84,5 @@ const Block: React.FC<TProps> = (props) => {
 };
 
 interface TProps {
-	energyLabel: TEnergyLabel | null;
 	productId: string;
 }

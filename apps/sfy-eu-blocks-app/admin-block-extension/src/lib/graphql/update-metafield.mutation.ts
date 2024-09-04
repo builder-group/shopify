@@ -1,9 +1,9 @@
 import { gql } from 'feature-fetch';
 
-import { shopifyQuery } from '../clients';
+import { q } from '../../environment';
 
 export async function updateMetafieldMutation(variables: TUpdateMetafieldVariables) {
-	return await shopifyQuery<TUpdateMetafieldVariables, TUpdateMetafieldResponseData>(
+	return await q<TUpdateMetafieldVariables, TUpdateMetafieldResponseData>(
 		gql`
 			mutation UpdateMetafield(
 				$productId: ID!
@@ -20,7 +20,7 @@ export async function updateMetafieldMutation(variables: TUpdateMetafieldVariabl
 						name: $namespaceName
 						type: $type
 						ownerType: PRODUCT
-						access: { admin: MERCHANT_READ_WRITE }
+						access: { admin: MERCHANT_READ, storefront: PUBLIC_READ }
 					}
 				) {
 					createdDefinition {
