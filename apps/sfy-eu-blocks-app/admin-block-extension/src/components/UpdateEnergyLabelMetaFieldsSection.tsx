@@ -19,12 +19,14 @@ import {
 	$banner,
 	$energyLabel,
 	$updateEnergyLabelMetafieldForm,
-	deleteEnergyLabelFromMetafields
+	deleteEnergyLabelFromMetafields,
+	TEnergyLabel
 } from '../lib';
+import { EnergyLabelPreview } from './EnergyLabelPreview';
 import { FormTextField } from './FormTextField';
 
 export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
-	const { productId } = props;
+	const { productId, energyLabel, primaryLocale } = props;
 	const { handleSubmit, field } = useForm($updateEnergyLabelMetafieldForm);
 	const isSubmitting = useGlobalState($updateEnergyLabelMetafieldForm.isSubmitting);
 	const [formChanged, setFormChanged] = React.useState(false);
@@ -32,12 +34,8 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 	// gid:/shopify/Product/9436272754952 -> 9436272754952
 	const productIdNumber = React.useMemo(() => productId.replace(/^(.*[\\\/])/, ''), [productId]);
 
-	// To disable save button
-	useGlobalState($updateEnergyLabelMetafieldForm.fields.energyClass);
-	useGlobalState($updateEnergyLabelMetafieldForm.fields.pdfLabelUrl);
-
 	React.useEffect(() => {
-		$updateEnergyLabelMetafieldForm.fields.energyClass.listen(() => {
+		$updateEnergyLabelMetafieldForm.fields.energyClass.listen((data) => {
 			setFormChanged(hasFormChanged($updateEnergyLabelMetafieldForm));
 		});
 		$updateEnergyLabelMetafieldForm.fields.pdfLabelUrl.listen(() => {
@@ -53,7 +51,7 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 			}
 			$banner.set({
 				tone: 'success',
-				content: 'todo',
+				content: t('banner.success.energyLabelReset'),
 				source: 'RESET_METAFIELD'
 			});
 			$energyLabel.set(null);
@@ -96,6 +94,7 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 						field={field('pdfLabelUrl')}
 						disabled={isSubmitting}
 					/>
+
 					{/* </Form> */}
 				</BlockStack>
 			</Section>
@@ -135,6 +134,10 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 				</Button>
 			</InlineStack>
 
+			<Section heading={`Preview (${primaryLocale})`}>
+				<EnergyLabelPreview energyLabel={energyLabel} primaryLocale={primaryLocale} />
+			</Section>
+
 			<Banner tone="info">
 				<Paragraph>
 					{t('banner.info.eprelNotice.content1')}
@@ -152,4 +155,6 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 
 interface TProps {
 	productId: string;
+	energyLabel: TEnergyLabel;
+	primaryLocale: string;
 }

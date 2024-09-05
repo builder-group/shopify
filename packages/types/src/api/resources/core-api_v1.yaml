@@ -53,8 +53,8 @@ paths:
     $ref: './energy-label-api_v1.yaml#/paths/~1product~1{registrationNumber}~1sheet'
   /v1/energy-label/product/{registrationNumber}/label:
     $ref: './energy-label-api_v1.yaml#/paths/~1product~1{registrationNumber}~1label'
-  /v1/energy-label/efficiency-class/arrow:
-    $ref: './energy-label-api_v1.yaml#/paths/~1efficiency-class~1arrow'
+  /v1/energy-label/efficiency-class/arrow.svg:
+    $ref: './energy-label-api_v1.yaml#/paths/~1efficiency-class~1arrow.svg'
 
 components:
   schemas:

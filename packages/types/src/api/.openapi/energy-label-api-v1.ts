@@ -303,7 +303,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/efficiency-class/arrow": {
+    "/efficiency-class/arrow.svg": {
         parameters: {
             query?: never;
             header?: never;

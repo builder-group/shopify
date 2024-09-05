@@ -12,7 +12,8 @@
 			"invalid": "Invalid energy class. Please select a value from A to F."
 		},
 		"labelUrl": {
-			"invalidFormat": "Please enter a valid URL for the label."
+			"invalidFormat": "Please enter a valid URL for the label.",
+			"mustEndWithPdf": "The URL must end with .pdf."
 		}
 	},
 	"banner": {
@@ -27,6 +28,13 @@
 				"content2": ", are owned by the European Union, are licensed under the ",
 				"link2Text": "Creative Commons Attribution 4.0 International (CC BY 4.0) license",
 				"content3": ", and are provided as is."
+			},
+			
+		},
+		"warning": {
+			"noDatasheetForLocale": {
+				"title": "Warning",
+				"content": "No datasheet was found for the primary locale {{locale}}. You can add a new locale by modifying additional metafields."
 			}
 		},
 		"error": {
@@ -38,7 +46,8 @@
 		},
 		"success": {
 			"energyLabelFound": "Energy Label for '{{productName}}' successfully loaded",
-			"energyLabelUpdated": "Energy Label for '{{productName}}' successfully updated"
+			"energyLabelUpdated": "Energy Label for '{{productName}}' successfully updated",
+			"energyLabelReset": "Energy Label reset"
 		}
 	},
 	"button": {

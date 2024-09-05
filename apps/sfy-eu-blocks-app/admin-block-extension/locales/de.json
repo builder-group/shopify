@@ -12,7 +12,8 @@
 			"invalid": "Ungültige Energieklasse. Bitte wählen Sie einen Wert von A bis F."
 		},
 		"labelUrl": {
-			"invalidFormat": "Bitte geben Sie eine gültige URL für das Etikett ein."
+			"invalidFormat": "Bitte geben Sie eine gültige URL für das Etikett ein.",
+			"mustEndWithPdf": "Die URL muss mit .pdf enden."
 		}
 	},
 	"banner": {
@@ -27,6 +28,13 @@
 				"content2": ", sind Eigentum der Europäischen Union, lizenziert unter der ",
 				"link2Text": "Creative Commons Namensnennung 4.0 International (CC BY 4.0) Lizenz",
 				"content3": ", und werden wie besehen bereitgestellt."
+			},
+			
+		},
+		"warning": {
+			"noDatasheetForLocale": {
+				"title": "Achtung",
+				"content": "Kein Datenblatt für die Hauptsprache {{locale}} wurde gefunden. Sie können eine neue Sprache hinzufügen, indem Sie zusätzliche Metafelder bearbeiten."
 			}
 		},
 		"error": {
@@ -38,7 +46,8 @@
 		},
 		"success": {
 			"energyLabelFound": "Energielabel für '{{productName}}' erfolgreich geladen",
-			"energyLabelUpdated": "Energielabel für '{{productName}}' erfolgreich aktualisiert"
+			"energyLabelUpdated": "Energielabel für '{{productName}}' erfolgreich aktualisiert",
+			"energyLabelReset": "Energielabel zurückgesetzt"
 		}
 	},
 	"button": {

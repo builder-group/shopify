@@ -4,7 +4,7 @@ import { vValidator } from 'validation-adapters/valibot';
 import { openApiRouter } from '../../router';
 import { EfficiencyArrowLg, EfficiencyArrowSm } from './components';
 
-openApiRouter.get('/efficiency-class/arrow', {
+openApiRouter.get('/efficiency-class/arrow.svg', {
 	queryValidator: vValidator(
 		v.object({
 			efficiencyClass: v.picklist(['A', 'B', 'C', 'D', 'E', 'F', 'G']),

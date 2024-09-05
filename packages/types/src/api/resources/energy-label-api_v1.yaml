@@ -182,7 +182,7 @@ paths:
         '500':
           $ref: './common.yaml#/components/responses/InternalServerError'
 
-  /efficiency-class/arrow:
+  /efficiency-class/arrow.svg:
     get:
       summary: Get energy efficiency class arrow as SVG
       description: Retrieves an SVG of the energy efficiency class arrow for a given energy class.

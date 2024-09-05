@@ -412,7 +412,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/energy-label/efficiency-class/arrow": {
+    "/v1/energy-label/efficiency-class/arrow.svg": {
         parameters: {
             query?: never;
             header?: never;

@@ -15,7 +15,8 @@ import {
 	$banner,
 	$energyLabel,
 	applyEnergyLabelToUpdateMetafieldForm,
-	getEnergyLabelFormMetafields
+	getEnergyLabelFormMetafields,
+	getShopLocales
 } from './lib';
 
 const queryClient = new QueryClient();
@@ -39,6 +40,21 @@ export default reactExtension(appConfig.target, async (api) => {
 		return <BannerBlock content={t('banner.error.productIdMissing')} tone="critical" />;
 	}
 
+	const shopLocalesResult = await getShopLocales();
+	if (shopLocalesResult.isErr()) {
+		return (
+			<BannerBlock
+				content={t('banner.error.metadataReadError', {
+					errorMessage: shopLocalesResult.error.message
+				})}
+				tone="critical"
+			/>
+		);
+	}
+	const primaryLocale =
+		shopLocalesResult.value.shopLocales.find((local) => local.primary)?.locale.toUpperCase() ??
+		'EN';
+
 	const energyLabelResult = await getEnergyLabelFormMetafields(productId);
 	if (energyLabelResult.isErr()) {
 		return (
@@ -59,13 +75,13 @@ export default reactExtension(appConfig.target, async (api) => {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Extension productId={productId} />
+			<Extension productId={productId} primaryLocale={primaryLocale} />
 		</QueryClientProvider>
 	);
 });
 
 const Extension: React.FC<TProps> = (props) => {
-	const { productId } = props;
+	const { productId, primaryLocale } = props;
 	const banner = useGlobalState($banner);
 	const energyLabel = useGlobalState($energyLabel);
 
@@ -85,7 +101,11 @@ const Extension: React.FC<TProps> = (props) => {
 					</Banner>
 				)}
 				{energyLabel != null ? (
-					<UpdateEnergyLabelMetaFieldsBlock productId={productId} />
+					<UpdateEnergyLabelMetaFieldsBlock
+						productId={productId}
+						energyLabel={energyLabel}
+						primaryLocale={primaryLocale}
+					/>
 				) : (
 					<LoadEnergyLabelBlock productId={productId} />
 				)}
@@ -96,4 +116,5 @@ const Extension: React.FC<TProps> = (props) => {
 
 interface TProps {
 	productId: string;
+	primaryLocale: string;
 }

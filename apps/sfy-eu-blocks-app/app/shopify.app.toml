@@ -8,7 +8,7 @@ extension_directories = [
 ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://jpg-conjunction-prefers-chip.trycloudflare.com"
+application_url = "https://agreed-merchant-mason-wallet.trycloudflare.com"
 embedded = true
 
 [build]
@@ -18,13 +18,13 @@ include_config_on_deploy = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_files,read_products,write_files,write_products"
+scopes = "read_files,read_locales,read_products,write_files,write_products"
 
 [auth]
 redirect_urls = [
-  "https://jpg-conjunction-prefers-chip.trycloudflare.com/auth/callback",
-  "https://jpg-conjunction-prefers-chip.trycloudflare.com/auth/shopify/callback",
-  "https://jpg-conjunction-prefers-chip.trycloudflare.com/api/auth/callback"
+  "https://agreed-merchant-mason-wallet.trycloudflare.com/auth/callback",
+  "https://agreed-merchant-mason-wallet.trycloudflare.com/auth/shopify/callback",
+  "https://agreed-merchant-mason-wallet.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
