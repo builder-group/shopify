@@ -23,8 +23,8 @@ type TTranslationKeys = TNestedKeyOf<typeof import('../../../locales/en.default.
 
 type TTranslationOptions = {
 	'banner.error.retrievalFailed': { errorMessage: string };
-	'banner.error.metadataReadError': { errorMessage: string };
-	'banner.error.metadataWriteError': { errorMessage: string };
+	'banner.error.metafieldsRead': { errorMessage: string };
+	'banner.error.metafieldsWrite': { errorMessage: string };
 	'banner.error.notFound': { registrationNumber: string };
 	'banner.success.energyLabelFound': { productName: string };
 	'banner.success.energyLabelUpdated': { productName: string };

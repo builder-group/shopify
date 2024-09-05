@@ -61,7 +61,7 @@ export const $updateEnergyLabelMetafieldForm = createForm<TFormFields>({
 		if (energyLabel == null) {
 			$banner.set({
 				tone: 'critical',
-				content: t('banner.error.metadataWriteError', {
+				content: t('banner.error.metafieldsWrite', {
 					errorMessage: 'Failed to fetch Energy Label metafields'
 				}),
 				source: UPDATE_ENERGY_LABEL_METAFIELD_FORM_SOURCE_KEY
@@ -82,7 +82,7 @@ export const $updateEnergyLabelMetafieldForm = createForm<TFormFields>({
 		if (updateEnergyLabelResult.isErr()) {
 			$banner.set({
 				tone: 'critical',
-				content: t('banner.error.metadataWriteError', {
+				content: t('banner.error.metafieldsWrite', {
 					errorMessage: updateEnergyLabelResult.error.message
 				}),
 				source: UPDATE_ENERGY_LABEL_METAFIELD_FORM_SOURCE_KEY
@@ -92,7 +92,7 @@ export const $updateEnergyLabelMetafieldForm = createForm<TFormFields>({
 		if (updateEnergyLabelResult.value.metafieldsSet.userErrors.length > 0) {
 			$banner.set({
 				tone: 'critical',
-				content: t('banner.error.metadataWriteError', {
+				content: t('banner.error.metafieldsWrite', {
 					errorMessage:
 						updateEnergyLabelResult.value.metafieldsSet.userErrors[0]?.message ?? 'Unknown'
 				}),

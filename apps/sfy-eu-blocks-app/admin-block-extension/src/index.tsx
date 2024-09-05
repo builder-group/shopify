@@ -21,17 +21,6 @@ import {
 
 const queryClient = new QueryClient();
 
-// TODO:
-// - Upload Label PDF (Optional, served from EU CDN by default)
-// - Upload Sheets PDF (Optional, served from EU CDN by default)
-// - Upload Label SVG (A - G) since we can't add custom components e.g. to checkout
-//   and why serve it on our CDN if we can serve it via Shopify CDN
-//
-// Example Label:
-// https://cdn.shopify.com/s/files/1/0878/3269/0952/files/Label_550826.pdf
-//
-// Add better Error Message if EU-Servers are down (not our fault lol)
-
 export default reactExtension(appConfig.target, async (api) => {
 	$extensionContext.set(api);
 
@@ -44,7 +33,7 @@ export default reactExtension(appConfig.target, async (api) => {
 	if (shopLocalesResult.isErr()) {
 		return (
 			<BannerBlock
-				content={t('banner.error.metadataReadError', {
+				content={t('banner.error.metafieldsRead', {
 					errorMessage: shopLocalesResult.error.message
 				})}
 				tone="critical"
@@ -59,7 +48,7 @@ export default reactExtension(appConfig.target, async (api) => {
 	if (energyLabelResult.isErr()) {
 		return (
 			<BannerBlock
-				content={t('banner.error.metadataReadError', {
+				content={t('banner.error.metafieldsRead', {
 					errorMessage: energyLabelResult.error.message
 				})}
 				tone="critical"
