@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "shx rm -rf dist && chmod +x ../../scripts/cli.sh && ../../scripts/cli.sh bundle",
 		"start:dev": "tsx watch ./src/index.ts",
-		"start:dev:proxy": "tsx watch ./src/index.ts & cloudflared tunnel --url http://localhost:8787",
+		"start:dev:proxy": "tsx ./dev-proxy.js",
 		"lint": "eslint --ext .js,.ts src/",
 		"clean": "shx rm -rf dist && shx rm -rf node_modules && shx rm -rf .turbo",
 		"install:clean": "pnpm run clean && pnpm install",
