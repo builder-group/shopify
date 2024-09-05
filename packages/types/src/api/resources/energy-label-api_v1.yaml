@@ -196,13 +196,18 @@ paths:
             type: string
             enum: [A, B, C, D, E, F, G]
           description: The energy efficiency class to highlight on the scale
+        - name: style
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [SM, LG]
+          description: The desired style
         - name: size
           in: query
           required: false
           schema:
             type: integer
-            minimum: 28
-            maximum: 56
             default: 56
           description: The desired height of the SVG in pixels
       responses:

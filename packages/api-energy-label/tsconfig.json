@@ -6,7 +6,9 @@
 		"declarationDir": "./dist/types",
 		"paths": {
 			"@/*": ["./src/*"]
-		}
+		},
+		"jsx": "react-jsx",
+		"jsxImportSource": "hono/jsx"
 	},
 	"include": ["src"]
 }

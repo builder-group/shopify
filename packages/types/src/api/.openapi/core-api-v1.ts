@@ -428,6 +428,8 @@ export interface paths {
                 query: {
                     /** @description The energy efficiency class to highlight on the scale */
                     efficiencyClass: "A" | "B" | "C" | "D" | "E" | "F" | "G";
+                    /** @description The desired style */
+                    style?: "SM" | "LG";
                     /** @description The desired height of the SVG in pixels */
                     size?: number;
                 };
