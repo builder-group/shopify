@@ -1,12 +1,14 @@
 import {
 	BlockStack,
 	Image,
-	reactExtension,
-	Text,
-	useCartLineTarget
+	InlineStack,
+	Link,
+	Pressable,
+	reactExtension
 } from '@shopify/ui-extensions-react/checkout';
+import React from 'react';
 
-import { $extensionContext, appConfig } from './environment';
+import { $extensionContext, appConfig, coreApiConfig } from './environment';
 import { getEnergyLabelFormMetafields, TEnergyLabel } from './lib';
 
 export default reactExtension(appConfig.target, async (api) => {
@@ -34,16 +36,22 @@ export default reactExtension(appConfig.target, async (api) => {
 
 const Extension: React.FC<TProps> = (props) => {
 	const { energyLabel } = props;
-	const {
-		merchandise: { title }
-	} = useCartLineTarget();
+	const sheetUrl = React.useMemo(
+		() => (energyLabel.sheetUrlMap as Record<string, string>)['EN'],
+		[energyLabel.sheetUrlMap]
+	);
 
 	return (
 		<BlockStack>
-			<Text>
-				Checkout - Line item title: {title} ({energyLabel.energyClass})
-			</Text>
-			<Image source={'https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg'} />
+			<InlineStack>
+				<Pressable to={energyLabel.labelUrlMap.PDF}>
+					<Image
+						// alt={`Energy Label Efficiency Class ${energyLabel.energyClass}`}
+						source={`${coreApiConfig.baseUrl}/v1/energy-label/efficiency-class/arrow.svg?efficiencyClass=${energyLabel.energyClass}&size=20`}
+					/>
+				</Pressable>
+				<Link to={sheetUrl}>Product Datasheet</Link>
+			</InlineStack>
 		</BlockStack>
 	);
 };
