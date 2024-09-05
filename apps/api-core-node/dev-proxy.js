@@ -27,6 +27,7 @@ async function updateConfigFiles(tunnelUrl) {
 	}
 }
 
+// TODO: Or sovle the problem with https://filippi.dev/quicks/timeout-when-developing-extensions/ ?
 (async () => {
 	console.log('Starting Cloudflare tunnel...');
 	const { url, connections, stop } = tunnel({ '--url': 'http://localhost:8787' });

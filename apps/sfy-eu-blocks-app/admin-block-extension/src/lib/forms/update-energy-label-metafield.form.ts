@@ -1,3 +1,4 @@
+import { ENERGY_CLASSES, SHEET_LANGUAGES, TEnergyClass, TSheetLanguage } from 'eprel-client';
 import {
 	bitwiseFlag,
 	createForm,
@@ -34,9 +35,7 @@ export const $updateEnergyLabelMetafieldForm = createForm<TFormFields>({
 			defaultValue: ''
 		},
 		energyClass: {
-			validator: vValidator(
-				v.picklist(['A', 'B', 'C', 'D', 'E', 'F'], () => t('validation.energyClass.invalid'))
-			)
+			validator: vValidator(v.picklist(ENERGY_CLASSES, () => t('validation.energyClass.invalid')))
 		},
 		pdfLabelUrl: {
 			validator: vValidator(
@@ -49,6 +48,9 @@ export const $updateEnergyLabelMetafieldForm = createForm<TFormFields>({
 					)
 				)
 			)
+		},
+		fallbackSheetLanguage: {
+			validator: vValidator(v.picklist(SHEET_LANGUAGES))
 		}
 	},
 	validateMode: bitwiseFlag(FormFieldValidateMode.OnSubmit),
@@ -72,9 +74,16 @@ export const $updateEnergyLabelMetafieldForm = createForm<TFormFields>({
 		const newEnergyLabel: TEnergyLabel = {
 			...energyLabel,
 			energyClass: formData.energyClass,
-			labelUrlMap: {
-				...energyLabel.labelUrlMap,
-				PDF: formData.pdfLabelUrl
+			label: {
+				...energyLabel.label,
+				urlMap: {
+					...energyLabel.label.urlMap,
+					PDF: formData.pdfLabelUrl
+				}
+			},
+			sheet: {
+				...energyLabel.sheet,
+				fallbackLanguage: formData.fallbackSheetLanguage
 			}
 		};
 
@@ -115,8 +124,9 @@ export const $updateEnergyLabelMetafieldForm = createForm<TFormFields>({
 interface TFormFields {
 	registrationNumber: string;
 	modelIdentifier: string;
-	energyClass: 'A' | 'B' | 'C' | 'D' | 'E' | 'F';
+	energyClass: TEnergyClass;
 	pdfLabelUrl: string;
+	fallbackSheetLanguage: TSheetLanguage;
 }
 
 export interface TUpdateEnergyLabelMetafieldSubmitAdditionalData {
@@ -131,6 +141,11 @@ export function applyEnergyLabelToUpdateMetafieldForm(energyLabel: TEnergyLabel)
 	$updateEnergyLabelMetafieldForm.fields.modelIdentifier._intialValue = energyLabel.modelIdentifier;
 	$updateEnergyLabelMetafieldForm.fields.energyClass.set(energyLabel.energyClass as any);
 	$updateEnergyLabelMetafieldForm.fields.energyClass._intialValue = energyLabel.energyClass as any;
-	$updateEnergyLabelMetafieldForm.fields.pdfLabelUrl.set(energyLabel.labelUrlMap.PDF);
-	$updateEnergyLabelMetafieldForm.fields.pdfLabelUrl._intialValue = energyLabel.labelUrlMap.PDF;
+	$updateEnergyLabelMetafieldForm.fields.pdfLabelUrl.set(energyLabel.label.urlMap.PDF);
+	$updateEnergyLabelMetafieldForm.fields.pdfLabelUrl._intialValue = energyLabel.label.urlMap.PDF;
+	$updateEnergyLabelMetafieldForm.fields.fallbackSheetLanguage.set(
+		energyLabel.sheet.fallbackLanguage
+	);
+	$updateEnergyLabelMetafieldForm.fields.fallbackSheetLanguage._intialValue =
+		energyLabel.sheet.fallbackLanguage;
 }

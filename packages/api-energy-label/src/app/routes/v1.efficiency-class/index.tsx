@@ -1,3 +1,4 @@
+import { ENERGY_CLASSES } from 'eprel-client';
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
 
@@ -7,7 +8,7 @@ import { EfficiencyArrowLg, EfficiencyArrowSm } from './components';
 openApiRouter.get('/efficiency-class/arrow.svg', {
 	queryValidator: vValidator(
 		v.object({
-			efficiencyClass: v.picklist(['A', 'B', 'C', 'D', 'E', 'F', 'G']),
+			efficiencyClass: v.picklist(ENERGY_CLASSES),
 			style: v.optional(v.picklist(['SM', 'LG'])),
 			size: v.optional(v.number())
 		})

@@ -1,4 +1,5 @@
 import {
+	BlockSpacer,
 	BlockStack,
 	Image,
 	InlineStack,
@@ -6,6 +7,8 @@ import {
 	Pressable,
 	reactExtension
 } from '@shopify/ui-extensions-react/checkout';
+import { StandardApi } from '@shopify/ui-extensions/checkout';
+import { countryToSheetLanguage, TSheetLanguage } from 'eprel-client';
 import React from 'react';
 
 import { $extensionContext, appConfig, coreApiConfig } from './environment';
@@ -25,37 +28,63 @@ export default reactExtension(appConfig.target, async (api) => {
 		return <></>;
 	}
 
-	console.log('Checkout Cart Line', {
-		energyLabel,
-		productId,
-		metafields: api.appMetafields.current
-	});
-
-	return <Extension energyLabel={energyLabel} />;
+	return (
+		<Extension
+			energyClass={energyLabel.energyClass}
+			labelUrl={energyLabel.label.urlMap.PDF}
+			sheetUrl={findSheetUrl(api, energyLabel) ?? undefined}
+		/>
+	);
 });
 
-const Extension: React.FC<TProps> = (props) => {
-	const { energyLabel } = props;
-	const sheetUrl = React.useMemo(
-		() => (energyLabel.sheetUrlMap as Record<string, string>)['EN'],
-		[energyLabel.sheetUrlMap]
+const findSheetUrl = (
+	api: StandardApi<typeof appConfig.target>,
+	energyLabel: TEnergyLabel
+): string | null => {
+	const currentCountry = api.localization.country.current?.isoCode ?? '';
+	const currentMarket = api.localization.market.current?.handle ?? '';
+	const currentLanguage = api.localization.language.current.isoCode;
+
+	const countryLanguages = [...currentCountry.split('-'), currentMarket].flatMap(
+		(locale) => countryToSheetLanguage[locale] ?? []
 	);
+
+	const potentialSheetLanguages = new Set<string>(
+		[...currentLanguage.split('-'), ...countryLanguages].filter(Boolean).map((v) => v.toUpperCase())
+	);
+
+	for (const lang of potentialSheetLanguages) {
+		const upperLang = lang.toUpperCase() as TSheetLanguage;
+		const url = energyLabel.sheet.urlMap[upperLang];
+		if (url != null) {
+			return url;
+		}
+	}
+
+	return energyLabel.sheet.urlMap[energyLabel.sheet.fallbackLanguage] ?? null;
+};
+
+const Extension: React.FC<TProps> = (props) => {
+	const { energyClass, sheetUrl, labelUrl } = props;
 
 	return (
 		<BlockStack>
+			<BlockSpacer spacing={'none'} />
 			<InlineStack>
-				<Pressable to={energyLabel.labelUrlMap.PDF}>
+				<Pressable to={labelUrl}>
 					<Image
-						// alt={`Energy Label Efficiency Class ${energyLabel.energyClass}`}
-						source={`${coreApiConfig.baseUrl}/v1/energy-label/efficiency-class/arrow.svg?efficiencyClass=${energyLabel.energyClass}&size=20`}
+						accessibilityDescription={`Energy Label Efficiency Class ${energyClass}`}
+						source={`${coreApiConfig.baseUrl}/v1/energy-label/efficiency-class/arrow.svg?efficiencyClass=${energyClass}&size=20`}
 					/>
 				</Pressable>
-				<Link to={sheetUrl}>Product Datasheet</Link>
+				{sheetUrl != null && <Link to={sheetUrl}>Product Datasheet</Link>}
 			</InlineStack>
 		</BlockStack>
 	);
 };
 
 interface TProps {
-	energyLabel: TEnergyLabel;
+	energyClass: TEnergyLabel['energyClass'];
+	sheetUrl?: string;
+	labelUrl: string;
 }

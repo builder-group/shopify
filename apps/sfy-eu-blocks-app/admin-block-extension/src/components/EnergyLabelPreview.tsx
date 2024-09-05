@@ -15,14 +15,14 @@ import { TEnergyLabel } from '../lib';
 export const EnergyLabelPreview: React.FC<TProps> = (props) => {
 	const { energyLabel, primaryLocale } = props;
 	const sheetUrl = React.useMemo(
-		() => (energyLabel.sheetUrlMap as Record<string, string>)[primaryLocale],
-		[energyLabel.sheetUrlMap, primaryLocale]
+		() => (energyLabel.sheet.urlMap as Record<string, string>)[primaryLocale],
+		[energyLabel.sheet.urlMap, primaryLocale]
 	);
 
 	return (
 		<BlockStack gap>
 			<InlineStack gap>
-				<Pressable href={energyLabel.labelUrlMap.PDF} target="_blank">
+				<Pressable href={energyLabel.label.urlMap.PDF} target="_blank">
 					<Image
 						alt={`Energy Label Efficiency Class ${energyLabel.energyClass}`}
 						source={`${coreApiConfig.baseUrl}/v1/energy-label/efficiency-class/arrow.svg?efficiencyClass=${energyLabel.energyClass}&size=26`}

@@ -1,4 +1,4 @@
-import { ELabelFormat, ESheetLanguage, RequestError } from 'eprel-client';
+import { LABEL_FORMATS, RequestError, SHEET_LANGUAGES } from 'eprel-client';
 import * as v from 'valibot';
 import { vValidator } from 'validation-adapters/valibot';
 import { AppError } from '@blgc/openapi-router';
@@ -71,7 +71,7 @@ openApiRouter.get('/product/{registrationNumber}/sheet', {
 	parsePathParamsBlacklist: ['registrationNumber'],
 	queryValidator: vValidator(
 		v.object({
-			language: v.optional(v.enum(ESheetLanguage))
+			language: v.optional(v.picklist(SHEET_LANGUAGES))
 		})
 	),
 	handler: async (c) => {
@@ -107,7 +107,7 @@ openApiRouter.get('/product/{registrationNumber}/label', {
 	parsePathParamsBlacklist: ['registrationNumber'],
 	queryValidator: vValidator(
 		v.object({
-			format: v.optional(v.enum(ELabelFormat))
+			format: v.optional(v.picklist(LABEL_FORMATS))
 		})
 	),
 	handler: async (c) => {

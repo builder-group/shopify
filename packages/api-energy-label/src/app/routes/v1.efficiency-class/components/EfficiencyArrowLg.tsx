@@ -1,3 +1,4 @@
+import { type TEnergyClass } from 'eprel-client';
 import { type FC } from 'hono/jsx';
 
 const efficiencyClassVariants = {
@@ -86,5 +87,5 @@ export const EfficiencyArrowLg: FC<TProps> = (props) => {
 
 interface TProps {
 	size: number;
-	efficiencyClass: 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
+	efficiencyClass: TEnergyClass;
 }

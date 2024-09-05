@@ -2,6 +2,7 @@ import {
 	getLabelUrl,
 	getLanguageSet,
 	getSheetUrl,
+	TEnergyClass,
 	TLabelFormat,
 	TSheetLanguage
 } from 'eprel-client';
@@ -68,7 +69,7 @@ export async function fetchEnergyLabel(
 	if (productDetailsResult.isErr()) {
 		if (
 			isStatusCode(productDetailsResult.error, 404) ||
-			// Seems like EPREL API returns 403 if Energy Labeld does not exist
+			// Seems like EPREL API returns 403 if Energy Label does not exist
 			isStatusCode(productDetailsResult.error, 403)
 		) {
 			return Ok(null);
@@ -89,8 +90,7 @@ export async function fetchEnergyLabel(
 
 	// Construct sheet url map
 	const languageSet = getLanguageSet(placementCountries);
-	// @ts-expect-error -- Filled below
-	const sheetUrlMap: Record<TSheetLanguage, string> = {};
+	const sheetUrlMap: Record<TSheetLanguage, string> = {} as Record<TSheetLanguage, string>;
 	for (const language of languageSet) {
 		const url = getSheetUrl(productGroup, registrationNumber, language);
 		if (language != null && url != null) {
@@ -100,21 +100,32 @@ export async function fetchEnergyLabel(
 
 	return Ok({
 		registrationNumber,
-		energyClass,
+		energyClass: energyClass as TEnergyClass,
 		modelIdentifier,
-		labelUrlMap: {
-			PDF: getLabelUrl(productGroup, registrationNumber, 'PDF'),
-			PNG: getLabelUrl(productGroup, registrationNumber, 'PNG'),
-			SVG: getLabelUrl(productGroup, registrationNumber, 'SVG')
+		label: {
+			urlMap: {
+				PDF: getLabelUrl(productGroup, registrationNumber, 'PDF'),
+				PNG: getLabelUrl(productGroup, registrationNumber, 'PNG'),
+				SVG: getLabelUrl(productGroup, registrationNumber, 'SVG')
+			}
 		},
-		sheetUrlMap
+		sheet: {
+			urlMap: sheetUrlMap,
+			fallbackLanguage:
+				sheetUrlMap['EN'] != null ? 'EN' : ((Object.keys(sheetUrlMap)[0] as TSheetLanguage) ?? 'EN')
+		}
 	});
 }
 
 export interface TEnergyLabel {
 	registrationNumber: string;
 	modelIdentifier: string;
-	energyClass: string; // 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
-	labelUrlMap: Record<TLabelFormat, string>;
-	sheetUrlMap: Record<TSheetLanguage, string>;
+	energyClass: TEnergyClass;
+	label: {
+		urlMap: Record<TLabelFormat, string>;
+	};
+	sheet: {
+		urlMap: Partial<Record<TSheetLanguage, string>>;
+		fallbackLanguage: TSheetLanguage;
+	};
 }

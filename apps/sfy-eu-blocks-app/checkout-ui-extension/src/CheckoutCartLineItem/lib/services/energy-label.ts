@@ -1,4 +1,4 @@
-import type { TLabelFormat, TSheetLanguage } from 'eprel-client';
+import type { TEnergyClass, TLabelFormat, TSheetLanguage } from 'eprel-client';
 import { Err, FetchError, Ok, TResult } from 'feature-fetch';
 
 import { appConfig } from '../../environment';
@@ -31,7 +31,12 @@ export async function getEnergyLabelFormMetafields(
 export interface TEnergyLabel {
 	registrationNumber: string;
 	modelIdentifier: string;
-	energyClass: string; // 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
-	labelUrlMap: Record<TLabelFormat, string>;
-	sheetUrlMap: Record<TSheetLanguage, string>;
+	energyClass: TEnergyClass;
+	label: {
+		urlMap: Record<TLabelFormat, string>;
+	};
+	sheet: {
+		urlMap: Partial<Record<TSheetLanguage, string>>;
+		fallbackLanguage: TSheetLanguage;
+	};
 }

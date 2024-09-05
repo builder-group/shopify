@@ -45,7 +45,7 @@
 		"@blgc/config": "^0.0.23",
 		"@hono/node-server": "^1.12.2",
 		"@repo/types": "workspace:*",
-		"@types/node": "^22.5.2",
+		"@types/node": "^22.5.4",
 		"dotenv": "^16.4.5",
 		"drizzle-kit": "^0.24.2",
 		"tsx": "^4.19.0"

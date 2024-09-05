@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@shopify/ui-extensions": "2024.7.0",
 		"@shopify/ui-extensions-react": "2024.7.0",
+		"eprel-client": "^0.0.16",
 		"feature-fetch": "^0.0.21",
 		"feature-react": "^0.0.23",
 		"feature-state": "^0.0.23",
@@ -20,7 +21,6 @@
 	"devDependencies": {
 		"@blgc/config": "^0.0.23",
 		"@types/react": "^18.3.5",
-		"eprel-client": "^0.0.15",
 		"react-reconciler": "^0.29.2"
 	}
 }

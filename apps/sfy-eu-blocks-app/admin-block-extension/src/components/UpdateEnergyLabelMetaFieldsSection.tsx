@@ -23,6 +23,7 @@ import {
 	TEnergyLabel
 } from '../lib';
 import { EnergyLabelPreview } from './EnergyLabelPreview';
+import { FormSelect } from './FormSelect';
 import { FormTextField } from './FormTextField';
 
 export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
@@ -35,10 +36,13 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 	const productIdNumber = React.useMemo(() => productId.replace(/^(.*[\\\/])/, ''), [productId]);
 
 	React.useEffect(() => {
-		$updateEnergyLabelMetafieldForm.fields.energyClass.listen((data) => {
+		$updateEnergyLabelMetafieldForm.fields.energyClass.listen(() => {
 			setFormChanged(hasFormChanged($updateEnergyLabelMetafieldForm));
 		});
 		$updateEnergyLabelMetafieldForm.fields.pdfLabelUrl.listen(() => {
+			setFormChanged(hasFormChanged($updateEnergyLabelMetafieldForm));
+		});
+		$updateEnergyLabelMetafieldForm.fields.fallbackSheetLanguage.listen(() => {
 			setFormChanged(hasFormChanged($updateEnergyLabelMetafieldForm));
 		});
 	}, [$updateEnergyLabelMetafieldForm]);
@@ -82,18 +86,27 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 							field={field('modelIdentifier')}
 							disabled={true}
 						/>
-
 						<FormTextField
 							label={t('label.energyClass')}
 							field={field('energyClass') as TFormField<string>}
 							disabled={isSubmitting}
 						/>
+						<FormSelect
+							label="Fallback Sheet"
+							field={field('fallbackSheetLanguage') as TFormField<string>}
+							options={Object.keys(energyLabel.sheet.urlMap).map((language) => ({
+								value: language,
+								label: language
+							}))}
+						/>
 					</InlineStack>
-					<FormTextField
-						label={t('label.pdfLabelUrl')}
-						field={field('pdfLabelUrl')}
-						disabled={isSubmitting}
-					/>
+					<InlineStack gap>
+						<FormTextField
+							label={t('label.pdfLabelUrl')}
+							field={field('pdfLabelUrl')}
+							disabled={isSubmitting}
+						/>
+					</InlineStack>
 
 					{/* </Form> */}
 				</BlockStack>
