@@ -91,20 +91,20 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 							field={field('energyClass') as TFormField<string>}
 							disabled={isSubmitting}
 						/>
-						<FormSelect
-							label="Fallback Sheet"
-							field={field('fallbackSheetLanguage') as TFormField<string>}
-							options={Object.keys(energyLabel.sheet.urlMap).map((language) => ({
-								value: language,
-								label: language
-							}))}
-						/>
 					</InlineStack>
 					<InlineStack gap>
 						<FormTextField
 							label={t('label.pdfLabelUrl')}
 							field={field('pdfLabelUrl')}
 							disabled={isSubmitting}
+						/>
+						<FormSelect
+							label={t('label.sheetFallbackLanguage')}
+							field={field('fallbackSheetLanguage') as TFormField<string>}
+							options={Object.keys(energyLabel.sheet.urlMap).map((language) => ({
+								value: language,
+								label: language
+							}))}
 						/>
 					</InlineStack>
 

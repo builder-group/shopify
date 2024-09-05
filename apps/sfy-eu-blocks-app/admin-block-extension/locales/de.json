@@ -60,6 +60,7 @@
 		"registrationNumber": "Registrierungsnummer",
 		"modelIdentifier": "Modellkennung",
 		"energyClass": "Energieklasse",
-		"pdfLabelUrl": "PDF-Etikett-URL"
+		"pdfLabelUrl": "PDF-Etikett-URL",
+		"sheetFallbackLanguage": "Datenblatt Fallback Sprache"
 	}
 }
