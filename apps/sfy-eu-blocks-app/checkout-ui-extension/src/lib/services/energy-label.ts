@@ -1,17 +1,22 @@
 import type { TEnergyClass, TLabelFormat, TSheetLanguage } from 'eprel-client';
 import { Err, FetchError, Ok, TResult } from 'feature-fetch';
 
-import { appConfig } from '../../environment';
+import { metafieldsConfig } from '../../environment';
 import { getMetafieldQuery } from '../graphql';
+import { TQuery } from '../types';
 
 export async function getEnergyLabelFormMetafields(
-	productId: string
+	productId: string,
+	query: TQuery
 ): Promise<TResult<TEnergyLabel | null, FetchError>> {
-	const result = await getMetafieldQuery({
-		productId: productId,
-		namespace: appConfig.metafields.energyLabel.namespace,
-		key: appConfig.metafields.energyLabel.key
-	});
+	const result = await getMetafieldQuery(
+		{
+			productId: productId,
+			namespace: metafieldsConfig.energyLabel.namespace,
+			key: metafieldsConfig.energyLabel.key
+		},
+		query
+	);
 	if (result.isErr()) {
 		return Err(result.error);
 	}

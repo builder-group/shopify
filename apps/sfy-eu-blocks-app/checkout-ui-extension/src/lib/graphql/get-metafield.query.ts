@@ -1,9 +1,9 @@
 import { gql } from 'feature-fetch';
 
-import { q } from '../../environment';
+import { TQuery } from '../types';
 
-export async function getMetafieldQuery(variables: TGetMetafieldQueryVariables) {
-	return await q<TGetMetafieldQueryVariables, TGetMetafieldQueryResponseData>(
+export async function getMetafieldQuery(variables: TGetMetafieldQueryVariables, query: TQuery) {
+	return await query<TGetMetafieldQueryVariables, TGetMetafieldQueryResponseData>(
 		gql`
 			query GetMetafield($productId: ID!, $namespace: String!, $key: String!) {
 				product(id: $productId) {

@@ -10,17 +10,17 @@ type = "ui_extension"
 
 # https://shopify.dev/docs/api/checkout-ui-extensions/unstable/extension-targets-overview
 [[extensions.targeting]]
-module = "./src/CheckoutCartLineItem/index.tsx"
+module = "./src/extensions/CheckoutCartLineItem/index.tsx"
 target = "purchase.checkout.cart-line-item.render-after"
 
 # https://shopify.dev/docs/api/checkout-ui-extensions/unstable/extension-targets-overview
 [[extensions.targeting]]
-module = "./src/OrderSummaryCartLineItem/index.tsx"
+module = "./src/extensions/OrderSummaryCartLineItem/index.tsx"
 target = "customer-account.order-status.cart-line-item.render-after"
 
 # https://shopify.dev/docs/api/checkout-ui-extensions/unstable/extension-targets-overview
 [[extensions.targeting]]
-module = "./src/ThankYouCartLineItem/index.tsx"
+module = "./src/extensions/ThankYouCartLineItem/index.tsx"
 target = "purchase.thank-you.cart-line-item.render-after"
 
 [extensions.capabilities]
