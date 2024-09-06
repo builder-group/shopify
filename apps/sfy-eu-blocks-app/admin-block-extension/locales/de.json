@@ -31,17 +31,17 @@
 			}
 		},
 		"warning": {
-			"noDatasheetForLocale": {
+			"noDatasheetForLanguage": {
 				"title": "Achtung",
-				"content": "Kein Datenblatt für die Hauptsprache {{locale}} wurde gefunden. Sie können eine neue Sprache hinzufügen, indem Sie zusätzliche Metafelder bearbeiten."
+				"content": "Kein Datenblatt für die Hauptsprache {{language}} wurde gefunden. Sie können eine neue Sprache hinzufügen, indem Sie zusätzliche Metafelder bearbeiten."
 			}
 		},
 		"error": {
 			"retrievalFailed": "Fehler beim Abrufen des Energielabels von ec.europa.eu: {{errorMessage}}",
 			"notFound": "Kein Energielabel mit der Registrierungsnummer {{registrationNumber}} gefunden.",
 			"productIdMissing": "Produkt konnte nicht identifiziert werden",
-			"metafieldsRead": "Fehler beim Lesen der Energielabel-Metadaten: {{errorMessage}}",
-			"metafieldsWrite": "Fehler beim Schreiben der Energielabel-Metadaten: {{errorMessage}}"
+			"metafieldsRead": "Fehler beim Lesen der Energielabel-Metafelder: {{errorMessage}}",
+			"metafieldsWrite": "Fehler beim Schreiben der Energielabel-Metafelder: {{errorMessage}}"
 		},
 		"success": {
 			"energyLabelFound": "Energielabel für '{{productName}}' erfolgreich geladen",
@@ -62,5 +62,9 @@
 		"energyClass": "Energieklasse",
 		"pdfLabelUrl": "PDF-Etikett-URL",
 		"sheetFallbackLanguage": "Datenblatt Fallback Sprache"
+	},
+	"section": {
+		"metafields": "Metafelder",
+		"preview": "Vorschau ({{language}})"
 	}
 }

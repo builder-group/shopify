@@ -31,17 +31,17 @@
 			}
 		},
 		"warning": {
-			"noDatasheetForLocale": {
+			"noDatasheetForLanguage": {
 				"title": "Warning",
-				"content": "No datasheet was found for the primary locale {{locale}}. You can add a new locale by modifying additional metafields."
+				"content": "No datasheet was found for the primary language {{language}}. You can add a new language by modifying additional metafields."
 			}
 		},
 		"error": {
 			"retrievalFailed": "Failed to retrieve Energy Label form ec.europa.eu: {{errorMessage}}",
 			"notFound": "No Energy Label with the registration number {{registrationNumber}} found.",
 			"productIdMissing": "Failed to identify product",
-			"metafieldsRead": "Failed to read Energy Label metadata: {{errorMessage}}",
-			"metafieldsWrite": "Failed to write Energy Label metadata: {{errorMessage}}"
+			"metafieldsRead": "Failed to read Energy Label Metafields: {{errorMessage}}",
+			"metafieldsWrite": "Failed to write Energy Label Metafields: {{errorMessage}}"
 		},
 		"success": {
 			"energyLabelFound": "Energy Label for '{{productName}}' successfully loaded",
@@ -62,5 +62,9 @@
 		"energyClass": "Energy Class",
 		"pdfLabelUrl": "PDF Label URL",
 		"sheetFallbackLanguage": "Datasheet Fallback Language"
+	},
+	"section": {
+		"metafields": "Metafields",
+		"preview": "Preview ({{language}})"
 	}
 }

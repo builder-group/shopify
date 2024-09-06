@@ -8,7 +8,7 @@ extension_directories = [
 ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://surprising-shuttle-therapeutic-lead.trycloudflare.com"
+application_url = "https://ice-delegation-educators-eat.trycloudflare.com"
 embedded = true
 
 [build]
@@ -22,9 +22,9 @@ scopes = "read_files,read_locales,read_products,write_files,write_products"
 
 [auth]
 redirect_urls = [
-  "https://surprising-shuttle-therapeutic-lead.trycloudflare.com/auth/callback",
-  "https://surprising-shuttle-therapeutic-lead.trycloudflare.com/auth/shopify/callback",
-  "https://surprising-shuttle-therapeutic-lead.trycloudflare.com/api/auth/callback"
+  "https://ice-delegation-educators-eat.trycloudflare.com/auth/callback",
+  "https://ice-delegation-educators-eat.trycloudflare.com/auth/shopify/callback",
+  "https://ice-delegation-educators-eat.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

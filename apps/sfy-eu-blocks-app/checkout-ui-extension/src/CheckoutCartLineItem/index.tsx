@@ -46,7 +46,7 @@ const findSheetUrl = (
 	const currentLanguage = api.localization.language.current.isoCode;
 
 	const countryLanguages = [...currentCountry.split('-'), currentMarket].flatMap(
-		(locale) => countryToSheetLanguage[locale] ?? []
+		(country) => countryToSheetLanguage[country] ?? []
 	);
 
 	const potentialSheetLanguages = new Set<string>(

@@ -1,6 +1,7 @@
 import {
 	Banner,
 	BlockStack,
+	Box,
 	Button,
 	InlineStack,
 	Link,
@@ -27,7 +28,7 @@ import { FormSelect } from './FormSelect';
 import { FormTextField } from './FormTextField';
 
 export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
-	const { productId, energyLabel, primaryLocale } = props;
+	const { productId, energyLabel, locale } = props;
 	const { handleSubmit, field } = useForm($updateEnergyLabelMetafieldForm);
 	const isSubmitting = useGlobalState($updateEnergyLabelMetafieldForm.isSubmitting);
 	const [formChanged, setFormChanged] = React.useState(false);
@@ -64,7 +65,7 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 
 	return (
 		<BlockStack gap={true}>
-			<Section heading="Metafields">
+			<Section heading={t('section.metafields')}>
 				<BlockStack gap={true}>
 					{/* <Form
 							id="form"
@@ -81,11 +82,11 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 							field={field('registrationNumber')}
 							disabled={true}
 						/>
-						<FormTextField
+						{/* <FormTextField
 							label={t('label.modelIdentifier')}
 							field={field('modelIdentifier')}
 							disabled={true}
-						/>
+						/> */}
 						<FormTextField
 							label={t('label.energyClass')}
 							field={field('energyClass') as TFormField<string>}
@@ -147,8 +148,15 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 				</Button>
 			</InlineStack>
 
-			<Section heading={`Preview (${primaryLocale})`}>
-				<EnergyLabelPreview energyLabel={energyLabel} primaryLocale={primaryLocale} />
+			<Box padding="base" />
+
+			<Section heading={t('section.preview', { language: locale })}>
+				<EnergyLabelPreview
+					energyLabel={energyLabel}
+					language={
+						locale in energyLabel.sheet.urlMap ? locale : energyLabel.sheet.fallbackLanguage
+					}
+				/>
 			</Section>
 
 			<Banner tone="info">
@@ -169,5 +177,5 @@ export const UpdateEnergyLabelMetaFieldsBlock: React.FC<TProps> = (props) => {
 interface TProps {
 	productId: string;
 	energyLabel: TEnergyLabel;
-	primaryLocale: string;
+	locale: string;
 }

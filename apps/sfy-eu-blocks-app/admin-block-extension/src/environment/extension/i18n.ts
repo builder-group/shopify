@@ -28,5 +28,6 @@ type TTranslationOptions = {
 	'banner.error.notFound': { registrationNumber: string };
 	'banner.success.energyLabelFound': { productName: string };
 	'banner.success.energyLabelUpdated': { productName: string };
-	'banner.warning.noDatasheetForLocale.content': { locale: string };
+	'banner.warning.noDatasheetForLanguage.content': { language: string };
+	'section.preview': { language: string };
 };

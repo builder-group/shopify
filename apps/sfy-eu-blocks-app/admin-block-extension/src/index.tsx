@@ -40,9 +40,6 @@ export default reactExtension(appConfig.target, async (api) => {
 			/>
 		);
 	}
-	const primaryLocale =
-		shopLocalesResult.value.shopLocales.find((local) => local.primary)?.locale.toUpperCase() ??
-		'EN';
 
 	const energyLabelResult = await getEnergyLabelFormMetafields(productId);
 	if (energyLabelResult.isErr()) {
@@ -62,15 +59,19 @@ export default reactExtension(appConfig.target, async (api) => {
 	}
 	$energyLabel.set(energyLabel);
 
+	const locale =
+		shopLocalesResult.value.shopLocales.find((locale) => locale.primary)?.locale.toUpperCase() ??
+		'EN';
+
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Extension productId={productId} primaryLocale={primaryLocale} />
+			<Extension productId={productId} locale={locale} />
 		</QueryClientProvider>
 	);
 });
 
 const Extension: React.FC<TProps> = (props) => {
-	const { productId, primaryLocale } = props;
+	const { productId, locale } = props;
 	const banner = useGlobalState($banner);
 	const energyLabel = useGlobalState($energyLabel);
 
@@ -93,7 +94,7 @@ const Extension: React.FC<TProps> = (props) => {
 					<UpdateEnergyLabelMetaFieldsBlock
 						productId={productId}
 						energyLabel={energyLabel}
-						primaryLocale={primaryLocale}
+						locale={locale}
 					/>
 				) : (
 					<LoadEnergyLabelBlock productId={productId} />
@@ -105,5 +106,5 @@ const Extension: React.FC<TProps> = (props) => {
 
 interface TProps {
 	productId: string;
-	primaryLocale: string;
+	locale: string;
 }
