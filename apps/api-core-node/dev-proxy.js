@@ -10,7 +10,7 @@ const filesToUpdate = [
 	),
 	path.join(
 		__dirname,
-		'../sfy-eu-blocks-app/checkout-ui-extension/src/CheckoutCartLineItem/environment/config/core-api.config.ts'
+		'../sfy-eu-blocks-app/checkout-ui-extension/src/environment/config/core-api.config.ts'
 	)
 ];
 

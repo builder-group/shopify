@@ -15,8 +15,8 @@ tags:
     description: Operations related to product groups
   - name: products
     description: Operations related to specific products
-  - name: efficiency-class
-    description: Operations related to efficiency classes
+  - name: energy-class
+    description: Operations related to energy classes
 paths:
   /health:
     get:
@@ -182,27 +182,27 @@ paths:
         '500':
           $ref: './common.yaml#/components/responses/InternalServerError'
 
-  /efficiency-class/arrow.svg:
+  /energy-class/arrow.svg:
     get:
       summary: Get energy efficiency class arrow as SVG
       description: Retrieves an SVG of the energy efficiency class arrow for a given energy class.
       tags:
-        - efficiency-class
+        - energy-class
       parameters:
-        - name: efficiencyClass
+        - name: energyClass
           in: query
           required: true
           schema:
             type: string
             enum: [A, B, C, D, E, F, G]
           description: The energy efficiency class to highlight on the scale
-        - name: style
+        - name: variant
           in: query
           required: false
           schema:
             type: string
             enum: [SM, LG]
-          description: The desired style
+          description: The desired variant
         - name: size
           in: query
           required: false

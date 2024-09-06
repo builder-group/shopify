@@ -1,7 +1,7 @@
 import { type TEnergyClass } from 'eprel-client';
 import { type FC } from 'hono/jsx';
 
-const efficiencyClassVariants = {
+const energyClassVariants = {
 	A: {
 		color: '#009640',
 		letterPath:
@@ -40,8 +40,8 @@ const efficiencyClassVariants = {
 } as const;
 
 export const EfficiencyArrowLg: FC<TProps> = (props) => {
-	const { size = 56, efficiencyClass } = props;
-	const { color, letterPath } = efficiencyClassVariants[efficiencyClass];
+	const { size = 56, energyClass } = props;
+	const { color, letterPath } = energyClassVariants[energyClass];
 	const width = size * (100 / 56);
 	const height = size;
 
@@ -87,5 +87,5 @@ export const EfficiencyArrowLg: FC<TProps> = (props) => {
 
 interface TProps {
 	size: number;
-	efficiencyClass: TEnergyClass;
+	energyClass: TEnergyClass;
 }

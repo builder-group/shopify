@@ -8,7 +8,7 @@ extension_directories = [
 ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://cfr-mx-jd-mpg.trycloudflare.com"
+application_url = "https://cg-rings-editions-learning.trycloudflare.com"
 embedded = true
 
 [build]
@@ -22,9 +22,9 @@ scopes = "read_files,read_locales,read_products,write_files,write_products"
 
 [auth]
 redirect_urls = [
-  "https://cfr-mx-jd-mpg.trycloudflare.com/auth/callback",
-  "https://cfr-mx-jd-mpg.trycloudflare.com/auth/shopify/callback",
-  "https://cfr-mx-jd-mpg.trycloudflare.com/api/auth/callback"
+  "https://cg-rings-editions-learning.trycloudflare.com/auth/callback",
+  "https://cg-rings-editions-learning.trycloudflare.com/auth/shopify/callback",
+  "https://cg-rings-editions-learning.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

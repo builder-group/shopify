@@ -1,7 +1,7 @@
 import { type TEnergyClass } from 'eprel-client';
-import { type FC } from 'hono/jsx';
+import { Component } from 'solid-js';
 
-const efficiencyClassVariants = {
+const energyClassVariants = {
 	A: {
 		color: '#009640',
 		letterPath:
@@ -38,9 +38,9 @@ const efficiencyClassVariants = {
 	}
 } as const;
 
-export const EfficiencyArrowSm: FC<TProps> = (props) => {
-	const { size = 56, efficiencyClass } = props;
-	const { color, letterPath } = efficiencyClassVariants[efficiencyClass];
+export const EfficiencyArrowSm: Component<TProps> = (props) => {
+	const { size = 56, energyClass } = props;
+	const { color, letterPath } = energyClassVariants[energyClass];
 	const width = size * (53 / 28);
 	const height = size;
 
@@ -86,5 +86,5 @@ export const EfficiencyArrowSm: FC<TProps> = (props) => {
 
 interface TProps {
 	size: number;
-	efficiencyClass: TEnergyClass;
+	energyClass: TEnergyClass;
 }

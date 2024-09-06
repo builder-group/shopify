@@ -44,7 +44,7 @@ const Extension: React.FC<TProps> = (props) => {
 				<Pressable to={labelUrl}>
 					<Image
 						accessibilityDescription={`Energy Label Efficiency Class ${energyClass}`}
-						source={`${coreApiConfig.baseUrl}/v1/energy-label/efficiency-class/arrow.svg?efficiencyClass=${energyClass}&size=20`}
+						source={`${coreApiConfig.baseUrl}/v1/energy-label/energy-class/arrow.svg?energyClass=${energyClass}&size=20`}
 					/>
 				</Pressable>
 				{sheetUrl != null && <Link to={sheetUrl}>Product Datasheet</Link>}

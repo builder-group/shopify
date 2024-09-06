@@ -303,7 +303,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/efficiency-class/arrow.svg": {
+    "/energy-class/arrow.svg": {
         parameters: {
             query?: never;
             header?: never;
@@ -318,9 +318,9 @@ export interface paths {
             parameters: {
                 query: {
                     /** @description The energy efficiency class to highlight on the scale */
-                    efficiencyClass: "A" | "B" | "C" | "D" | "E" | "F" | "G";
-                    /** @description The desired style */
-                    style?: "SM" | "LG";
+                    energyClass: "A" | "B" | "C" | "D" | "E" | "F" | "G";
+                    /** @description The desired variant */
+                    variant?: "SM" | "LG";
                     /** @description The desired height of the SVG in pixels */
                     size?: number;
                 };

@@ -5,24 +5,24 @@ import { vValidator } from 'validation-adapters/valibot';
 import { openApiRouter } from '../../router';
 import { EfficiencyArrowLg, EfficiencyArrowSm } from './components';
 
-openApiRouter.get('/efficiency-class/arrow.svg', {
+openApiRouter.get('/energy-class/arrow.svg', {
 	queryValidator: vValidator(
 		v.object({
-			efficiencyClass: v.picklist(ENERGY_CLASSES),
-			style: v.optional(v.picklist(['SM', 'LG'])),
+			energyClass: v.picklist(ENERGY_CLASSES),
+			variant: v.optional(v.picklist(['SM', 'LG'])),
 			size: v.optional(v.number())
 		})
 	),
 	handler: (c) => {
-		const { efficiencyClass, size = 56, style = 'SM' } = c.req.valid('query');
+		const { energyClass, size = 56, variant = 'SM' } = c.req.valid('query');
 
 		let svg;
-		switch (style) {
+		switch (variant) {
 			case 'SM':
-				svg = <EfficiencyArrowSm efficiencyClass={efficiencyClass} size={size} />;
+				svg = <EfficiencyArrowSm energyClass={energyClass} size={size} />;
 				break;
 			case 'LG':
-				svg = <EfficiencyArrowLg efficiencyClass={efficiencyClass} size={size} />;
+				svg = <EfficiencyArrowLg energyClass={energyClass} size={size} />;
 				break;
 		}
 

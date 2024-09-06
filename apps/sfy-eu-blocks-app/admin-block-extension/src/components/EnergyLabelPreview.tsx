@@ -25,7 +25,7 @@ export const EnergyLabelPreview: React.FC<TProps> = (props) => {
 				<Pressable href={energyLabel.label.urlMap.PDF} target="_blank">
 					<Image
 						alt={`Energy Label Efficiency Class ${energyLabel.energyClass}`}
-						source={`${coreApiConfig.baseUrl}/v1/energy-label/efficiency-class/arrow.svg?efficiencyClass=${energyLabel.energyClass}&size=26`}
+						source={`${coreApiConfig.baseUrl}/v1/energy-label/energy-class/arrow.svg?energyClass=${energyLabel.energyClass}&size=26`}
 					/>
 				</Pressable>
 				<Link href={sheetUrl} target="_blank">
