@@ -1,1 +1,1 @@
-# `@dyn/api-core`
+# `@repo/api-core`

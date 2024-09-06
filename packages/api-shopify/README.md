@@ -1,1 +1,1 @@
-# `@dyn/api-shopify`
+# `@repo/api-shopify`

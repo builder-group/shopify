@@ -1,4 +1,4 @@
-# `@dyn/api-energy-label`
+# `@repo/api-energy-label`
 
 This package provides a wrapper around the European Product Registry for Energy Labelling (EPREL) API. It addresses two key issues for frontends wanting to interact with the EPREL API:
 
