@@ -1,9 +1,12 @@
-import { gql } from 'feature-fetch';
+import { gql, type FetchError, type TResult } from 'feature-fetch';
 
-import { q } from '../../environment';
+import { type TQuery } from '../types';
 
-export async function createFileMutation(variables: TCreateFileMutationVariables) {
-	return await q<TCreateFileMutationVariables, TCreateFileMutationResponseData>(
+export async function createFileMutation(
+	variables: TCreateFileMutationVariables,
+	query: TQuery
+): Promise<TResult<TCreateFileMutationResponseData, FetchError>> {
+	return query<TCreateFileMutationVariables, TCreateFileMutationResponseData>(
 		gql`
 			mutation CreateFile($files: [FileCreateInput!]!) {
 				fileCreate(files: $files) {

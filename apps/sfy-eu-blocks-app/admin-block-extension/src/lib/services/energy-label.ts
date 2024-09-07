@@ -1,4 +1,9 @@
 import {
+	deleteMetafieldMutation,
+	getMetafieldQuery,
+	updateMetafieldMutation
+} from '@repo/sfy-graphql';
+import {
 	getLabelUrl,
 	getLanguageSet,
 	getSheetUrl,
@@ -8,28 +13,33 @@ import {
 } from 'eprel-client';
 import { Err, FetchError, isStatusCode, Ok, TResult } from 'feature-fetch';
 
-import { appConfig, coreClient } from '../../environment';
-import { deleteMetafieldMutation, getMetafieldQuery, updateMetafieldMutation } from '../graphql';
+import { appConfig, coreClient, q } from '../../environment';
 
 export async function updateEnergyLabelInMetafields(productId: string, energyLabel: TEnergyLabel) {
-	return await updateMetafieldMutation({
-		productId,
-		namespace: appConfig.metafields.energyLabel.namespace,
-		namespaceName: 'Energy Label',
-		key: appConfig.metafields.energyLabel.key,
-		type: appConfig.metafields.energyLabel.contentType,
-		value: JSON.stringify(energyLabel)
-	});
+	return await updateMetafieldMutation(
+		{
+			productId,
+			namespace: appConfig.metafields.energyLabel.namespace,
+			namespaceName: 'Energy Label',
+			key: appConfig.metafields.energyLabel.key,
+			type: appConfig.metafields.energyLabel.contentType,
+			value: JSON.stringify(energyLabel)
+		},
+		q
+	);
 }
 
 export async function getEnergyLabelFormMetafields(
 	productId: string
 ): Promise<TResult<TEnergyLabel | null, FetchError>> {
-	const result = await getMetafieldQuery({
-		productId: productId,
-		namespace: appConfig.metafields.energyLabel.namespace,
-		key: appConfig.metafields.energyLabel.key
-	});
+	const result = await getMetafieldQuery(
+		{
+			productId: productId,
+			namespace: appConfig.metafields.energyLabel.namespace,
+			key: appConfig.metafields.energyLabel.key
+		},
+		q
+	);
 	if (result.isErr()) {
 		return Err(result.error);
 	}
@@ -47,11 +57,14 @@ export async function getEnergyLabelFormMetafields(
 }
 
 export async function deleteEnergyLabelFromMetafields(productId: string) {
-	return await deleteMetafieldMutation({
-		productId,
-		namespace: appConfig.metafields.energyLabel.namespace,
-		key: appConfig.metafields.energyLabel.key
-	});
+	return await deleteMetafieldMutation(
+		{
+			productId,
+			namespace: appConfig.metafields.energyLabel.namespace,
+			key: appConfig.metafields.energyLabel.key
+		},
+		q
+	);
 }
 
 export async function fetchEnergyLabel(

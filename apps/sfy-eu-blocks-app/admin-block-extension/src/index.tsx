@@ -1,3 +1,4 @@
+import { getShopLocales } from '@repo/sfy-graphql';
 import {
 	AdminBlock,
 	Banner,
@@ -10,13 +11,12 @@ import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { BannerBlock, LoadEnergyLabelBlock, UpdateEnergyLabelMetaFieldsBlock } from './components';
-import { $extensionContext, appConfig, t } from './environment';
+import { $extensionContext, appConfig, q, t } from './environment';
 import {
 	$banner,
 	$energyLabel,
 	applyEnergyLabelToUpdateMetafieldForm,
-	getEnergyLabelFormMetafields,
-	getShopLocales
+	getEnergyLabelFormMetafields
 } from './lib';
 
 const queryClient = new QueryClient();
@@ -29,7 +29,7 @@ export default reactExtension(appConfig.target, async (api) => {
 		return <BannerBlock content={t('banner.error.productIdMissing')} tone="critical" />;
 	}
 
-	const shopLocalesResult = await getShopLocales();
+	const shopLocalesResult = await getShopLocales(q);
 	if (shopLocalesResult.isErr()) {
 		return (
 			<BannerBlock

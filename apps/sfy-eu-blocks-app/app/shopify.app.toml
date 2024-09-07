@@ -8,7 +8,7 @@ extension_directories = [
 ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://cg-rings-editions-learning.trycloudflare.com"
+application_url = "https://reporting-literary-tucson-family.trycloudflare.com"
 embedded = true
 
 [build]
@@ -18,17 +18,17 @@ include_config_on_deploy = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_files,read_locales,read_products,write_files,write_products"
+scopes = "read_files,read_locales,read_products,read_themes,write_files,write_products,write_themes"
 
 [auth]
 redirect_urls = [
-  "https://cg-rings-editions-learning.trycloudflare.com/auth/callback",
-  "https://cg-rings-editions-learning.trycloudflare.com/auth/shopify/callback",
-  "https://cg-rings-editions-learning.trycloudflare.com/api/auth/callback"
+  "https://reporting-literary-tucson-family.trycloudflare.com/auth/callback",
+  "https://reporting-literary-tucson-family.trycloudflare.com/auth/shopify/callback",
+  "https://reporting-literary-tucson-family.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
-api_version = "2024-07"
+api_version = "unstable"
 
   [[webhooks.subscriptions]]
   topics = [ "app/uninstalled" ]

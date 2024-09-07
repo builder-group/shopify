@@ -11,6 +11,7 @@
 	},
 	"dependencies": {
 		"@repo/api-core-client": "workspace:*",
+		"@repo/sfy-graphql": "workspace:*",
 		"@shopify/ui-extensions": "2024.7.0",
 		"@shopify/ui-extensions-react": "2024.7.0",
 		"eprel-client": "^0.0.16",

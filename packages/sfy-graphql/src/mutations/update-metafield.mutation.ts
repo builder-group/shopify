@@ -1,9 +1,12 @@
-import { gql } from 'feature-fetch';
+import { gql, type FetchError, type TResult } from 'feature-fetch';
 
-import { q } from '../../environment';
+import { type TQuery } from '../types';
 
-export async function updateMetafieldMutation(variables: TUpdateMetafieldVariables) {
-	return await q<TUpdateMetafieldVariables, TUpdateMetafieldResponseData>(
+export async function updateMetafieldMutation(
+	variables: TUpdateMetafieldVariables,
+	query: TQuery
+): Promise<TResult<TUpdateMetafieldResponseData, FetchError>> {
+	return query<TUpdateMetafieldVariables, TUpdateMetafieldResponseData>(
 		gql`
 			mutation UpdateMetafield(
 				$productId: ID!

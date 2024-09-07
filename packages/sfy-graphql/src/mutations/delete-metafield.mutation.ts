@@ -1,9 +1,12 @@
-import { gql } from 'feature-fetch';
+import { gql, type FetchError, type TResult } from 'feature-fetch';
 
-import { q } from '../../environment';
+import { type TQuery } from '../types';
 
-export async function deleteMetafieldMutation(variables: TDeleteMetafieldMutationVariables) {
-	return await q<TDeleteMetafieldMutationVariables, TDeleteMetafieldMutationResponseData>(
+export async function deleteMetafieldMutation(
+	variables: TDeleteMetafieldMutationVariables,
+	query: TQuery
+): Promise<TResult<TDeleteMetafieldMutationResponseData, FetchError>> {
+	return query<TDeleteMetafieldMutationVariables, TDeleteMetafieldMutationResponseData>(
 		gql`
 			mutation DeleteMetafield($productId: ID!, $namespace: String!, $key: String!) {
 				metafieldsDelete(metafields: [{ ownerId: $productId, namespace: $namespace, key: $key }]) {

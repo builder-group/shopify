@@ -1,4 +1,4 @@
-import { FetchError, TResult } from 'feature-fetch';
+import { type FetchError, type TResult } from 'feature-fetch';
 
 export type TQuery = <
 	GVariables extends Record<string, any>,

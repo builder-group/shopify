@@ -1,9 +1,8 @@
+import { getMetafieldQuery, TQuery } from '@repo/sfy-graphql';
 import type { TEnergyClass, TLabelFormat, TSheetLanguage } from 'eprel-client';
 import { Err, FetchError, Ok, TResult } from 'feature-fetch';
 
 import { metafieldsConfig } from '../../environment';
-import { getMetafieldQuery } from '../graphql';
-import { TQuery } from '../types';
 
 export async function getEnergyLabelFormMetafields(
 	productId: string,
