@@ -2,11 +2,11 @@ import { gql, type FetchError, type TResult } from 'feature-fetch';
 
 import { type TQuery } from '../types';
 
-export async function getFilesQuery(
-	variables: TGetFileQueryVariables,
+export async function getFileUrlsQuery(
+	variables: TGetFileUrlsQueryVariables,
 	query: TQuery
-): Promise<TResult<TGetFileQueryResponseData, FetchError>> {
-	return query<TGetFileQueryVariables, TGetFileQueryResponseData>(
+): Promise<TResult<TGetFileUrlsQueryResponseData, FetchError>> {
+	return query<TGetFileUrlsQueryVariables, TGetFileUrlsQueryResponseData>(
 		gql`
 			query GetFiles($ids: [ID!]!) {
 				nodes(ids: $ids) {
@@ -20,11 +20,11 @@ export async function getFilesQuery(
 	);
 }
 
-export interface TGetFileQueryVariables {
+export interface TGetFileUrlsQueryVariables {
 	ids: string[];
 }
 
-export interface TGetFileQueryResponseData {
+export interface TGetFileUrlsQueryResponseData {
 	nodes: {
 		id: string;
 	}[];

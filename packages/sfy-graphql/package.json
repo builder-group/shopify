@@ -35,6 +35,6 @@
 		"README.md"
 	],
 	"dependencies": {
-		"feature-fetch": "^0.0.21"
+		"feature-fetch": "^0.0.22"
 	}
 }

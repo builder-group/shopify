@@ -2,16 +2,17 @@ import { gql, type FetchError, type TResult } from 'feature-fetch';
 
 import { type TQuery } from '../types';
 
-export function getMetafieldQuery(
+export function getMetafieldQuery<GKeys extends keyof TMetafieldProps>(
 	variables: TGetMetafieldQueryVariables,
+	metafieldKeys: GKeys[],
 	query: TQuery
-): Promise<TResult<TGetMetafieldQueryResponseData, FetchError>> {
-	return query<TGetMetafieldQueryVariables, TGetMetafieldQueryResponseData>(
+): Promise<TResult<TGetMetafieldQueryResponseData<GKeys>, FetchError>> {
+	return query<TGetMetafieldQueryVariables, TGetMetafieldQueryResponseData<GKeys>>(
 		gql`
 			query GetMetafield($productId: ID!, $namespace: String!, $key: String!) {
 				product(id: $productId) {
 					metafield(namespace: $namespace, key: $key) {
-						value
+						${metafieldKeys.join(' ')}
 					}
 				}
 			}
@@ -26,10 +27,14 @@ export interface TGetMetafieldQueryVariables {
 	key: string;
 }
 
-export interface TGetMetafieldQueryResponseData {
+export interface TGetMetafieldQueryResponseData<GKeys extends keyof TMetafieldProps> {
 	product: {
-		metafield: {
-			value: string;
-		} | null;
+		metafield: Pick<TMetafieldProps, GKeys> | null;
 	};
+}
+
+interface TMetafieldProps {
+	value: string;
+	type: string;
+	key: string;
 }

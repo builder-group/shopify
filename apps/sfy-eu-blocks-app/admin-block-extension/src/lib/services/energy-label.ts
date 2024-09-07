@@ -1,6 +1,6 @@
 import {
 	deleteMetafieldMutation,
-	getMetafieldQuery,
+	getMetafieldValueQuery,
 	updateMetafieldMutation
 } from '@repo/sfy-graphql';
 import {
@@ -32,7 +32,7 @@ export async function updateEnergyLabelInMetafields(productId: string, energyLab
 export async function getEnergyLabelFormMetafields(
 	productId: string
 ): Promise<TResult<TEnergyLabel | null, FetchError>> {
-	const result = await getMetafieldQuery(
+	const result = await getMetafieldValueQuery(
 		{
 			productId: productId,
 			namespace: appConfig.metafields.energyLabel.namespace,
