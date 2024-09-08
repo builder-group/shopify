@@ -1,5 +1,5 @@
 {
-	"name": "@repo/sfy-graphql",
+	"name": "@repo/sfy-utils",
 	"version": "0.0.1",
 	"description": "Shopify GraphQL",
 	"private": true,

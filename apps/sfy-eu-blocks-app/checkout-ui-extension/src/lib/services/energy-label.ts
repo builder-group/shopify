@@ -1,4 +1,4 @@
-import { getMetafieldValueQuery, TQuery } from '@repo/sfy-graphql';
+import { getMetafieldValueQuery, TQuery } from '@repo/sfy-utils';
 import type { TEnergyClass, TLabelFormat, TSheetLanguage } from 'eprel-client';
 import { Err, FetchError, Ok, TResult } from 'feature-fetch';
 

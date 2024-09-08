@@ -140,9 +140,9 @@ importers:
       '@repo/api-core-client':
         specifier: workspace:*
         version: link:../../../packages/api-core-client
-      '@repo/sfy-graphql':
+      '@repo/sfy-utils':
         specifier: workspace:*
-        version: link:../../../packages/sfy-graphql
+        version: link:../../../packages/sfy-utils
       '@shopify/ui-extensions':
         specifier: 2024.7.0
         version: 2024.7.0
@@ -253,9 +253,9 @@ importers:
 
   apps/sfy-eu-blocks-app/checkout-ui-extension:
     dependencies:
-      '@repo/sfy-graphql':
+      '@repo/sfy-utils':
         specifier: workspace:*
-        version: link:../../../packages/sfy-graphql
+        version: link:../../../packages/sfy-utils
       '@shopify/ui-extensions':
         specifier: 2024.7.0
         version: 2024.7.0
@@ -773,7 +773,7 @@ importers:
         specifier: ^22.5.4
         version: 22.5.4
 
-  packages/sfy-graphql:
+  packages/sfy-utils:
     dependencies:
       feature-fetch:
         specifier: ^0.0.22

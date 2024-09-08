@@ -2,7 +2,7 @@ import {
 	deleteMetafieldMutation,
 	getMetafieldValueQuery,
 	updateMetafieldMutation
-} from '@repo/sfy-graphql';
+} from '@repo/sfy-utils';
 import {
 	getLabelUrl,
 	getLanguageSet,

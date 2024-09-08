@@ -10,7 +10,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"@repo/sfy-graphql": "workspace:*",
+		"@repo/sfy-utils": "workspace:*",
 		"@shopify/ui-extensions": "2024.7.0",
 		"@shopify/ui-extensions-react": "2024.7.0",
 		"eprel-client": "^0.0.16",

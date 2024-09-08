@@ -1,4 +1,4 @@
-import { getShopLocalesQuery } from '@repo/sfy-graphql';
+import { getShopLocalesQuery } from '@repo/sfy-utils';
 import {
 	AdminBlock,
 	Banner,
