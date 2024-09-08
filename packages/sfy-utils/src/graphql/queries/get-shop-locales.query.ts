@@ -7,7 +7,7 @@ export async function getShopLocalesQuery(
 ): Promise<TResult<TGetShopLocalesQueryResponseData, FetchError>> {
 	return query<{}, TGetShopLocalesQueryResponseData>(
 		gql`
-			query shopInfo {
+			query GetShopLocales {
 				shopLocales {
 					locale
 					primary

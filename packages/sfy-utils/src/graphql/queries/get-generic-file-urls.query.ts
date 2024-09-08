@@ -2,13 +2,13 @@ import { gql, type FetchError, type TResult } from 'feature-fetch';
 
 import { type TQuery } from '../types';
 
-export async function getFileUrlsQuery(
+export async function getGenericFileUrlsQuery(
 	variables: TGetFileUrlsQueryVariables,
 	query: TQuery
 ): Promise<TResult<TGetFileUrlsQueryResponseData, FetchError>> {
 	return query<TGetFileUrlsQueryVariables, TGetFileUrlsQueryResponseData>(
 		gql`
-			query GetFiles($ids: [ID!]!) {
+			query GetGenericFileUrls($ids: [ID!]!) {
 				nodes(ids: $ids) {
 					... on GenericFile {
 						url

@@ -8,7 +8,7 @@ export function getMetafieldValueQuery(
 ): Promise<TResult<TGetMetafieldValueQueryResponseData, FetchError>> {
 	return query<TGetMetafieldValueQueryVariables, TGetMetafieldValueQueryResponseData>(
 		gql`
-			query GetMetafield($productId: ID!, $namespace: String!, $key: String!) {
+			query GetMetafieldValue($productId: ID!, $namespace: String!, $key: String!) {
 				product(id: $productId) {
 					metafield(namespace: $namespace, key: $key) {
 						value
