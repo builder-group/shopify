@@ -27,7 +27,6 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"@shopify/liquid-html-parser": "^2.0.3",
 		"feature-fetch": "^0.0.22"
 	},
 	"devDependencies": {
