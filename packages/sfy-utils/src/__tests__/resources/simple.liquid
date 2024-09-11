@@ -1,5 +1,7 @@
-<body>
-	{% for product in all_products %}
-		<img src='{{ product | image_url }}'>
-	{% endfor %}
-</body>
+<div class='product-card'>
+	<h2>{{ card_product.title }}</h2>
+	{%- if show_rating -%}
+		<div class='rating'>{{ card_product.rating }}</div>
+	{%- endif -%}
+	<p>{{ card_product.price | money }}</p>
+</div>

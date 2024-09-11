@@ -1,39 +1,39 @@
 import { readFile } from 'node:fs/promises';
 import { beforeAll, describe, expect, it } from 'vitest';
 
-import { AST, formatLiquidHtml } from '../liquid-html';
+import { AST, formatLiquidHtmlWithInsertions } from '../liquid-html';
 
 describe('playground', () => {
-	let liquid = '';
+	let liquidHtml = '';
 
 	beforeAll(async () => {
-		liquid = await readFile(`${__dirname}/resources/simple.liquid`, 'utf-8');
+		liquidHtml = await readFile(`${__dirname}/resources/simple.liquid`, 'utf-8');
 	});
 
-	it('should work', async () => {
-		const result = await formatLiquidHtml(liquid, (ast) => {
-			const newParagraphNode = AST.toLiquidHtmlAST('<p>Hello World</p>')
-				.children[0] as unknown as AST.LiquidHtmlNode;
+	it('should workd', async () => {
+		const toInsertLiquidHtml = `
+<!-- START: eu-blocks -->
+  <div class='eu-blocks eu-blocks_energy-label'>
+    {{ card_product.metafields.eu_blocks.energy_label }}
+  </div>
+<!-- END: eu-blocks -->
+`;
 
-			function insertAfterImg(node: AST.LiquidHtmlNode): AST.LiquidHtmlNode {
-				if ('children' in node && node.children != null) {
-					for (let i = 0; i < node.children.length; i++) {
-						const child = node.children[i] as unknown as AST.LiquidHtmlNode;
-
-						// Check if the child is an HtmlVoidElement (which includes <img>)
-						if (child.type === AST.NodeTypes.HtmlVoidElement && child.name === 'img') {
-							node.children.splice(i + 1, 0, newParagraphNode);
+		const result = await formatLiquidHtmlWithInsertions(liquidHtml, [
+			{
+				criteria: (node: AST.LiquidHtmlNode) => {
+					if (node.type === AST.NodeTypes.LiquidTag && node.name === 'if') {
+						const markup = node.markup as AST.LiquidConditionalExpression;
+						if (markup.type === AST.NodeTypes.VariableLookup && markup.name === 'show_rating') {
+							return true;
 						}
-
-						insertAfterImg(child);
 					}
-				}
-
-				return node;
+					return false;
+				},
+				content: toInsertLiquidHtml,
+				position: 'before'
 			}
-
-			return insertAfterImg(ast);
-		});
+		]);
 
 		console.log(result);
 

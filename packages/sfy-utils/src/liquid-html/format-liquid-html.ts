@@ -4,8 +4,10 @@ import { prettierPluginLiquid, type AST } from './prettier-plugin-liquid';
 
 export async function formatLiquidHtml(
 	source: string,
-	astCallback?: (ast: AST.LiquidHtmlNode) => AST.LiquidHtmlNode
+	options: TFormatLiquidHtmlOptions = {}
 ): Promise<string> {
+	const { astMiddleware } = options;
+
 	return prettier.format(source, {
 		parser: 'liquid-html',
 		plugins: [
@@ -14,13 +16,20 @@ export async function formatLiquidHtml(
 				parsers: {
 					'liquid-html': {
 						...prettierPluginLiquid.parsers['liquid-html'],
-						async parse(text, options) {
-							const ast = await prettierPluginLiquid.parsers['liquid-html'].parse(text, options);
-							return astCallback != null ? astCallback(ast) : ast;
+						async parse(text, parseOptions) {
+							const ast = await prettierPluginLiquid.parsers['liquid-html'].parse(
+								text,
+								parseOptions
+							);
+							return astMiddleware != null ? astMiddleware(ast) : ast;
 						}
 					}
 				}
 			}
 		]
 	});
+}
+
+export interface TFormatLiquidHtmlOptions {
+	astMiddleware?: (ast: AST.LiquidHtmlNode) => AST.LiquidHtmlNode;
 }
