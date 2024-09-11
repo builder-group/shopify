@@ -1,6 +1,6 @@
 <div class='product-card'>
 	<h2>{{ card_product.title }}</h2>
-	{%- if show_rating -%}
+	{%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
 		<div class='rating'>{{ card_product.rating }}</div>
 	{%- endif -%}
 	<p>{{ card_product.price | money }}</p>

@@ -24,7 +24,12 @@ describe('playground', () => {
 				criteria: (node: AST.LiquidHtmlNode) => {
 					if (node.type === AST.NodeTypes.LiquidTag && node.name === 'if') {
 						const markup = node.markup as AST.LiquidConditionalExpression;
-						if (markup.type === AST.NodeTypes.VariableLookup && markup.name === 'show_rating') {
+						if (
+							markup.type === AST.NodeTypes.LogicalExpression &&
+							markup.relation === 'and' &&
+							markup.left.type === AST.NodeTypes.VariableLookup &&
+							markup.left.name === 'show_rating'
+						) {
 							return true;
 						}
 					}
@@ -36,6 +41,8 @@ describe('playground', () => {
 		]);
 
 		console.log(result);
+
+		// await writeFile(`${__dirname}/resources/created.liquid`, result);
 
 		expect(result).not.toBeNull();
 	});
