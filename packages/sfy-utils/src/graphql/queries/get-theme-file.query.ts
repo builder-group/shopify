@@ -6,7 +6,7 @@ export function getThemeFileQuery(
 	variables: TGetThemeFileQueryVariables,
 	query: TQuery
 ): Promise<TResult<TGetThemeFileQueryResponseData, FetchError>> {
-	return query<TGetThemeFileQueryVariables, TGetThemeFileQueryResponseData>(
+	return query<TGetThemeFileQueryResponseData, TGetThemeFileQueryVariables>(
 		gql`
 			query GetThemeFile($themeId: ID!, $filename: String!) {
 				theme(id: $themeId) {

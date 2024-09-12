@@ -27,7 +27,7 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"feature-fetch": "^0.0.22"
+		"feature-fetch": "^0.0.25"
 	},
 	"devDependencies": {
 		"@blgc/config": "^0.0.23",

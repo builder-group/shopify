@@ -6,7 +6,7 @@ export async function updateMetafieldMutation(
 	variables: TUpdateMetafieldVariables,
 	query: TQuery
 ): Promise<TResult<TUpdateMetafieldResponseData, FetchError>> {
-	return query<TUpdateMetafieldVariables, TUpdateMetafieldResponseData>(
+	return query<TUpdateMetafieldResponseData, TUpdateMetafieldVariables>(
 		gql`
 			mutation UpdateMetafield(
 				$productId: ID!

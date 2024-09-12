@@ -6,7 +6,7 @@ export async function getGenericFileUrlsQuery(
 	variables: TGetFileUrlsQueryVariables,
 	query: TQuery
 ): Promise<TResult<TGetFileUrlsQueryResponseData, FetchError>> {
-	return query<TGetFileUrlsQueryVariables, TGetFileUrlsQueryResponseData>(
+	return query<TGetFileUrlsQueryResponseData, TGetFileUrlsQueryVariables>(
 		gql`
 			query GetGenericFileUrls($ids: [ID!]!) {
 				nodes(ids: $ids) {

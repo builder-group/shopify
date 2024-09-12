@@ -6,7 +6,7 @@ export async function createFileMutation(
 	variables: TCreateFileMutationVariables,
 	query: TQuery
 ): Promise<TResult<TCreateFileMutationResponseData, FetchError>> {
-	return query<TCreateFileMutationVariables, TCreateFileMutationResponseData>(
+	return query<TCreateFileMutationResponseData, TCreateFileMutationVariables>(
 		gql`
 			mutation CreateFile($files: [FileCreateInput!]!) {
 				fileCreate(files: $files) {

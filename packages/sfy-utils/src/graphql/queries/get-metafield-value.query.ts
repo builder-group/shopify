@@ -6,7 +6,7 @@ export function getMetafieldValueQuery(
 	variables: TGetMetafieldValueQueryVariables,
 	query: TQuery
 ): Promise<TResult<TGetMetafieldValueQueryResponseData, FetchError>> {
-	return query<TGetMetafieldValueQueryVariables, TGetMetafieldValueQueryResponseData>(
+	return query<TGetMetafieldValueQueryResponseData, TGetMetafieldValueQueryVariables>(
 		gql`
 			query GetMetafieldValue($productId: ID!, $namespace: String!, $key: String!) {
 				product(id: $productId) {

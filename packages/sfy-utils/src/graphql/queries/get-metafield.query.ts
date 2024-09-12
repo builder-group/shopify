@@ -7,7 +7,7 @@ export function getMetafieldQuery<GKeys extends keyof TMetafieldProps>(
 	metafieldKeys: GKeys[],
 	query: TQuery
 ): Promise<TResult<TGetMetafieldQueryResponseData<GKeys>, FetchError>> {
-	return query<TGetMetafieldQueryVariables, TGetMetafieldQueryResponseData<GKeys>>(
+	return query<TGetMetafieldQueryResponseData<GKeys>, TGetMetafieldQueryVariables>(
 		gql`
 			query GetMetafield($productId: ID!, $namespace: String!, $key: String!) {
 				product(id: $productId) {

@@ -101,8 +101,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/ui
       feature-fetch:
-        specifier: ^0.0.22
-        version: 0.0.22
+        specifier: ^0.0.25
+        version: 0.0.25
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -153,8 +153,8 @@ importers:
         specifier: ^0.0.16
         version: 0.0.16
       feature-fetch:
-        specifier: ^0.0.22
-        version: 0.0.22
+        specifier: ^0.0.25
+        version: 0.0.25
       feature-form:
         specifier: ^0.0.27
         version: 0.0.27
@@ -266,8 +266,8 @@ importers:
         specifier: ^0.0.16
         version: 0.0.16
       feature-fetch:
-        specifier: ^0.0.22
-        version: 0.0.22
+        specifier: ^0.0.25
+        version: 0.0.25
       feature-react:
         specifier: ^0.0.23
         version: 0.0.23(react@18.3.1)
@@ -601,8 +601,8 @@ importers:
   packages/api-core-client:
     dependencies:
       feature-fetch:
-        specifier: ^0.0.22
-        version: 0.0.22
+        specifier: ^0.0.25
+        version: 0.0.25
     devDependencies:
       '@blgc/config':
         specifier: ^0.0.23
@@ -739,8 +739,8 @@ importers:
   packages/sfy-app-session-storage-api:
     dependencies:
       feature-fetch:
-        specifier: ^0.0.22
-        version: 0.0.22
+        specifier: ^0.0.25
+        version: 0.0.25
     devDependencies:
       '@blgc/config':
         specifier: ^0.0.23
@@ -782,8 +782,11 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0(prettier@3.3.3)
       feature-fetch:
-        specifier: ^0.0.22
-        version: 0.0.22
+        specifier: ^0.0.25
+        version: 0.0.25
+      gql.tada:
+        specifier: ^1.8.7
+        version: 1.8.7(graphql@16.9.0)(typescript@5.5.4)
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -902,6 +905,20 @@ importers:
         version: 5.0.1(typescript@5.5.4)(vite@5.4.3(@types/node@22.5.4)(sass@1.77.8))
 
 packages:
+
+  '@0no-co/graphql.web@1.0.8':
+    resolution: {integrity: sha512-8BG6woLtDMvXB9Ajb/uE+Zr/U7y4qJ3upXi0JQHZmsKUJa7HjF/gFvmL2f3/mSmfZoQGRr9VoY97LCX2uaFMzA==}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+    peerDependenciesMeta:
+      graphql:
+        optional: true
+
+  '@0no-co/graphqlsp@1.12.14':
+    resolution: {integrity: sha512-0FoG2EkXxTY+++dKggmBkwY/skAE5dW2yqt4abHF0zrbCId4WreoFfhoTQT82FeD6gbkYe5FGrcn1x9SjnO77g==}
+    peerDependencies:
+      graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
+      typescript: ^5.0.0
 
   '@adobe/css-tools@4.4.0':
     resolution: {integrity: sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==}
@@ -2402,6 +2419,26 @@ packages:
 
   '@exodus/schemasafe@1.3.0':
     resolution: {integrity: sha512-5Aap/GaRupgNx/feGBwLLTVv8OQFfv3pq2lPRzPg9R+IOBnDgghTGW7l7EuVXOvg5cc/xSAlRW8rBrjIC3Nvqw==}
+
+  '@gql.tada/cli-utils@1.6.2':
+    resolution: {integrity: sha512-P4bOOayf6zR/uRWHmVyRz8auiuOzNmq8C0YFQbhj5TGGgHr5kkVI2ZIrplWsJqCBTYzpZEYzaxa9iGP6vuKA9Q==}
+    peerDependencies:
+      '@0no-co/graphqlsp': ^1.12.13
+      '@gql.tada/svelte-support': 1.0.1
+      '@gql.tada/vue-support': 1.0.1
+      graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
+      typescript: ^5.0.0
+    peerDependenciesMeta:
+      '@gql.tada/svelte-support':
+        optional: true
+      '@gql.tada/vue-support':
+        optional: true
+
+  '@gql.tada/internal@1.0.8':
+    resolution: {integrity: sha512-XYdxJhtHC5WtZfdDqtKjcQ4d7R1s0d1rnlSs3OcBEUbYiPoJJfZU7tWsVXuv047Z6msvmr4ompJ7eLSK5Km57g==}
+    peerDependencies:
+      graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
+      typescript: ^5.0.0
 
   '@graphql-codegen/add@5.0.3':
     resolution: {integrity: sha512-SxXPmramkth8XtBlAHu4H4jYcYXM/o3p01+psU+0NADQowA8jtYkK6MW5rV6T+CxkEaNZItfSmZRPgIuypcqnA==}
@@ -6091,8 +6128,8 @@ packages:
   feature-fetch@0.0.21:
     resolution: {integrity: sha512-okHNrplaXBjBkxffJpvw+lR8+ijiZAj03tdbWE8lkH7zJCNR5gAjsp+qwgFBwmeW5ZBi4GAvlus/gubsJQhkPg==}
 
-  feature-fetch@0.0.22:
-    resolution: {integrity: sha512-rC7nE56n82aZuaKXiBSVWoaqjZdn01zLMTDMQYHxmnRW+FV3dtFtwDDJIyCDe/Sy2+t8b8ttpccKFBDjMB1iRg==}
+  feature-fetch@0.0.25:
+    resolution: {integrity: sha512-agwL5i7tvUkL3WyiOvjJ69Ca2hOC4ZTA+q2xLhjw62i6dZR+PdiuO5Nw/GqBCY1xVQGBXiCu+jYo2Lh86xO8Bw==}
 
   feature-form@0.0.27:
     resolution: {integrity: sha512-CzU3e5jFNnaDx0jYZM2D6WiQ4QLoXdh2trwRlWwcFign9NTUFUxKy1QHnG0faPnolvVbhS2GUt0ovZVrDb9xww==}
@@ -6430,6 +6467,12 @@ packages:
   got@12.6.1:
     resolution: {integrity: sha512-mThBblvlAF1d4O5oqyvN+ZxLAYwIJK7bpMxgYqPD9okW0C3qm5FFn7k811QrcuEBwaogR3ngOFoCfs6mRv7teQ==}
     engines: {node: '>=14.16'}
+
+  gql.tada@1.8.7:
+    resolution: {integrity: sha512-ixqMvH5jRs5wxe5liNoaG1TA9NfA+kAz8QzfT0xrzcKARJOVC7MednVhxyhY1RDgZH8mNfChK3ti8cIcd9cuuw==}
+    hasBin: true
+    peerDependencies:
+      typescript: ^5.0.0
 
   graceful-fs@4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
@@ -9555,6 +9598,10 @@ packages:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
     engines: {node: '>=0.10.0'}
 
+  source-map-js@1.2.1:
+    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
+    engines: {node: '>=0.10.0'}
+
   source-map-support@0.5.21:
     resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
 
@@ -10767,6 +10814,16 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
 snapshots:
+
+  '@0no-co/graphql.web@1.0.8(graphql@16.9.0)':
+    optionalDependencies:
+      graphql: 16.9.0
+
+  '@0no-co/graphqlsp@1.12.14(graphql@16.9.0)(typescript@5.5.4)':
+    dependencies:
+      '@gql.tada/internal': 1.0.8(graphql@16.9.0)(typescript@5.5.4)
+      graphql: 16.9.0
+      typescript: 5.5.4
 
   '@adobe/css-tools@4.4.0': {}
 
@@ -12246,6 +12303,19 @@ snapshots:
   '@eslint/object-schema@2.1.4': {}
 
   '@exodus/schemasafe@1.3.0': {}
+
+  '@gql.tada/cli-utils@1.6.2(@0no-co/graphqlsp@1.12.14(graphql@16.9.0)(typescript@5.5.4))(graphql@16.9.0)(typescript@5.5.4)':
+    dependencies:
+      '@0no-co/graphqlsp': 1.12.14(graphql@16.9.0)(typescript@5.5.4)
+      '@gql.tada/internal': 1.0.8(graphql@16.9.0)(typescript@5.5.4)
+      graphql: 16.9.0
+      typescript: 5.5.4
+
+  '@gql.tada/internal@1.0.8(graphql@16.9.0)(typescript@5.5.4)':
+    dependencies:
+      '@0no-co/graphql.web': 1.0.8(graphql@16.9.0)
+      graphql: 16.9.0
+      typescript: 5.5.4
 
   '@graphql-codegen/add@5.0.3(graphql@16.9.0)':
     dependencies:
@@ -17360,7 +17430,7 @@ snapshots:
       '@blgc/types': 0.0.7
       '@blgc/utils': 0.0.18
 
-  feature-fetch@0.0.22:
+  feature-fetch@0.0.25:
     dependencies:
       '@blgc/types': 0.0.7
       '@blgc/utils': 0.0.18
@@ -17757,6 +17827,18 @@ snapshots:
       lowercase-keys: 3.0.0
       p-cancelable: 3.0.0
       responselike: 3.0.0
+
+  gql.tada@1.8.7(graphql@16.9.0)(typescript@5.5.4):
+    dependencies:
+      '@0no-co/graphql.web': 1.0.8(graphql@16.9.0)
+      '@0no-co/graphqlsp': 1.12.14(graphql@16.9.0)(typescript@5.5.4)
+      '@gql.tada/cli-utils': 1.6.2(@0no-co/graphqlsp@1.12.14(graphql@16.9.0)(typescript@5.5.4))(graphql@16.9.0)(typescript@5.5.4)
+      '@gql.tada/internal': 1.0.8(graphql@16.9.0)(typescript@5.5.4)
+      typescript: 5.5.4
+    transitivePeerDependencies:
+      - '@gql.tada/svelte-support'
+      - '@gql.tada/vue-support'
+      - graphql
 
   graceful-fs@4.2.10: {}
 
@@ -20164,7 +20246,7 @@ snapshots:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.1.0
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
 
   postgres@3.4.4: {}
 
@@ -20966,7 +21048,7 @@ snapshots:
     dependencies:
       chokidar: 3.6.0
       immutable: 4.3.7
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
     optional: true
 
   sax@1.4.1: {}
@@ -21214,6 +21296,8 @@ snapshots:
       sort-object-keys: 1.1.3
 
   source-map-js@1.2.0: {}
+
+  source-map-js@1.2.1: {}
 
   source-map-support@0.5.21:
     dependencies:
