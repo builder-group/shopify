@@ -1,4 +1,4 @@
-import { getShopLocalesQuery } from '@repo/sfy-utils';
+import { GetShopLocalesQuery } from '@repo/sfy-utils';
 import {
 	AdminBlock,
 	Banner,
@@ -29,7 +29,7 @@ export default reactExtension(appConfig.target, async (api) => {
 		return <BannerBlock content={t('banner.error.productIdMissing')} tone="critical" />;
 	}
 
-	const shopLocalesResult = await getShopLocalesQuery(q);
+	const shopLocalesResult = await q(GetShopLocalesQuery, {});
 	if (shopLocalesResult.isErr()) {
 		return (
 			<BannerBlock

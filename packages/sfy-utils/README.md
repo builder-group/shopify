@@ -1,1 +1,1 @@
-# `@repo/api-utils`
+# `@repo/sfy-utils`
