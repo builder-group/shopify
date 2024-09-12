@@ -7,7 +7,7 @@
 		"baseUrl": ".",
 		"plugins": [{
 			"name": "gql.tada/ts-plugin",
-			"schema": "https://shopify.dev/admin-graphql-direct-proxy/2024-07",
+			"schema": "https://shopify.dev/admin-graphql-direct-proxy/unstable",
 			"tadaOutputLocation": "./src/graphql-env.d.ts",
 		  }]
 	},

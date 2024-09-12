@@ -2,4 +2,5 @@ export * from './mutations';
 export * from './queries';
 export * from './types';
 
-export { FetchError, gql } from 'feature-fetch';
+export { FetchError } from 'feature-fetch';
+export { graphql } from 'gql.tada';
