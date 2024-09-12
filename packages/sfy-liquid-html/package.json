@@ -1,8 +1,8 @@
 {
-	"name": "@repo/api-core-client",
-	"description": "Core API Client",
+	"name": "@repo/sfy-liquid-html",
 	"version": "0.0.1",
-	"private": false,
+	"description": "Shopify GraphQL",
+	"private": true,
 	"scripts": {
 		"build": "shx rm -rf dist && chmod +x ../../scripts/cli.sh && ../../scripts/cli.sh bundle",
 		"start:dev": "tsc -w",
@@ -27,11 +27,12 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"feature-fetch": "^0.0.26"
+		"@shopify/liquid-html-parser": "^2.0.3",
+		"@shopify/prettier-plugin-liquid": "^1.5.0",
+		"prettier": "^3.3.3"
 	},
 	"devDependencies": {
 		"@blgc/config": "^0.0.23",
-		"@repo/types": "workspace:*",
 		"@types/node": "^22.5.4"
 	},
 	"files": [

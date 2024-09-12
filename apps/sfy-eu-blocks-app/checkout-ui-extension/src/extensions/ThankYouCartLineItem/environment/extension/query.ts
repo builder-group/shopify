@@ -1,12 +1,20 @@
-import { Err, FetchError, Ok, TResult } from 'feature-fetch';
+import { Err, FetchError, getQueryString, Ok, TDocumentInput, TResult } from 'feature-fetch';
 
 import { cx } from './context';
 
 export async function q<
-	GVariables extends Record<string, any>,
-	GSucessResponseData extends Record<string, any>
->(query: string, variables: GVariables): Promise<TResult<GSucessResponseData, FetchError>> {
-	const result = await cx().query<GSucessResponseData, GVariables>(query, {
+	GSucessResponseData extends Record<string, any>,
+	GVariables extends Record<string, any>
+>(
+	query: TDocumentInput<GSucessResponseData, GVariables>,
+	variables: GVariables
+): Promise<TResult<GSucessResponseData, FetchError>> {
+	const maybeQueryString = getQueryString(query);
+	if (maybeQueryString.isErr()) {
+		return Err(maybeQueryString.error);
+	}
+
+	const result = await cx().query<GSucessResponseData, GVariables>(maybeQueryString.value, {
 		variables
 	});
 

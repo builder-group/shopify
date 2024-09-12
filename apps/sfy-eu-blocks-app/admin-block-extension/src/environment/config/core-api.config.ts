@@ -1,3 +1,3 @@
 export const coreApiConfig = {
-	baseUrl: 'https://vip-entering-depot-colorado.trycloudflare.com' // TODO: Find way to sync url from api-core-node
+	baseUrl: 'https://turned-champagne-equal-seeking.trycloudflare.com' // TODO: Find way to sync url from api-core-node
 };

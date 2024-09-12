@@ -1,7 +1,7 @@
 import {
-	deleteMetafieldMutation,
-	getMetafieldValueQuery,
-	updateMetafieldMutation
+	DeleteMetafieldMutation,
+	GetMetafieldValueQuery,
+	UpdateMetafieldMutation
 } from '@repo/sfy-utils';
 import {
 	getLabelUrl,
@@ -16,35 +16,30 @@ import { Err, FetchError, isStatusCode, Ok, TResult } from 'feature-fetch';
 import { appConfig, coreClient, q } from '../../environment';
 
 export async function updateEnergyLabelInMetafields(productId: string, energyLabel: TEnergyLabel) {
-	return await updateMetafieldMutation(
-		{
-			productId,
-			namespace: appConfig.metafields.energyLabel.namespace,
-			namespaceName: 'Energy Label',
-			key: appConfig.metafields.energyLabel.key,
-			type: appConfig.metafields.energyLabel.contentType,
-			value: JSON.stringify(energyLabel)
-		},
-		q
-	);
+	return q(UpdateMetafieldMutation, {
+		productId,
+		namespace: appConfig.metafields.energyLabel.namespace,
+		namespaceName: 'Energy Label',
+		key: appConfig.metafields.energyLabel.key,
+		type: appConfig.metafields.energyLabel.contentType,
+		value: JSON.stringify(energyLabel)
+	});
 }
 
 export async function getEnergyLabelFormMetafields(
 	productId: string
 ): Promise<TResult<TEnergyLabel | null, FetchError>> {
-	const result = await getMetafieldValueQuery(
-		{
-			productId: productId,
-			namespace: appConfig.metafields.energyLabel.namespace,
-			key: appConfig.metafields.energyLabel.key
-		},
-		q
-	);
+	const result = await q(GetMetafieldValueQuery, {
+		productId: productId,
+		namespace: appConfig.metafields.energyLabel.namespace,
+		key: appConfig.metafields.energyLabel.key
+	});
+
 	if (result.isErr()) {
 		return Err(result.error);
 	}
 
-	const productLabelString = result.value.product.metafield?.value;
+	const productLabelString = result.value.product?.metafield?.value;
 	if (productLabelString == null) {
 		return Ok(null);
 	}
@@ -57,14 +52,11 @@ export async function getEnergyLabelFormMetafields(
 }
 
 export async function deleteEnergyLabelFromMetafields(productId: string) {
-	return await deleteMetafieldMutation(
-		{
-			productId,
-			namespace: appConfig.metafields.energyLabel.namespace,
-			key: appConfig.metafields.energyLabel.key
-		},
-		q
-	);
+	return q(DeleteMetafieldMutation, {
+		productId,
+		namespace: appConfig.metafields.energyLabel.namespace,
+		key: appConfig.metafields.energyLabel.key
+	});
 }
 
 export async function fetchEnergyLabel(

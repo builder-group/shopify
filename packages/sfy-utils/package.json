@@ -27,10 +27,8 @@
 	},
 	"homepage": "",
 	"dependencies": {
-		"@shopify/liquid-html-parser": "^2.0.3",
-		"@shopify/prettier-plugin-liquid": "^1.5.0",
-		"feature-fetch": "^0.0.22",
-		"prettier": "^3.3.3"
+		"feature-fetch": "^0.0.26",
+		"gql.tada": "^1.8.7"
 	},
 	"devDependencies": {
 		"@blgc/config": "^0.0.23",

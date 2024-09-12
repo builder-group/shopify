@@ -1,7 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import { beforeAll, describe, expect, it } from 'vitest';
 
-import { AST, formatLiquidHtmlWithInsertions } from '../liquid-html';
+import { formatLiquidHtmlWithInsertions } from '../format-liquid-html-with-insertions';
+import { AST } from '../prettier-plugin-liquid';
 
 describe('playground', () => {
 	let liquidHtml = '';

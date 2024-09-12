@@ -8,7 +8,7 @@ extension_directories = [
 ]
 name = "eu-blocks"
 handle = "eu-blocks"
-application_url = "https://indices-gadgets-seniors-app.trycloudflare.com"
+application_url = "https://campaigns-environment-angels-retired.trycloudflare.com"
 embedded = true
 
 [build]
@@ -22,9 +22,9 @@ scopes = "read_files,read_locales,read_products,read_themes,write_files,write_pr
 
 [auth]
 redirect_urls = [
-  "https://indices-gadgets-seniors-app.trycloudflare.com/auth/callback",
-  "https://indices-gadgets-seniors-app.trycloudflare.com/auth/shopify/callback",
-  "https://indices-gadgets-seniors-app.trycloudflare.com/api/auth/callback"
+  "https://campaigns-environment-angels-retired.trycloudflare.com/auth/callback",
+  "https://campaigns-environment-angels-retired.trycloudflare.com/auth/shopify/callback",
+  "https://campaigns-environment-angels-retired.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

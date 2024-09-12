@@ -1,4 +1,4 @@
-import { getMetafieldValueQuery, TQuery } from '@repo/sfy-utils';
+import { GetMetafieldValueQuery, TQuery } from '@repo/sfy-utils';
 import type { TEnergyClass, TLabelFormat, TSheetLanguage } from 'eprel-client';
 import { Err, FetchError, Ok, TResult } from 'feature-fetch';
 
@@ -8,19 +8,16 @@ export async function getEnergyLabelFormMetafields(
 	productId: string,
 	query: TQuery
 ): Promise<TResult<TEnergyLabel | null, FetchError>> {
-	const result = await getMetafieldValueQuery(
-		{
-			productId: productId,
-			namespace: metafieldsConfig.energyLabel.namespace,
-			key: metafieldsConfig.energyLabel.key
-		},
-		query
-	);
+	const result = await query(GetMetafieldValueQuery, {
+		productId: productId,
+		namespace: metafieldsConfig.energyLabel.namespace,
+		key: metafieldsConfig.energyLabel.key
+	});
 	if (result.isErr()) {
 		return Err(result.error);
 	}
 
-	const productLabelString = result.value.product.metafield?.value;
+	const productLabelString = result.value.product?.metafield?.value;
 	if (productLabelString == null) {
 		return Ok(null);
 	}
