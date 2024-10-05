@@ -1,0 +1,70 @@
+{
+	"name": "energy-label-admin-block",
+	"title": "Energielabel (EU-Blocks)",
+	"validation": {
+		"registrationNumber": {
+			"format": "Die EPREL-Registrierungsnummer muss genau 6 Ziffern (0-9) enthalten."
+		},
+		"modelIdentifier": {
+			"required": "Modellbezeichnung ist erforderlich."
+		},
+		"energyClass": {
+			"invalid": "Ungültige Energieklasse. Bitte wählen Sie einen Wert von A bis F."
+		},
+		"labelUrl": {
+			"invalidFormat": "Bitte geben Sie eine gültige URL für das Etikett ein.",
+			"mustEndWithPdf": "Die URL muss mit .pdf enden."
+		}
+	},
+	"banner": {
+		"info": {
+			"eprelHelp": {
+				"title": "Können Sie die EPREL-Registrierungsnummer nicht finden?",
+				"content": "Scannen Sie den QR-Code auf dem Energielabel des Produkts (gedruckt oder digital). Sie werden auf eine Webseite weitergeleitet, auf der die EPREL-Registrierungsnummer in grau in der Breadcrumb-Navigation oben angezeigt wird, unter Start > Produktkategorie > XXXXXX."
+			},
+			"eprelNotice": {
+				"content1": "Die Energieetiketten, Energieklassen-Badges, Produktinformationsblätter und zugehörigen Daten befinden sich auf ",
+				"link1Text": "ec.europa.eu",
+				"content2": ", sind Eigentum der Europäischen Union, lizenziert unter der ",
+				"link2Text": "Creative Commons Namensnennung 4.0 International (CC BY 4.0) Lizenz",
+				"content3": ", und werden wie besehen bereitgestellt."
+			}
+		},
+		"warning": {
+			"noDatasheetForLanguage": {
+				"title": "Achtung",
+				"content": "Kein Datenblatt für die Hauptsprache {{language}} wurde gefunden. Sie können eine neue Sprache hinzufügen, indem Sie zusätzliche Metafelder bearbeiten."
+			}
+		},
+		"error": {
+			"retrievalFailed": "Fehler beim Abrufen des Energielabels von ec.europa.eu: {{errorMessage}}",
+			"notFound": "Kein Energielabel mit der Registrierungsnummer {{registrationNumber}} gefunden.",
+			"productIdMissing": "Produkt konnte nicht identifiziert werden",
+			"metafieldsRead": "Fehler beim Lesen der Energielabel-Metafelder: {{errorMessage}}",
+			"metafieldsWrite": "Fehler beim Schreiben der Energielabel-Metafelder: {{errorMessage}}"
+		},
+		"success": {
+			"energyLabelFound": "Energielabel für '{{productName}}' erfolgreich geladen",
+			"energyLabelUpdated": "Energielabel für '{{productName}}' erfolgreich aktualisiert",
+			"energyLabelReset": "Energielabel zurückgesetzt"
+		}
+	},
+	"button": {
+		"loadEnergyLabel": "Energieetikett laden",
+		"findEnergyLabel": "EPREL-Registrierungsnummer finden",
+		"editAdditionalMetafields": "Zusätzliche Metafelder bearbeiten",
+		"save": "Speichern",
+		"reset": "Zurücksetzen"
+	},
+	"label": {
+		"registrationNumber": "Registrierungsnummer",
+		"modelIdentifier": "Modellkennung",
+		"energyClass": "Energieklasse",
+		"pdfLabelUrl": "PDF-Etikett-URL",
+		"sheetFallbackLanguage": "Datenblatt Fallback Sprache"
+	},
+	"section": {
+		"metafields": "Metafelder",
+		"preview": "Vorschau ({{language}})"
+	}
+}

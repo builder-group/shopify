@@ -1,0 +1,342 @@
+openapi: 3.0.3
+info:
+  title: Energy Label API
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@builder.group
+servers:
+  - url: https://api.builder.group/v1/energy-label
+    description: Production server
+tags:
+  - name: health
+    description: Operations related to the API's health
+  - name: product-groups
+    description: Operations related to product groups
+  - name: products
+    description: Operations related to specific products
+  - name: energy-class
+    description: Operations related to energy classes
+paths:
+  /health:
+    get:
+      tags:
+        - health
+      summary: Check API health
+      description: Returns the current health status of the API
+      operationId: checkEnergyLabelHealth
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: './common.yaml#/components/schemas/HealthDto'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  /product-groups:
+    get:
+      summary: Get list of product groups
+      description: Returns a list of product groups with their associated details.
+      tags:
+        - product-groups
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGroupListDto'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  /product-groups/{productGroup}/products:
+    get:
+      summary: Get product details by model
+      description: Retrieves specific details for a product model within a product group.
+      tags:
+        - product-groups
+      parameters:
+        - $ref: '#/components/parameters/ProductGroup'
+        - name: model
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The model identifier of the product
+          example: P2422H
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetailsListDto'
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  /product/{registrationNumber}:
+    get:
+      summary: Get a product by registration number
+      description: Retrieves detailed information about a product using its registration number.
+      tags:
+        - Products
+      parameters:
+        - $ref: '#/components/parameters/RegistrationNumber'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetailsDto'
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '404':
+          $ref: './common.yaml#/components/responses/NotFound'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  /product/{registrationNumber}/sheets:
+    get:
+      summary: Get product sheet URLs
+      description: Retrieves URLs for product information sheets (fiches) for a specific product.
+      tags:
+        - products
+      parameters:
+        - $ref: '#/components/parameters/RegistrationNumber'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SheetUrlsDto'
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  /product/{registrationNumber}/sheet:
+    get:
+      summary: Get product sheet URL
+      description: Retrieves URL for product information sheets (fiches) for a specific product.
+      tags:
+        - products
+      parameters:
+        - $ref: '#/components/parameters/RegistrationNumber'
+        - $ref: '#/components/parameters/SheetLanguage'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: string 
+                format: uri
+              example: "https://eprel.ec.europa.eu/api/products/electronicdisplays/550826/fiches?language=DE"
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '404':
+          $ref: './common.yaml#/components/responses/NotFound'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  /product/{registrationNumber}/label:
+    get:
+      summary: Get product label URL
+      description: Retrieves URL for product labels for a specific product.
+      tags:
+        - products
+      parameters:
+        - $ref: '#/components/parameters/RegistrationNumber'
+        - $ref: '#/components/parameters/LabelFormat'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uri
+              example: "https://eprel.ec.europa.eu/labels/electronicdisplays/Label_550826.svg"
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '404':
+          $ref: './common.yaml#/components/responses/NotFound'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  /energy-class/arrow.svg:
+    get:
+      summary: Get energy efficiency class arrow as SVG
+      description: Retrieves an SVG of the energy efficiency class arrow for a given energy class.
+      tags:
+        - energy-class
+      parameters:
+        - name: energyClass
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [A, B, C, D, E, F, G]
+          description: The energy efficiency class to highlight on the scale
+        - name: variant
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [SM, LG]
+          description: The desired variant
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 56
+          description: The desired height of the SVG in pixels
+      responses:
+        '200':
+          description: Successful response
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: './common.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: './common.yaml#/components/responses/Unauthorized'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+components:
+  parameters:
+    ProductGroup:
+      name: productGroup
+      in: path
+      required: true
+      description: The product group identifier (e.g., airconditioners, electronicdisplays)
+      schema:
+        type: string
+    RegistrationNumber:
+      name: registrationNumber
+      in: path
+      required: true
+      description: Unique identifier of the product in the database
+      schema:
+        type: string
+    SheetLanguage:
+      name: language
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [BG, CS, DA, DE, ET, EL, EN, ES, FR, GA, HR, IT, LV, LT, HU, MT, NL, PL, PT, RO, SK, SL, FI, SV]
+    LabelFormat:
+      name: format
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [PNG, PDF, SVG]
+
+  schemas:
+    ProductGroupListDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProductGroupDto'
+
+    ProductGroupDto:
+      type: object
+      properties:
+        code:
+          type: string
+          example: AIR_CONDITIONER
+        urlCode:
+          type: string
+          example: airconditioners
+        name:
+          type: string
+          example: Air conditioners
+        regulation:
+          type: string
+          example: Regulation (EU) 626/2011
+
+    ProductDetailsListDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProductDetailsDto'
+
+    ProductDetailsDto:
+      type: object
+      properties:
+        modelIdentifier:
+          type: string
+          example: "P2422H"
+        onMarketStartDate:
+          type: array
+          items:
+            type: integer
+          example: [2022, 5, 1]
+        onMarketEndDate:
+          type: array
+          items:
+            type: integer
+          nullable: true
+          example: null
+        status:
+          type: string
+          enum: [PUBLISHED, DRAFT, ARCHIVED]
+          example: PUBLISHED
+        eprelRegistrationNumber:
+          type: string
+          example: "123456"
+        energyClass:
+          type: string
+          example: "A"
+        productGroup:
+          type: string
+          example: "electronicdisplays"
+        implementingAct:
+          type: string
+          example: "EU_2019_2013"
+        placementCountries:
+          type: array
+          items:
+            type: object
+            properties:
+              country:
+                type: string
+                example: "DE"
+              orderNumber:
+                type: integer
+                example: 1
+
+    SheetUrlsDto:
+      type: array
+      items:
+        type: object
+        properties:
+          language:
+            type: string
+            enum: [BG, CS, DA, DE, ET, EL, EN, ES, FR, GA, HR, IT, LV, LT, HU, MT, NL, PL, PT, RO, SK, SL, FI, SV]
+            example: "DE"
+          url:
+            type: string
+            example: "https://eprel.ec.europa.eu/api/products/electronicdisplays/550826/fiches?language=DE"

@@ -1,15 +1,19 @@
 #!/bin/bash
 
-# Array of directories to look in
-dirs_to_check=("packages" "apps")
+# Array of workspace patterns to check
+workspace_patterns=(
+    "apps/sfy-*-app/*"
+    "apps/*"
+    "packages/*"
+)
 
 # Array of dependencies to update
 dependencies=(
     "@types/node"
-    "typescript"
     # builder.group
     "@blgc/cli"
     "@blgc/config"
+    "eprel-client"
     "feature-fetch"
     "feature-form"
     "feature-logger"
@@ -32,30 +36,34 @@ echo "👉 Monorepo root found at: $MONOREPO_ROOT"
 
 # Function to update dependencies in a given package
 update_dependencies() {
-    local sd_path=$1
-    echo "🔄 Updating dependencies in $sd_path"
-    if (cd "$sd_path" && pnpm update "${dependencies[@]/%/@latest}"); then
-        echo "✅ Successfully updated dependencies in $sd_path"
+    local package_path=$1
+    echo "🔄 Updating dependencies in $package_path"
+    if (cd "$package_path" && pnpm update "${dependencies[@]/%/@latest}"); then
+        echo "✅ Successfully updated dependencies in $package_path"
     else
-        echo "❌ Failed to update dependencies in $sd_path"
+        echo "❌ Failed to update dependencies in $package_path"
     fi
 }
 
-# Loop through specified directories and update dependencies in each sub dir
-for dir in "${dirs_to_check[@]}"; do
-    sub_dir=$(ls -d "$MONOREPO_ROOT/$dir"/* 2>/dev/null)
-    for sd in $sub_dir; do
-        if [ -d "$sd" ]; then
-            echo "📦 Processing package: $sd"
-            if [ -f "$sd/package.json" ]; then
-                update_dependencies "$sd"
-            else
-                echo "⚠️ No package.json found in $sd, skipping..."
-            fi
-        else
-            echo "⚠️ Directory $sd does not exist, skipping..."
+# Function to process packages based on workspace patterns
+process_packages() {
+    local pattern=$1
+    local full_pattern="$MONOREPO_ROOT/$pattern"
+
+    for package_path in $full_pattern; do
+        if [ -d "$package_path" ] && [ -f "$package_path/package.json" ]; then
+            echo "📦 Processing package: $package_path"
+            update_dependencies "$package_path"
+        elif [ -d "$package_path" ]; then
+            echo "⚠️ No package.json found in $package_path, skipping..."
         fi
     done
+}
+
+# Loop through workspace patterns and process packages
+for pattern in "${workspace_patterns[@]}"; do
+    echo "🔍 Checking pattern: $pattern"
+    process_packages "$pattern"
 done
 
 echo "✅ Dependency updates completed."

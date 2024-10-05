@@ -1,0 +1,27 @@
+{
+	"name": "@repo/sfy-eu-blocks-checkout-ui-extension",
+	"private": true,
+	"version": "0.0.1",
+	"license": "UNLICENSED",
+	"scripts": {
+		"lint": "eslint --ext .js,.ts,.jsx,.tsx src/",
+		"clean": "shx rm -rf dist && shx rm -rf node_modules && shx rm -rf .turbo",
+		"install:clean": "pnpm run clean && pnpm install",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"@repo/sfy-utils": "workspace:*",
+		"@shopify/ui-extensions": "2024.7.0",
+		"@shopify/ui-extensions-react": "2024.7.0",
+		"eprel-client": "^0.0.16",
+		"feature-fetch": "^0.0.26",
+		"feature-react": "^0.0.23",
+		"feature-state": "^0.0.23",
+		"react": "^18.3.1"
+	},
+	"devDependencies": {
+		"@blgc/config": "^0.0.23",
+		"@types/react": "^18.3.5",
+		"react-reconciler": "^0.29.2"
+	}
+}

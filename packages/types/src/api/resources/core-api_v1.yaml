@@ -1,0 +1,112 @@
+openapi: 3.0.3
+info:
+  title: Builder.Group Combined API
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@builder.group
+servers:
+  - url: https://api.builder.group
+    description: Production server
+paths:
+  /v1/health:
+    get:
+      tags:
+        - health
+      summary: Check API health
+      description: Returns the current health status of the API
+      operationId: checkCoreHealth
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: './common.yaml#/components/schemas/HealthDto'
+        '500':
+          $ref: './common.yaml#/components/responses/InternalServerError'
+
+  # Shopify paths 
+  /v1/shopify/health:
+    $ref: './shopify-api_v1.yaml#/paths/~1health'
+  /v1/shopify/session:
+    $ref: './shopify-api_v1.yaml#/paths/~1session'
+  /v1/shopify/session/{id}:
+    $ref: './shopify-api_v1.yaml#/paths/~1session~1{id}'
+  /v1/shopify/session/delete:
+    $ref: './shopify-api_v1.yaml#/paths/~1session~1delete'
+  /v1/shopify/session/shop/{shop}:
+    $ref: './shopify-api_v1.yaml#/paths/~1session~1shop~1{shop}'
+
+  # Energy Label paths 
+  /v1/energy-label/health:
+    $ref: './energy-label-api_v1.yaml#/paths/~1health'
+  /v1/energy-label/product-groups:
+    $ref: './energy-label-api_v1.yaml#/paths/~1product-groups'
+  /v1/energy-label/product-groups/{productGroup}/products:
+    $ref: './energy-label-api_v1.yaml#/paths/~1product-groups~1{productGroup}~1products'
+  /v1/energy-label/product/{registrationNumber}:
+    $ref: './energy-label-api_v1.yaml#/paths/~1product~1{registrationNumber}'
+  /v1/energy-label/product/{registrationNumber}/sheets:
+    $ref: './energy-label-api_v1.yaml#/paths/~1product~1{registrationNumber}~1sheets'
+  /v1/energy-label/product/{registrationNumber}/sheet:
+    $ref: './energy-label-api_v1.yaml#/paths/~1product~1{registrationNumber}~1sheet'
+  /v1/energy-label/product/{registrationNumber}/label:
+    $ref: './energy-label-api_v1.yaml#/paths/~1product~1{registrationNumber}~1label'
+  /v1/energy-label/energy-class/arrow.svg:
+    $ref: './energy-label-api_v1.yaml#/paths/~1energy-class~1arrow.svg'
+
+components:
+  schemas:
+    # Common schemas
+    AppErrorDto:
+      $ref: './common.yaml#/components/schemas/AppErrorDto'
+    HealthDto:
+      $ref: './common.yaml#/components/schemas/HealthDto'
+    HealthStatus:
+      $ref: './common.yaml#/components/schemas/HealthStatus'
+    
+    # Shopify schemas
+    ShopifySessionDto:
+      $ref: './shopify-api_v1.yaml#/components/schemas/ShopifySessionDto'
+    
+    # Energy Label schemas
+    ProductGroupListDto:
+      $ref: './energy-label-api_v1.yaml#/components/schemas/ProductGroupListDto'
+    ProductGroupDto:
+      $ref: './energy-label-api_v1.yaml#/components/schemas/ProductGroupDto'
+    ProductDetailsDto:
+      $ref: './energy-label-api_v1.yaml#/components/schemas/ProductDetailsDto'
+    SheetUrlsDto:
+      $ref: './energy-label-api_v1.yaml#/components/schemas/SheetUrlsDto'
+  
+  parameters:
+    # Shopify parameters
+    SessionId:
+      $ref: './shopify-api_v1.yaml#/components/parameters/SessionId'
+    
+    # Energy Label parameters
+    ProductGroup:
+      $ref: './energy-label-api_v1.yaml#/components/parameters/ProductGroup'
+    RegistrationNumber:
+      $ref: './energy-label-api_v1.yaml#/components/parameters/RegistrationNumber'
+    SheetLanguage:
+      $ref: './energy-label-api_v1.yaml#/components/parameters/SheetLanguage'
+    LabelFormat:
+      $ref: './energy-label-api_v1.yaml#/components/parameters/LabelFormat'
+  
+  responses:
+    # Common responses
+    BadRequest:
+      $ref: './common.yaml#/components/responses/BadRequest'
+    Unauthorized:
+      $ref: './common.yaml#/components/responses/Unauthorized'
+    NotFound:
+      $ref: './common.yaml#/components/responses/NotFound'
+    InternalServerError:
+      $ref: './common.yaml#/components/responses/InternalServerError'
+  
+  securitySchemes:
+    # Shopify security schemes
+    shopifyToken:
+      $ref: './shopify-api_v1.yaml#/components/securitySchemes/shopifyToken'

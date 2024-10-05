@@ -1,11 +1,12 @@
 {
-	"name": "@repo/apicore--node",
+	"name": "@repo/api-core-node",
 	"version": "0.0.1",
 	"description": "Core API running on NodeJs",
 	"private": true,
 	"scripts": {
 		"build": "shx rm -rf dist && chmod +x ../../scripts/cli.sh && ../../scripts/cli.sh bundle",
 		"start:dev": "tsx watch ./src/index.ts",
+		"start:dev:proxy": "tsx ./dev-proxy.js",
 		"lint": "eslint --ext .js,.ts src/",
 		"clean": "shx rm -rf dist && shx rm -rf node_modules && shx rm -rf .turbo",
 		"install:clean": "pnpm run clean && pnpm install",
@@ -15,25 +16,27 @@
 	"main": "./dist/index.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/builder-group/project-shopify.git"
+		"url": "https://github.com/builder-group/shopify.git"
 	},
 	"keywords": [],
-	"author": "@bennoinbeta",
+	"author": "@bennobuilder",
 	"license": "AGPL-3.0-or-later",
 	"bugs": {
-		"url": "https://github.com/builder-group/project-shopify/issues"
+		"url": "https://github.com/builder-group/shopify/issues"
 	},
 	"homepage": "",
 	"dependencies": {
-		"@hono/node-server": "^1.12.0",
+		"@hono/node-server": "^1.12.2",
 		"@repo/api-core": "workspace:*",
-		"hono": "^4.5.5"
+		"@repo/api-utils": "workspace:*",
+		"hono": "^4.5.9"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.17",
-		"@types/node": "^22.2.0",
+		"@blgc/config": "^0.0.23",
+		"@types/node": "^22.5.4",
+		"cloudflared": "^0.5.3",
 		"dotenv": "^16.4.5",
-		"tsx": "^4.17.0"
+		"tsx": "^4.19.0"
 	},
 	"files": [
 		"dist",

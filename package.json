@@ -1,6 +1,6 @@
 {
-	"name": "monorepo",
-	"description": "Monorepo for project-shopify",
+	"name": "shopify",
+	"description": "Shopify apps maintained by builder.group",
 	"private": true,
 	"scripts": {
 		"build": "turbo build",
@@ -13,27 +13,27 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/builder-group/project-shopify.git"
+		"url": "https://github.com/builder-group/shopify.git"
 	},
 	"keywords": [],
-	"author": "@bennoinbeta",
+	"author": "@bennobuilder",
 	"license": "AGPL-3.0-or-later",
 	"bugs": {
-		"url": "https://github.com/builder-group/project-shopify/issues"
+		"url": "https://github.com/builder-group/shopify/issues"
 	},
-	"homepage": "",
+	"homepage": "https://builder.group/?source=github",
 	"devDependencies": {
-		"@blgc/cli": "^0.0.16",
-		"@blgc/config": "^0.0.17",
+		"@blgc/cli": "^0.0.17",
+		"@blgc/config": "^0.0.23",
 		"@ianvs/prettier-plugin-sort-imports": "^4.3.1",
 		"eslint": "^8.57.0",
 		"prettier": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.6",
 		"shx": "^0.3.4",
-		"turbo": "^2.0.12",
-		"typescript": "^5.5.4",
-		"vite": "^5.4.0",
-		"vitest": "^2.0.5"
+		"turbo": "^2.1.2",
+		"typescript": "^5.6.2",
+		"vite": "^5.4.6",
+		"vitest": "^2.1.1"
 	},
 	"packageManager": "pnpm@9.2.0",
 	"pnpm": {

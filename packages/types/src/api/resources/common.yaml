@@ -1,0 +1,80 @@
+components:
+  schemas:
+    AppErrorDto:
+      type: object
+      required:
+        - error_code
+      properties:
+        error_code:
+          type: string
+          description: Error code
+        error_description:
+          type: string
+          description: Error description
+        error_uri:
+          type: string
+          description: Error URI for more information
+          nullable: true
+        additional_errors:
+          type: array
+          items:
+            type: object
+          description: Additional error details
+      example:
+        error_code: "#ERR_INVALID_INPUT"
+        error_description: "Invalid input"
+        error_uri: "https://api.builder.group/docs/errors#ERR_INVALID_INPUT"
+        additional_errors: []
+
+    HealthDto:
+      type: object
+      required:
+        - status
+        - message
+      properties:
+        status:
+          $ref: '#/components/schemas/HealthStatus'
+        message:
+          type: string
+          description: Additional health check information
+      example:
+        status: Up
+        message: "API is functioning normally"
+
+    HealthStatus:
+      type: string
+      enum:
+        - Up
+        - Restricted
+        - Down
+      description: |
+        The current health status of the API:
+        * `Up` - Fully operational
+        * `Restricted` - Partially operational
+        * `Down` - Not operational
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppErrorDto'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppErrorDto'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppErrorDto'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppErrorDto'

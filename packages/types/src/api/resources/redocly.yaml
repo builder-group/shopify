@@ -1,0 +1,13 @@
+apis:
+  energy-label@v1:
+    root: ./energy-label-api_v1.yaml
+    x-openapi-ts:
+      output: ../.openapi/energy-label-api-v1.ts
+  shopify@v1:
+    root: ./shopify-api_v1.yaml
+    x-openapi-ts:
+      output: ../.openapi/shopify-api-v1.ts
+  combined@v1:
+    root: ./core-api_v1.yaml
+    x-openapi-ts:
+      output: ../.openapi/core-api-v1.ts

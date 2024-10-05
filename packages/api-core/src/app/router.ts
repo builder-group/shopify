@@ -1,12 +1,7 @@
-import { createHonoOpenApiRouter } from '@blgc/openapi-router';
-import { type paths } from '@repo/types/core';
+import { type coreApiV1 } from '@repo/types/api';
 import { Hono } from 'hono';
-import { bearerAuth } from 'hono/bearer-auth';
-
-import { appConfig } from '../environment';
+import { createHonoOpenApiRouter } from '@blgc/openapi-router';
 
 export const router = new Hono();
 
-router.use('/v1/shopify/*', bearerAuth({ token: appConfig.shopifyBearerToken }));
-
-export const openApiRouter = createHonoOpenApiRouter<paths>(router);
+export const openApiRouter = createHonoOpenApiRouter<coreApiV1.paths>(router);

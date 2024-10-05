@@ -6,7 +6,7 @@ import { serve } from '@hono/node-server';
 	if (nodeEnv === 'local') {
 		const dotenv = await import('dotenv');
 		dotenv.config({ path: `.env.${nodeEnv}` });
-		console.log(`Loaded dotenv from '.env.${nodeEnv}'.`);
+		console.info(`Loaded dotenv from '.env.${nodeEnv}'`);
 	}
 
 	const { createApp, logger } = await import('@repo/api-core');

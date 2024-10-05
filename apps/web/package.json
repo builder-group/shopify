@@ -14,26 +14,26 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/builder-group/project-shopify.git"
+		"url": "https://github.com/builder-group/shopify.git"
 	},
 	"keywords": [],
-	"author": "@bennoinbeta",
+	"author": "@bennobuilder",
 	"license": "AGPL-3.0-or-later",
 	"bugs": {
-		"url": "https://github.com/builder-group/project-shopify/issues"
+		"url": "https://github.com/builder-group/shopify/issues"
 	},
 	"homepage": "",
 	"dependencies": {
-		"@blgc/utils": "^0.0.15",
+		"@blgc/utils": "^0.0.18",
 		"@repo/ui": "workspace:*",
-		"feature-logger": "^0.0.19",
+		"feature-logger": "^0.0.22",
 		"next": "14.2.5",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
-		"@blgc/config": "^0.0.17",
-		"@types/node": "^22.2.0",
+		"@blgc/config": "^0.0.23",
+		"@types/node": "^22.5.4",
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
 		"postcss": "^8.4.41",

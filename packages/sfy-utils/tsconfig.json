@@ -1,0 +1,15 @@
+{
+	"extends": "@blgc/config/shared-library.tsconfig.json",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"declarationDir": "./dist/types",
+		"baseUrl": ".",
+		"plugins": [{
+			"name": "gql.tada/ts-plugin",
+			"schema": "https://shopify.dev/admin-graphql-direct-proxy/unstable",
+			"tadaOutputLocation": "./src/graphql-env.d.ts",
+		  }]
+	},
+	"include": ["src"]
+}

@@ -1,6 +1,6 @@
-# Contributing to project-shopify
+# Contributing to Shopify monorepo
 
-We are open and grateful for any contribution made by the community. If you're interested in contributing to project-shopify, this document might make the process for you easier.
+We are open and grateful for any contribution made by the community. If you're interested in contributing to Shopify monorepo, this document might make the process for you easier.
 
 The [Open Source Guides](https://opensource.guide/) website has a collection of resources for individuals,
 communities, and companies who want to learn how to run and contribute to an open-source project.
@@ -31,8 +31,7 @@ The structure of the `package.json` file in this project should adhere to a spec
 		"lint": "eslint --ext .js,.ts src/",
 		"clean": "shx rm -rf dist && shx rm -rf node_modules && shx rm -rf .turbo",
 		"install:clean": "pnpm run clean && pnpm install",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"update:latest": "pnpm update --latest"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	// "type": "module",
 	// "source": "./src/index.ts",
@@ -41,13 +40,13 @@ The structure of the `package.json` file in this project should adhere to a spec
 	// "types": "./dist/types/index.d.ts",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/builder-group/project-shopify.git"
+		"url": "https://github.com/builder-group/shopify.git"
 	},
 	"keywords": [],
-	"author": "@bennoinbeta",
+	"author": "@bennobuilder",
 	"license": "AGPL-3.0-or-later",
 	"bugs": {
-		"url": "https://github.com/builder-group/project-shopify/issues"
+		"url": "https://github.com/builder-group/shopify/issues"
 	},
 	"homepage": "",
 	"dependencies": {
@@ -83,7 +82,7 @@ For specific packages, additional fields should be included as shown below. Note
 
 ## 📄 License
 
-By contributing to project shopify, you agree that your contributions will be licensed under the license defined in [`LICENSE.md`](./LICENSE.md).
+By contributing to the Shopify monorepo, you agree that your contributions will be licensed under the license defined in [`LICENSE.md`](./LICENSE.md).
 
 ## 🎉 Credits
 
